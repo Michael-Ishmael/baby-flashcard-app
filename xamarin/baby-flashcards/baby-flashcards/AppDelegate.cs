@@ -1,5 +1,7 @@
-﻿using Foundation;
+﻿using System.IO;
+using Foundation;
 using UIKit;
+using CoreGraphics;
 
 namespace babyflashcards
 {
@@ -8,7 +10,8 @@ namespace babyflashcards
 	[Register ("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
-		// class-level declarations
+
+		private FlashCardSetTabViewController _tabViewController;
 
 		public override UIWindow Window {
 			get;
@@ -24,6 +27,21 @@ namespace babyflashcards
 			#if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
 			#endif
+
+			Window = new UIWindow (UIScreen.MainScreen.Bounds);
+
+			application.StatusBarHidden = true;
+			application.ApplicationSupportsShakeToEdit = true;
+
+			var path = NSBundle.MainBundle.PathForResource("data", "json");
+			var json = File.ReadAllText (path);
+			var data = Newtonsoft.Json.JsonConvert.DeserializeObject<AppData>(json);
+
+			Window.BackgroundColor = UIColor.White;
+			_tabViewController = new FlashCardSetTabViewController (data);
+			Window.RootViewController = _tabViewController;
+
+			Window.MakeKeyAndVisible ();
 
 			return true;
 		}

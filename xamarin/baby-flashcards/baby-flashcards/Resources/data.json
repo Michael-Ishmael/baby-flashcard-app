@@ -1,0 +1,247 @@
+﻿{ sets : [
+  {
+    "setid": 1,
+    "name": "Domestic Animals",
+    "icon": "domesticicon.png",
+    "decks": [
+      {
+        "id": 1,
+        "name": "Horse",
+        "thumb": "horsethumb",
+        "cards": [
+          {
+            "index": 0,
+            "image": "horse1",
+            "sound": "Horse1.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "horse2",
+            "sound": "horse2.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "horse3",
+            "sound": "horse3.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "horse4",
+            "sound": "horse4.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "horse5",
+            "sound": "horse5.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "horse6",
+            "sound": "horse6.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Cow",
+        "thumb": "cowthumb",
+        "cards": [
+          {
+            "index": 0,
+            "image": "cow1",
+            "sound": "cow1.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "cow2",
+            "sound": "cow2.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "cow3",
+            "sound": "cow3.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "cow4",
+            "sound": "cow4.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "cow5",
+            "sound": "cow5.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "cow6",
+            "sound": "cow6.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Chicken",
+        "thumb": "chickenthumb",
+        "cards": [
+          {
+            "index": 0,
+            "image": "Chicken1_ipad",
+            "sound": "chicken1.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "Chicken2_ipad",
+            "sound": "chicken2.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "Chicken3_ipad",
+            "sound": "chicken3.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "chicken4",
+            "sound": "chicken4.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "chicken5",
+            "sound": "chicken5.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          },
+          {
+            "index": 0,
+            "image": "chicken6",
+            "sound": "chicken6.mp3",
+            "portraitbounds": {
+              "x": 10,
+              "y": 10,
+              "width": 200,
+              "height": 500
+            },
+            "landscapebounds": null
+          }
+        ]
+      }
+    ]
+  }
+]
+}

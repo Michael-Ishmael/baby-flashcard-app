@@ -89,6 +89,9 @@
     <Reference Include="Calabash">
       <HintPath>..\packages\Xamarin.TestCloud.Agent.0.14.1\lib\Xamarin.iOS10\Calabash.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
@@ -117,7 +120,27 @@
     <Compile Include="SecondViewController.designer.cs">
       <DependentUpon>SecondViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\AppData.cs" />
+    <Compile Include="Entities\FlashCard.cs" />
+    <Compile Include="Entities\FlashCardDeck.cs" />
+    <Compile Include="Entities\FlashCardSet.cs" />
+    <Compile Include="ViewLogic\DeckViewData.cs" />
+    <Compile Include="ViewLogic\DeckViewCell.cs" />
+    <Compile Include="ViewLogic\DeckCollectionViewController.cs" />
+    <Compile Include="ViewLogic\IApplicationEventHandler.cs" />
+    <Compile Include="ViewLogic\JumbleFlowLayout.cs" />
+    <Compile Include="ViewLogic\FlashCardSetTabViewController.cs" />
+    <Compile Include="ViewLogic\FlashCardViewController.cs" />
+    <Compile Include="ViewLogic\FlashCardViewTransitioningDelegate.cs" />
+    <Compile Include="ViewLogic\FlashCardViewControllerAnimatedTransitioning.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.6\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.6\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
+  <ItemGroup>
+    <Folder Include="ViewLogic\" />
+    <Folder Include="Entities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\data.json" />
+  </ItemGroup>
 </Project>
