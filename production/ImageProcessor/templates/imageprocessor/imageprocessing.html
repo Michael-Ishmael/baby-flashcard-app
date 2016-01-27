@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% load staticfiles %}
+
+    <meta charset="UTF-8">
+    <title>Image Processor</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"/>
+</head>
+<body>
+
+<div id="controlPanel" class="control-panel">
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="{% url 'processimage' 1 %}" method="post">
+        {% csrf_token %}
+
+        <div class="control">
+            <label for="backlog">Backlog:</label>
+            <br>
+            <select id="backlog" name="backlog" multiple="multiple">
+                <option>Image 1</option>
+                <option>Image 2</option>
+                <option>Image 3</option>
+                <option>Image 4</option>
+                <option>Image 5</option>
+            </select>
+        </div>
+
+        <div class="control">
+            <label for="imageName">Image Name:</label>
+            <input id="imageName" type="text" name="imageName" value="">
+        </div>
+
+        <h3>12 / 16</h3>
+        <div class="section">
+            <div class="control">
+                <h4>Master</h4>
+                <fieldset>
+                    <legend>Orientation</legend>
+                    <label><input type="radio" name="twOrientation" value="landscape" checked > Landscape</label>
+                    <label><input type="radio" name="twOrientation" value="portrait" > Portrait</label>
+                </fieldset>
+                <br>
+                <input type="text" id="twelve16MasterCoordDisplay" class="coord-display" value="{empty}" readonly>
+                <button id="twelve16MasterSet" type="button">Set Crop</button>
+                <h4>Alternate orientation</h4>
+                <input type="text" id="twelve16AltCoordDisplay" class="coord-display" value="{empty}" readonly>
+                <button id="twelve16AltSet" type="button">Set Crop</button>
+            </div>
+        </div>
+
+        <h3>9 / 16</h3>
+        <div class="section">
+            <div class="control">
+                <h4>Master</h4>
+                <fieldset>
+                    <legend>Orientation</legend>
+                    <label><input type="radio" name="twOrientation" value="landscape" checked > Landscape</label>
+                    <label><input type="radio" name="twOrientation" value="portrait" > Portrait</label>
+                </fieldset>
+                <br>
+                <input type="text" id="nine16MasterCoordDisplay" class="coord-display" value="{empty}" readonly>
+                <button id="twelve16MasterSet" type="button">Set Crop</button>
+                <br>
+                <h4>Alternate orientation</h4>
+                <input  type="text" id="nine16AltCoordDisplay" class="coord-display" value="{empty}" readonly>
+                <button id="nine16AltSet" type="button">Set Crop</button>
+            </div>
+        </div>
+
+        <input type="submit" value="Sumbit"/>
+    </form>
+</div>
+
+<div id="form-container" class="image-panel">
+
+    <img id="cropbox" src="media/donkey1.jpg" class="working-image"/>
+
+
+</div>
+
+<script src="http://code.jquery.com/jquery-2.2.0.js" language="JavaScript"></script>
+
+
+<script src="{% static 'js/jquery.color.js' %}" language="JavaScript"></script>
+<script src="{% static 'js/jquery.Jcrop.js' %}" language="JavaScript"></script>
+
+<script src="{% static 'js/im-proc.js' %}" language="JavaScript"></script>
+
+</body>
+</html>

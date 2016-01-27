@@ -1,0 +1,63 @@
+
+1.  Dump all original images in one folder
+
+
+
+
+To do list of images
+
+Select image >
+    Name
+    Assign to thumb
+    12 / 16
+        Mark Landscape
+        Mark Portrait
+        Calculate minimum square
+        Store crop proportions
+    9 / 16
+        Mark Landscape
+        Mark Portrait
+        Calculate minimum square
+        Store crop proportions
+
+
+Image
+    Name
+    ParentId
+    TwelveSixteen
+        MasterCropType = Landscape or Portrait
+        MasterCrop = { x, y, w, h }
+        SlimCrop (crop of master) = { x, y, w, h }
+
+
+{
+    name : donkey1,
+    parentDeck: donkey,
+    cropSets: [
+                {
+                    dimension: twelveSixteen
+                    master: {
+                        orientation: Landscape,
+                        crop: {10%, 20%, 60%, 40% }
+                        },
+                    alternate: {
+                        orientation: Portrait,
+                        crop: {10%, 20%, 60%, 40% }
+                        }
+                 }
+                ,{
+                    dimension: nineSixteen
+                    master: {
+                        orientation: Landscape,
+                        crop: {10%, 20%, 60%, 40% }
+                        },
+                    alternate: {
+                        orientation: Portrait,
+                        crop: {10%, 20%, 60%, 40% }
+                        }
+                 }
+                }
+                ]
+
+}
+

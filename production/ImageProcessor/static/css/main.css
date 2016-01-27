@@ -1,0 +1,55 @@
+body {
+    background-color: #4d4d4d;
+    font-family: Arial;
+    color: white;
+}
+
+.control-panel{
+    float: left;
+    width: 260px;
+    padding: 10px;
+}
+.image-panel{
+    border: 1px darkred solid;
+    margin-left: 280px;
+    max-width: 1100px;
+}
+.working-image{
+    width: 1000px;
+}
+
+.control-panel .control {
+    margin-bottom: 20px;
+}
+
+.control-panel select {
+    margin-top: 5px;
+    width: 220px;
+    font-size: 16px;
+}
+
+.coord-display{
+    background-color: lightgray;
+    border: 1px solid black;
+    display: inline-block;
+    padding: 2px;
+    width:150px
+}
+
+h4{
+    margin: 5px 0;
+}
+
+.control-panel .section {
+    border-top: solid 1px whitesmoke;
+    border-bottom: solid 1px whitesmoke;
+    padding: 5px;
+}
+
+.control-panel .coord {
+    width: 40px;
+}
+
+button, input {
+    margin: 5px 0;
+}
