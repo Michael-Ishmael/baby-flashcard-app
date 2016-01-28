@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url, patterns
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.decorators.csrf import csrf_exempt
 from . import views
 
 # urlpatterns = staticfiles_urlpatterns()
@@ -9,7 +10,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^processimage/(?P<image_id>[0-9]+)/$', views.processImage, name='processimage'),
+    url(r'^addimage', csrf_exempt(views.add_image), name='addimage'),
 ]
 
 urlpatterns += patterns('',
