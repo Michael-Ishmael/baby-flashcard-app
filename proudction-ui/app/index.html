@@ -1,94 +1,124 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="imgProcessor" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="imgProcessor" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="imgProcessor" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="imgProcessor" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html lang="en" ng-app="imgProcessor" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="imgProcessor" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="imgProcessor" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="imgProcessor" class="no-js"> <!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Angular Bool Test</title>
+    <title>Angular Bool Test</title>
 
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="components/jcrop/jquery.Jcrop.min.css">
-  <link rel="stylesheet" href="app.css">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="components/jcrop/jquery.Jcrop.min.css">
+    <link rel="stylesheet" href="app.css">
 
 </head>
-<body >
+<body>
 
-    <div class="container-fluid" ng-controller="imgProcController">
-        <div class="row">
-            <div class="col-md-3">
+<div class="container-fluid" ng-controller="imgProcController">
+    <div class="row">
+        <div class="col-md-3">
 
-                <form action="" method="post">
+            <form action="" method="post">
 
+                <div class="form-group">
+                    <label for="backlog" class="control-label">Backlog:</label>
+                    <select id="backlog" name="backlog" multiple="multiple" class="form-control">
+                        <option>Image 1</option>
+                        <option>Image 2</option>
+                        <option>Image 3</option>
+                        <option>Image 4</option>
+                        <option>Image 5</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="imageName" class="control-label">Image Name:</label>
+                    <input id="imageName" type="text" name="imageName" value="" class="form-control">
+                </div>
+
+                <h3>12 / 16</h3>
+
+                <div class="section">
+                    <div class="master">
+                        <h4>Master</h4>
+                        <div class="form-group">
+                            <label class="radio-inline">
+                                <input type="radio" name="twOrientation" id="twOrientation1" value="landscape">
+                                Landscape
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="twOrientation" id="twOrientation2" value="portrait"> Portrait
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                       <span class="input-group-btn">
+                                    <button class="btn btn-default" id="twelve16MasterSet" type="button">Set Crop</button>
+                                  </span>
+                                <input type="text" id="twelve16MasterCoordDisplay" class="coord-display form-control"
+                                       value="{empty}" class="form-control" readonly="readonly">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="alternate">
+                        <h4>Alternate</h4>
+                        <div class="form-group">
+                            <div class="input-group">
+                                       <span class="input-group-btn">
+                                    <button class="btn btn-default" id="twelve16AltSet" type="button">Set Crop</button>
+                                  </span>
+                                <input type="text" id="twelve16AltCoordDisplay" class="coord-display form-control"
+                                       value="{empty}" class="form-control" readonly="readonly">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <h3>9 / 16</h3>
+                <div class="section">
                     <div class="control">
-                        <label for="backlog">Backlog:</label>
+                        <h4>Master</h4>
+                        <fieldset>
+                            <legend>Orientation</legend>
+                            <label><input type="radio" name="twOrientation" value="landscape" checked> Landscape</label>
+                            <label><input type="radio" name="twOrientation" value="portrait"> Portrait</label>
+                        </fieldset>
                         <br>
-                        <select id="backlog" name="backlog" multiple="multiple">
-                            <option>Image 1</option>
-                            <option>Image 2</option>
-                            <option>Image 3</option>
-                            <option>Image 4</option>
-                            <option>Image 5</option>
-                        </select>
+                        <input type="text" id="nine16MasterCoordDisplay" class="coord-display" value="{empty}" readonly>
+                        <button id="nine16MasterSet" type="button">Set Crop</button>
+                        <br>
+                        <h4>Alternate orientation</h4>
+                        <input type="text" id="nine16AltCoordDisplay" class="coord-display" value="{empty}" readonly>
+                        <button id="nine16AltSet" type="button">Set Crop</button>
                     </div>
+                </div>
 
-                    <div class="control">
-                        <label for="imageName">Image Name:</label>
-                        <input id="imageName" type="text" name="imageName" value="">
-                    </div>
-
-                    <h3>12 / 16</h3>
-                    <div class="section">
-                        <div class="control">
-                            <h4>Master</h4>
-                            <fieldset>
-                                <legend>Orientation</legend>
-                                <label><input type="radio" name="twOrientation" value="landscape" checked > Landscape</label>
-                                <label><input type="radio" name="twOrientation" value="portrait" > Portrait</label>
-                            </fieldset>
-                            <br>
-                            <input type="text" id="twelve16MasterCoordDisplay" class="coord-display" value="{empty}" readonly>
-                            <button id="twelve16MasterSet" type="button">Set Crop</button>
-                            <h4>Alternate orientation</h4>
-                            <input type="text" id="twelve16AltCoordDisplay" class="coord-display" value="{empty}" readonly>
-                            <button id="twelve16AltSet" type="button">Set Crop</button>
-                        </div>
-                    </div>
-
-                    <h3>9 / 16</h3>
-                    <div class="section">
-                        <div class="control">
-                            <h4>Master</h4>
-                            <fieldset>
-                                <legend>Orientation</legend>
-                                <label><input type="radio" name="twOrientation" value="landscape" checked > Landscape</label>
-                                <label><input type="radio" name="twOrientation" value="portrait" > Portrait</label>
-                            </fieldset>
-                            <br>
-                            <input type="text" id="nine16MasterCoordDisplay" class="coord-display" value="{empty}" readonly>
-                            <button id="nine16MasterSet" type="button">Set Crop</button>
-                            <br>
-                            <h4>Alternate orientation</h4>
-                            <input  type="text" id="nine16AltCoordDisplay" class="coord-display" value="{empty}" readonly>
-                            <button id="nine16AltSet" type="button">Set Crop</button>
-                        </div>
-                    </div>
-
-                    <input type="submit" value="Sumbit"/>
-                </form>
-            </div>
-            <div class="col-md-9">
-                <img id="cropbox" src="../media/crit1.png" class="working-image"/>
-            </div>
-
+                <input type="submit" value="Sumbit"/>
+            </form>
+        </div>
+        <div class="col-md-9">
+            <img id="cropbox" src="../media/crit1.png" class="working-image"/>
         </div>
 
     </div>
+
+</div>
 
 <!--  <ul class="menu">
     <li><a href="#/view1">view1</a></li>
@@ -99,21 +129,18 @@
   -->
 
 
-
-
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/bootstrap-css/js/bootstrap.min.js"></script>
-  <script src="bower_components/angular/angular.min.js"></script>
-  <script src="app.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
-  <script src="components/jcrop/jquery.color.js"></script>
-  <script src="components/jcrop/jquery.Jcrop.js"></script>
-    <script src="controllers/imgProcController.js"></script>
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="app.js"></script>
+<script src="components/version/version.js"></script>
+<script src="components/version/version-directive.js"></script>
+<script src="components/version/interpolate-filter.js"></script>
+<script src="components/jcrop/jquery.color.js"></script>
+<script src="components/jcrop/jquery.Jcrop.js"></script>
+<script src="controllers/imgProcController.js"></script>
 </body>
 </html>

@@ -4,6 +4,16 @@ html body {
   color: #fff;
 }
 
+.master {
+  background-color: #5d3a3a;
+  padding: 10px;
+}
+
+.alternate {
+  background-color: #2b542c;
+  padding: 10px;
+}
+
 
 .menu {
   list-style: none;
