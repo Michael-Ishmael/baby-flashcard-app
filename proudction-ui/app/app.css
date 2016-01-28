@@ -1,18 +1,34 @@
 /* app css stylesheet */
 html body {
-  background-color: #3e546c;
+  background-color: #454b52;
   color: #fff;
 }
 
-.master {
-  background-color: #5d3a3a;
+.colored-block{
   padding: 10px;
 }
 
-.alternate {
-  background-color: #2b542c;
-  padding: 10px;
+.master12 {
+  background-color: #5d3a3a;
 }
+
+.alternate12 {
+  background-color: #2b542c;
+}
+
+.master9 {
+  background-color: #33385d;
+}
+
+.alternate9 {
+  background-color: #6b6a21;
+}
+
+#cropbox {
+  max-width: 800px;
+}
+
+
 
 
 .menu {

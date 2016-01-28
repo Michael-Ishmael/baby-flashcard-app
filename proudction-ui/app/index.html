@@ -31,12 +31,8 @@
 
                 <div class="form-group">
                     <label for="backlog" class="control-label">Backlog:</label>
-                    <select id="backlog" name="backlog" multiple="multiple" class="form-control">
-                        <option>Image 1</option>
-                        <option>Image 2</option>
-                        <option>Image 3</option>
-                        <option>Image 4</option>
-                        <option>Image 5</option>
+                    <select id="backlog" name="backlog" multiple="multiple" class="form-control"
+                    ng-options="img as img.path for img in backlog" ng-model="selectedImg" ng-change="preImageChange()">
                     </select>
                 </div>
 
@@ -45,75 +41,118 @@
                     <input id="imageName" type="text" name="imageName" value="" class="form-control">
                 </div>
 
-                <h3>12 / 16</h3>
+                <div class="form-group">
 
-                <div class="section">
-                    <div class="master">
-                        <h4>Master</h4>
-                        <div class="form-group">
-                            <label class="radio-inline">
-                                <input type="radio" name="twOrientation" id="twOrientation1" value="landscape">
-                                Landscape
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="twOrientation" id="twOrientation2" value="portrait"> Portrait
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#twelve16" aria-controls="twelve16" role="tab" data-toggle="tab">12 / 16</a></li>
+                        <li role="presentation">
+                            <a href="#nine16" aria-controls="nine16" role="tab" data-toggle="tab">9 / 16</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="twelve16">
+                            <div class="colored-block master12">
+                                <h4>Master</h4>
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="twOrientation" id="twOrientation1" value="landscape">
+                                        Landscape
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="twOrientation" id="twOrientation2" value="portrait">
+                                        Portrait
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
                                        <span class="input-group-btn">
-                                    <button class="btn btn-default" id="twelve16MasterSet" type="button">Set Crop</button>
+                                    <button class="btn btn-default" id="twelve16MasterSet" type="button" ng-click="addCropBox(1)">
+                                        Set Crop
+                                    </button>
                                   </span>
-                                <input type="text" id="twelve16MasterCoordDisplay" class="coord-display form-control"
-                                       value="{empty}" class="form-control" readonly="readonly">
+                                        <input type="text" id="twelve16MasterCoordDisplay"
+                                               class="coord-display form-control"
+                                               value="{empty}" class="form-control" readonly="readonly">
+
+                                    </div>
+
+                                </div>
 
                             </div>
 
-                        </div>
-
-                    </div>
-
-
-                    <div class="alternate">
-                        <h4>Alternate</h4>
-                        <div class="form-group">
-                            <div class="input-group">
+                            <div class="colored-block alternate12">
+                                <h4>Alternate</h4>
+                                <div class="form-group">
+                                    <div class="input-group">
                                        <span class="input-group-btn">
                                     <button class="btn btn-default" id="twelve16AltSet" type="button">Set Crop</button>
                                   </span>
-                                <input type="text" id="twelve16AltCoordDisplay" class="coord-display form-control"
-                                       value="{empty}" class="form-control" readonly="readonly">
+                                        <input type="text" id="twelve16AltCoordDisplay"
+                                               class="coord-display form-control"
+                                               value="{empty}" readonly="readonly">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="nine16">
+                            <div class="colored-block master9">
+                                <h4>Master</h4>
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="niOrientation" id="niOrientation1" value="landscape">
+                                        Landscape
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="niOrientation" id="niOrientation2" value="portrait">
+                                        Portrait
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                       <span class="input-group-btn">
+                                    <button class="btn btn-default" id="nine16MasterSet" type="button">Set Crop
+                                    </button>
+                                  </span>
+                                        <input type="text" id="nine16MasterCoordDisplay"
+                                               class="coord-display form-control" value="{empty}" readonly="readonly">
+
+                                    </div>
+
+                                </div>
 
                             </div>
+
+                            <div class="colored-block alternate9">
+                                <h4>Alternate</h4>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                       <span class="input-group-btn">
+                                    <button class="btn btn-default" id="nine16AltSet" type="button">Set Crop</button>
+                                  </span>
+                                        <input type="text" id="nine16AltCoordDisplay" class="coord-display form-control"
+                                               value="{empty}" readonly="readonly">
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
 
-                </div>
-
-                <h3>9 / 16</h3>
-                <div class="section">
-                    <div class="control">
-                        <h4>Master</h4>
-                        <fieldset>
-                            <legend>Orientation</legend>
-                            <label><input type="radio" name="twOrientation" value="landscape" checked> Landscape</label>
-                            <label><input type="radio" name="twOrientation" value="portrait"> Portrait</label>
-                        </fieldset>
-                        <br>
-                        <input type="text" id="nine16MasterCoordDisplay" class="coord-display" value="{empty}" readonly>
-                        <button id="nine16MasterSet" type="button">Set Crop</button>
-                        <br>
-                        <h4>Alternate orientation</h4>
-                        <input type="text" id="nine16AltCoordDisplay" class="coord-display" value="{empty}" readonly>
-                        <button id="nine16AltSet" type="button">Set Crop</button>
                     </div>
                 </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                </div>
 
-                <input type="submit" value="Sumbit"/>
+
             </form>
         </div>
         <div class="col-md-9">
-            <img id="cropbox" src="../media/crit1.png" class="working-image"/>
+            <img id="cropbox" ng-src="{{ getImagePath() }}" class="working-image"/>
         </div>
 
     </div>
