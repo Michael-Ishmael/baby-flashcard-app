@@ -162,9 +162,16 @@
 
             </form>
         </div>
-        <div id="imageHolder" class="col-md-9">
-            <img id="cropbox" ng-src="{{ getImagePath() }}" class="working-image"/>
-            <img id="mask" src="mask.png" />
+
+        <div class="col-md-9">
+            <div id="imageHolder">
+                <img id="cropbox" ng-src="{{ getImagePath() }}" class="working-image"/>
+            </div>
+            <div id="maskHolder">
+                <img id="mask" src="mask.png" />
+            </div>
+
+
         </div>
 
     </div>

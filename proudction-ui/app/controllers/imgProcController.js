@@ -13,8 +13,9 @@ app.controller('imgProcController', ['$scope', function ($scope) {
     $scope.buttonModes = [0, 0, 0, 0];
 
     var jcrop_api;
-    var jCropBox = $('#cropbox');
-    var jMask = $('#mask');
+    var jCropBox = $("#cropbox");
+    var jMask = $("#mask");
+    var jMaskHolder = $("#maskHolder");
     var jCropOn = false;
 
     jCropBox.load(function(){
@@ -26,7 +27,12 @@ app.controller('imgProcController', ['$scope', function ($scope) {
         var dims = {w: img.width, h:img.height};
 
         var sdI = $scope.selectedImg[0];
-        $scope.workingImg = getNewImageItem(sdI.id, sdI.path, dims);
+        var item = findInImageItems(sdI.id);
+        if(item == null) {
+            item = getNewImageItem(sdI.id, sdI.path, dims);
+            data.imageItems.push(item);
+        }
+        $scope.workingImg = item;
 
         initJCrop('#cropbox');
 
@@ -38,7 +44,7 @@ app.controller('imgProcController', ['$scope', function ($scope) {
             jcrop_api.setOptions({
                 allowResize: false,
                 //onChange: showCoords,
-                onSelect: showCoords
+                onSelect: setCoords
             });
             jCropOn = true;
         }
@@ -52,11 +58,27 @@ app.controller('imgProcController', ['$scope', function ($scope) {
         jCropOn = false;
     }
 
-    function showCoords(c){
+    function setCoords(c){
         if($scope.inEdit){
             var displayString = "{x: " + c.x + ", y: " + c.y + ", w:" + c.w + ", h:" + c.h + "}";
             $scope.coordDisplay[$scope.inEdit -1] = displayString;
-            //$scope.$apply();
+            var wi = $scope.workingImg;
+            var currentCrop = [c.x, c.y, c.w, c.h];
+            switch ($scope.inEdit){
+                case 1: // twelve16 master
+                    wi.twelve16.master.crop = currentCrop;
+                      break;
+                case 2: // twelve16 alt
+                    wi.twelve16.alt.crop = currentCrop;
+                    break;
+                case 3: // nine16 master
+                    wi.nine16.master.crop = currentCrop;
+                    break;
+                case 4: // nine16 alt
+                    wi.nine16.alt.crop = currentCrop;
+                    break;
+
+            }
         }
     }
 
@@ -105,9 +127,9 @@ app.controller('imgProcController', ['$scope', function ($scope) {
         }
     };
 
-    function setCropState(cropsForFormat, mode){
-        var cropState = cropsForFormat.master.crop;
-        var altCrop = cropsForFormat.alt.crop;
+    function setCropState(cropsFormat, mode){
+        var cropState = cropsFormat.master.crop;
+
         switch(mode){
             case 0:
 
@@ -115,23 +137,24 @@ app.controller('imgProcController', ['$scope', function ($scope) {
                 break;
             case 1:
                 removeJCrop();
-                jMask.css('left', 15 + cropState[0]);
-                jMask.css('top', cropState[1]);
-                jMask.css('width', 15 + cropState[2]);
-                jMask.css('height', cropState[3]);
-                jMask.show();
-                initJCrop('#mask');
-                jcrop_api.setSelect(altCrop);
-                //setTimeout(function() {
-                    $('.jcrop-holder').css('position', 'absolute');
-                $('.jcrop-holder').css('left', '15px');
-                $('.jcrop-holder').css('top', '0');
-                $('.jcrop-holder').css('background-color', 'transparent');
-                //}, 1000);
+                jMaskHolder.css('left', cropState[0]);
+                jMaskHolder.css('top', cropState[1]);
+                jMaskHolder.css('width',  cropState[2]);
+                jMaskHolder.css('height', cropState[3]);
+                jMaskHolder.show();
+
+                var altOrientation = getOtherOrientation(cropsFormat.master.orientation);
+                cropsFormat.alt.crop = getBoxBounds(altOrientation, cropsFormat.format, {w: cropsFormat[2], h: cropState[3]});
+                setTimeout(function() {
+                    initJCrop('#mask');
+                    jcrop_api.setSelect(cropsFormat.alt.crop);
+                    $('.jcrop-holder').css('background-color', 'transparent');
+                }, 50);
                 break;
             case 2:
-                jMask.hide();
                 jcrop_api.destroy();
+                jMask.hide();
+
                 break;
         }
     }
@@ -149,10 +172,12 @@ app.controller('imgProcController', ['$scope', function ($scope) {
 
     function getNewImageItem(id, path, dims){
 
-        var master12Bounds = getBoxBounds('landscape', 12);
-        var alt12Bounds = getBoxBounds('portrait', 12);
-        var master9Bounds = getBoxBounds('landscape', 9);
-        var alt9Bounds = getBoxBounds('portrait', 9);
+        var newImageBounds = {w: jCropBox.width(), h: jCropBox.height() };
+
+        var master12Bounds = getBoxBounds('landscape', 12, newImageBounds);
+        var alt12Bounds = getBoxBounds('portrait', 12, newImageBounds);
+        var master9Bounds = getBoxBounds('landscape', 9, newImageBounds);
+        var alt9Bounds = getBoxBounds('portrait', 9, newImageBounds);
 
         return {
             id: id,
@@ -160,6 +185,7 @@ app.controller('imgProcController', ['$scope', function ($scope) {
             originalDims: dims,
             name: 'empty',
             twelve16: {
+                format: 12,
                 master: {
                     orientation: "landscape",
                     crop: master12Bounds
@@ -170,6 +196,7 @@ app.controller('imgProcController', ['$scope', function ($scope) {
                 }
             },
             nine16: {
+                format: 9,
                 master: {
                     orientation: "landscape",
                     crop: master9Bounds
@@ -183,11 +210,16 @@ app.controller('imgProcController', ['$scope', function ($scope) {
         };
     }
 
+    function getOtherOrientation(givenOrientation){
+        if(givenOrientation.toLowerCase() == 'landscape'){
+            return 'portrait';
 
-    function getBoxBounds(orientation, format){
+        }
+        return 'landscape';
+    }
 
-        var visibleImg = $('#cropbox');
-        var visibleDims =  {w:visibleImg.width(), h:visibleImg.height()};
+    function getBoxBounds(orientation, format, visibleDims){
+
         var prop, w, h;
         if(orientation == 'landscape'){
             prop = format == 12 ? 12 / 16 : 9 / 16;
@@ -197,7 +229,6 @@ app.controller('imgProcController', ['$scope', function ($scope) {
                 h = visibleDims.h;
                 w = visibleDims.h * (1 / prop)
             }
-            return [0, 0, w, h];
         } else if(orientation == 'portrait'){
             prop = format == 12 ? 12 / 16 : 9 / 16;
             w = visibleDims.h * prop;
@@ -206,13 +237,23 @@ app.controller('imgProcController', ['$scope', function ($scope) {
                 w = visibleDims.w;
                 h = visibleDims.w * (1 / prop);
             }
-            return [0, 0, w, h];
+
         }
+        return [0, 0, w, h];
+    }
+
+    function findInImageItems(id){
+        for (var i = 0; i < data.imageItems.length; i++) {
+            var item = data.imageItems[i];
+            if(item.id == id){
+                return item;
+            }
+        }
+        return null;
     }
 
     }]
 );
-
 
 
 var data = {

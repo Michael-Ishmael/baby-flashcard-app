@@ -24,13 +24,29 @@ html body {
   background-color: #6b6a21;
 }
 
+#imageHolder{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#maskHolder{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    display: none;
+
+}
+
 #cropbox {
   max-width: 800px;
 }
 
 #mask {
-    position: absolute;
-    display: none;
+    width: 100%;
+    height: 100%;
 }
 
 .button-state.mark{
