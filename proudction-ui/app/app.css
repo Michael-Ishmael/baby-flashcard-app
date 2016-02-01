@@ -67,6 +67,12 @@ html body {
 
 }
 
+.inline-header-label {
+    font-weight: bold;
+    font-size: .8em;
+    display: inline-block;
+    margin-right: 10px;
+}
 
 
 

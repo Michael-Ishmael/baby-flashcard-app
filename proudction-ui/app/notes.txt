@@ -1,0 +1,13 @@
+
+1. Select an image from the backlog
+
+    > Clean up current image and jCrop.
+
+    > Image loads into crop-viewer
+    > Find or create image data item in data store
+    > Bind to controls
+
+For each cropFormat
+
+    > Choose and orientation for master
+    > Click mark crop > crop box appears on master
