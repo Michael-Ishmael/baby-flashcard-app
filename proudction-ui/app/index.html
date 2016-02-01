@@ -61,21 +61,25 @@
                                         Landscape
                                     </label>
                                     <label class="radio-inline">
+
                                         <input type="radio" name="twOrientation" id="twOrientation2" value="portrait"
-                                               ng-model="workingImg.twelve16.alt.orientation">
+                                               ng-model="workingImg.twelve16.master.orientation">
                                         Portrait
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
                                        <span class="input-group-btn">
-                                    <button class="btn btn-default" id="twelve16MasterSet" type="button" ng-click="addCropBox(1)">
-                                        Set Crop
+
+                                    <!-- Button 1 -->
+                                    <button class="btn btn-default {{getButtonState(1).css }}" id="twelve16MasterSet"
+                                            type="button" ng-click="addCropBox(1)">
+                                        {{ getButtonState(1).caption }}
                                     </button>
                                   </span>
                                         <input type="text" id="twelve16MasterCoordDisplay"
                                                class="coord-display form-control"
-                                               value="{empty}" class="form-control" readonly="readonly">
+                                               value="{empty}" ng-model="coordDisplay[0]" class="form-control" readonly="readonly">
 
                                     </div>
 
@@ -88,7 +92,8 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                        <span class="input-group-btn">
-                                    <button class="btn btn-default" id="twelve16AltSet" type="button">Set Crop</button>
+                                    <button class="btn btn-default" id="twelve16AltSet" type="button"
+                                            ng-click="addCropBox(2)">Set Crop</button>
                                   </span>
                                         <input type="text" id="twelve16AltCoordDisplay"
                                                class="coord-display form-control"
@@ -105,22 +110,25 @@
                                 <h4>Master</h4>
                                 <div class="form-group">
                                     <label class="radio-inline">
-                                        <input type="radio" name="niOrientation" id="niOrientation1" value="landscape">
+                                        <input type="radio" name="niOrientation" id="niOrientation1" value="landscape"
+                                               ng-model="workingImg.nine16.master.orientation">
                                         Landscape
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="niOrientation" id="niOrientation2" value="portrait">
+                                        <input type="radio" name="niOrientation" id="niOrientation2" value="portrait"
+                                               ng-model="workingImg.nine16.master.orientation">
                                         Portrait
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
                                        <span class="input-group-btn">
-                                    <button class="btn btn-default" id="nine16MasterSet" type="button">Set Crop
+                                    <button class="btn btn-default" id="nine16MasterSet" type="button"
+                                            ng-click="addCropBox(3)">Set Crop
                                     </button>
                                   </span>
                                         <input type="text" id="nine16MasterCoordDisplay"
-                                               class="coord-display form-control" value="{empty}" readonly="readonly">
+                                               class="coord-display form-control" value="{empty}"  readonly="readonly">
 
                                     </div>
 
@@ -133,7 +141,8 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                        <span class="input-group-btn">
-                                    <button class="btn btn-default" id="nine16AltSet" type="button">Set Crop</button>
+                                    <button class="btn btn-default" id="nine16AltSet" type="button"
+                                            ng-click="addCropBox(4)">Set Crop</button>
                                   </span>
                                         <input type="text" id="nine16AltCoordDisplay" class="coord-display form-control"
                                                value="{empty}" readonly="readonly">
@@ -155,6 +164,7 @@
         </div>
         <div id="imageHolder" class="col-md-9">
             <img id="cropbox" ng-src="{{ getImagePath() }}" class="working-image"/>
+            <img id="mask" src="mask.png" />
         </div>
 
     </div>

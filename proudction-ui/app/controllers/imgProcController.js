@@ -8,42 +8,63 @@ app.controller('imgProcController', ['$scope', function ($scope) {
     $scope.workingImg = null;
 
     $scope.backlog = data.backlog;
+    $scope.inEdit = 0;
+    $scope.coordDisplay = ['empty', 'empty', 'empty', 'empty'];
+    $scope.buttonModes = [0, 0, 0, 0];
 
     var jcrop_api;
+    var jCropBox = $('#cropbox');
+    var jMask = $('#mask');
+    var jCropOn = false;
 
-    initJcrop();
+    jCropBox.load(function(){
 
-    function initJcrop()//{{{
-    {
-
-
-
-    }
-
-    $('#cropbox').load(function(){
-
+        if(!$scope.selectedImg) return;
 
         var img = new Image();
         img.src = $(this).attr('src');
         var dims = {w: img.width, h:img.height};
-        var sdI = $scope.selectedImg;
+
+        var sdI = $scope.selectedImg[0];
         $scope.workingImg = getNewImageItem(sdI.id, sdI.path, dims);
 
-        jcrop_api = $.Jcrop('#cropbox');
-        jcrop_api.setOptions({ allowResize: false });
+        initJCrop('#cropbox');
 
     });
+
+    function initJCrop(elId){
+        if(!jCropOn){
+            jcrop_api = $.Jcrop(elId);
+            jcrop_api.setOptions({
+                allowResize: false,
+                //onChange: showCoords,
+                onSelect: showCoords
+            });
+            jCropOn = true;
+        }
+
+    }
+
+    function removeJCrop() {
+        if(jcrop_api){
+            jcrop_api.destroy();
+        }
+        jCropOn = false;
+    }
+
+    function showCoords(c){
+        if($scope.inEdit){
+            var displayString = "{x: " + c.x + ", y: " + c.y + ", w:" + c.w + ", h:" + c.h + "}";
+            $scope.coordDisplay[$scope.inEdit -1] = displayString;
+            //$scope.$apply();
+        }
+    }
 
     $scope.preImageChange = function(){
         if(jcrop_api){
             jcrop_api.destroy();
         }
         $('#cropbox').attr('style', null);
-        //var imageHolder = $("#imageHolder");
-        //imageHolder.children.remove();
-        //var img = $('<img id="cropbox" />');
-        //img.attr('src', $scope.getImagePath());
-        //imageHolder.append(img);
     };
 
     $scope.getImagePath = function(){
@@ -58,19 +79,72 @@ app.controller('imgProcController', ['$scope', function ($scope) {
 
     $scope.addCropBox = function(src){
         var wi = $scope.workingImg;
-
+        $scope.inEdit = src;
+        var mode = $scope.buttonModes[src - 1];
         switch (src)
         {
             case 1: // twelve16 master
-                var o = wi.twelve16.master.crop;
-                //var bounds = o == 'landscape' ? wi.twelve16.master. ;
-                jcrop_api.setSelect(o);
+                setCropState(wi.twelve16, mode);
+                //jcrop_api.setSelect(wi.twelve16.master.crop);
                 break;
-            case 2: // nine16
-                jcrop_api.setSelect([10, 10, 40, 40]);
+            case 2: // twelve16 alt
+                jcrop_api.setSelect(wi.twelve16.alt.crop);
+                break;
+            case 3: // nine16 master
+                jcrop_api.setSelect(wi.nine16.master.crop);
+                break;
+            case 4: // nine16 alt
+                jcrop_api.setSelect(wi.nine16.alt.crop);
                 break;
         }
 
+        if(mode == 2){
+            $scope.buttonModes[src -1] = 0;
+        } else {
+            $scope.buttonModes[src -1]++;
+        }
+    };
+
+    function setCropState(cropsForFormat, mode){
+        var cropState = cropsForFormat.master.crop;
+        var altCrop = cropsForFormat.alt.crop;
+        switch(mode){
+            case 0:
+
+                jcrop_api.setSelect(cropState);
+                break;
+            case 1:
+                removeJCrop();
+                jMask.css('left', 15 + cropState[0]);
+                jMask.css('top', cropState[1]);
+                jMask.css('width', 15 + cropState[2]);
+                jMask.css('height', cropState[3]);
+                jMask.show();
+                initJCrop('#mask');
+                jcrop_api.setSelect(altCrop);
+                //setTimeout(function() {
+                    $('.jcrop-holder').css('position', 'absolute');
+                $('.jcrop-holder').css('left', '15px');
+                $('.jcrop-holder').css('top', '0');
+                $('.jcrop-holder').css('background-color', 'transparent');
+                //}, 1000);
+                break;
+            case 2:
+                jMask.hide();
+                jcrop_api.destroy();
+                break;
+        }
+    }
+
+    $scope.getButtonState = function (idx) {
+      switch ($scope.buttonModes[idx - 1] ){
+          case 0:
+              return {caption: 'Mark Crop', css: 'button-state release'};
+          case 1:
+              return {caption: 'Set Crop', css: 'button-state mark'};
+          case 2:
+              return {caption: 'Release Crop', css: 'button-state set'};
+      }
     };
 
     function getNewImageItem(id, path, dims){
@@ -114,15 +188,25 @@ app.controller('imgProcController', ['$scope', function ($scope) {
 
         var visibleImg = $('#cropbox');
         var visibleDims =  {w:visibleImg.width(), h:visibleImg.height()};
-        var prop;
+        var prop, w, h;
         if(orientation == 'landscape'){
             prop = format == 12 ? 12 / 16 : 9 / 16;
-            var h = visibleDims.w * prop;
-            return [0, 0, visibleDims.w, h];
+            w = visibleDims.w;
+            h = visibleDims.w * prop;
+            if(h > visibleDims.h){
+                h = visibleDims.h;
+                w = visibleDims.h * (1 / prop)
+            }
+            return [0, 0, w, h];
         } else if(orientation == 'portrait'){
             prop = format == 12 ? 12 / 16 : 9 / 16;
-            var w = visibleDims.h * prop;
-            return [0, 0, w, visibleDims.h];
+            w = visibleDims.h * prop;
+            h = visibleDims.h;
+            if(w > visibleDims.w){
+                w = visibleDims.w;
+                h = visibleDims.w * (1 / prop);
+            }
+            return [0, 0, w, h];
         }
     }
 
