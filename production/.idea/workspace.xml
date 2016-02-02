@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6914c79-6e5a-4d74-979f-f67d9261783d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/app.css" afterPath="$PROJECT_DIR$/../proudction-ui/app/app.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../proudction-ui/app/services/imageCropDataService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/controllers/imgProcController.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/controllers/imgProcController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/index.html" afterPath="$PROJECT_DIR$/../proudction-ui/app/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/CropFormatManager.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/CropFormatManager.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/CropFormatManager.js.map" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/CropFormatManager.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/CropFormatManager.ts" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/CropFormatManager.ts" />
     </list>
     <ignored path="production.iws" />
     <ignored path=".idea/workspace.xml" />
