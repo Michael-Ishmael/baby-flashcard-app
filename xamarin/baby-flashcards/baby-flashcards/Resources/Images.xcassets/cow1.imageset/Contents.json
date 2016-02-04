@@ -1,7 +1,7 @@
 {
   "images": [
     {
-	  "filename": "First.pdf",
+      "filename": "Second.pdf",
       "idiom": "universal"
     },
     {
@@ -24,6 +24,7 @@
       "idiom": "iphone"
     },
     {
+      "filename": "Cow1.jpg",
       "scale": "2x",
       "idiom": "iphone"
     },
@@ -46,6 +47,23 @@
     {
       "scale": "2x",
       "idiom": "ipad"
+    },
+    {
+      "idiom": "watch"
+    },
+    {
+      "scale": "2x",
+      "idiom": "watch"
+    },
+    {
+      "screenWidth": "{130,145}",
+      "scale": "2x",
+      "idiom": "watch"
+    },
+    {
+      "screenWidth": "{146,165}",
+      "scale": "2x",
+      "idiom": "watch"
     }
   ],
   "info": {

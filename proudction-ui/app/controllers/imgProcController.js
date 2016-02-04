@@ -2,7 +2,7 @@
  * Created by michaeli on 28/01/2016.
  */
 
-app.controller('imgProcController', ['$scope', 'imageCropDataService', function ($scope, imageCropDataServiceI) {
+app.controller('imgProcController', ['$scope', 'imageDataService', function ($scope, imageCropDataServiceI) {
 
         $scope.currentItem = null;
         $scope.activeCropSet = null;
@@ -16,6 +16,14 @@ app.controller('imgProcController', ['$scope', 'imageCropDataService', function 
         $scope.cropDefIndex = -1;
         $scope.inPreview = false;
         $scope.imageSet = false;
+        $scope.doneAssignment = false;
+
+        $scope.existingDeckCards = [
+            {id: 1, path:"../media/donkey1.jpg", index: 0},
+            {id: 2, path:"../media/cow3.jpg", index: 1},
+            {id: 3, path:"../media/chicken1.jpg", index: 2},
+            {id: 4, path:"../media/horse1.jpg", index: 3}
+        ];
 
         var imageCropDataService = new ImageDataManager();
         var cropFormatter = new CropFormatter('#cropFormatter');
@@ -61,6 +69,7 @@ app.controller('imgProcController', ['$scope', 'imageCropDataService', function 
             if ( $scope.currentItem == null) return;
             $scope.currentItem.deck = new Deck($scope.selectedSet.name, $scope.selectedDeck);
             $scope.currentItem.indexInDeck = selectedIndex;
+            $scope.doneAssignment = true;
         }   ;
 
         $scope.$watch(

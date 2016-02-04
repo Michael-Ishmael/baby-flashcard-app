@@ -84,7 +84,7 @@
         ]
       },
       {
-        "id": 1,
+        "id": 2,
         "name": "Cow",
         "thumb": "cowthumb",
         "cards": [
@@ -163,13 +163,13 @@
         ]
       },
       {
-        "id": 1,
+        "id": 3,
         "name": "Chicken",
         "thumb": "chickenthumb",
         "cards": [
           {
             "index": 0,
-            "image": "Chicken1_ipad",
+            "image": "chicken1",
             "sound": "chicken1.mp3",
             "portraitbounds": {
               "x": 10,
@@ -181,7 +181,7 @@
           },
           {
             "index": 0,
-            "image": "Chicken2_ipad",
+            "image": "chicken2",
             "sound": "chicken2.mp3",
             "portraitbounds": {
               "x": 10,

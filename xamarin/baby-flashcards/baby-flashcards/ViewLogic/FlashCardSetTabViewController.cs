@@ -26,7 +26,6 @@ namespace babyflashcards
 				collectionController.TabBarItem = new UITabBarItem ();
 				collectionController.TabBarItem.ImageInsets = new UIEdgeInsets(6, 0, -6, 0);
 				collectionController.TabBarItem.Image = UIImage.FromBundle (cardSet.Icon);
-
 				_collectionControllers.Add(collectionController);
 			}
 

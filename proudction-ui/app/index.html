@@ -24,121 +24,9 @@
 </head>
 <body>
 
-<div class="container-fluid" ng-controller="imgProcController">
-    <div class="row">
-        <div class="col-md-3">
+<div class="container-fluid" ng-controller="appController">
 
-            <form action="" method="post">
-
-                <div class="form-group">
-                    <label for="backlog" class="control-label">Backlog:</label>
-                    <select id="backlog" name="backlog" multiple="multiple" class="form-control"
-                            ng-class="{'tall-list-box':!imageSet}"
-                            ng-options="img as img.path for img in backlog" ng-model="selectedImg"
-                            ng-change="preImageChange()">
-                    </select>
-                </div>
-
-                <div class="panel panel-default" id="assignment" ng-show="imageSet">
-
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Assign Image</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label for="set" class="control-label">Deck:</label>
-                            <select id="set" name="set" class="form-control"
-                                    ng-options="set as set.name for set in sets" ng-model="selectedSet">
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="deck" class="control-label">Deck:</label>
-                            <select id="deck" name="deck" multiple="multiple" class="form-control"
-                                    ng-options="deck as deck for deck in selectedSet.decks" ng-model="selectedDeck">
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="deckIndex" class="control-label">Deck:</label>
-                            <select id="deckIndex" name="backlog" class="form-control"
-                                    ng-options="index as index for index in availableIndexes" ng-model="selectedIndex" ng-click="setDeck(selectedIndex)">
-                            </select>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div id="cropTools" ng-show="activeCropSet != null">
-                    <div class="panel panel-default" id="cropWizard">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{ activeCropSet.title }}</h3>
-                        </div>
-                        <div class="panel-body colored-block master12">
-
-                            <div class="form-group">
-                                <span class="inline-header-label">Master Orientation</span>
-                                <label class="radio-inline">
-                                    <input type="radio" name="twOrientation" id="twOrientation1" value="0"
-                                           ng-model="orientation">
-                                    Landscape
-                                </label>
-                                <label class="radio-inline">
-
-                                    <input type="radio" name="twOrientation" id="twOrientation2" value="1"
-                                           ng-model="orientation">
-                                    Portrait
-                                </label>
-                            </div>
-                            <div class="form-group">
-
-
-                                <!-- Button 1 -->
-                                <button class="btn btn-default {{getButtonState(1).css }}" id="twelve16MasterSet"
-                                        ng-disabled="cropDefIndex <= 0 || inPreview" type="button"
-                                        ng-click="doPreviousAction()">
-                                    Previous
-                                </button>
-                                <button class="btn btn-default" id="twelve16AltSet" type="button"
-                                        ng-disabled="cropDefIndex >= 3 || inPreview" ng-click="doNextCropAction()">Next
-                                </button>
-                                <button class="btn btn-default pull-right" id="twelve16Clear" type="button"
-                                        ng-click="cancelCropAction()">Cancel
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group">
-                        <input class="btn btn-primary" type="submit" value="Submit" ng-disabled="inPreview">
-                        <button class="btn btn-info pull-right" type="button" value="Preview"
-                                ng-click="previewCrop()">{{ inPreview ? "Hide Preview" : "Preview" }}
-                        </button>
-                    </div>
-                </div>
-
-            </form>
-        </div>
-
-        <div id="cropFormatter" class="col-md-9">
-            <div id="imageContainer">
-                <img id="currentImage" ng-src="{{ getImagePath() }}" class="working-image"/>
-            </div>
-            <div id="maskContainer">
-                <img id="mask" src="mask.png"/>
-            </div>
-            <div id="previewContainer">
-                <img id="preview" ng-src="{{ getImagePath() }}"/>
-            </div>
-
-        </div>
-
-    </div>
+    <div ng-include="currentView"></div>
 
 </div>
 
@@ -156,18 +44,24 @@
 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
 <script src="app.js"></script>
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
 <script src="components/version/interpolate-filter.js"></script>
 <script src="components/jcrop/jquery.color.js"></script>
 <script src="components/jcrop/jquery.Jcrop.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="bower_components/angular-ui-sortable/sortable.js"></script>
 <script src="models/CropEntities.js"></script>
 <script src="models/ImageDataManager.js"></script>
 <script src="components/CropFormatter.js"></script>
-<script src="services/imageCropDataService.js"></script>
+<script src="services/imageDataService.js"></script>
+<script src="controllers/appController.js"></script>
+<script src="controllers/backlogController.js"></script>
 <script src="controllers/imgProcController.js"></script>
+<script src="controllers/assignmentController.js"></script>
+
 
 </body>
 </html>

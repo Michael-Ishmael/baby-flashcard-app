@@ -1,0 +1,15 @@
+Backlog
+<div class="row" ng-controller="backlogController">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" ng-cloak>
+        <ul ui-sortable class="list-group" ng-model="backlog">
+            <li class="list-group-item pointer-cursor"  ng-repeat="backlogItem in backlog"
+                id="{{ backlogItem.id }}" ng-click="selectImage(backlogItem)" >
+                <span class="badge">{{ backlogItem.id }}</span>
+                <img class="list-thumbnail" ng-src="{{::backlogItem.path }}"/>
+                {{ backlogItem.path }}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-3"></div>
+</div>

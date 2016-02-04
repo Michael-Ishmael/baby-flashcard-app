@@ -2,12 +2,81 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6914c79-6e5a-4d74-979f-f67d9261783d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../proudction-ui/app/services/imageCropDataService.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/chicken2.imageset/Chicken5.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/chicken2.imageset/First.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/cow1.imageset/Cow1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/cow1.imageset/Second.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/cow2.imageset/Cow2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/horse1.imageset/Horse5.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/horse2.imageset/Horse2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/catthumb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/chickenthumb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/cowThumb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/dogthumb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/domesticicon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/domesticicon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/donkeythumb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/duckthumb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/goatthumb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/horsethumb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/lionIcon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/lionIcon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/owlthumb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/pigthumb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/rabbitthumb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sheepthumb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Chicken1.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Chicken2.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Chicken3.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Chicken4.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Chicken5.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Chicken6.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Cow1.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Cow2.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Cow3.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Cow4.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Cow5.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Cow6.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Horse1.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Horse2.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Horse3.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Horse4.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Horse5.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/Horse6.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/sounds/moo...2.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../proudction-ui/app/controllers/appController.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../proudction-ui/app/controllers/assignmentController.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../proudction-ui/app/controllers/backlogController.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../proudction-ui/app/views/assignmentView.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../proudction-ui/app/views/backlogView.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../proudction-ui/app/views/croppingView.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/chicken2.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/cow1.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/cow2.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/horse1.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/horse2.imageset/Contents.json" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/app/view1/view1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/app/view1/view1.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/app/view1/view1_test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/app/view2/view2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/app/view2/view2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/app/view2/view2_test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/First.imageset/Contents.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/First.imageset/First.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/Second.imageset/Contents.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/Second.imageset/Second.pdf" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../proudction-ui/app/services/imageCropDataService.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/services/imageDataService.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/chicken1.imageset/chicken1.jpg" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/chicken1.imageset/chicken1.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/app.css" afterPath="$PROJECT_DIR$/../proudction-ui/app/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/app.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/controllers/imgProcController.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/controllers/imgProcController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/index.html" afterPath="$PROJECT_DIR$/../proudction-ui/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/CropFormatManager.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/CropFormatManager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/CropFormatManager.js.map" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/CropFormatManager.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/CropFormatManager.ts" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/CropFormatManager.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/bower.json" afterPath="$PROJECT_DIR$/../proudction-ui/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/chicken1.imageset/Contents.json" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets/chicken1.imageset/Contents.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/data.json" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/data.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/ViewLogic/FlashCardSetTabViewController.cs" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/ViewLogic/FlashCardSetTabViewController.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/baby-flashcards.csproj" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/baby-flashcards.csproj" />
     </list>
     <ignored path="production.iws" />
     <ignored path=".idea/workspace.xml" />

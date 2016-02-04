@@ -2,13 +2,25 @@
  * Created by michaelishmael on 02/02/2016.
  */
 
-app.factory('imageCropDataService', function(){
+app.factory('imageDataService', [ '$rootScope' , '$timeout', function($rootScope, $timeout){
 
-    var self = new ImageDataManager(seedData_1);
+    var self = {};
+    self.wizardIndex = 0;
 
+    self.cropManager = new ImageDataManager(seedData_1);
+
+    self.selectBacklogItem = function(item){
+        //item
+        self.wizardIndex++;
+        $timeout(function(){
+            $rootScope.testProp23 = 'testy';
+            $rootScope.$broadcast('wizard:indexChanged', self.wizardIndex);
+        }, 100);
+
+    };
 
     return self;
-});
+}]);
 
 
 var seedData_1 = {

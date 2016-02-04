@@ -10,8 +10,6 @@
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>baby-flashcards</AssemblyName>
     <XamarinInsightsApiKey>4a4dbecc7662a37920881cf4ee05e886bed2100d</XamarinInsightsApiKey>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -96,16 +94,24 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\First.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\First.imageset\First.pdf" />
-    <ImageAsset Include="Resources\Images.xcassets\Second.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\Second.imageset\Second.pdf" />
     <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\Contents.json" />
     <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\chicken1.jpg" />
     <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\chicken1_ipad.jpg" />
     <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\Cow1_iphone4.jpg" />
     <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\Cow1_iphone6.jpg" />
     <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\Cow1_iphone6plus.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2.imageset\First.pdf" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2.imageset\Chicken5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\Second.pdf" />
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\horse1.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\horse2.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\Cow1.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\Cow2.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\horse1.imageset\Horse5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\horse2.imageset\Horse2.jpg" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -149,5 +155,40 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\data.json" />
+    <BundleResource Include="Resources\catthumb.png" />
+    <BundleResource Include="Resources\chickenthumb.png" />
+    <BundleResource Include="Resources\cowThumb.png" />
+    <BundleResource Include="Resources\dogthumb.png" />
+    <BundleResource Include="Resources\donkeythumb.png" />
+    <BundleResource Include="Resources\duckthumb.png" />
+    <BundleResource Include="Resources\goatthumb.png" />
+    <BundleResource Include="Resources\horsethumb.png" />
+    <BundleResource Include="Resources\owlthumb.png" />
+    <BundleResource Include="Resources\pigthumb.png" />
+    <BundleResource Include="Resources\rabbitthumb.png" />
+    <BundleResource Include="Resources\sheepthumb.png" />
+    <BundleResource Include="Resources\domesticicon.png" />
+    <BundleResource Include="Resources\sounds\Chicken1.mp3" />
+    <BundleResource Include="Resources\sounds\Chicken2.mp3" />
+    <BundleResource Include="Resources\sounds\Chicken3.mp3" />
+    <BundleResource Include="Resources\sounds\Chicken4.mp3" />
+    <BundleResource Include="Resources\sounds\Chicken5.mp3" />
+    <BundleResource Include="Resources\sounds\Chicken6.mp3" />
+    <BundleResource Include="Resources\sounds\Cow1.mp3" />
+    <BundleResource Include="Resources\sounds\Cow2.mp3" />
+    <BundleResource Include="Resources\sounds\Cow3.mp3" />
+    <BundleResource Include="Resources\sounds\Cow4.mp3" />
+    <BundleResource Include="Resources\sounds\Cow5.mp3" />
+    <BundleResource Include="Resources\sounds\Cow6.mp3" />
+    <BundleResource Include="Resources\sounds\Horse1.mp3" />
+    <BundleResource Include="Resources\sounds\Horse2.mp3" />
+    <BundleResource Include="Resources\sounds\Horse3.mp3" />
+    <BundleResource Include="Resources\sounds\Horse4.mp3" />
+    <BundleResource Include="Resources\sounds\Horse5.mp3" />
+    <BundleResource Include="Resources\sounds\Horse6.mp3" />
+    <BundleResource Include="Resources\sounds\moo...2.mp3" />
+    <BundleResource Include="Resources\domesticicon%402x.png" />
+    <BundleResource Include="Resources\lionIcon.png" />
+    <BundleResource Include="Resources\lionIcon%402x.png" />
   </ItemGroup>
 </Project>

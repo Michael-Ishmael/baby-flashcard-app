@@ -89,6 +89,16 @@ select.tall-list-box{
 
 }
 
+.pointer-cursor {
+    cursor: pointer;
+}
+
+.list-thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
 .inline-header-label {
     font-weight: bold;
     font-size: .8em;

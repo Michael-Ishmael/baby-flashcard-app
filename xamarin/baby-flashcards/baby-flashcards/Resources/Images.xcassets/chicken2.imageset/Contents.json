@@ -1,7 +1,7 @@
 {
   "images": [
     {
-	  "filename": "Second.pdf",
+      "filename": "First.pdf",
       "idiom": "universal"
     },
     {
@@ -20,10 +20,12 @@
       "idiom": "iphone"
     },
     {
+      "filename": "Chicken5.jpg",
       "scale": "1x",
       "idiom": "iphone"
     },
     {
+      "filename": "Chicken5.jpg",
       "scale": "2x",
       "idiom": "iphone"
     },
@@ -46,6 +48,23 @@
     {
       "scale": "2x",
       "idiom": "ipad"
+    },
+    {
+      "idiom": "watch"
+    },
+    {
+      "scale": "2x",
+      "idiom": "watch"
+    },
+    {
+      "screenWidth": "{130,145}",
+      "scale": "2x",
+      "idiom": "watch"
+    },
+    {
+      "screenWidth": "{146,165}",
+      "scale": "2x",
+      "idiom": "watch"
     }
   ],
   "info": {
