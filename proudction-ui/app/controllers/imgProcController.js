@@ -4,154 +4,141 @@
 
 app.controller('imgProcController', ['$scope', 'imageCropDataService', function ($scope, imageCropDataServiceI) {
 
-    $scope.selectedImg = null;
-    $scope.workingImg = null;
+        $scope.currentItem = null;
+        $scope.activeCropSet = null;
+        $scope.selectedImg = null;
+        $scope.backlog = seedData_1.backlog;
+        $scope.sets = seedData_1.sets;
+        $scope.selectedSet = seedData_1.sets[0];
+        $scope.selectedDeck = null;
+        $scope.availableIndexes = [];
+        $scope.orientation = Orientation.landscape;
+        $scope.cropDefIndex = -1;
+        $scope.inPreview = false;
+        $scope.imageSet = false;
 
-    $scope.backlog = seedData_1.backlog;
-    $scope.inEdit = 0;
-    $scope.coordDisplay = ['empty', 'empty', 'empty', 'empty'];
-    $scope.buttonModes = [0, 0, 0, 0];
+        var imageCropDataService = new ImageDataManager();
+        var cropFormatter = new CropFormatter('#cropFormatter');
 
-    var jcrop_api;
-    var jCropBox = $("#cropbox");
-    var jMask = $("#mask");
-    var jMaskHolder = $("#maskHolder");
-    var jCropOn = false;
-    var imageCropDataService = new ImageDataManager();
 
-    $scope.preImageChange = function(){
-        if(jcrop_api){
-            jcrop_api.destroy();
+        $scope.preImageChange = function () {
+
+            cropFormatter.clear();
+
+        };
+
+        var jCropBox = $('#currentImage');
+
+        jCropBox.load(function () {
+
+            if (!$scope.selectedImg) return;
+            $scope.imageSet = true;
+            imageCropDataService.loadBacklogItem($scope.selectedImg[0], jCropBox);
+            $scope.currentItem = imageCropDataService.currentItem;
+            $scope.$digest();
+            $('#imageName').select();
+        });
+
+
+        $scope.$watch(
+            'selectedDeck',
+            function (newValue, oldValue) {
+                if (newValue == oldValue || newValue == null || $scope.currentItem == null) return;
+                var existingIndexes = imageCropDataService.getExistingIndexesForDeck(newValue);
+                if (existingIndexes.length) {
+                    existingIndexes.sort();
+                    var max = existingIndexes[existingIndexes.length - 1];
+                    existingIndexes.push(max + 1);
+                    $scope.availableIndexes = existingIndexes;
+                } else {
+                    $scope.availableIndexes = [0];
+                }
+            },
+            true
+        );
+
+        $scope.setDeck = function(selectedIndex){
+            if ( $scope.currentItem == null) return;
+            $scope.currentItem.deck = new Deck($scope.selectedSet.name, $scope.selectedDeck);
+            $scope.currentItem.indexInDeck = selectedIndex;
+        }   ;
+
+        $scope.$watch(
+            'orientation',
+            function (newValue, oldValue) {
+                if (newValue == oldValue) return;
+                imageCropDataService.setMasterCropOrientation(newValue);
+                cropFormatter.clear();
+                cropFormatter.setCrop(imageCropDataService.activeCropDef)
+            },
+            true
+        );
+
+        $scope.$watch(
+            'currentItem'
+            , function (newValue, oldValue) {
+                if (newValue == oldValue) return;
+                $scope.cropDefIndex = -1;
+                $scope.doNextCropAction();
+
+
+            }
+        );
+
+
+        $scope.getImagePath = function () {
+
+            if (!$scope.selectedImg) {
+                return "placeholder.gif";
+            }
+            var imgPath = "../media/" + $scope.selectedImg[0].path;
+
+            return imgPath;
+        };
+
+
+        $scope.doNextCropAction = function () {
+            if ($scope.cropDefIndex >= 3) return;
+            $scope.cropDefIndex++;
+            setStateForIndex();
+        };
+
+        $scope.doPreviousAction = function () {
+            if ($scope.cropDefIndex <= 0) return;
+            $scope.cropDefIndex--;
+            setStateForIndex();
+        };
+
+        function setStateForIndex() {
+            imageCropDataService.setStateForIndex($scope.cropDefIndex);
+            if (imageCropDataService.activeCropDef) {
+                cropFormatter.setCrop(imageCropDataService.activeCropDef);
+                $scope.activeCropSet = imageCropDataService.activeCropDef.parent;
+                $scope.orientation = $scope.activeCropSet.masterCropDef.orientation;
+            }
         }
-        $('#cropbox').attr('style', null);
-    };
 
-    jCropBox.load(function(){
+        $scope.cancelCropAction = function () {
+            $scope.inPreview = true;
+            $scope.previewCrop();
+            imageCropDataService.clearCropActions();
+            cropFormatter.clear();
+            $scope.cropDefIndex = -1;
+            $scope.doNextCropAction();
 
-        if(!$scope.selectedImg) return;
 
-        imageCropDataService.loadBacklogItem($scope.selectedImg, jCropBox);
+        };
 
-    });
+        $scope.previewCrop = function () {
+            if (!$scope.inPreview) {
+                cropFormatter.showPreview();
+                $scope.inPreview = true;
+            } else {
+                cropFormatter.hidePreview();
+                $scope.inPreview = false;
+            }
 
-    function initJCrop(elId){
-        if(!jCropOn){
-            jcrop_api = $.Jcrop(elId);
-            jcrop_api.setOptions({
-                allowResize: false,
-                //onChange: showCoords,
-                onSelect: setCoords
-            });
-            jCropOn = true;
         }
-
-    }
-
-    function removeJCrop() {
-        if(jcrop_api){
-            jcrop_api.destroy();
-        }
-        jCropOn = false;
-    }
-
-    function setCoords(c){
-
-        imageCropDataService.setActiveCropCoords(c);
-    }
-
-
-
-    $scope.getImagePath = function(){
-
-        if(!$scope.selectedImg){
-            return "placeholder.gif";
-        }
-        var imgPath = "../media/" + $scope.selectedImg[0].path;
-
-        return imgPath;
-    };
-
-
-    $scope.doNextCropAction = function(src){
-        imageCropDataService.doNextCropAction(src);
-    };
-
-    $scope.addCropBox = function(src){
-
-
-
-        var wi = $scope.workingImg;
-        $scope.inEdit = src;
-        var mode = $scope.buttonModes[src - 1];
-        switch (src)
-        {
-            case 1: // twelve16 master
-                setCropState(wi.twelve16, mode);
-                //jcrop_api.setSelect(wi.twelve16.master.crop);
-                break;
-            case 2: // twelve16 alt
-                jcrop_api.setSelect(wi.twelve16.alt.crop);
-                break;
-            case 3: // nine16 master
-                jcrop_api.setSelect(wi.nine16.master.crop);
-                break;
-            case 4: // nine16 alt
-                jcrop_api.setSelect(wi.nine16.alt.crop);
-                break;
-        }
-
-        if(mode == 2){
-            $scope.buttonModes[src -1] = 0;
-        } else {
-            $scope.buttonModes[src -1]++;
-        }
-    };
-
-    function setCropState(cropsFormat, mode){
-        var cropState = cropsFormat.master.crop;
-
-        switch(mode){
-            case 0:
-
-                jcrop_api.setSelect(cropState);
-                break;
-            case 1:
-                removeJCrop();
-                jMaskHolder.css('left', cropState[0]);
-                jMaskHolder.css('top', cropState[1]);
-                jMaskHolder.css('width',  cropState[2]);
-                jMaskHolder.css('height', cropState[3]);
-                jMaskHolder.show();
-
-                var altOrientation = getOtherOrientation(cropsFormat.master.orientation);
-                cropsFormat.alt.crop = getBoxBounds(altOrientation, cropsFormat.format, {w: cropsFormat[2], h: cropState[3]});
-                setTimeout(function() {
-                    initJCrop('#mask');
-                    jcrop_api.setSelect(cropsFormat.alt.crop);
-                    $('.jcrop-holder').css('background-color', 'transparent');
-                }, 50);
-                break;
-            case 2:
-                jcrop_api.destroy();
-                jMask.hide();
-
-                break;
-        }
-    }
-
-    $scope.getButtonState = function (idx) {
-      switch ($scope.buttonModes[idx - 1] ){
-          case 0:
-              return {caption: 'Mark Crop', css: 'button-state release'};
-          case 1:
-              return {caption: 'Set Crop', css: 'button-state mark'};
-          case 2:
-              return {caption: 'Release Crop', css: 'button-state set'};
-      }
-    };
-
-
-
 
     }]
 );

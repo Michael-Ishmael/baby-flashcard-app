@@ -15,8 +15,20 @@ var seedData_1 = {
     backlog: [
         {id: 1, path:"donkey1.jpg"},
         {id: 2, path:"cow3.jpg"},
-        {id: 3, path:"crit1.png"},
-        {id: 4, path:"crit2.png"}
+        {id: 3, path:"chicken1.jpg"},
+        {id: 4, path:"horse1.jpg"},
+        {id: 5, path:"cow2.jpg"}
+    ],
+    sets: [
+        {
+            name: 'domestic',
+            decks: [
+                'sheep', 'goat', 'chicken',
+                'owl', 'cow', 'cat',
+                'horse', 'pig', 'donkey',
+                'rabbit', 'dog', 'duck'
+            ]
+        }
     ],
     imageDataItems: [
         {

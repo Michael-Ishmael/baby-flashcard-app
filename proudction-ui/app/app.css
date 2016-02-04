@@ -4,6 +4,10 @@ html body {
   color: #fff;
 }
 
+.panel-default {
+    background-color: gray;
+}
+
 .colored-block{
   padding: 10px;
 }
@@ -24,29 +28,47 @@ html body {
   background-color: #6b6a21;
 }
 
-#imageHolder{
+#imageContainer{
     position: absolute;
-    top: 0;
+    top: 10px;
     left: 0;
     z-index: 1;
 }
 
-#maskHolder{
+select.tall-list-box{
+    height: 500px;
+}
+
+#maskContainer{
     position: absolute;
-    top: 0;
+    top: 10px;
     left: 0;
     z-index: 5;
     display: none;
 
 }
 
-#cropbox {
+#currentImage {
   max-width: 800px;
+    max-height: 600px;
 }
 
 #mask {
     width: 100%;
     height: 100%;
+}
+
+#previewContainer{
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    z-index: 1000;
+    display: none;
+    overflow: hidden;
+}
+
+#preview {
+
 }
 
 .button-state.mark{

@@ -71,6 +71,7 @@ namespace babyflashcards
 			_clickCount++;
 
 		}
+
 		public void FlashCardDismissed ()
 		{
 			DismissViewController(true, () => {
