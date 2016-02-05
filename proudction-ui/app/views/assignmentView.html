@@ -3,16 +3,7 @@
 
         <form action="" method="post">
 
-            <div class="form-group">
-                <label for="backlog" class="control-label">Backlog:</label>
-                <select id="backlog" name="backlog" multiple="multiple" class="form-control"
-                        ng-class="{'tall-list-box':!imageSet}"
-                        ng-options="img as img.path for img in backlog" ng-model="selectedImg"
-                        ng-change="preImageChange()">
-                </select>
-            </div>
-
-            <div class="panel panel-default" id="assignment" ng-show="imageSet">
+            <div class="panel panel-default" id="assignment">
 
                 <div class="panel-heading">
                     <h3 class="panel-title">Assign Image
@@ -38,7 +29,7 @@
                         <ul ui-sortable class="list-group" ng-model="existingDeckCards">
                             <li class="list-group-item pointer-cursor" ng-repeat="card in existingDeckCards" id="{{ card.id }}">
                                 <span class="badge">{{ card.index }}</span>
-                                <img class="list-thumbnail" src="{{ ::card.path }}" />
+                                <img class="list-thumbnail" ng-src="{{ ::card.path }}" />
                                 {{ card.path }}</li>
                         </ul>
                     </div>

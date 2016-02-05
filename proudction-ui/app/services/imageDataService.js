@@ -7,9 +7,15 @@ app.factory('imageDataService', [ '$rootScope' , '$timeout', function($rootScope
     var self = {};
     self.wizardIndex = 0;
 
-    self.cropManager = new ImageDataManager(seedData_1);
+    self.imageDataManger = new ImageDataManager();
+    self.imageDataItems = self.imageDataManger.imageDataItems;
+    self.currentItem = null;
+
+    //self.cropManager = new ImageDataManager(seedData_1);
 
     self.selectBacklogItem = function(item){
+
+        self.currentItem = self.imageDataManger.loadBacklogItem(item);
         //item
         self.wizardIndex++;
         $timeout(function(){

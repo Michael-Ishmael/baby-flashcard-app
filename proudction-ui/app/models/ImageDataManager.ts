@@ -39,6 +39,8 @@ class ImageDataManager {
 
         this.finishLoadAsync(target);
 
+        return this.currentItem;
+
     }
 
     private finishLoadAsync(target:IImageTarget) {

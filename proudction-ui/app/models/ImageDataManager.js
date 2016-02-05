@@ -32,6 +32,7 @@ var ImageDataManager = (function () {
         this.changeHash = this.currentItem.id.toString();
         this.recalculateCropStates();
         this.finishLoadAsync(target);
+        return this.currentItem;
     };
     ImageDataManager.prototype.finishLoadAsync = function (target) {
         var img = new Image();
