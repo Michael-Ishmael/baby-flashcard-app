@@ -2,7 +2,7 @@
  * Created by michaelishmael on 04/02/2016.
  */
 
-app.controller('appController', ['$scope',  'imageDataService', function ($scope, imageDataService) {
+app.controller('appController', ['$scope', '$location',  'imageDataService', function ($scope, $location, imageDataService) {
 
     $scope.subViews = [
         'views/backlogView.html',
@@ -25,9 +25,12 @@ app.controller('appController', ['$scope',  'imageDataService', function ($scope
 
     };
 
-    $scope.$on('wizard:indexChanged', function (event, data) {
-            $scope.nextView();
+    $scope.$on('wizard:itemSelected', function (event, data) {
+            var view = 'assign';
+            var path = data.id ? view + '/' + data.id : view;
+            $location.path(path); // path not hash
         }
     );
+
 
 }]);

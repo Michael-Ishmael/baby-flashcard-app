@@ -26,7 +26,9 @@
 
 <div class="container-fluid" ng-controller="appController">
 
-    <div ng-include="currentView"></div>
+    <ng-view></ng-view>
+
+    <!--<div ng-include="currentView"></div>-->
 
 </div>
 
@@ -44,8 +46,8 @@
 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src="app.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
 <script src="components/version/interpolate-filter.js"></script>
@@ -53,6 +55,8 @@
 <script src="components/jcrop/jquery.Jcrop.js"></script>
 <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+
+<script src="app.js"></script>
 <script src="models/CropEntities.js"></script>
 <script src="models/ImageDataManager.js"></script>
 <script src="components/CropFormatter.js"></script>

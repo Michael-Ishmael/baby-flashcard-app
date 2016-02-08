@@ -2,28 +2,83 @@
  * Created by michaelishmael on 02/02/2016.
  */
 
-app.factory('imageDataService', [ '$rootScope' , '$timeout', function($rootScope, $timeout){
+app.factory('imageDataService', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
 
     var self = {};
     self.wizardIndex = 0;
 
     self.imageDataManger = new ImageDataManager();
-    self.imageDataItems = self.imageDataManger.imageDataItems;
+    self.imageDataItems = [];
     self.currentItem = null;
+    self.sets = seedData_1.sets;
+
+    self.itemIndexes = {val: ""};
+
 
     //self.cropManager = new ImageDataManager(seedData_1);
 
-    self.selectBacklogItem = function(item){
+    self.selectBacklogItem = function (item) {
 
-        self.currentItem = self.imageDataManger.loadBacklogItem(item);
-        //item
+        setCurrentItem(item);
+        //self.imageDataManger.loadBacklogItem(item);
+
+        self.itemIndexes.val = "";
+        for (var i = 0; i < self.imageDataItems.length; i++) {
+            var im = self.imageDataItems[i];
+            self.itemIndexes.val += im.id + ","
+        }
         self.wizardIndex++;
-        $timeout(function(){
-            $rootScope.testProp23 = 'testy';
-            $rootScope.$broadcast('wizard:indexChanged', self.wizardIndex);
+        $timeout(function () {
+            $rootScope.$broadcast('wizard:itemSelected', self.currentItem);
         }, 100);
 
     };
+
+
+    function setCurrentItem(backlogItem) {
+        self.currentItem = null;
+        for (var i = 0; i < self.imageDataItems.length; i++) {
+            var item = self.imageDataItems[i];
+            if (item.id == backlogItem.id) {
+                self.currentItem = item;
+            }
+        }
+
+        if (self.currentItem == null) {
+            self.currentItem = ImageDataManager.createNewImageDataItem(backlogItem);
+            self.imageDataItems.push(self.currentItem);
+        }
+    }
+
+    self.getExistingItemsForDeck = function (deck) {
+        var deckItems = [];
+        for (var i = 0; i < self.imageDataItems.length; i++) {
+            var item = self.imageDataItems[i];
+            if (item.deck == deck) {
+                item.index = i;
+                deckItems.push(item);
+            }
+        }
+        deckItems.sort(function (a, b) {
+
+            return a.indexInDeck - b.indexInDeck;
+
+        });
+        return deckItems;
+    };
+
+    self.setDeckOnItem = function (item, deck) {
+        if (item.deck != deck) {
+            var deckItems = self.getExistingItemsForDeck(deck);
+            var newIndex = 0;
+            if(deckItems && deckItems.length)
+                newIndex = deckItems[deckItems.length - 1].indexInDeck + 1;
+            item.deck = deck;
+            item.indexInDeck = newIndex;
+
+        }
+    };
+
 
     return self;
 }]);
@@ -31,11 +86,11 @@ app.factory('imageDataService', [ '$rootScope' , '$timeout', function($rootScope
 
 var seedData_1 = {
     backlog: [
-        {id: 1, path:"donkey1.jpg"},
-        {id: 2, path:"cow3.jpg"},
-        {id: 3, path:"chicken1.jpg"},
-        {id: 4, path:"horse1.jpg"},
-        {id: 5, path:"cow2.jpg"}
+        {id: 1, path: "donkey1.jpg"},
+        {id: 2, path: "cow3.jpg"},
+        {id: 3, path: "chicken1.jpg"},
+        {id: 4, path: "horse1.jpg"},
+        {id: 5, path: "cow2.jpg"}
     ],
     sets: [
         {
@@ -54,7 +109,7 @@ var seedData_1 = {
             original: 'crit1.png',
             name: 'Cow',
             twelve16: {
-                master:{
+                master: {
                     orientation: "landscape",
                     crop: [0, 0, 1, 1]
                 },
@@ -64,7 +119,7 @@ var seedData_1 = {
                 }
             },
             nine16: {
-                master:{
+                master: {
                     orientation: "landscape",
                     crop: [0, 0, 1, 1]
                 },
