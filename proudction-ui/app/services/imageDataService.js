@@ -11,11 +11,32 @@ app.factory('imageDataService', ['$rootScope', '$timeout', function ($rootScope,
     self.imageDataItems = [];
     self.currentItem = null;
     self.sets = seedData_1.sets;
+    self.backlogItems = [];
 
     self.itemIndexes = {val: ""};
 
+    function init(){
+        for (var i = 0; i < seedData_1.backlog.length; i++) {
+            var item = seedData_1.backlog[i];
+            self.backlogItems.push({
+                id : item.id,
+                path : '../media/' + item.path,
+                index : i
+            });
+
+        }
+    }
+
 
     //self.cropManager = new ImageDataManager(seedData_1);
+
+    self.getBacklogItem = function(itemId){
+        for (var i = 0; i < self.backlogItems.length; i++) {
+            var item = self.backlogItems[i];
+            if(item.id == itemId) return item;
+        }
+        return null;
+    };
 
     self.selectBacklogItem = function (item) {
 
@@ -79,6 +100,7 @@ app.factory('imageDataService', ['$rootScope', '$timeout', function ($rootScope,
         }
     };
 
+    init();
 
     return self;
 }]);

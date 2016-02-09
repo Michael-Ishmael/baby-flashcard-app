@@ -2,7 +2,7 @@
  * Created by michaelishmael on 04/02/2016.
  */
 
-app.controller('assignmentController', ['$scope', 'imageDataService', function ($scope, imageDataService) {
+app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataService', function ($scope, $routeParams, imageDataService) {
 
 
 /*    $scope.currentItem = imageDataService.currentItem;
@@ -22,7 +22,26 @@ app.controller('assignmentController', ['$scope', 'imageDataService', function (
         return seedPath;
     };
 
+    $scope.sortableOptions = {
+
+        stop: function(e, ui) {
+           var deckItems = $scope.existingDeckCards;
+            for (var i = 0; i < deckItems.length; i++) {
+                var item = deckItems[i];
+                item.indexInDeck = i;
+            }
+        }
+    };
+
+
     $scope.$on('$viewContentLoaded', function() {
+        if(!imageDataService.currentItem){
+            var imageId = $routeParams.imageId;
+            var item = imageDataService.getBacklogItem(imageId);
+            if(item) imageDataService.selectBacklogItem(item);
+        }
+
+
         $scope.currentItem = imageDataService.currentItem;
         var sets = imageDataService.sets;
         $scope.sets = sets;
