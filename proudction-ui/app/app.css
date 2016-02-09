@@ -1,45 +1,46 @@
 /* app css stylesheet */
 html body {
-  background-color: #454b52;
-  color: #fff;
+    background-color: #454b52;
+    /*color: #fff;*/
+    kmargin-top: 20px;
 }
 
 .panel-default {
     background-color: gray;
 }
 
-.colored-block{
-  padding: 10px;
+.colored-block {
+    padding: 10px;
 }
 
 .master12 {
-  background-color: #5d3a3a;
+    background-color: #5d3a3a;
 }
 
 .alternate12 {
-  background-color: #2b542c;
+    background-color: #2b542c;
 }
 
 .master9 {
-  background-color: #33385d;
+    background-color: #33385d;
 }
 
 .alternate9 {
-  background-color: #6b6a21;
+    background-color: #6b6a21;
 }
 
-#imageContainer{
+#imageContainer {
     position: absolute;
     top: 10px;
     left: 0;
     z-index: 1;
 }
 
-select.tall-list-box{
+select.tall-list-box {
     height: 500px;
 }
 
-#maskContainer{
+#maskContainer {
     position: absolute;
     top: 10px;
     left: 0;
@@ -48,8 +49,12 @@ select.tall-list-box{
 
 }
 
+.working-image{
+    max-width: 100%;
+}
+
 #currentImage {
-  max-width: 800px;
+    max-width: 800px;
     max-height: 600px;
 }
 
@@ -58,7 +63,7 @@ select.tall-list-box{
     height: 100%;
 }
 
-#previewContainer{
+#previewContainer {
     position: absolute;
     top: 10px;
     left: 0px;
@@ -71,21 +76,21 @@ select.tall-list-box{
 
 }
 
-.button-state.mark{
+.button-state.mark {
 
-    background-image: linear-gradient(to bottom,#fff 0, #a7a7e0 100%);
-
-}
-
-.button-state.set{
-
-    background-image: linear-gradient(to bottom,#fff 0, #e06876 100%);
+    background-image: linear-gradient(to bottom, #fff 0, #a7a7e0 100%);
 
 }
 
-.button-state.release{
+.button-state.set {
 
-    background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+    background-image: linear-gradient(to bottom, #fff 0, #e06876 100%);
+
+}
+
+.button-state.release {
+
+    background-image: linear-gradient(to bottom, #fff 0, #e0e0e0 100%);
 
 }
 
@@ -106,33 +111,31 @@ select.tall-list-box{
     margin-right: 10px;
 }
 
-
-
 .menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+    list-style: none;
+    border-bottom: 0.1em solid black;
+    margin-bottom: 2em;
+    padding: 0 0 0.5em;
 }
 
 .menu:before {
-  content: "[";
+    content: "[";
 }
 
 .menu:after {
-  content: "]";
+    content: "]";
 }
 
 .menu > li {
-  display: inline;
+    display: inline;
 }
 
 .menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
+    content: "|";
+    padding-right: 0.3em;
 }
 
 .menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
+    content: "";
+    padding: 0;
 }

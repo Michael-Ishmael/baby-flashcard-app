@@ -5,22 +5,16 @@
 app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataService', function ($scope, $routeParams, imageDataService) {
 
 
-/*    $scope.currentItem = imageDataService.currentItem;
-    $scope.initialized = false;
-    $scope.sets = [{id: 1, name: 'domestic'}];
-    $scope.selectedSet = null;
-    $scope.decks = [];
-    $scope.selectedDeck = null;
-    $scope.availableIndexes = [];
-    $scope.selectedIndex = -1;*/
-
     function init() {
 
     }
 
+    $scope.selectedData = {};
+
     $scope.getImagePath = function (seedPath) {
         return seedPath;
     };
+
 
     $scope.sortableOptions = {
 
@@ -39,6 +33,7 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
             var imageId = $routeParams.imageId;
             var item = imageDataService.getBacklogItem(imageId);
             if(item) imageDataService.selectBacklogItem(item);
+            $scope.previewPath = item.path;
         }
 
 
@@ -61,24 +56,25 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
             $scope.selectedIndex = 0;
         else
             $scope.selectedIndex = imageDataService.currentItem.indexInDeck;
+
+        $scope.setPreviewPath(imageDataService.currentItem);
     });
     
-    //$scope.getExistingDeckCards = function(){
-    //    var selectedDeck = $scope.selectedDeck;
-    //    if(!(selectedDeck && selectedDeck.length)) return [];
-    //    var items = imageDataService.getExistingItemsForDeck(selectedDeck[0]);
-    //    return items;
-    //
-    //};
+    $scope.setPreviewPath = function(item){
+        $scope.previewPath = item.path;
+
+    };
 
     $scope.$watch(
-        'selectedDeck',
+        'selectedDecks',
         function(newValue, oldValue){
             if(newValue && newValue.length){
                 var deck = newValue[0];
                 var item = $scope.currentItem;
                 imageDataService.setDeckOnItem(item, deck);
+                $scope.selectedDeck = item.deck;
                 $scope.existingDeckCards = imageDataService.getExistingItemsForDeck(deck);
+                $scope.soundsForDeck = imageDataService.getSoundsForDeck(deck);
             }
         }
 

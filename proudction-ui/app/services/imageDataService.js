@@ -88,6 +88,16 @@ app.factory('imageDataService', ['$rootScope', '$timeout', function ($rootScope,
         return deckItems;
     };
 
+    self.getSoundsForDeck = function (deckName){
+        var soundNames = seedData_1.sounds[deckName];
+        var deckSounds = [];
+        for (var i = 0; i < soundNames.length; i++) {
+            var sound = soundNames[i];
+            deckSounds.push({ name: sound, path:'../media/sounds/' + sound });
+        }
+        return deckSounds;
+    };
+
     self.setDeckOnItem = function (item, deck) {
         if (item.deck != deck) {
             var deckItems = self.getExistingItemsForDeck(deck);
@@ -125,6 +135,32 @@ var seedData_1 = {
             ]
         }
     ],
+    sounds: {
+        'chicken': [
+            'Chicken1.mp3',
+            'Chicken2.mp3',
+            'Chicken3.mp3',
+            'Chicken4.mp3',
+            'Chicken5.mp3',
+            'Chicken6.mp3'
+        ],
+        'cow' : [
+            'Cow1.mp3',
+            'Cow2.mp3',
+            'Cow3.mp3',
+            'Cow4.mp3',
+            'Cow5.mp3',
+            'Cow6.mp3'
+        ],
+        'horse' : [
+            'Horse1.mp3',
+            'Horse2.mp3',
+            'Horse3.mp3',
+            'Horse4.mp3',
+            'Horse5.mp3',
+            'Horse6.mp3'
+        ]
+    },
     imageDataItems: [
         {
             id: 1,
