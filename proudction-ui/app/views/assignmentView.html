@@ -5,6 +5,9 @@
             <div class="panel-body">
                 <img class="list-thumbnail" ng-src="{{ getImagePath(currentItem.path) }}"
                      ng-click="setPreviewPath(currentItem)" />
+                <div class="pull-right pointer-cursor" ng-show="itemComplete()" ng-click="moveNext()">
+                    <i style="font-size: 60px" class="fa fa-chevron-circle-right" ></i>
+                </div>
             </div>
         </div>
 

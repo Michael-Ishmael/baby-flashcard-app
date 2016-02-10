@@ -1,0 +1,734 @@
+{
+  "sets": [
+    {
+      "decks": [
+        {
+          "cards": [
+            {
+              "sound": "Horse1.mp3",
+              "index": 0,
+              "image": "horse1",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse2.mp3",
+              "index": 0,
+              "image": "horse2",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse3.mp3",
+              "index": 0,
+              "image": "horse3",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse4.mp3",
+              "index": 0,
+              "image": "horse4",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse5.mp3",
+              "index": 0,
+              "image": "horse5",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse6.mp3",
+              "index": 0,
+              "image": "horse6",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow1.mp3",
+              "index": 0,
+              "image": "cow1",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow2.mp3",
+              "index": 0,
+              "image": "cow2",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow3.mp3",
+              "index": 0,
+              "image": "cow3",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow4.mp3",
+              "index": 0,
+              "image": "cow4",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow5.mp3",
+              "index": 0,
+              "image": "cow5",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow6.mp3",
+              "index": 0,
+              "image": "cow6",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken1.mp3",
+              "index": 0,
+              "image": "Chicken1_ipad",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken2.mp3",
+              "index": 0,
+              "image": "Chicken2_ipad",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken3.mp3",
+              "index": 0,
+              "image": "Chicken3_ipad",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken4.mp3",
+              "index": 0,
+              "image": "chicken4",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken5.mp3",
+              "index": 0,
+              "image": "chicken5",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken6.mp3",
+              "index": 0,
+              "image": "chicken6",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            }
+          ],
+          "thumb": "horsethumb",
+          "id": 1,
+          "name": "Horse"
+        },
+        {
+          "cards": [
+            {
+              "sound": "Horse1.mp3",
+              "index": 0,
+              "image": "horse1",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse2.mp3",
+              "index": 0,
+              "image": "horse2",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse3.mp3",
+              "index": 0,
+              "image": "horse3",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse4.mp3",
+              "index": 0,
+              "image": "horse4",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse5.mp3",
+              "index": 0,
+              "image": "horse5",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse6.mp3",
+              "index": 0,
+              "image": "horse6",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow1.mp3",
+              "index": 0,
+              "image": "cow1",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow2.mp3",
+              "index": 0,
+              "image": "cow2",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow3.mp3",
+              "index": 0,
+              "image": "cow3",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow4.mp3",
+              "index": 0,
+              "image": "cow4",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow5.mp3",
+              "index": 0,
+              "image": "cow5",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow6.mp3",
+              "index": 0,
+              "image": "cow6",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken1.mp3",
+              "index": 0,
+              "image": "Chicken1_ipad",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken2.mp3",
+              "index": 0,
+              "image": "Chicken2_ipad",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken3.mp3",
+              "index": 0,
+              "image": "Chicken3_ipad",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken4.mp3",
+              "index": 0,
+              "image": "chicken4",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken5.mp3",
+              "index": 0,
+              "image": "chicken5",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken6.mp3",
+              "index": 0,
+              "image": "chicken6",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            }
+          ],
+          "thumb": "cowthumb",
+          "id": 1,
+          "name": "Cow"
+        },
+        {
+          "cards": [
+            {
+              "sound": "Horse1.mp3",
+              "index": 0,
+              "image": "horse1",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse2.mp3",
+              "index": 0,
+              "image": "horse2",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse3.mp3",
+              "index": 0,
+              "image": "horse3",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse4.mp3",
+              "index": 0,
+              "image": "horse4",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse5.mp3",
+              "index": 0,
+              "image": "horse5",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "horse6.mp3",
+              "index": 0,
+              "image": "horse6",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow1.mp3",
+              "index": 0,
+              "image": "cow1",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow2.mp3",
+              "index": 0,
+              "image": "cow2",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow3.mp3",
+              "index": 0,
+              "image": "cow3",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow4.mp3",
+              "index": 0,
+              "image": "cow4",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow5.mp3",
+              "index": 0,
+              "image": "cow5",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "cow6.mp3",
+              "index": 0,
+              "image": "cow6",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken1.mp3",
+              "index": 0,
+              "image": "Chicken1_ipad",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken2.mp3",
+              "index": 0,
+              "image": "Chicken2_ipad",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken3.mp3",
+              "index": 0,
+              "image": "Chicken3_ipad",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken4.mp3",
+              "index": 0,
+              "image": "chicken4",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken5.mp3",
+              "index": 0,
+              "image": "chicken5",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            },
+            {
+              "sound": "chicken6.mp3",
+              "index": 0,
+              "image": "chicken6",
+              "portraitbounds": {
+                "y": 10,
+                "x": 10,
+                "w": 200,
+                "h": 500
+              },
+              "landscapebounds": null,
+              "originalsize": null
+            }
+          ],
+          "thumb": "chickenthumb",
+          "id": 1,
+          "name": "Chicken"
+        }
+      ],
+      "icon": "domesticicon.png",
+      "id": 1,
+      "name": "Domestic Animals"
+    }
+  ]
+}

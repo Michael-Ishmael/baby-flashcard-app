@@ -1,0 +1,543 @@
+Set: Default Actions
+	Action: Vignette (selection)
+		Make snapshot
+			From: Current History State
+			Using: full document
+		Feather
+			Radius: 5 pixels
+		Layer Via Copy
+		Show current layer
+			With Toggle Others
+		Make layer
+		Fill
+			Using: white
+			Opacity: 100%
+			Mode: normal
+		Move current layer
+			To: previous layer
+
+	Action: Frame Channel - 50 pixel
+		Make snapshot
+			From: Current History State
+			Using: full document
+		Stop
+			Message:  “Image size must be a minimum of 100 pixels wide and tall.”
+			With Continue
+		Convert Mode
+			To: RGB color mode
+		Reset Swatches
+		Set Selection
+			To: all
+		Duplicate Selection
+			Name:  “photo edge”
+		Canvas Size
+			Width: 200%
+			Height: 200%
+			Horizontal: center
+			Vertical: center
+		Select channel “photo edge”
+		Duplicate current channel
+			Name:  “new edge 1”
+		Transform current layer
+			Position: 50 pixels, 50 pixels
+			With Relative
+		Select channel “photo edge”
+		Duplicate current channel
+			Name:  “new edge 2”
+		Transform current layer
+			Position: -50 pixels, -50 pixels
+			With Relative
+		Select channel “photo edge”
+		Duplicate current channel
+			Name:  “new edge 3”
+		Transform current layer
+			Position: -50 pixels, 50 pixels
+			With Relative
+		Select channel “photo edge”
+		Duplicate current channel
+			Name:  “new edge 4”
+		Transform current layer
+			Position: 50 pixels, -50 pixels
+			With Relative
+		Make
+			New: channel
+			Name:  “Frame Edge”
+			Color Indicates: masked areas
+			Color: RGB color
+			Red: 255
+			Green: 0
+			Blue: 0
+			Opacity: 50
+		Set Selection
+			To: channel “new edge 4”
+		Add channel “new edge 3”
+			To: Selection
+		Add channel “new edge 2”
+			To: Selection
+		Add channel “new edge 1”
+			To: Selection
+		Subtract channel “photo edge”
+			From: Selection
+		Fill
+			Using: white
+			Opacity: 100%
+			Mode: normal
+		Select RGB channel
+
+	Action: Wood Frame - 50 pixel
+		Play action “Frame Channel - 50 pixel” of set “Default Actions”
+		Make layer
+			Using: layer
+			Name:  “frame”
+		Set Foreground Color
+			To: CMYK color
+			Cyan: 18.82
+			Magenta: 27.84
+			Yellow: 37.65
+			Black: 31.369
+		Fill
+			Using: foreground color
+			Opacity: 100%
+			Mode: normal
+		Add Noise
+			Amount: 30
+			Distribution: gaussian
+			With Monochromatic
+		Motion Blur
+			Angle: 0
+			Distance: 10
+		Set Layer Styles of current layer
+			To: layer styles
+			Global Angle: -55°
+			Bevel & Emboss: bevel & emboss
+			Highlight Opacity: 55%
+			Shadow Opacity: 40%
+			Style: inner bevel
+			Depth: 15 pixels
+			Size: 8 pixels
+		Set Selection
+			To: channel “photo edge”
+		Select forward layer
+		Fill
+			Using: gray
+			Opacity: 1%
+			Mode: normal
+		Layer Via Copy
+		Set Layer Styles of current layer
+			To: layer styles
+			Inner Shadow: inner shadow
+			Distance: 10 pixels
+			Size: 40 pixels
+		Set Selection
+			To: channel “Frame Edge”
+		Add channel “photo edge”
+			To: Selection
+		Crop
+		Delete channel “Frame Edge”
+		Delete channel “new edge 4”
+		Delete channel “new edge 3”
+		Delete channel “new edge 2”
+		Delete channel “new edge 1”
+		Delete channel “photo edge”
+		Set Selection
+			To: none
+
+	Action: Cast Shadow (type)
+		Make snapshot
+			From: Current History State
+			Using: full document
+		Convert Mode
+			To: RGB color mode
+		Rasterize Type Layer
+		Duplicate current layer
+			Name:  “Shadow”
+		Transform current layer
+			Center: side
+			Translate: 0 cm, 0 cm
+			Height: -55.1%
+			Distort: 0%, 0.3%
+		Fill
+			Using: gray
+			Opacity: 100%
+			Mode: normal
+			With Preserve Transparency
+		Gaussian Blur
+			Radius: 2.8
+		Set current layer
+			To: layer
+			Mode: multiply
+		Set current layer
+			To: layer
+			Opacity: 75%
+
+	Action: Water Reflection (type)
+		Make snapshot
+			From: Current History State
+			Using: full document
+		Convert Mode
+			To: RGB color mode
+		Rasterize Type Layer
+		Duplicate current layer
+			Name:  “reflection”
+		Transform current layer
+			Center: side
+			Translate: 0 cm, 0 cm
+			Height: -59.1%
+			Distort: 0%, 0.2%
+		Ripple
+			Amount: 351
+			Size: Small
+		Motion Blur
+			Angle: 0
+			Distance: 15
+		Hue/Saturation
+			Without Colorize
+			Adjustment: hue/saturation adjustment list
+			hue/saturation adjustment
+			Hue: 0
+			Saturation: -20
+			Lightness: 0
+		Set current layer
+			To: layer
+			Opacity: 65%
+
+	Action: Custom RGB to Grayscale
+		Make snapshot
+			From: Current History State
+			Using: full document
+		Channel Mixer
+			With Monochromatic
+			Output Black: is a mixture of
+			Red: 24
+			Green: 68
+			Blue: 8
+		Convert Mode
+			To: grayscale mode
+
+	Action: Molten Lead
+		Make snapshot
+			From: Current History State
+			Using: full document
+		Convert Mode
+			To: RGB color mode
+		Reset Swatches
+		Make layer
+		Fill
+			Using: gray
+			Opacity: 100%
+			Mode: normal
+		Clouds
+		Find Edges
+		Levels
+			Adjustment: levels adjustment list
+			levels adjustment
+			Channel: composite channel
+			Input: 223, 255
+		Curves
+			Adjustment: curves adjustment list
+			curves adjustment
+			Channel: composite channel
+			Curve: point list
+			point: 0, 0
+			point: 173, 233
+			point: 255, 255
+		Invert
+		Plaster
+			Image Balance: 8
+			Smoothness: 8
+			Light Direction: Left
+		Unsharp Mask
+			Radius: 1
+			Amount: 450
+			Threshold: 21
+
+	Action: Sepia Toning (layer)
+		Make snapshot
+			From: Current History State
+			Using: full document
+		Make layer
+		Merge Visible
+			With Duplicate
+		Desaturate
+		Make
+			New: adjustment layer
+			With Clipping Mask
+			Type: hue/saturation
+			With Colorize
+			Adjustment: hue/saturation adjustment list
+			hue/saturation adjustment
+			Hue: 30
+			Saturation: 25
+			Lightness: 0
+
+	Action: Quadrant Colors
+		Make snapshot
+			From: Current History State
+			Using: full document
+		Convert Mode
+			To: RGB color mode
+		Duplicate current layer
+		Desaturate
+		Levels
+			Adjustment: levels adjustment list
+			levels adjustment
+			Channel: composite channel
+			Gamma: 1.1
+		Curves
+			Adjustment: curves adjustment list
+			curves adjustment
+			Channel: composite channel
+			Curve: point list
+			point: 0, 0
+			point: 37, 30
+			point: 223, 230
+			point: 255, 255
+		Set Selection
+			To: rectangle
+			Top: 0%
+			Left: 0%
+			Bottom: 50.2%
+			Right: 50.1%
+		Color Balance
+			Shadow Levels: 0, 0, 0
+			Midtone Levels: 35, -35, -35
+			Highlight Levels: 0, 0, 0
+			With Preserve Luminosity
+		Set Selection
+			To: rectangle
+			Top: 0%
+			Left: 50.1%
+			Bottom: 50.2%
+			Right: 100%
+		Color Balance
+			Shadow Levels: 0, 0, 0
+			Midtone Levels: -30, 20, -30
+			Highlight Levels: 0, 0, 0
+			With Preserve Luminosity
+		Set Selection
+			To: rectangle
+			Top: 50.2%
+			Left: 0%
+			Bottom: 100%
+			Right: 50.1%
+		Color Balance
+			Shadow Levels: 0, 0, 0
+			Midtone Levels: -35, 0, 20
+			Highlight Levels: 0, 0, 0
+			With Preserve Luminosity
+		Set Selection
+			To: rectangle
+			Top: 50.2%
+			Left: 50.1%
+			Bottom: 100%
+			Right: 100%
+		Color Balance
+			Shadow Levels: 0, 0, 0
+			Midtone Levels: 3, 0, -65
+			Highlight Levels: 0, 0, 0
+			With Preserve Luminosity
+		Set Selection
+			To: none
+
+	Action: Save as Photoshop PDF
+		Save
+			As: Photoshop PDF
+			Preset:  “High Quality Print”
+			Description:  “Use these settings to create Adobe PDF documents for quality printing on desktop printers and proofers.  Created PDF documents can be opened with Acrobat and Adobe Reader 5.0 and later.”
+			Downsample Size: 118.11 per cm
+			Downsample Threshold: 177.165 per cm
+			Compression Type: 7
+			Registry Name:  “”
+			In: /
+			With Lower Case
+
+	Action: Gradient Map
+		Make snapshot
+			From: Current History State
+			Using: full document
+		Convert Mode
+			To: RGB color mode
+		Make adjustment layer
+			Using: adjustment layer
+			Opacity: 70%
+			Type: gradient map
+			With: gradient
+			Name:  “Blue, Red, Yellow”
+			Form: custom stops
+			Interpolation: 4096
+			Colors: color stop list
+			color stop
+			Color: HSB color
+			Hue: 243.2°
+			Saturation: 100
+			Brightness: 69.804
+			Type: user specified color
+			Location: 0
+			Midpoint: 50
+			color stop
+			Color: HSB color
+			Hue: 360°
+			Saturation: 100
+			Brightness: 100
+			Type: user specified color
+			Location: 2048
+			Midpoint: 50
+			color stop
+			Color: HSB color
+			Hue: 59.3°
+			Saturation: 100
+			Brightness: 100
+			Type: user specified color
+			Location: 4096
+			Midpoint: 50
+			Transparency: transparency stop list
+			transparency stop
+			Opacity: 100%
+			Location: 0
+			Midpoint: 50
+			transparency stop
+			Opacity: 100%
+			Location: 4096
+			Midpoint: 50
+		Set current layer
+			To: layer
+			Mode: overlay
+
+	Action: Mixer Brush Cloning Paint Setup
+		Stop
+			Message:  “This Action will flatten any existing layers. 1. Use Cloner brushes to paint on Clone Layers. 2. Make sure 'Sample All Layers' is disabled in the Mixer Brush Property Bar.”
+			With Continue
+		Flatten Image
+		Set Background
+			To: layer
+			Name:  “Layer 0”
+			Opacity: 100%
+			Mode: normal
+		Duplicate current layer
+			5
+		Set current layer
+			To: layer
+			Name:  “Reference”
+		Set current layer
+			To: layer
+			Opacity: 50%
+		Hide current layer
+		Select layer “Layer 0”
+			Without Make Visible
+		Set current layer
+			To: layer
+			Fill Opacity: 1%
+		Make layer
+			Using: layer
+			Name:  “Layer 1”
+		Move current layer
+			To: layer 0
+			Without Adjust Selection
+			5
+		Select layer “Layer 0”
+			Without Make Visible
+		Merge Layers
+		Make adjustment layer
+			Using: adjustment layer
+			Type: hue/saturation
+			Preset Kind: Default
+			Without Colorize
+		Select layer “Layer 1”
+			Modification: Add Continuous
+			Without Make Visible
+		Make Group
+			From: current layer
+			Using: Group
+			Name:  “Group 1”
+		Set current layer
+			To: layer
+			Mode: normal
+		Duplicate current layer
+			Name:  “Group 1 copy”
+			5
+		Duplicate current layer
+			Name:  “Group 1 copy 2”
+			5
+		Select layer “Group 1”
+			Without Make Visible
+		Set current layer
+			To: layer
+			Name:  “Underpainting”
+		Select layer “Layer 1”
+			Without Make Visible
+		Set current layer
+			To: layer
+			Name:  “Underpainting”
+		Select layer “Layer 1”
+			Without Make Visible
+		Set current layer
+			To: layer
+			Name:  “Intermediate Strokes”
+		Select layer “Group 1 copy”
+			Without Make Visible
+		Set current layer
+			To: layer
+			Name:  “Intermediate Strokes”
+		Select layer “Layer 1”
+			Without Make Visible
+		Set current layer
+			To: layer
+			Name:  “Detail Strokes”
+		Select layer “Group 1 copy 2”
+			Without Make Visible
+		Set current layer
+			To: layer
+			Name:  “Detail Strokes”
+		Select layer “Underpainting”
+			Without Make Visible
+		Make layer
+		Move current layer
+			To: layer 0
+			Without Adjust Selection
+			5
+		Set current layer
+			To: layer
+			Name:  “Background”
+		Fill
+			Using: white
+			Opacity: 100%
+			Mode: normal
+		Set current layer
+			To: layer
+			Locking: Layer attributes
+			With all
+		Select layer “Reference”
+			Without Make Visible
+		Show current layer
+		Select layer “Underpainting”
+			Without Make Visible
+		Select layer “Intermediate Strokes”
+			Without Make Visible
+		Select layer “Detail Strokes”
+			Without Make Visible
+		Select layer “Underpainting”
+			Without Make Visible
+		Select layer “Reference”
+			Without Make Visible
+		Set current layer
+			To: layer
+			Locking: Layer attributes
+			With all
+		Select layer “Underpainting”
+			Without Make Visible
+
+Set: Set 1
+	Action: ResizeCropSave
+		Set Selection
+			To: rectangle
+			Top: 211 pixels
+			Left: 628 pixels
+			Bottom: 2468 pixels
+			Right: 3589 pixels
+		Crop
+			With Delete Cropped Pixels
+		Image Size
+			Width: 800 pixels
+			With Scale Styles
+			With Constrain Proportions
+			Interpolation: automatic

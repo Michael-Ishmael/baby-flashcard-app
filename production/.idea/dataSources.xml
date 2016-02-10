@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" hash="4222278308">
     <data-source source="LOCAL" name="Django default" uuid="556c5086-5478-49cc-a4b6-c7196c0300b0">
-      <driver-ref>sqlite.xerial</driver-ref>
+      <driver-ref>80e14418-bc73-4cd3-a34e-0c6ce0b2b3ba</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/production/settings.py</remarks>
@@ -11,6 +11,14 @@
       <explain-plan-config>
         <provider>com.intellij.database.plan.ExplainPlanProvider.NullExplainPlanProvider</provider>
       </explain-plan-config>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/mysql-connector-license.txt</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/mysql-connector-java-5.1.34-bin.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>
