@@ -1,15 +1,74 @@
 import simplejson
+import os
+
 
 class Workflow:
-    backlog = []
 
+    def __init__(self, media_path):
+        self.media_path = media_path
+        self.backlog_sub_folder = 'backlog'
+        self.sounds_sub_folder = 'sounds'
+        self.data_file_name = 'data.json'
+        self.image_data = ImageData()
+        self.backlog = [] # type: List[FileItem]
+        self.sounds = []
+
+    def load(self):
+        with open(os.path.join(self.media_path, self.data_file_name)) as json_file:
+            self.image_data.load_from_json(json_file)
+        self.load_files(self.backlog_sub_folder, 'jpg', self.backlog)
+        for item in self.backlog:
+            match = self.find_in_data(item.name)
+            if match is not None:
+                item.id = match.id
+
+        self.load_files(self.sounds_sub_folder, 'mp3', self.sounds)
+
+    def find_in_data(self, image_name):
+        for deck_set in self.image_data.deck_sets:
+            for deck in deck_set.decks:
+                for card in deck.cards:
+                    if card.image.lower() == image_name.replace('.jpg', '').lower():
+                        return card
+        return None
+
+    def load_files(self, sub_folder, ext, lst):
+        for dirPath, subFolder, files in os.walk(os.path.join(self.media_path, sub_folder)):
+            for item in files:
+                if item.endswith("." + ext):
+                    file_name_path = os.path.join(dirPath, item)
+                    sub_path = item
+                    item_name = os.path.basename(item)
+                    dir_path = os.path.dirname(file_name_path)
+                    dir_name = os.path.basename(dir_path)
+                    while not dir_name == sub_folder:
+                        sub_path = os.path.join(dir_name, sub_path)
+                        dir_path = os.path.dirname(dir_path)
+                        dir_name = os.path.basename(dir_path)
+
+                    lst.append(FileItem(item_name, sub_path, file_name_path))
+
+    def to_json_dict(self):
+        return {
+            "backlog" : [ x.__dict__ for x in self.backlog ],
+            "sounds" : [ x.__dict__ for x in self.sounds ],
+            "imagedata" : self.image_data.to_json_dict()
+        }
+
+
+class FileItem:
+    def __init__(self, name, sub_path, full_path):
+        self.name = name
+        self.sub_path = sub_path
+        self.full_path = full_path
+        self.id = -1
 
 
 class ImageData:
-    sets = []
 
     def __init__(self):
-        self.deck_sets = []
+        self.deck_sets = [] # type: List[DeckSet]
+
 
     def load_from_json(self, json_stream):
         data_dict = simplejson.load(json_stream)
@@ -44,14 +103,14 @@ class ImageData:
 
 
 class DeckSet:
-    id = -1
-    name = ""
-    icon = ""
-    decks = []
+
+
 
     def __init__(self, id, name):
         self.id = id
         self.name = name
+        self.icon = ""
+        self.decks = []  # type:List[Deck]
 
     def add_deck(self, deck):
         self.decks.append(deck)
@@ -69,7 +128,7 @@ class Deck:
     id = -1
     name = ""
     thumb = ""
-    cards = []  #: List[FlashCard]
+    cards = []  # type: List[FlashCard]
 
     def __init__(self, id, name):
         self.id = id
@@ -88,16 +147,17 @@ class Deck:
 
 
 class FlashCard:
-    index = 0
-    image = ""
-    sound = ""
-    original_image_size = None  # type: Bounds
-    landscape_bounds = None  # type: Bounds
-    portrait_bounds = None  # type: Bounds
 
-    def __init__(self, index, image):
-        self.index = index
+    def __init__(self, id, image):
+        self.id = id
+        self.index = id
         self.image = image
+        self.sound = ""
+        self.sub_path = ""
+        self.full_path = ""
+        self.original_image_size = None  # type: Bounds
+        self.landscape_bounds = None  # type: Bounds
+        self.portrait_bounds = None  # type: Bounds
 
     def to_json_dict(self):
         return {
@@ -111,10 +171,6 @@ class FlashCard:
 
 
 class Bounds:
-    x = 0
-    y = 0
-    w = 0
-    h = 0
 
     def __init__(self, x, y, w, h):
         self.x = x
@@ -132,4 +188,4 @@ class Bounds:
         return Bounds(x, y, w, h)
 
     def to_json(self):
-        return json.dumps(self.__dict__)
+        return simplejson.dumps(self.__dict__)

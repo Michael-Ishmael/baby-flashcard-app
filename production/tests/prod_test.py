@@ -75,6 +75,10 @@ class ImageDataTest(unittest.TestCase):
         with open('/Users/scorpio/Dev/Projects/baby-flashcard-app/media/data2.json', 'w') as outfile:
             simplejson.dump(image_data.to_json_dict(), outfile, indent=2)
 
+    def can_load_backlog_test(self):
+        path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
+        workflow = Workflow(path)
+        workflow.load()
 
-
-
+        self.assertTrue(len(workflow.backlog) > 10)
+        self.assertTrue(len(workflow.sounds) > 10)

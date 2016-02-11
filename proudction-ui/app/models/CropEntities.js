@@ -16,6 +16,13 @@ var CropTarget;
     CropTarget[CropTarget["master"] = 0] = "master";
     CropTarget[CropTarget["alt"] = 1] = "alt";
 })(CropTarget || (CropTarget = {}));
+var ItemStatus;
+(function (ItemStatus) {
+    ItemStatus[ItemStatus["loaded"] = 0] = "loaded";
+    ItemStatus[ItemStatus["assigned"] = 1] = "assigned";
+    ItemStatus[ItemStatus["completed"] = 2] = "completed";
+    ItemStatus[ItemStatus["untouched"] = 3] = "untouched";
+})(ItemStatus || (ItemStatus = {}));
 var BoxDims = (function () {
     function BoxDims(x, y, w, h) {
         this.x = x;
@@ -31,6 +38,9 @@ var BoxDims = (function () {
         this.y = coords.y;
         this.w = coords.w;
         this.h = coords.h;
+    };
+    BoxDims.prototype.hasDims = function () {
+        return (this.w - this.x) > 50 && (this.h - this.y) > 50;
     };
     return BoxDims;
 })();
@@ -55,6 +65,9 @@ var CropDef = (function () {
             return 16 / shortSide;
         }
     };
+    CropDef.prototype.isComplete = function () {
+        return this.orientation && this.crop.hasDims();
+    };
     return CropDef;
 })();
 var CropSet = (function () {
@@ -67,6 +80,9 @@ var CropSet = (function () {
         this.altCropDef.parent = this;
         this.title = ImageCropUtils.getCropTitleFromCropFormat(format);
     }
+    CropSet.prototype.isComplete = function () {
+        return this.masterCropDef.isComplete() && this.altCropDef.isComplete();
+    };
     CropSet.prototype.setMasterOrientation = function (orientation) {
         this.masterCropDef.orientation = orientation;
         this.altCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
@@ -129,7 +145,7 @@ var ImageDataItem = (function () {
         this.indexInDeck = -1;
         this.cropSetDict = null;
     }
-    ImageDataItem.prototype.GetCropSetDict = function () {
+    ImageDataItem.prototype.getCropSetDict = function () {
         if (!this.cropSetDict) {
             this.cropSetDict = {};
             this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
@@ -139,11 +155,20 @@ var ImageDataItem = (function () {
         }
         return this.cropSetDict;
     };
+    ImageDataItem.prototype.getStatus = function () {
+        if (this.deck && this.indexInDeck > -1 && this.sound) {
+            if (this.originalDims && this.originalDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete())
+                return ItemStatus.completed;
+            return ItemStatus.assigned;
+        }
+        return ItemStatus.loaded;
+    };
     return ImageDataItem;
 })();
 var BacklogItem = (function () {
-    function BacklogItem(id, path) {
+    function BacklogItem(id, name, path) {
         this.id = id;
+        this.name = name;
         this.path = path;
     }
     return BacklogItem;

@@ -5,29 +5,26 @@ from django.shortcuts import render, render_to_response, redirect
 
 # Create your views here.
 from django.views.decorators.http import require_POST
+from django.conf import settings
+
 import simplejson
-#from CompanyCrawler.models import Company
-#from delfic_ws.business.data import CsvLoader
+import os
 
 
 from django.http import JsonResponse
 
+from production.business.imagedata import Workflow
+
+
 def index(request):
     # company_cnt = request.GET.get('top')
-    # if not company_cnt:
-    #     company_cnt = 20
-    # filter = request.GET.get('filter')
-    # if filter:
-    #     company_list = Company.objects.filter(Name__contains=filter).order_by('Name')[:company_cnt]
-    # else:
-    #     company_list = Company.objects.order_by('Name')[:company_cnt]
-    # j_comps = map(lambda c: c.to_json_obj(), company_list)
-    imagelist = { "backlog" :[
-        "crit1.png",
-        "crit2.png"
-    ]}
+    # path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
+    path = settings.MEDIA_ROOT
+    workflow = Workflow(path)
+    workflow.load()
+
     try:
-        return JsonResponse(imagelist)
+        return JsonResponse(workflow.to_json_dict())
     except Exception as ex:
         return JsonResponse({"success": False, "message": ex.message})
 
@@ -41,14 +38,18 @@ def index(request):
 
 
 @require_POST
-def add_image(request):
+def update_image_data(request):
     try:
         data = simplejson.loads(request.body)
         if data:
-            image_name = data["imagename"]
+            path = settings.MEDIA_ROOT
+            data_file_name = 'data.json'
+            with open(os.path.join(path, data_file_name), 'w') as json_file:
+                simplejson.dump(data, json_file)
+                #image_name = data["imagename"]
             result = {"success": True}
         else:
-            result = {"success": False, "message": 'No company uploaded'}
+            result = {"success": False, "message": 'no data uploaded'}
     except Exception as ex:
         result = {"success": False, "message": ex.message}
     return JsonResponse(result)

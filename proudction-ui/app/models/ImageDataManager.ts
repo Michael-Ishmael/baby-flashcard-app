@@ -71,7 +71,6 @@ class ImageDataManager {
         }
     }
 
-
     public clearCropActions() {
         this.activeCropDef = null;
     }

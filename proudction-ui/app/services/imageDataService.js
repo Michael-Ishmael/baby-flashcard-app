@@ -2,7 +2,7 @@
  * Created by michaelishmael on 02/02/2016.
  */
 
-app.factory('imageDataService', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
+app.factory('imageDataService', ['$rootScope', '$http', '$timeout', function ($rootScope, $http, $timeout) {
 
     var self = {};
     self.wizardIndex = 0;
@@ -14,8 +14,28 @@ app.factory('imageDataService', ['$rootScope', '$timeout', function ($rootScope,
     self.backlogItems = [];
 
     self.itemIndexes = {val: ""};
+    self.ready = false;
+    self.data = {};
+
+    function loadData(){
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8000/imageprocessor/'
+        }).then(function successCallback(response) {
+
+            self.data = response.data;
+            self.ready = true;
+            $timeout(function () {
+                $rootScope.$broadcast('wizard:ready', self.data);
+            }, 100);
+
+        }, function errorCallback(response) {
+
+        });
+    }
 
     function init(){
+        loadData();
         for (var i = 0; i < seedData_1.backlog.length; i++) {
             var item = seedData_1.backlog[i];
             self.backlogItems.push({

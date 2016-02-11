@@ -3,6 +3,9 @@ Backlog
 
 
 <div class="row" ng-controller="backlogController">
+    <div class="jumbotron" ng-hide="ready">
+        <h1 class="text-center">Loading...</h1>
+    </div>
     <div class="col-md-3"></div>
     <div class="col-md-6" ng-cloak>
         <ul ui-sortable class="list-group" ng-model="backlog">

@@ -18,6 +18,13 @@ enum CropTarget {
     alt
 }
 
+enum ItemStatus {
+    loaded,
+    assigned,
+    completed,
+    untouched
+}
+
 interface IImageTarget {
     attr(src:string):string;
     width():number;
@@ -48,6 +55,10 @@ class BoxDims implements IBox {
         this.h = coords.h;
     }
 
+    hasDims(){
+        return (this.w - this.x) > 50 && (this.h - this.y) > 50;
+    }
+
 }
 
 class CropDef {
@@ -73,6 +84,10 @@ class CropDef {
             return 16 / shortSide;
         }
     }
+
+    isComplete():boolean{
+        return this.orientation && this.crop.hasDims();
+    }
 }
 
 class CropSet {
@@ -89,6 +104,10 @@ class CropSet {
         this.altCropDef = altCropDef;
         this.altCropDef.parent = this
         this.title = ImageCropUtils.getCropTitleFromCropFormat(format);
+    }
+
+    public isComplete():boolean{
+        return this.masterCropDef.isComplete() && this.altCropDef.isComplete();
     }
 
     public setMasterOrientation(orientation:Orientation){
@@ -154,6 +173,7 @@ class ImageDataItem {
     public name:string = "empty";
     public deck:Deck;
     public indexInDeck:number = -1;
+    public sound:string;
     public twelve16:CropSet;
     public nine16:CropSet;
     public originalDims:BoxDims;
@@ -165,7 +185,7 @@ class ImageDataItem {
 
     private cropSetDict:{ [id:string]:CropDef } = null;
 
-    public GetCropSetDict():{ [id:string]:CropDef}{
+    public getCropSetDict():{ [id:string]:CropDef}{
 
         if(!this.cropSetDict) {
             this.cropSetDict = {};
@@ -178,11 +198,20 @@ class ImageDataItem {
         return this.cropSetDict;
     }
 
+    public getStatus():ItemStatus{
+        if(this.deck && this.indexInDeck > -1 && this.sound){
+            if (this.originalDims && this.originalDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete())
+                return ItemStatus.completed;
+            return ItemStatus.assigned;
+        }
+        return ItemStatus.loaded;
+    }
+
 }
 
 class BacklogItem {
 
-    constructor(public id:number, public path:string) {
+    constructor(public id:number, public name:string, public path:string) {
 
     }
 }

@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'ImageProcessor',
 )
 
@@ -47,7 +48,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'production.urls'
 
@@ -85,5 +90,5 @@ STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'ImageProcessor/templates'),)
 
-MEDIA_ROOT = '/Users/scorpio/Dev/Projects/baby-flashcard-app/'
+MEDIA_ROOT = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media' #'/Users/scorpio/Dev/Projects/baby-flashcard-app/'
 MEDIA_URL = '/media/'

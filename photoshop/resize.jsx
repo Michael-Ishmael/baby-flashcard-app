@@ -1,0 +1,1 @@
+﻿var b = new File("c:\test.txt");b.open('r');var str = "";while(!b.eof)var partsOfStr = str.split(',');str += b.readln();b.close();alert(str);

@@ -10,7 +10,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^addimage', csrf_exempt(views.add_image), name='addimage'),
+    url(r'^update', csrf_exempt(views.update_image_data), name='update'),
 ]
 
 urlpatterns += patterns('',
