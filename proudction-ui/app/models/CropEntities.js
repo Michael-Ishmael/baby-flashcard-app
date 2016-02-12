@@ -42,6 +42,9 @@ var BoxDims = (function () {
     BoxDims.prototype.hasDims = function () {
         return (this.w - this.x) > 50 && (this.h - this.y) > 50;
     };
+    BoxDims.createFromBox = function (box) {
+        return new BoxDims(box.x, box.y, box.w, box.h);
+    };
     return BoxDims;
 })();
 var CropDef = (function () {
@@ -131,17 +134,18 @@ var ImageCropUtils = (function () {
     return ImageCropUtils;
 })();
 var Deck = (function () {
-    function Deck(set, name) {
+    function Deck(id, set, name) {
+        this.id = id;
         this.set = set;
         this.name = name;
     }
     return Deck;
 })();
 var ImageDataItem = (function () {
-    function ImageDataItem(id, path) {
+    function ImageDataItem(id, name, path) {
         this.id = id;
+        this.name = name;
         this.path = path;
-        this.name = "empty";
         this.indexInDeck = -1;
         this.cropSetDict = null;
     }
@@ -171,6 +175,9 @@ var BacklogItem = (function () {
         this.name = name;
         this.path = path;
     }
+    BacklogItem.prototype.getStatus = function () {
+        return ItemStatus.untouched;
+    };
     return BacklogItem;
 })();
 //# sourceMappingURL=CropEntities.js.map

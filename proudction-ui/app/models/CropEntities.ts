@@ -25,6 +25,41 @@ enum ItemStatus {
     untouched
 }
 
+interface IDataCard {
+    id:number;
+    image:string;
+    index:number;
+    sound:string;
+    originalsize:IBox;
+    portraitbounds:IBox;
+    landscapebounds:IBox;
+}
+
+interface IDataDeck {
+    id:number;
+    name:string;
+    thumb:string;
+    cards:Array<IDataCard>;
+    sounds:Array<IDataItem>;
+}
+
+interface IDataSet {
+    id:number;
+    name:string;
+    icon:string;
+    decks:Array<IDataSet>;
+}
+
+interface IImageData{
+    sets:Array<IDataSet>;
+}
+
+interface ISeedData {
+    sBacklog:Array<IDataItem>;
+    data:IImageData;
+    sounds:Array<IDataItem>;
+}
+
 interface IImageTarget {
     attr(src:string):string;
     width():number;
@@ -59,7 +94,12 @@ class BoxDims implements IBox {
         return (this.w - this.x) > 50 && (this.h - this.y) > 50;
     }
 
+    public static createFromBox(box:IBox){
+        return new BoxDims(box.x, box.y, box.w, box.h);
+    }
 }
+
+
 
 class CropDef {
 
@@ -102,7 +142,7 @@ class CropSet {
         this.masterCropDef.parent = this;
         this.activeDef = masterCropDef;
         this.altCropDef = altCropDef;
-        this.altCropDef.parent = this
+        this.altCropDef.parent = this;
         this.title = ImageCropUtils.getCropTitleFromCropFormat(format);
     }
 
@@ -162,16 +202,26 @@ class ImageCropUtils{
 }
 
 class Deck {
-    constructor(public set:string, public name:string){
+
+    thumb:string;
+
+    constructor(public id:number, public set:string, public name:string){
 
     }
 }
 
+interface IDataItem{
 
-class ImageDataItem {
+    id:number;
+    name:string;
+    path:string;
 
-    public name:string = "empty";
-    public deck:Deck;
+    getStatus():ItemStatus;
+}
+
+class ImageDataItem implements IDataItem{
+
+    public deck:IDataDeck;
     public indexInDeck:number = -1;
     public sound:string;
     public twelve16:CropSet;
@@ -179,7 +229,7 @@ class ImageDataItem {
     public originalDims:BoxDims;
     public sizingDims:BoxDims;
 
-    constructor(public id:number, public path:string) {
+    constructor(public id:number, public name:string, public path:string) {
 
     }
 
@@ -209,10 +259,15 @@ class ImageDataItem {
 
 }
 
-class BacklogItem {
+class BacklogItem implements IDataItem{
+
 
     constructor(public id:number, public name:string, public path:string) {
 
+    }
+
+    getStatus():ItemStatus {
+        return ItemStatus.untouched;
     }
 }
 

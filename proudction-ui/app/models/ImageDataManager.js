@@ -3,11 +3,64 @@
  * Created by scorpio on 01/02/2016.
  */
 var ImageDataManager = (function () {
-    function ImageDataManager(seedData, changeCallback) {
+    function ImageDataManager() {
+        this.backlog = [];
+        this.sets = [];
+        this.decks = [];
+        this.items = [];
+        this.completed = [];
+    }
+    ImageDataManager.prototype.initWithSeedData = function (data) {
+        this.backlog = data.sBacklog;
+        this.loadFromImageHierarchy(data.data);
+    };
+    ImageDataManager.prototype.loadFromImageHierarchy = function (imageData) {
+        for (var i = 0; i < imageData.sets.length; i++) {
+            var set = imageData[i];
+            this.sets.push(set.name);
+            for (var j = 0; j < set.decks.length; j++) {
+                var deck = set.decks[j];
+                this.decks.push(deck);
+                for (var k = 0; k < deck.cards.length; k++) {
+                    var card = deck.cards[k];
+                    var imageDataItem = this.createImageDataItemFromCard(card);
+                    this.items.push(imageDataItem);
+                }
+            }
+        }
+    };
+    ImageDataManager.prototype.createImageDataItemFromCard = function (card, deck) {
+        var backlogItem = this.getMatchingBacklogItem(card.id);
+        var imageDataItem;
+        if (backlogItem) {
+            imageDataItem = new ImageDataItem(card.id, card.image, backlogItem.path);
+        }
+        else {
+            imageDataItem = new ImageDataItem(card.id, card.image, null);
+        }
+        imageDataItem.deck = deck;
+        imageDataItem.indexInDeck = card.index;
+        imageDataItem.originalDims = BoxDims.createFromBox(card.originalsize);
+        //imageDataItem.twelve16
+        return imageDataItem;
+    };
+    ImageDataManager.prototype.getMatchingBacklogItem = function (id) {
+        for (var i = 0; i < this.backlog.length; i++) {
+            var backlogItem = this.backlog[i];
+            if (backlogItem.id == id) {
+                return backlogItem;
+            }
+        }
+        return null;
+    };
+    return ImageDataManager;
+})();
+var CropManager = (function () {
+    function CropManager(seedData, changeCallback) {
         this.seedData = seedData;
         this.changeCallback = changeCallback;
-        this.changeHash = '-1';
         this.backlog = [];
+        this.completed = [];
         this.imageDataItems = [];
         this.currentItem = null;
         if (seedData) {
@@ -15,7 +68,7 @@ var ImageDataManager = (function () {
             this.imageDataItems = seedData.imageDataItems;
         }
     }
-    ImageDataManager.prototype.loadBacklogItem = function (backlogItem, target) {
+    CropManager.prototype.loadBacklogItem = function (backlogItem, target) {
         this.currentItem = null;
         var targetDims = new BoxDims(0, 0, target.width(), target.height());
         for (var i = 0; i < this.imageDataItems.length; i++) {
@@ -25,16 +78,15 @@ var ImageDataManager = (function () {
             }
         }
         if (this.currentItem == null) {
-            this.currentItem = ImageDataManager.createNewImageDataItem(backlogItem);
+            this.currentItem = CropManager.createNewImageDataItem(backlogItem);
             this.imageDataItems.push(this.currentItem);
         }
         this.currentItem.sizingDims = targetDims;
-        this.changeHash = this.currentItem.id.toString();
         this.recalculateCropStates();
         this.finishLoadAsync(target);
         return this.currentItem;
     };
-    ImageDataManager.prototype.finishLoadAsync = function (target) {
+    CropManager.prototype.finishLoadAsync = function (target) {
         var img = new Image();
         var dm = this;
         img.onload = function () {
@@ -44,7 +96,7 @@ var ImageDataManager = (function () {
         };
         img.src = target.attr('src');
     };
-    ImageDataManager.prototype.setStateForIndex = function (index) {
+    CropManager.prototype.setStateForIndex = function (index) {
         switch (index) {
             case 0:
                 this.activeCropDef = this.currentItem.twelve16.masterCropDef;
@@ -60,10 +112,10 @@ var ImageDataManager = (function () {
                 break;
         }
     };
-    ImageDataManager.prototype.clearCropActions = function () {
+    CropManager.prototype.clearCropActions = function () {
         this.activeCropDef = null;
     };
-    ImageDataManager.prototype.setMasterCropOrientation = function (orientation) {
+    CropManager.prototype.setMasterCropOrientation = function (orientation) {
         if (this.activeCropDef) {
             var cropSet = this.activeCropDef.parent;
             cropSet.masterCropDef.orientation = orientation;
@@ -71,7 +123,7 @@ var ImageDataManager = (function () {
             this.recalculateCropStates();
         }
     };
-    ImageDataManager.prototype.getExistingIndexesForDeck = function (deckName) {
+    CropManager.prototype.getExistingIndexesForDeck = function (deckName) {
         var existingIndexes = [];
         for (var i = 0; i < this.imageDataItems.length; i++) {
             var item = this.imageDataItems[i];
@@ -81,13 +133,13 @@ var ImageDataManager = (function () {
         }
         return existingIndexes;
     };
-    ImageDataManager.createNewImageDataItem = function (backlogItem) {
-        var item = new ImageDataItem(backlogItem.id, backlogItem.path);
+    CropManager.createNewImageDataItem = function (backlogItem) {
+        var item = new ImageDataItem(backlogItem.id, backlogItem.name, backlogItem.path);
         item.twelve16 = new CropSet(CropFormat.twelve16, new CropDef('twM', CropTarget.master), new CropDef('twA', CropTarget.alt));
         item.nine16 = new CropSet(CropFormat.nine16, new CropDef('nnM', CropTarget.master), new CropDef('nnA', CropTarget.alt));
         return item;
     };
-    ImageDataManager.prototype.recalculateCropStates = function () {
+    CropManager.prototype.recalculateCropStates = function () {
         var ci = this.currentItem;
         ci.twelve16.masterCropDef.crop =
             ImageCropUtils.getBoxBounds(ci.twelve16.masterCropDef.orientation, ci.twelve16.format, ci.sizingDims);
@@ -98,6 +150,6 @@ var ImageDataManager = (function () {
         ci.nine16.altCropDef.crop =
             ImageCropUtils.getBoxBounds(ci.nine16.altCropDef.orientation, ci.nine16.format, ci.sizingDims);
     };
-    return ImageDataManager;
+    return CropManager;
 })();
 //# sourceMappingURL=ImageDataManager.js.map

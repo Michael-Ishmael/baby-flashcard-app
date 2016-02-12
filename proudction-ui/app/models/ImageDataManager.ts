@@ -5,10 +5,72 @@
 
 
 
+
 class ImageDataManager {
 
-    public changeHash = '-1';
-    public backlog:Array<BacklogItem> = [];
+    public backlog:Array<IDataItem> = [];
+    public sets:Array<string> = [];
+    public decks:Array<Deck> = [];
+    public items:Array<ImageDataItem> = [];
+    public completed:Array<ImageDataItem> = [];
+
+    public initWithSeedData(data:ISeedData) {
+        this.backlog = data.sBacklog;
+        this.loadFromImageHierarchy(data.data)
+    }
+
+    private loadFromImageHierarchy(imageData:IImageData){
+        for (var i = 0; i < imageData.sets.length; i++) {
+            var set  = imageData[i];
+            this.sets.push(set.name);
+            for (var j = 0; j < set.decks.length; j++) {
+                var deck = set.decks[j];
+                this.decks.push(deck);
+
+                for (var k = 0; k < deck.cards.length; k++) {
+                    var card = deck.cards[k];
+                    var imageDataItem = this.createImageDataItemFromCard(card);
+                    this.items.push(imageDataItem)
+
+                }
+            }
+
+        }
+    }
+
+    private createImageDataItemFromCard(card:IDataCard, deck:IDataDeck):ImageDataItem{
+        var backlogItem = this.getMatchingBacklogItem(card.id);
+        var imageDataItem:ImageDataItem;
+        if(backlogItem){
+            imageDataItem = new ImageDataItem(card.id, card.image, backlogItem.path)
+        } else {
+            imageDataItem = new ImageDataItem(card.id, card.image, null)
+        }
+
+        imageDataItem.deck = deck;
+        imageDataItem.indexInDeck = card.index;
+        imageDataItem.originalDims = BoxDims.createFromBox(card.originalsize);
+        //imageDataItem.twelve16
+
+        return imageDataItem;
+    }
+
+    private getMatchingBacklogItem(id:number){
+        for (var i = 0; i < this.backlog.length; i++) {
+            var backlogItem = this.backlog[i];
+            if(backlogItem.id == id){
+                return backlogItem;
+            }
+        }
+        return null;
+    }
+}
+
+
+class CropManager {
+
+    public backlog:Array<IDataItem> = [];
+    public completed:Array<ImageDataItem> = [];
     public imageDataItems:Array<ImageDataItem> = [];
     public currentItem:ImageDataItem = null;
     public activeCropDef:CropDef;
@@ -30,11 +92,11 @@ class ImageDataManager {
             }
         }
         if (this.currentItem == null) {
-            this.currentItem = ImageDataManager.createNewImageDataItem(backlogItem);
+            this.currentItem = CropManager.createNewImageDataItem(backlogItem);
             this.imageDataItems.push(this.currentItem);
         }
         this.currentItem.sizingDims = targetDims;
-        this.changeHash = this.currentItem.id.toString();
+
         this.recalculateCropStates();
 
         this.finishLoadAsync(target);
@@ -54,8 +116,8 @@ class ImageDataManager {
         img.src = target.attr('src');
     }
 
-    public setStateForIndex(index:number){
-        switch (index){
+    public setStateForIndex(index:number) {
+        switch (index) {
             case 0:
                 this.activeCropDef = this.currentItem.twelve16.masterCropDef;
                 break;
@@ -85,11 +147,11 @@ class ImageDataManager {
 
     }
 
-    public getExistingIndexesForDeck(deckName:string):Array<number>{
+    public getExistingIndexesForDeck(deckName:string):Array<number> {
         var existingIndexes:Array<number> = [];
         for (var i = 0; i < this.imageDataItems.length; i++) {
             var item = this.imageDataItems[i];
-            if(item.deck && item.deck.name == deckName && item.indexInDeck > -1){
+            if (item.deck && item.deck.name == deckName && item.indexInDeck > -1) {
                 existingIndexes.push(item.indexInDeck);
             }
         }
@@ -98,7 +160,7 @@ class ImageDataManager {
 
     private static createNewImageDataItem(backlogItem:BacklogItem):ImageDataItem {
 
-        var item = new ImageDataItem(backlogItem.id, backlogItem.path);
+        var item = new ImageDataItem(backlogItem.id, backlogItem.name, backlogItem.path);
         item.twelve16 = new CropSet(CropFormat.twelve16, new CropDef('twM', CropTarget.master), new CropDef('twA', CropTarget.alt));
         item.nine16 = new CropSet(CropFormat.nine16, new CropDef('nnM', CropTarget.master), new CropDef('nnA', CropTarget.alt));
 
@@ -123,3 +185,4 @@ class ImageDataManager {
 
 
 }
+

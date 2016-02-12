@@ -1,4 +1,4 @@
-#from django.core.files.uploadedfile import UploadedFile
+# from django.core.files.uploadedfile import UploadedFile
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render, render_to_response, redirect
@@ -9,7 +9,6 @@ from django.conf import settings
 
 import simplejson
 import os
-
 
 from django.http import JsonResponse
 
@@ -24,10 +23,9 @@ def index(request):
     workflow.load()
 
     try:
-        return JsonResponse(workflow.to_json_dict())
+        return JsonResponse(workflow.to_json_dict(), json_dumps_params={"indent": 2})
     except Exception as ex:
         return JsonResponse({"success": False, "message": ex.message})
-
 
     return JsonResponse(j_comps, safe=False)
 
@@ -46,15 +44,13 @@ def update_image_data(request):
             data_file_name = 'data.json'
             with open(os.path.join(path, data_file_name), 'w') as json_file:
                 simplejson.dump(data, json_file)
-                #image_name = data["imagename"]
+                # image_name = data["imagename"]
             result = {"success": True}
         else:
             result = {"success": False, "message": 'no data uploaded'}
     except Exception as ex:
         result = {"success": False, "message": ex.message}
     return JsonResponse(result)
-
-
 
 # @require_POST
 # def add_company(request):
@@ -71,4 +67,3 @@ def update_image_data(request):
 #     except Exception as ex:
 #         result = {"success": False, "message": ex.message}
 #     return JsonResponse(result)
-

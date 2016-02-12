@@ -2,41 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6914c79-6e5a-4d74-979f-f67d9261783d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/chicken1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/chicken2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/chicken3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/chicken4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/chicken5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/chicken6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/cow1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/cow2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/cow3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/cow4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/cow5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/cow6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/horse1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/horse2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/horse3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/horse4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/horse5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../proudction-ui/media/horse6.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/production.iml" afterPath="$PROJECT_DIR$/.idea/production.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ImageProcessor/urls.py" afterPath="$PROJECT_DIR$/ImageProcessor/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ImageProcessor/views.py" afterPath="$PROJECT_DIR$/ImageProcessor/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/production/business/imagedata.py" afterPath="$PROJECT_DIR$/production/business/imagedata.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/production/settings.py" afterPath="$PROJECT_DIR$/production/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/prod_test.py" afterPath="$PROJECT_DIR$/tests/prod_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/controllers/backlogController.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/controllers/backlogController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/CropEntities.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/CropEntities.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/CropEntities.js.map" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/CropEntities.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/CropEntities.ts" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/CropEntities.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/ImageDataManager.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/ImageDataManager.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/ImageDataManager.js.map" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/ImageDataManager.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/ImageDataManager.ts" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/ImageDataManager.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/services/imageDataService.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/services/imageDataService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/views/backlogView.html" afterPath="$PROJECT_DIR$/../proudction-ui/app/views/backlogView.html" />
     </list>
     <ignored path="production.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,23 +45,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ImageProcessor/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.35224587">
+              <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
               <folding>
-                <element signature="e#57#101#0" expanded="true" />
+                <element signature="e#58#102#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="response.py" pinned="false" current-in-tab="false">
-        <entry file="file:///Library/Python/2.7/site-packages/django/http/response.py">
+      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Python/2.7/site-packages/django/core/handlers/base.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="498" column="0" selection-start-line="498" selection-start-column="0" selection-end-line="498" selection-end-column="0" />
+              <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Python/2.7/site-packages/django/core/handlers/wsgi.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="176" column="0" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -115,13 +99,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="imagedata.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="imagedata.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/production/business/imagedata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.9935205">
-              <caret line="155" column="26" selection-start-line="155" selection-start-column="26" selection-end-line="155" selection-end-column="26" />
+            <state vertical-scroll-proportion="-9.666667">
+              <caret line="233" column="27" selection-start-line="233" selection-start-column="27" selection-end-line="233" selection-end-column="27" />
               <folding>
-                <element signature="e#0#17#0" expanded="true" />
+                <element signature="e#0#24#0" expanded="true" />
+                <element signature="e#2805#3153#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -168,9 +153,9 @@
         <option value="$PROJECT_DIR$/ImageProcessor/models.py" />
         <option value="$PROJECT_DIR$/tests/prod_test.py" />
         <option value="$PROJECT_DIR$/ImageProcessor/urls.py" />
-        <option value="$PROJECT_DIR$/ImageProcessor/views.py" />
         <option value="$PROJECT_DIR$/production/settings.py" />
         <option value="$PROJECT_DIR$/production/business/imagedata.py" />
+        <option value="$PROJECT_DIR$/ImageProcessor/views.py" />
       </list>
     </option>
   </component>
@@ -208,8 +193,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -700,20 +685,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25201938" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25605816" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32739726" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3252841" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41917807" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.359375" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -743,7 +728,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="41" />
+      <option name="time" value="54" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python.DjangoServer">
@@ -755,33 +740,10 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ImageProcessor/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-          <folding>
-            <element signature="e#57#101#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ImageProcessor/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/production/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -790,7 +752,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#2805#3153#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -809,7 +772,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -818,7 +780,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding>
-            <element signature="e#57#101#0" expanded="true" />
+            <element signature="e#58#102#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -837,9 +799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -877,7 +836,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="e#57#101#0" expanded="true" />
+            <element signature="e#58#102#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -896,9 +855,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -936,7 +892,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
-            <element signature="e#57#101#0" expanded="true" />
+            <element signature="e#58#102#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -955,9 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -995,7 +948,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="e#57#101#0" expanded="true" />
+            <element signature="e#58#102#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1093,9 +1046,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1110,7 +1060,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1118,7 +1067,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1152,28 +1100,53 @@
     </entry>
     <entry file="file:///Library/Python/2.7/site-packages/django/http/response.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="498" column="0" selection-start-line="498" selection-start-column="0" selection-end-line="498" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3918919">
+          <caret line="497" column="34" selection-start-line="497" selection-start-column="17" selection-end-line="497" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ImageProcessor/views.py">
+    <entry file="file:///Library/Python/2.7/site-packages/django/contrib/staticfiles/handlers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.822695">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/django/core/handlers/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-          <folding>
-            <element signature="e#57#101#0" expanded="true" />
-          </folding>
+          <caret line="176" column="0" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/production/business/imagedata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.9935205">
-          <caret line="155" column="26" selection-start-line="155" selection-start-column="26" selection-end-line="155" selection-end-column="26" />
+        <state vertical-scroll-proportion="-9.666667">
+          <caret line="233" column="27" selection-start-line="233" selection-start-column="27" selection-end-line="233" selection-end-column="27" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#2805#3153#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ImageProcessor/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35224587">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+          <folding>
+            <element signature="e#58#102#0" expanded="true" />
           </folding>
         </state>
       </provider>

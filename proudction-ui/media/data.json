@@ -6,7 +6,7 @@
     "decks": [
       {
         "id": 1,
-        "name": "Horse",
+        "name": "horse",
         "thumb": "horsethumb",
         "cards": [
           {
@@ -85,7 +85,7 @@
       },
       {
         "id": 1,
-        "name": "Cow",
+        "name": "cow",
         "thumb": "cowthumb",
         "cards": [
           {
@@ -164,7 +164,7 @@
       },
       {
         "id": 1,
-        "name": "Chicken",
+        "name": "chicken",
         "thumb": "chickenthumb",
         "cards": [
           {
