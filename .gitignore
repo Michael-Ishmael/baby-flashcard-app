@@ -234,3 +234,11 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+production/.idea/workspace.xml
+
+production/.idea/dataSources.xml
+
+production/.idea/production.iml
+
+production/.idea/workspace.xml
