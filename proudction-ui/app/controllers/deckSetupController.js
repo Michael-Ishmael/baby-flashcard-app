@@ -47,6 +47,7 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
         if(collectionType == 'set'){
             item = imageDataService.createSet();
             $scope.currentSet = item;
+            $scope.paramholder.deckParams.existingItems = $scope.currentSet.decks;
         }
         if(collectionType == 'deck'){
             item = imageDataService.createDeck();
@@ -58,6 +59,7 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
     $scope.setCurrentCollectionItem = function(collectionType, item) {
         if(collectionType == 'set'){
             $scope.currentSet = item;
+            $scope.paramholder.deckParams.existingItems = $scope.currentSet.decks;
         }
         if(collectionType == 'deck'){
             $scope.currentDeck = item;

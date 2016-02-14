@@ -47,7 +47,8 @@ class ImageDataManager {
 
     public addDeck(deck:Deck, parentSet:Set){
         this.decks.push(deck);
-        parentSet.addDeck(deck);
+        //deck.parentSet = parentSet;
+        parentSet.decks.push(deck);
     }
 
     public deleteDeck(deckToDelete:Deck, parentSet:Set):boolean{

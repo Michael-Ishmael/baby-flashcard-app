@@ -2,14 +2,16 @@
     <div class="col-md-3">
 
 
-        <div class="slide-animate" ng-include="'views/iconCollectionSetup.html'" onload="collectionParams = paramholder.setParams"></div>
-
+        <!--<div class="slide-animate" ng-include="'views/iconCollectionSetup.html'" onload="collectionParams = paramholder.setParams"></div>-->
+        <icon-collection-setup prop="setParams"></icon-collection-setup>
 
 
     </div>
 
     <div class="col-md-3">
-        <div class="slide-animate" ng-include="'views/iconCollectionSetup.html'" onload="collectionParams = paramholder.deckParams"></div>
+
+        <icon-collection-setup ng-show="currentSet" prop="deckParams"></icon-collection-setup>
+        <!--<div class="slide-animate" ng-include="'views/iconCollectionSetup.html'" onload="collectionParams = paramholder.deckParams"></div>-->
     </div>
 
 </div>

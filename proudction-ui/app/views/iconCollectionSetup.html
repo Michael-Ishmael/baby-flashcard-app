@@ -1,40 +1,38 @@
 <form novalidate ng-controller="iconCollectionSetupController">
 
-    <h1>{{ getWords() }}</h1>
-
-    <div class="form-group" ng-hide="creatingSet" ng-click="createSet()">
+    <div class="form-group" ng-hide="creatingSet" ng-click="createItem()">
         <button class="btn btn-primary btn-lg btn-block">
-            Create Set
+            Create {{ ::collectionParams.collectionType }}
         </button>
     </div>
 
-    <div ng-show="creatingSet || editingSet">
+    <div ng-show="creatingItem || editingItem">
         <div class="form-group">
             <div class="input-group">
                 <label for="set-name" class="input-group-addon">Set Name</label>
-                <input type="text" id="set-name" name="set-name" ng-model="currentSet.name" required
+                <input type="text" id="set-name" name="set-name" ng-model="currentItem.name" required
                        class="form-control">
             </div>
         </div>
 
 
         <div class="form-group">
-            <p>Choose Set Icon</p>
+            <p>Choose {{ ::collectionParams.collectionType }} Icon</p>
             <div class="btn-group">
-                <label class="btn btn-default" ng-repeat="setIcon in setIcons">
-                    <input type="radio" ng-model="currentSet.icon" ng-value="setIcon.path"/>
+                <label class="btn btn-default" ng-repeat="setIcon in collectionParams.iconList">
+                    <input type="radio" ng-model="currentItem.icon" ng-value="setIcon.path"/>
                     <img ng-src="{{ ::setIcon.path }}" width="30px">
                 </label>
             </div>
         </div>
 
         <div class="form-group">
-            <button class="btn btn-success btn-lg btn-block" ng-click="saveSet()">
+            <button class="btn btn-success btn-lg btn-block" ng-click="saveItem()">
                 Save
             </button>
         </div>
-        <div class="form-group" ng-show="editingSet">
-            <button class="btn btn-danger btn-lg btn-block" ng-click="deleteSet()">
+        <div class="form-group" ng-show="editingItem">
+            <button class="btn btn-danger btn-lg btn-block" ng-click="deleteItem()">
                 Delete
             </button>
         </div>
@@ -45,12 +43,12 @@
         </div>
     </div>
 
-    <p>Set list</p>
+    <p>{{ ::collectionParams.collectionType }} list</p>
 
-    <div class="form-group" ng-show="sets.length" ng-cloak>
+    <div class="form-group" ng-show="collectionParams.existingItems.length" ng-cloak>
         <ul ui-sortable="sortableOptions" class="list-group" ng-model="sets">
-            <li class="list-group-item pointer-cursor" ng-click="setCurrentSet(set)"
-                ng-class="{'active': set == currentSet}" ng-repeat="set in sets" id="{{ set.id }}">
+            <li class="list-group-item pointer-cursor" ng-click="setCurrentItem(set)"
+                ng-class="{'active': set == currentItem}" ng-repeat="set in collectionParams.existingItems" id="{{ set.id }}">
 
 
                 <img class="list-thumbnail" ng-src="{{ set.icon }}"/>
@@ -58,7 +56,7 @@
                 <div class="pull-right">
                     <span class="badge pull-right">{{ set.id }}</span>
                     <br><br>
-                    <button type="button" class="btn btn-default btn-xs" ng-click="editSet(set)">Edit</button>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="editItem(set); $event.stopPropagation();">Edit</button>
                 </div>
 
             </li>

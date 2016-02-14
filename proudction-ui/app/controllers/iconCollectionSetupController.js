@@ -3,11 +3,15 @@
  */
 app.controller('iconCollectionSetupController', ['$scope', 'imageDataService', function ($scope, imageDataService) {
 
+    var self = {};
 
     $scope.creatingItem = false;
     $scope.editingItem = false;
     $scope.currentItem = null;
 
+    self.init = function(){
+        console.log($scope.collectionParams);
+    };
 
     $scope.createItem = function () {
 
@@ -16,6 +20,7 @@ app.controller('iconCollectionSetupController', ['$scope', 'imageDataService', f
     };
 
     $scope.editItem = function(item) {
+        $scope.setCurrentCollectionItem($scope.collectionParams.collectionType, item);
         $scope.currentItem = item;
         $scope.editingItem = true;
     };
@@ -26,7 +31,7 @@ app.controller('iconCollectionSetupController', ['$scope', 'imageDataService', f
         $scope.editingItem = false;
         $scope.creatingItem = false;
 
-        init();
+        self.init();
     };
 
     $scope.cancelEdit = function(){
@@ -41,8 +46,9 @@ app.controller('iconCollectionSetupController', ['$scope', 'imageDataService', f
 
     $scope.setCurrentItem = function (item) {
         $scope.currentItem = item;
-        $scope.setCurrentCollectionItem($scope.collectionParams.collectionType)
+        $scope.setCurrentCollectionItem($scope.collectionParams.collectionType, item)
     };
 
+    return self;
 
 }]);

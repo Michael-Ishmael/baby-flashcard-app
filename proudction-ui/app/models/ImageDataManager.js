@@ -37,7 +37,8 @@ var ImageDataManager = (function () {
     };
     ImageDataManager.prototype.addDeck = function (deck, parentSet) {
         this.decks.push(deck);
-        parentSet.addDeck(deck);
+        //deck.parentSet = parentSet;
+        parentSet.decks.push(deck);
     };
     ImageDataManager.prototype.deleteDeck = function (deckToDelete, parentSet) {
         if (deckToDelete.images.length > 0)
