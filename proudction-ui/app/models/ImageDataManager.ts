@@ -3,13 +3,15 @@
  * Created by scorpio on 01/02/2016.
  */
 
-
+interface IIdedItem{
+    id: number;
+}
 
 
 class ImageDataManager {
 
     public backlog:Array<IDataItem> = [];
-    public sets:Array<string> = [];
+    public sets:Array<Set> = [];
     public decks:Array<Deck> = [];
     public items:Array<ImageDataItem> = [];
     public completed:Array<ImageDataItem> = [];
@@ -17,6 +19,64 @@ class ImageDataManager {
     public initWithSeedData(data:ISeedData) {
         this.backlog = data.sBacklog;
         this.loadFromImageHierarchy(data.data)
+    }
+
+    public createSet(setName:string):Set{
+        var newSetId = ImageDataManager.getNextIdForDataSet(this.sets);
+        var set = new Set(newSetId, setName);
+        set.icon = "";
+        return set;
+    }
+
+    public addSet(set:Set){
+        this.sets.push(set);
+    }
+
+    public deleteSet(setToDelete:Set):boolean{
+        if(setToDelete.decks.length > 0) return false;
+        ImageDataManager.removeItemFromDataSet(setToDelete, this.sets);
+        return true;
+    }
+
+    public createDeck(deckName:string):Deck{
+        var newSetId = ImageDataManager.getNextIdForDataSet(this.decks);
+        var deck = new Deck(newSetId, deckName);
+        deck.icon = "";
+        return deck;
+    }
+
+    public addDeck(deck:Deck, parentSet:Set){
+        this.decks.push(deck);
+        parentSet.addDeck(deck);
+    }
+
+    public deleteDeck(deckToDelete:Deck, parentSet:Set):boolean{
+        if(deckToDelete.images.length > 0) return false;
+        ImageDataManager.removeItemFromDataSet(deckToDelete, this.decks);
+        ImageDataManager.removeItemFromDataSet(deckToDelete, parentSet.decks);
+        return true;
+    }
+
+
+    private static removeItemFromDataSet(itemToDelete:any, dataSet:Array<any>){
+        var indexToRemove = -1;
+        for (var i = 0; i < dataSet.length; i++) {
+            if(dataSet[i] == itemToDelete){
+                indexToRemove = i;
+                break;
+            }
+        }
+        if(indexToRemove > -1) dataSet.splice(indexToRemove, 1);
+    }
+
+
+    private static getNextIdForDataSet(dataSet:Array<IIdedItem>){
+        var maxId:number = 0;
+        for (var i = 0; i < dataSet.length; i++) {
+            var item = dataSet[i];
+            if(item.id > maxId) maxId = item.id;
+        }
+        return maxId + 1;
     }
 
     private loadFromImageHierarchy(imageData:IImageData){
@@ -64,6 +124,7 @@ class ImageDataManager {
         }
         return null;
     }
+
 }
 
 

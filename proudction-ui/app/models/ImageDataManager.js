@@ -14,6 +14,58 @@ var ImageDataManager = (function () {
         this.backlog = data.sBacklog;
         this.loadFromImageHierarchy(data.data);
     };
+    ImageDataManager.prototype.createSet = function (setName) {
+        var newSetId = ImageDataManager.getNextIdForDataSet(this.sets);
+        var set = new Set(newSetId, setName);
+        set.icon = "";
+        return set;
+    };
+    ImageDataManager.prototype.addSet = function (set) {
+        this.sets.push(set);
+    };
+    ImageDataManager.prototype.deleteSet = function (setToDelete) {
+        if (setToDelete.decks.length > 0)
+            return false;
+        ImageDataManager.removeItemFromDataSet(setToDelete, this.sets);
+        return true;
+    };
+    ImageDataManager.prototype.createDeck = function (deckName) {
+        var newSetId = ImageDataManager.getNextIdForDataSet(this.decks);
+        var deck = new Deck(newSetId, deckName);
+        deck.icon = "";
+        return deck;
+    };
+    ImageDataManager.prototype.addDeck = function (deck, parentSet) {
+        this.decks.push(deck);
+        parentSet.addDeck(deck);
+    };
+    ImageDataManager.prototype.deleteDeck = function (deckToDelete, parentSet) {
+        if (deckToDelete.images.length > 0)
+            return false;
+        ImageDataManager.removeItemFromDataSet(deckToDelete, this.decks);
+        ImageDataManager.removeItemFromDataSet(deckToDelete, parentSet.decks);
+        return true;
+    };
+    ImageDataManager.removeItemFromDataSet = function (itemToDelete, dataSet) {
+        var indexToRemove = -1;
+        for (var i = 0; i < dataSet.length; i++) {
+            if (dataSet[i] == itemToDelete) {
+                indexToRemove = i;
+                break;
+            }
+        }
+        if (indexToRemove > -1)
+            dataSet.splice(indexToRemove, 1);
+    };
+    ImageDataManager.getNextIdForDataSet = function (dataSet) {
+        var maxId = 0;
+        for (var i = 0; i < dataSet.length; i++) {
+            var item = dataSet[i];
+            if (item.id > maxId)
+                maxId = item.id;
+        }
+        return maxId + 1;
+    };
     ImageDataManager.prototype.loadFromImageHierarchy = function (imageData) {
         for (var i = 0; i < imageData.sets.length; i++) {
             var set = imageData[i];

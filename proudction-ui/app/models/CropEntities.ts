@@ -201,11 +201,28 @@ class ImageCropUtils{
     }
 }
 
+class Set {
+
+    icon:string;
+    decks:Array<Deck> = [];
+
+    constructor(public id:number, public name:string){
+
+    }
+
+    public addDeck(deck:Deck){
+        deck.parentSet = this;
+        this.decks.push(deck);
+    }
+}
+
 class Deck {
 
-    thumb:string;
+    icon:string;
+    parentSet:Set;
+    images:Array<ImageDataItem> = [];
 
-    constructor(public id:number, public set:string, public name:string){
+    constructor(public id:number, public name:string){
 
     }
 }

@@ -133,11 +133,23 @@ var ImageCropUtils = (function () {
     };
     return ImageCropUtils;
 })();
-var Deck = (function () {
-    function Deck(id, set, name) {
+var Set = (function () {
+    function Set(id, name) {
         this.id = id;
-        this.set = set;
         this.name = name;
+        this.decks = [];
+    }
+    Set.prototype.addDeck = function (deck) {
+        deck.parentSet = this;
+        this.decks.push(deck);
+    };
+    return Set;
+})();
+var Deck = (function () {
+    function Deck(id, name) {
+        this.id = id;
+        this.name = name;
+        this.images = [];
     }
     return Deck;
 })();

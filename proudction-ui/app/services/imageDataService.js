@@ -12,18 +12,48 @@ app.factory('imageDataService', ['$rootScope', '$http', '$timeout', function ($r
     self.currentItem = null;
     self.sets = seedData_1.sets;
     self.backlogItems = [];
+    self.setIcons = [];
+    self.deckIcons = [];
 
     self.itemIndexes = {val: ""};
     self.ready = false;
     self.data = {};
 
-    function loadData(){
+    function loadData() {
         $http({
             method: 'GET',
             url: 'http://localhost:8000/imageprocessor/'
         }).then(function successCallback(response) {
 
+            self.setIcons = [
+                {
+                    name: 'chickenIcon.gif',
+                    path: '../media/seticons/chickenIcon.gif'
+                },
+                {
+                    name: 'lionIcon.gif',
+                    path: '../media/seticons/lionIcon.gif'
+                }
+            ];
+
+            self.deckIcons = [
+                {
+                    name: 'chickenThumb.png',
+                    path: '../media/deckthumbs/domestic/chickenThumb.png'
+                },
+                {
+                    name: 'cowThumb.png',
+                    path: '../media/deckthumbs/domestic/cowThumb.png'
+                },
+                {
+                    name: 'horseThumb.png',
+                    path: '../media/deckthumbs/domestic/horseThumb.png'
+                }
+            ];
+
             self.data = response.data;
+            self.imageDataManger.sets = response.data.sets;
+            self.sets = self.imageDataManger.sets;
             self.ready = true;
             $timeout(function () {
                 $rootScope.$broadcast('wizard:ready', self.data);
@@ -34,26 +64,71 @@ app.factory('imageDataService', ['$rootScope', '$http', '$timeout', function ($r
         });
     }
 
-    function init(){
+    function syncData() {
+        var data = {
+            sets: self.imageDataManger.sets
+        } ;
+        $http.post('http://localhost:8000/imageprocessor/update', data).then(function(response){
+            console.log(response.data);
+        }, function(response){
+
+        });
+
+    }
+
+    function init() {
         loadData();
-        for (var i = 0; i < seedData_1.backlog.length; i++) {
+        self.sets = self.imageDataManger.sets;
+/*        for (var i = 0; i < seedData_1.backlog.length; i++) {
             var item = seedData_1.backlog[i];
             self.backlogItems.push({
-                id : item.id,
-                path : '../media/' + item.path,
-                index : i
+                id: item.id,
+                path: '../media/' + item.path,
+                index: i
             });
 
-        }
+        }*/
     }
+
+    self.createSet = function (setName) {
+        return self.imageDataManger.createSet(setName)
+    };
+
+    self.saveSet = function (set, add) {
+        if(add) self.imageDataManger.addSet(set);
+        syncData();
+    };
+
+    self.deleteSet = function(set){
+        if(self.imageDataManger.deleteSet(set))
+        {
+            syncData();
+        }
+    };
+
+    self.createDeck = function (deckName) {
+        return self.imageDataManger.createDeck(deckName)
+    };
+
+    self.saveDeck = function (deck, parentSet) {
+        if(parentSet) self.imageDataManger.addDeck(deck, parentSet);
+        syncData();
+    };
+
+    self.deleteDeck = function(deck, parentSet){
+        if(self.imageDataManger.deleteDeck(deck, parentSet))
+        {
+            syncData();
+        }
+    };
 
 
     //self.cropManager = new ImageDataManager(seedData_1);
 
-    self.getBacklogItem = function(itemId){
+    self.getBacklogItem = function (itemId) {
         for (var i = 0; i < self.backlogItems.length; i++) {
             var item = self.backlogItems[i];
-            if(item.id == itemId) return item;
+            if (item.id == itemId) return item;
         }
         return null;
     };
@@ -74,7 +149,6 @@ app.factory('imageDataService', ['$rootScope', '$http', '$timeout', function ($r
         }, 100);
 
     };
-
 
     function setCurrentItem(backlogItem) {
         self.currentItem = null;
@@ -108,12 +182,12 @@ app.factory('imageDataService', ['$rootScope', '$http', '$timeout', function ($r
         return deckItems;
     };
 
-    self.getSoundsForDeck = function (deckName){
+    self.getSoundsForDeck = function (deckName) {
         var soundNames = seedData_1.sounds[deckName];
         var deckSounds = [];
         for (var i = 0; i < soundNames.length; i++) {
             var sound = soundNames[i];
-            deckSounds.push({ name: sound, path:'../media/sounds/' + sound });
+            deckSounds.push({name: sound, path: '../media/sounds/' + sound});
         }
         return deckSounds;
     };
@@ -122,7 +196,7 @@ app.factory('imageDataService', ['$rootScope', '$http', '$timeout', function ($r
         if (item.deck != deck) {
             var deckItems = self.getExistingItemsForDeck(deck);
             var newIndex = 0;
-            if(deckItems && deckItems.length)
+            if (deckItems && deckItems.length)
                 newIndex = deckItems[deckItems.length - 1].indexInDeck + 1;
             item.deck = deck;
             item.indexInDeck = newIndex;
@@ -164,7 +238,7 @@ var seedData_1 = {
             'Chicken5.mp3',
             'Chicken6.mp3'
         ],
-        'cow' : [
+        'cow': [
             'Cow1.mp3',
             'Cow2.mp3',
             'Cow3.mp3',
@@ -172,7 +246,7 @@ var seedData_1 = {
             'Cow5.mp3',
             'Cow6.mp3'
         ],
-        'horse' : [
+        'horse': [
             'Horse1.mp3',
             'Horse2.mp3',
             'Horse3.mp3',

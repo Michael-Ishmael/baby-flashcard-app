@@ -2,11 +2,16 @@
 html body {
     background-color: #454b52;
     /*color: #fff;*/
-    margin-top: 20px;
+    margin: 20px;
 }
 
 .panel-default {
     background-color: gray;
+}
+
+p {
+    color: white;
+
 }
 
 .colored-block {

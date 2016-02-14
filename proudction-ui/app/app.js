@@ -18,6 +18,10 @@ app.config(['$routeProvider',
             templateUrl: 'views/croppingView.html',
             controller: 'imgProcController'
         }).
+        when('/decks', {
+            templateUrl: 'views/deckSetupView.html',
+            controller: 'deckSetupController'
+        }).
         otherwise({
             redirectTo: '/backlog'
         });

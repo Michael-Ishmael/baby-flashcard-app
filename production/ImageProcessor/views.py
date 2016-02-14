@@ -18,16 +18,18 @@ from production.business.imagedata import Workflow
 def index(request):
     # company_cnt = request.GET.get('top')
     # path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
-    path = settings.MEDIA_ROOT
-    workflow = Workflow(path)
-    workflow.load()
+    path = os.path.join(settings.MEDIA_ROOT, 'data2.json')
+    with open(path, 'r') as json_file:
+        data = simplejson.load(json_file)
+    # workflow = Workflow(path)
+    # workflow.load()
 
-    try:
-        return JsonResponse(workflow.to_json_dict(), json_dumps_params={"indent": 2})
-    except Exception as ex:
-        return JsonResponse({"success": False, "message": ex.message})
+    # try:
+    return HttpResponse(simplejson.dumps(data, indent=2), content_type="application/json")
+    # except Exception as ex:
+    #    return JsonResponse({"success": False, "message": ex.message})
 
-    return JsonResponse(j_comps, safe=False)
+    # return JsonResponse(j_comps, safe=False)
 
     # context = {
     #     'testValue': 'bebe',
@@ -41,7 +43,7 @@ def update_image_data(request):
         data = simplejson.loads(request.body)
         if data:
             path = settings.MEDIA_ROOT
-            data_file_name = 'data.json'
+            data_file_name = 'data2.json'
             with open(os.path.join(path, data_file_name), 'w') as json_file:
                 simplejson.dump(data, json_file)
                 # image_name = data["imagename"]
