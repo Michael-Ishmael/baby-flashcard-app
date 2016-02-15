@@ -14,5 +14,34 @@
         <!--<div class="slide-animate" ng-include="'views/iconCollectionSetup.html'" onload="collectionParams = paramholder.deckParams"></div>-->
     </div>
 
-</div>
+    <div class="col-md-3">
+        <h2>Allocate sounds</h2>
+        <form>
+            <div class="form-group">
+                <label for="soundFolder" class="control-label">Sound Folder:</label>
+                <select id="soundFolder" name="sound-folder" class="form-control"
+                        ng-options="folder as folder for folder in soundFolders" ng-model="selectedSoundFolder">
+                </select>
+            </div>
+
+            <div class="form-group" ng-show="selectedSoundFolder" ng-cloak>
+                <ul ui-sortable="sortableOptions" class="list-group" ng-model="sets">
+                    <li class="list-group-item pointer-cursor"
+                        ng-repeat="sound in sounds" >
+                        {{ sound.name }}
+                        <div class="pull-right">
+                            <span class="badge pull-right">{{ sound.id }}</span>
+                            <br><br>
+                            
+                        </div>
+
+                    </li>
+
+                </ul>
+            </div>
+        </form>
+
+
+    </div>
+
 </div>

@@ -2,7 +2,7 @@
  * Created by michaelishmael on 02/02/2016.
  */
 
-app.factory('imageDataService', ['$rootScope', '$http', '$timeout', function ($rootScope, $http, $timeout) {
+app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', function ($rootScope, $http, $q, $timeout) {
 
     var self = {};
     self.wizardIndex = 0;
@@ -20,57 +20,76 @@ app.factory('imageDataService', ['$rootScope', '$http', '$timeout', function ($r
     self.data = {};
 
     function loadData() {
-        $http({
+
+        //http://localhost:8000/imageprocessor/resources
+
+        var resourcePromise = $http({
+            method: 'GET',
+            url: 'http://localhost:8000/imageprocessor/resources'
+        });
+
+        var dataPromise = $http({
             method: 'GET',
             url: 'http://localhost:8000/imageprocessor/'
-        }).then(function successCallback(response) {
-
-            self.setIcons = [
-                {
-                    name: 'chickenIcon.gif',
-                    path: '../media/seticons/chickenIcon.gif'
-                },
-                {
-                    name: 'lionIcon.gif',
-                    path: '../media/seticons/lionIcon.gif'
-                }
-            ];
-
-            self.deckIcons = [
-                {
-                    name: 'chickenThumb.png',
-                    path: '../media/deckthumbs/domestic/chickenThumb.png'
-                },
-                {
-                    name: 'cowThumb.png',
-                    path: '../media/deckthumbs/domestic/cowThumb.png'
-                },
-                {
-                    name: 'horseThumb.png',
-                    path: '../media/deckthumbs/domestic/horseThumb.png'
-                }
-            ];
-
-            self.data = response.data;
-            self.imageDataManger.sets = response.data.sets;
-            self.sets = self.imageDataManger.sets;
-            self.ready = true;
-            $timeout(function () {
-                $rootScope.$broadcast('wizard:ready', self.data);
-            }, 100);
-
-        }, function errorCallback(response) {
-
         });
+
+        $q.all([resourcePromise, dataPromise]).then(
+            function successCallback(repsonses) {
+                var resourceData = repsonses[0].data;
+                var data = repsonses[1].data;
+                self.setIcons = resourceData.setIcons.map(
+                    function (i) {
+                        return {
+                            name: i.name,
+                            path: '../media/seticons/' + i.path
+                        }
+                    }
+                );
+
+                self.deckIcons = resourceData.deckIcons.map(
+                    function (i) {
+                        return {
+                            name: i.name,
+                            path: '../media/deckthumbs/' + i.path
+                        }
+                    }
+                );
+
+                self.soundFolders = [];
+                var foundSubs = {};
+                for (var i = 0; i < resourceData.sounds.length; i++) {
+                    var sound = resourceData.sounds[i];
+                    var subFolder = sound.subFolder;
+                    if(!foundSubs.hasOwnProperty(subFolder)){
+                        self.soundFolders.push(subFolder);
+                        foundSubs[subFolder] = subFolder;
+                    }
+                }
+
+                self.sounds = resourceData.sounds;
+
+
+
+                self.data = data;
+                self.imageDataManger.sets = data.sets;
+                self.sets = self.imageDataManger.sets;
+                self.ready = true;
+                $timeout(function () {
+                    $rootScope.$broadcast('wizard:ready', self.data);
+                }, 100);
+
+            }, function errorCallback(response) {
+
+            });
     }
 
     function syncData() {
         var data = {
             sets: self.imageDataManger.sets
-        } ;
-        $http.post('http://localhost:8000/imageprocessor/update', data).then(function(response){
+        };
+        $http.post('http://localhost:8000/imageprocessor/update', data).then(function (response) {
             console.log(response.data);
-        }, function(response){
+        }, function (response) {
 
         });
 
@@ -79,15 +98,15 @@ app.factory('imageDataService', ['$rootScope', '$http', '$timeout', function ($r
     function init() {
         loadData();
         self.sets = self.imageDataManger.sets;
-/*        for (var i = 0; i < seedData_1.backlog.length; i++) {
-            var item = seedData_1.backlog[i];
-            self.backlogItems.push({
-                id: item.id,
-                path: '../media/' + item.path,
-                index: i
-            });
+        /*        for (var i = 0; i < seedData_1.backlog.length; i++) {
+         var item = seedData_1.backlog[i];
+         self.backlogItems.push({
+         id: item.id,
+         path: '../media/' + item.path,
+         index: i
+         });
 
-        }*/
+         }*/
     }
 
     self.createSet = function (setName) {
@@ -95,13 +114,12 @@ app.factory('imageDataService', ['$rootScope', '$http', '$timeout', function ($r
     };
 
     self.saveSet = function (set, add) {
-        if(add) self.imageDataManger.addSet(set);
+        if (add) self.imageDataManger.addSet(set);
         syncData();
     };
 
-    self.deleteSet = function(set){
-        if(self.imageDataManger.deleteSet(set))
-        {
+    self.deleteSet = function (set) {
+        if (self.imageDataManger.deleteSet(set)) {
             syncData();
         }
     };
@@ -111,13 +129,12 @@ app.factory('imageDataService', ['$rootScope', '$http', '$timeout', function ($r
     };
 
     self.saveDeck = function (deck, parentSet) {
-        if(parentSet) self.imageDataManger.addDeck(deck, parentSet);
+        if (parentSet) self.imageDataManger.addDeck(deck, parentSet);
         syncData();
     };
 
-    self.deleteDeck = function(deck, parentSet){
-        if(self.imageDataManger.deleteDeck(deck, parentSet))
-        {
+    self.deleteDeck = function (deck, parentSet) {
+        if (self.imageDataManger.deleteDeck(deck, parentSet)) {
             syncData();
         }
     };

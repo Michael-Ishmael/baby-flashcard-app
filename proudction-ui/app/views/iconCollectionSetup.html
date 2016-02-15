@@ -9,7 +9,7 @@
     <div ng-show="creatingItem || editingItem">
         <div class="form-group">
             <div class="input-group">
-                <label for="set-name" class="input-group-addon">Set Name</label>
+                <label for="set-name" class="input-group-addon">{{ ::collectionParams.collectionType}} Name</label>
                 <input type="text" id="set-name" name="set-name" ng-model="currentItem.name" required
                        class="form-control">
             </div>

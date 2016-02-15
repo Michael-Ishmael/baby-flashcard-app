@@ -14,15 +14,16 @@ from django.http import JsonResponse
 
 from production.business.imagedata import Workflow
 
+def resources(request):
+    workflow = Workflow(settings.MEDIA_ROOT)
+    workflow.load()
+    return HttpResponse(simplejson.dumps(workflow.to_json_dict(), indent=2), content_type="application/json")
+
 
 def index(request):
-    # company_cnt = request.GET.get('top')
-    # path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
     path = os.path.join(settings.MEDIA_ROOT, 'data2.json')
     with open(path, 'r') as json_file:
         data = simplejson.load(json_file)
-    # workflow = Workflow(path)
-    # workflow.load()
 
     # try:
     return HttpResponse(simplejson.dumps(data, indent=2), content_type="application/json")

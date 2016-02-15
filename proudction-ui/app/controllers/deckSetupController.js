@@ -22,11 +22,14 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
     };
 
     function init() {
+
         $scope.ready = imageDataService.ready;
         $scope.sets = imageDataService.sets;
         $scope.setIcons = imageDataService.setIcons;
         $scope.decks = imageDataService.decks;
         $scope.deckIcons = imageDataService.deckIcons;
+        $scope.soundFolders = imageDataService.soundFolders;
+        $scope.sounds = imageDataService.sounds;
 
         $scope.paramholder.setParams = {
             collectionType: "set",
@@ -39,6 +42,7 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
             iconList: $scope.deckIcons,
             existingItems: $scope.decks
         };
+
 
     }
 
