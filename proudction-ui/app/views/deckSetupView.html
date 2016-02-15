@@ -15,20 +15,28 @@
     </div>
 
     <div class="col-md-3">
-        <h2>Allocate sounds</h2>
-        <form>
+
+        <form ng-show="currentDeck">
+            <h2>Allocate sounds</h2>
             <div class="form-group">
                 <label for="soundFolder" class="control-label">Sound Folder:</label>
                 <select id="soundFolder" name="sound-folder" class="form-control"
-                        ng-options="folder as folder for folder in soundFolders" ng-model="selectedSoundFolder">
+                        ng-options="folder as folder for folder in soundFolders" ng-model="soundFolder.subFolder">
                 </select>
             </div>
 
-            <div class="form-group" ng-show="selectedSoundFolder" ng-cloak>
-                <ul ui-sortable="sortableOptions" class="list-group" ng-model="sets">
+            <div class="form-group" ng-show="soundFolder.subFolder" ng-cloak>
+                <ul ui-sortable="sortableOptions" class="list-group" ng-model="sound">
                     <li class="list-group-item pointer-cursor"
-                        ng-repeat="sound in sounds" >
-                        {{ sound.name }}
+                        ng-repeat="sound in sounds | filter:soundFolder " >
+                        <label>
+                            <input type="checkbox"
+                                   value="{{sound.name}}"
+                                   ng-model="sound.selected" >
+                            {{ sound.name }}
+                        </label>
+
+
                         <div class="pull-right">
                             <span class="badge pull-right">{{ sound.id }}</span>
                             <br><br>

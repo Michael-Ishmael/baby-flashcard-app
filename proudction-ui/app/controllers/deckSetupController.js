@@ -29,7 +29,9 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
         $scope.decks = imageDataService.decks;
         $scope.deckIcons = imageDataService.deckIcons;
         $scope.soundFolders = imageDataService.soundFolders;
-        $scope.sounds = imageDataService.sounds;
+
+
+
 
         $scope.paramholder.setParams = {
             collectionType: "set",
@@ -45,6 +47,30 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
 
 
     }
+
+    function setupSounds(){
+
+        var deck = $scope.currentDeck;
+        if(imageDataService.sounds && deck){
+
+            var selectedPaths = deck.sounds ? deck.sounds.map(function(s){return s.path }) : [] ;
+
+            $scope.sounds = imageDataService.sounds.map(function(s){
+                var selected = selectedPaths.indexOf(s.path) > -1;
+                return {
+                    name: s.name,
+                    path: s.path,
+                    subFolder: s.subFolder,
+                    selected: selected
+                }
+            });
+        }
+    }
+
+    $scope.$watch('sounds|filter:{selected:true}', function (nv) {
+        if($scope.currentDeck)
+            $scope.currentDeck.sounds = nv;
+    }, true);
 
     $scope.createCollectionItem = function (collectionType) {
         var item = null;
@@ -67,6 +93,7 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
         }
         if(collectionType == 'deck'){
             $scope.currentDeck = item;
+            setupSounds();
         }
     };
 

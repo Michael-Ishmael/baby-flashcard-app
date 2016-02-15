@@ -88,7 +88,6 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
             sets: self.imageDataManger.sets
         };
         $http.post('http://localhost:8000/imageprocessor/update', data).then(function (response) {
-            console.log(response.data);
         }, function (response) {
 
         });
