@@ -48,6 +48,7 @@ var BoxDims = (function () {
     return BoxDims;
 })();
 var CropDef = (function () {
+    //parent:CropSet;
     function CropDef(key, target) {
         this.key = key;
         this.target = target;
@@ -60,7 +61,7 @@ var CropDef = (function () {
         this.crop = new BoxDims(0, 0, 100, 100);
     }
     CropDef.prototype.getAspectRatio = function () {
-        var shortSide = this.parent.format == CropFormat.twelve16 ? 12 : 9;
+        var shortSide = 12; // this.parent.format == CropFormat.twelve16 ? 12 : 9;
         if (this.orientation == Orientation.portrait) {
             return shortSide / 16;
         }
@@ -77,10 +78,10 @@ var CropSet = (function () {
     function CropSet(format, masterCropDef, altCropDef) {
         this.format = format;
         this.masterCropDef = masterCropDef;
-        this.masterCropDef.parent = this;
+        //this.masterCropDef.parent = this;
         this.activeDef = masterCropDef;
         this.altCropDef = altCropDef;
-        this.altCropDef.parent = this;
+        //this.altCropDef.parent = this;
         this.title = ImageCropUtils.getCropTitleFromCropFormat(format);
     }
     CropSet.prototype.isComplete = function () {
@@ -154,10 +155,11 @@ var Deck = (function () {
     return Deck;
 })();
 var ImageDataItem = (function () {
-    function ImageDataItem(id, name, path) {
-        this.id = id;
+    function ImageDataItem(key, name, path) {
+        this.key = key;
         this.name = name;
         this.path = path;
+        //public deck:IDataDeck;
         this.indexInDeck = -1;
         this.cropSetDict = null;
     }
@@ -182,8 +184,8 @@ var ImageDataItem = (function () {
     return ImageDataItem;
 })();
 var BacklogItem = (function () {
-    function BacklogItem(id, name, path) {
-        this.id = id;
+    function BacklogItem(key, name, path) {
+        this.key = key;
         this.name = name;
         this.path = path;
     }

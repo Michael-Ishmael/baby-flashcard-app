@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label for="deck" class="control-label">Deck:</label>
                         <select id="deck" name="deck" multiple="multiple" class="form-control"
-                                ng-options="deck as deck for deck in selectedSet.decks" ng-model="selectedDecks">
+                                ng-options="deck as deck.name for deck in selectedSet.decks" ng-model="selectedDecks">
                         </select>
                     </div>
 
@@ -39,8 +39,8 @@
                         <ul ui-sortable="sortableOptions" class="list-group" ng-model="existingDeckCards">
                             <li class="list-group-item pointer-cursor" ng-repeat="card in existingDeckCards" id="{{ card.id }}">
                                 <span class="badge">{{ card.index }}</span>
-                                <img class="list-thumbnail" ng-src="{{ ::card.path }}" ng-click="setPreviewPath(card)" />
-                                {{ card.path }}</li>
+                                <img class="list-thumbnail" ng-src="{{ ::card.displayPath }}" ng-click="setPreviewPath(card)" />
+                                {{ card.displayPath }}</li>
                         </ul>
                     </div>
                 </div>

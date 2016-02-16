@@ -21,14 +21,14 @@
             <div class="form-group">
                 <label for="soundFolder" class="control-label">Sound Folder:</label>
                 <select id="soundFolder" name="sound-folder" class="form-control"
-                        ng-options="folder as folder for folder in soundFolders" ng-model="soundFolder.subFolder">
+                        ng-options="folder as folder for folder in soundFolders" ng-model="currentDeck.soundFolder">
                 </select>
             </div>
 
-            <div class="form-group" ng-show="soundFolder.subFolder" ng-cloak>
-                <ul ui-sortable="sortableOptions" class="list-group" ng-model="sound">
+            <div class="form-group" ng-show="currentDeck.soundFolder" ng-cloak>
+                <ul ui-sortable="sortableOptions" class="list-group" ng-model="sounds" >
                     <li class="list-group-item pointer-cursor"
-                        ng-repeat="sound in sounds | filter:soundFolder " >
+                        ng-repeat="sound in sounds| filter:{subFolder: currentDeck.soundFolder}" >
                         <label>
                             <input type="checkbox"
                                    value="{{sound.name}}"
@@ -46,6 +46,12 @@
                     </li>
 
                 </ul>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-success btn-lg btn-block" ng-click="saveCollectionItem('deck', false)">
+                    Save
+                </button>
             </div>
         </form>
 

@@ -10,9 +10,10 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
     }
 
     $scope.selectedData = {};
+    $scope.selectedDecks = [];
 
     $scope.getImagePath = function (seedPath) {
-        return seedPath;
+        return '../media/backlog/' + seedPath;
     };
 
 
@@ -27,17 +28,19 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
         }
     };
 
-
     $scope.$on('$viewContentLoaded', function () {
         if (!imageDataService.currentItem) {
             var imageId = $routeParams.imageId;
             var item = imageDataService.getBacklogItem(imageId);
             if (item) imageDataService.selectBacklogItem(item);
-            $scope.previewPath = item.path;
+            $scope.setPreviewPath(imageDataService.currentItem);
         }
 
 
         $scope.currentItem = imageDataService.currentItem;
+        if(imageDataService.currentDeck){
+            $scope.selectedDecks.push(imageDataService.currentDeck)
+        }
         var sets = imageDataService.sets;
         $scope.sets = sets;
         var setIndex = -1;
@@ -61,7 +64,7 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
     });
 
     $scope.setPreviewPath = function (item) {
-        $scope.previewPath = item.path;
+        $scope.previewPath = '../media/backlog/' + item.path;
 
     };
 
@@ -72,9 +75,13 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
                 var deck = newValue[0];
                 var item = $scope.currentItem;
                 imageDataService.setDeckOnItem(item, deck);
+
                 $scope.selectedDeck = item.deck;
                 $scope.existingDeckCards = imageDataService.getExistingItemsForDeck(deck);
-                $scope.soundsForDeck = imageDataService.getSoundsForDeck(deck);
+                $scope.soundsForDeck = deck.sounds.map(function(s){ return{
+                    name: s.name,
+                    path: '../media/sounds/' + s.path
+                } }); // imageDataService.getSoundsForDeck(deck);
             }
         }
     );

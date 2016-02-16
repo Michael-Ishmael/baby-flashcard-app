@@ -187,7 +187,7 @@ var CropManager = (function () {
         return existingIndexes;
     };
     CropManager.createNewImageDataItem = function (backlogItem) {
-        var item = new ImageDataItem(backlogItem.id, backlogItem.name, backlogItem.path);
+        var item = new ImageDataItem(backlogItem.key, backlogItem.name, backlogItem.path);
         item.twelve16 = new CropSet(CropFormat.twelve16, new CropDef('twM', CropTarget.master), new CropDef('twA', CropTarget.alt));
         item.nine16 = new CropSet(CropFormat.nine16, new CropDef('nnM', CropTarget.master), new CropDef('nnA', CropTarget.alt));
         return item;

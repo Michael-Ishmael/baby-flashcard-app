@@ -12,7 +12,7 @@ Backlog
             <li class="list-group-item pointer-cursor"  ng-repeat="backlogItem in backlog"
                 id="{{ backlogItem.id }}" ng-click="selectImage(backlogItem)" >
                 <span class="badge">{{ backlogItem.id }}</span>
-                <img class="list-thumbnail" ng-src="{{::backlogItem.path }}"/>
+                <img class="list-thumbnail" ng-src="{{::backlogItem.displayPath }}"/>
                 {{ backlogItem.path }}
             </li>
         </ul>

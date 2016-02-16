@@ -10,7 +10,14 @@ app.controller('iconCollectionSetupController', ['$scope', 'imageDataService', f
     $scope.currentItem = null;
 
     self.init = function(){
-        console.log($scope.collectionParams);
+        var collectionType = $scope.collectionParams.collectionType;
+        if(collectionType == 'deck'){
+            $scope.$watch('currentDeck', function(nv, ov){
+                if(nv != ov){
+                    $scope.currentItem = nv;
+                }
+            })
+        }
     };
 
     $scope.createItem = function () {

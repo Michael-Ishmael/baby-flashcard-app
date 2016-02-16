@@ -105,7 +105,7 @@ class CropDef {
 
     orientation:Orientation;
     crop:BoxDims;
-    parent:CropSet;
+    //parent:CropSet;
 
     constructor(public key:string, public target:CropTarget){
         if(target == CropTarget.master){
@@ -117,7 +117,7 @@ class CropDef {
     }
 
     getAspectRatio():number{
-        var shortSide = this.parent.format == CropFormat.twelve16 ? 12 : 9;
+        var shortSide = 12; // this.parent.format == CropFormat.twelve16 ? 12 : 9;
         if(this.orientation == Orientation.portrait){
             return shortSide / 16;
         } else {
@@ -139,10 +139,10 @@ class CropSet {
 
     constructor(public format:CropFormat, masterCropDef:CropDef, altCropDef:CropDef) {
         this.masterCropDef = masterCropDef;
-        this.masterCropDef.parent = this;
+        //this.masterCropDef.parent = this;
         this.activeDef = masterCropDef;
         this.altCropDef = altCropDef;
-        this.altCropDef.parent = this;
+        //this.altCropDef.parent = this;
         this.title = ImageCropUtils.getCropTitleFromCropFormat(format);
     }
 
@@ -236,9 +236,9 @@ interface IDataItem{
     getStatus():ItemStatus;
 }
 
-class ImageDataItem implements IDataItem{
+class ImageDataItem{
 
-    public deck:IDataDeck;
+    //public deck:IDataDeck;
     public indexInDeck:number = -1;
     public sound:string;
     public twelve16:CropSet;
@@ -246,7 +246,7 @@ class ImageDataItem implements IDataItem{
     public originalDims:BoxDims;
     public sizingDims:BoxDims;
 
-    constructor(public id:number, public name:string, public path:string) {
+    constructor(public key:string, public name:string, public path:string) {
 
     }
 
@@ -276,10 +276,10 @@ class ImageDataItem implements IDataItem{
 
 }
 
-class BacklogItem implements IDataItem{
+class BacklogItem{
 
 
-    constructor(public id:number, public name:string, public path:string) {
+    constructor(public key:number, public name:string, public path:string) {
 
     }
 

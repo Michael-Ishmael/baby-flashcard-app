@@ -30,9 +30,6 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
         $scope.deckIcons = imageDataService.deckIcons;
         $scope.soundFolders = imageDataService.soundFolders;
 
-
-
-
         $scope.paramholder.setParams = {
             collectionType: "set",
             iconList: $scope.setIcons,
@@ -69,7 +66,12 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
 
     $scope.$watch('sounds|filter:{selected:true}', function (nv) {
         if($scope.currentDeck)
-            $scope.currentDeck.sounds = nv;
+            $scope.currentDeck.sounds = nv.map(function(s){
+               return {
+                   name: s.name,
+                   path: s.path
+               }
+            });
     }, true);
 
     $scope.createCollectionItem = function (collectionType) {
@@ -77,6 +79,7 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
         if(collectionType == 'set'){
             item = imageDataService.createSet();
             $scope.currentSet = item;
+            $scope.currentDeck = null;
             $scope.paramholder.deckParams.existingItems = $scope.currentSet.decks;
         }
         if(collectionType == 'deck'){
@@ -89,6 +92,7 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
     $scope.setCurrentCollectionItem = function(collectionType, item) {
         if(collectionType == 'set'){
             $scope.currentSet = item;
+            $scope.currentDeck = null;
             $scope.paramholder.deckParams.existingItems = $scope.currentSet.decks;
         }
         if(collectionType == 'deck'){
@@ -104,7 +108,7 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
         if(collectionType == 'deck'){
             imageDataService.saveDeck($scope.currentDeck, add ? $scope.currentSet : null);
         }
-        init();
+        //init();
     };
 
     $scope.deleteCollectionItem = function(collectionType){

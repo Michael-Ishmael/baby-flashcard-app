@@ -8,13 +8,13 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
     self.wizardIndex = 0;
 
     self.imageDataManger = new ImageDataManager();
+    self.cropManager = new CropManager();
     self.imageDataItems = [];
     self.currentItem = null;
     self.sets = seedData_1.sets;
-    self.backlogItems = [];
     self.setIcons = [];
     self.deckIcons = [];
-
+    self.backlog = [];
     self.itemIndexes = {val: ""};
     self.ready = false;
     self.data = {};
@@ -71,11 +71,23 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
 
 
                 self.data = data;
+                self.backlog = resourceData.backlog.map(function(i){
+                    return {
+                        name: i.name,
+                        path: i.path,
+                        displayPath: '../media/backlog/' + i.path,
+                        key: i.path
+                    }
+                });
                 self.imageDataManger.sets = data.sets;
                 self.sets = self.imageDataManger.sets;
                 self.ready = true;
                 $timeout(function () {
-                    $rootScope.$broadcast('wizard:ready', self.data);
+                    $rootScope.$broadcast('wizard:ready', {
+                        backlog: self.backlog,
+                        data: data
+                    }
+                        );
                 }, 100);
 
             }, function errorCallback(response) {
@@ -96,16 +108,6 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
 
     function init() {
         loadData();
-        self.sets = self.imageDataManger.sets;
-        /*        for (var i = 0; i < seedData_1.backlog.length; i++) {
-         var item = seedData_1.backlog[i];
-         self.backlogItems.push({
-         id: item.id,
-         path: '../media/' + item.path,
-         index: i
-         });
-
-         }*/
     }
 
     self.createSet = function (setName) {
@@ -141,10 +143,10 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
 
     //self.cropManager = new ImageDataManager(seedData_1);
 
-    self.getBacklogItem = function (itemId) {
-        for (var i = 0; i < self.backlogItems.length; i++) {
-            var item = self.backlogItems[i];
-            if (item.id == itemId) return item;
+    self.getBacklogItem = function (itemKey) {
+        for (var i = 0; i < self.backlog.length; i++) {
+            var item = self.backlog[i];
+            if (item.key == itemKey) return item;
         }
         return null;
     };
@@ -159,6 +161,7 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
             var im = self.imageDataItems[i];
             self.itemIndexes.val += im.id + ","
         }
+
         self.wizardIndex++;
         $timeout(function () {
             $rootScope.$broadcast('wizard:itemSelected', self.currentItem);
@@ -168,15 +171,27 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
 
     function setCurrentItem(backlogItem) {
         self.currentItem = null;
-        for (var i = 0; i < self.imageDataItems.length; i++) {
-            var item = self.imageDataItems[i];
-            if (item.id == backlogItem.id) {
-                self.currentItem = item;
+        var found = false;
+        for (var i = 0; i < self.sets.length; i++) {
+            var set = self.sets[i];
+            for (var j = 0; j < set.decks.length; j++) {
+                var deck = set.decks[j];
+                for (var k = 0; k < deck.images.length; k++) {
+                    var image = deck.images[k];
+                    if(image.key == backlogItem.path){
+                        found = true;
+                        self.currentDeck = deck;
+                        self.currentItem = image;
+                        break;
+                    }
+                }
+                if(found) break;
             }
+            if(found) break;
         }
 
         if (self.currentItem == null) {
-            self.currentItem = ImageDataManager.createNewImageDataItem(backlogItem);
+            self.currentItem = CropManager.createNewImageDataItem(backlogItem);
             self.imageDataItems.push(self.currentItem);
         }
     }
@@ -209,6 +224,11 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
     };
 
     self.setDeckOnItem = function (item, deck) {
+        deck.images.push(item);
+        item.indexInDeck = deck.images.length;
+        syncData();
+        return;
+
         if (item.deck != deck) {
             var deckItems = self.getExistingItemsForDeck(deck);
             var newIndex = 0;

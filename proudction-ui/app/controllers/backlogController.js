@@ -14,13 +14,7 @@ app.controller('backlogController', ['$scope', 'imageDataService', function ($sc
 
     $scope.$on('wizard:ready', function (event, data) {
             $scope.ready = true;
-            $scope.backlog = data.backlog.map(function(i){
-                return {
-                    id: i.id,
-                    name : i.name,
-                    path : '../media/backlog/' + i.sub_path
-                }
-            });
+            $scope.backlog = data.backlog;
         }
     );
 
