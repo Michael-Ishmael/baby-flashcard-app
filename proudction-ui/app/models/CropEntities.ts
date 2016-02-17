@@ -26,20 +26,20 @@ enum ItemStatus {
 }
 
 interface IDataCard {
-    id:number;
-    image:string;
-    index:number;
+    key:string;
+    path:string;
+    indexInDeck:number;
     sound:string;
-    originalsize:IBox;
-    portraitbounds:IBox;
-    landscapebounds:IBox;
+    //originalsize:IBox;
+    //portraitbounds:IBox;
+    //landscapebounds:IBox;
 }
 
 interface IDataDeck {
     id:number;
     name:string;
-    thumb:string;
-    cards:Array<IDataCard>;
+    icon:string;
+    images:Array<IDataCard>;
     sounds:Array<IDataItem>;
 }
 
@@ -47,7 +47,7 @@ interface IDataSet {
     id:number;
     name:string;
     icon:string;
-    decks:Array<IDataSet>;
+    decks:Array<IDataDeck>;
 }
 
 interface IImageData{
@@ -55,9 +55,8 @@ interface IImageData{
 }
 
 interface ISeedData {
-    sBacklog:Array<IDataItem>;
+    backlog:Array<IDataItem>;
     data:IImageData;
-    sounds:Array<IDataItem>;
 }
 
 interface IImageTarget {
@@ -201,25 +200,26 @@ class ImageCropUtils{
     }
 }
 
-class Set {
+class Set implements IDataSet {
 
     icon:string;
-    decks:Array<Deck> = [];
+    decks:Array<IDataDeck> = [];
 
     constructor(public id:number, public name:string){
 
     }
 
-    public addDeck(deck:Deck){
-        deck.parentSet = this;
+    public addDeck(deck:IDataDeck){
         this.decks.push(deck);
     }
 }
 
-class Deck {
+class Deck implements IDataDeck {
+
+    //cards:Array<IDataCard>;
+    sounds:Array<IDataItem>;
 
     icon:string;
-    parentSet:Set;
     images:Array<ImageDataItem> = [];
 
     constructor(public id:number, public name:string){
@@ -229,17 +229,17 @@ class Deck {
 
 interface IDataItem{
 
-    id:number;
+    key:string;
     name:string;
     path:string;
 
     getStatus():ItemStatus;
 }
 
-class ImageDataItem{
+class ImageDataItem implements IDataCard{
 
-    //public deck:IDataDeck;
-    public indexInDeck:number = -1;
+    indexInDeck:number;
+
     public sound:string;
     public twelve16:CropSet;
     public nine16:CropSet;
@@ -266,7 +266,7 @@ class ImageDataItem{
     }
 
     public getStatus():ItemStatus{
-        if(this.deck && this.indexInDeck > -1 && this.sound){
+        if(this.indexInDeck > -1 && this.sound){
             if (this.originalDims && this.originalDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete())
                 return ItemStatus.completed;
             return ItemStatus.assigned;
@@ -279,7 +279,7 @@ class ImageDataItem{
 class BacklogItem{
 
 
-    constructor(public key:number, public name:string, public path:string) {
+    constructor(public key:string, public name:string, public path:string) {
 
     }
 

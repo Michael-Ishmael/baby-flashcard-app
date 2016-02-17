@@ -4,14 +4,13 @@
  */
 var ImageDataManager = (function () {
     function ImageDataManager() {
-        this.backlog = [];
         this.sets = [];
         this.decks = [];
         this.items = [];
-        this.completed = [];
+        this.backlog = [];
     }
     ImageDataManager.prototype.initWithSeedData = function (data) {
-        this.backlog = data.sBacklog;
+        this.backlog = data.backlog;
         this.loadFromImageHierarchy(data.data);
     };
     ImageDataManager.prototype.createSet = function (setName) {
@@ -69,38 +68,37 @@ var ImageDataManager = (function () {
     };
     ImageDataManager.prototype.loadFromImageHierarchy = function (imageData) {
         for (var i = 0; i < imageData.sets.length; i++) {
-            var set = imageData[i];
-            this.sets.push(set.name);
+            var set = imageData.sets[i];
+            this.sets.push(set);
             for (var j = 0; j < set.decks.length; j++) {
                 var deck = set.decks[j];
                 this.decks.push(deck);
-                for (var k = 0; k < deck.cards.length; k++) {
-                    var card = deck.cards[k];
+                for (var k = 0; k < deck.images.length; k++) {
+                    var card = deck.images[k];
                     var imageDataItem = this.createImageDataItemFromCard(card);
                     this.items.push(imageDataItem);
                 }
             }
         }
     };
-    ImageDataManager.prototype.createImageDataItemFromCard = function (card, deck) {
-        var backlogItem = this.getMatchingBacklogItem(card.id);
+    ImageDataManager.prototype.createImageDataItemFromCard = function (card) {
+        var backlogItem = this.getMatchingBacklogItem(card.key);
         var imageDataItem;
         if (backlogItem) {
-            imageDataItem = new ImageDataItem(card.id, card.image, backlogItem.path);
+            imageDataItem = new ImageDataItem(card.key, card.path, backlogItem.path);
         }
         else {
-            imageDataItem = new ImageDataItem(card.id, card.image, null);
+            imageDataItem = new ImageDataItem(card.key, card.path, null);
         }
-        imageDataItem.deck = deck;
-        imageDataItem.indexInDeck = card.index;
-        imageDataItem.originalDims = BoxDims.createFromBox(card.originalsize);
+        imageDataItem.indexInDeck = card.indexInDeck;
+        //imageDataItem.originalDims = BoxDims.createFromBox(card.originalsize);
         //imageDataItem.twelve16
         return imageDataItem;
     };
-    ImageDataManager.prototype.getMatchingBacklogItem = function (id) {
+    ImageDataManager.prototype.getMatchingBacklogItem = function (key) {
         for (var i = 0; i < this.backlog.length; i++) {
             var backlogItem = this.backlog[i];
-            if (backlogItem.id == id) {
+            if (backlogItem.key == key) {
                 return backlogItem;
             }
         }
@@ -109,24 +107,18 @@ var ImageDataManager = (function () {
     return ImageDataManager;
 })();
 var CropManager = (function () {
-    function CropManager(seedData, changeCallback) {
-        this.seedData = seedData;
-        this.changeCallback = changeCallback;
+    function CropManager() {
         this.backlog = [];
         this.completed = [];
         this.imageDataItems = [];
         this.currentItem = null;
-        if (seedData) {
-            this.backlog = seedData.backlog;
-            this.imageDataItems = seedData.imageDataItems;
-        }
     }
     CropManager.prototype.loadBacklogItem = function (backlogItem, target) {
         this.currentItem = null;
         var targetDims = new BoxDims(0, 0, target.width(), target.height());
         for (var i = 0; i < this.imageDataItems.length; i++) {
             var item = this.imageDataItems[i];
-            if (item.id == backlogItem.id) {
+            if (item.key == backlogItem.key) {
                 this.currentItem = item;
             }
         }
@@ -144,8 +136,6 @@ var CropManager = (function () {
         var dm = this;
         img.onload = function () {
             dm.currentItem.originalDims = new BoxDims(0, 0, img.width, img.height);
-            if (dm.changeCallback)
-                dm.changeCallback();
         };
         img.src = target.attr('src');
     };
@@ -170,21 +160,11 @@ var CropManager = (function () {
     };
     CropManager.prototype.setMasterCropOrientation = function (orientation) {
         if (this.activeCropDef) {
-            var cropSet = this.activeCropDef.parent;
-            cropSet.masterCropDef.orientation = orientation;
-            cropSet.altCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
+            //var cropSet = this.activeCropDef.parent;
+            //cropSet.masterCropDef.orientation = orientation;
+            //cropSet.altCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
             this.recalculateCropStates();
         }
-    };
-    CropManager.prototype.getExistingIndexesForDeck = function (deckName) {
-        var existingIndexes = [];
-        for (var i = 0; i < this.imageDataItems.length; i++) {
-            var item = this.imageDataItems[i];
-            if (item.deck && item.deck.name == deckName && item.indexInDeck > -1) {
-                existingIndexes.push(item.indexInDeck);
-            }
-        }
-        return existingIndexes;
     };
     CropManager.createNewImageDataItem = function (backlogItem) {
         var item = new ImageDataItem(backlogItem.key, backlogItem.name, backlogItem.path);

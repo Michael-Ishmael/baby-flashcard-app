@@ -1,1 +1,570 @@
-{"sets": [{"decks": [{"name": "chicken", "soundFolder": "chicken", "images": [{"cropSetDict": null, "twelve16": {"masterCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "twM", "orientation": 0}, "activeDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "twM", "orientation": 0}, "title": "12 / 16", "altCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 1, "key": "twA", "orientation": 1}, "format": 0}, "nine16": {"masterCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "nnM", "orientation": 0}, "activeDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "nnM", "orientation": 0}, "title": "9 / 16", "altCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 1, "key": "nnA", "orientation": 1}, "format": 1}, "key": "chicken1.jpg", "indexInDeck": 4, "path": "chicken1.jpg", "name": "chicken1.jpg"}, {"cropSetDict": null, "twelve16": {"masterCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "twM", "orientation": 0}, "activeDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "twM", "orientation": 0}, "title": "12 / 16", "altCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 1, "key": "twA", "orientation": 1}, "format": 0}, "nine16": {"masterCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "nnM", "orientation": 0}, "activeDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "nnM", "orientation": 0}, "title": "9 / 16", "altCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 1, "key": "nnA", "orientation": 1}, "format": 1}, "key": "chicken1.jpg", "indexInDeck": 2, "path": "chicken1.jpg", "name": "chicken1.jpg"}, {"cropSetDict": null, "twelve16": {"masterCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "twM", "orientation": 0}, "activeDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "twM", "orientation": 0}, "title": "12 / 16", "altCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 1, "key": "twA", "orientation": 1}, "format": 0}, "nine16": {"masterCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "nnM", "orientation": 0}, "activeDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "nnM", "orientation": 0}, "title": "9 / 16", "altCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 1, "key": "nnA", "orientation": 1}, "format": 1}, "key": "chicken1.jpg", "indexInDeck": 3, "path": "chicken1.jpg", "name": "chicken1.jpg"}, {"cropSetDict": null, "twelve16": {"masterCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "twM", "orientation": 0}, "activeDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "twM", "orientation": 0}, "title": "12 / 16", "altCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 1, "key": "twA", "orientation": 1}, "format": 0}, "nine16": {"masterCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "nnM", "orientation": 0}, "activeDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 0, "key": "nnM", "orientation": 0}, "title": "9 / 16", "altCropDef": {"crop": {"y": 0, "x": 0, "w": 100, "h": 100}, "target": 1, "key": "nnA", "orientation": 1}, "format": 1}, "key": "chicken1.jpg", "indexInDeck": 4, "path": "chicken1.jpg", "name": "chicken1.jpg"}], "sounds": [{"path": "chicken/Chicken1.mp3", "name": "Chicken1.mp3"}, {"path": "chicken/Chicken2.mp3", "name": "Chicken2.mp3"}, {"path": "chicken/Chicken3.mp3", "name": "Chicken3.mp3"}, {"path": "chicken/Chicken4.mp3", "name": "Chicken4.mp3"}, {"path": "chicken/Chicken5.mp3", "name": "Chicken5.mp3"}, {"path": "chicken/Chicken6.mp3", "name": "Chicken6.mp3"}], "id": 1, "icon": "../media/deckthumbs/domestic/chickenThumb.png"}, {"name": "cow", "soundFolder": "cow", "images": [], "sounds": [{"path": "cow/Cow1.mp3", "name": "Cow1.mp3"}, {"path": "cow/Cow2.mp3", "name": "Cow2.mp3"}, {"path": "cow/Cow3.mp3", "name": "Cow3.mp3"}, {"path": "cow/Cow4.mp3", "name": "Cow4.mp3"}, {"path": "cow/Cow5.mp3", "name": "Cow5.mp3"}, {"path": "cow/Cow6.mp3", "name": "Cow6.mp3"}], "id": 1, "icon": "../media/deckthumbs/domestic/cowThumb.png"}, {"name": "horse", "soundFolder": "horse", "images": [], "sounds": [{"path": "horse/Horse1.mp3", "name": "Horse1.mp3"}, {"path": "horse/Horse2.mp3", "name": "Horse2.mp3"}, {"path": "horse/Horse3.mp3", "name": "Horse3.mp3"}, {"path": "horse/Horse4.mp3", "name": "Horse4.mp3"}, {"path": "horse/Horse5.mp3", "name": "Horse5.mp3"}, {"path": "horse/Horse6.mp3", "name": "Horse6.mp3"}], "id": 2, "icon": "../media/deckthumbs/domestic/horseThumb.png"}, {"images": [], "icon": "../media/deckthumbs/domestic/dogthumb.png", "id": 1, "name": "dog"}, {"images": [], "icon": "../media/deckthumbs/domestic/dogthumb.png", "id": 1, "name": "donkey"}, {"images": [], "icon": "../media/deckthumbs/domestic/duckthumb.png", "id": 2, "name": "duck"}, {"images": [], "icon": "../media/deckthumbs/domestic/goatthumb.png", "id": 3, "name": "goat"}, {"images": [], "icon": "../media/deckthumbs/domestic/owlthumb.png", "id": 4, "name": "owl"}, {"images": [], "icon": "../media/deckthumbs/domestic/pigthumb.png", "id": 5, "name": "pig"}, {"images": [], "icon": "../media/deckthumbs/domestic/rabbitthumb.png", "id": 6, "name": "rabbit"}, {"images": [], "icon": "../media/deckthumbs/domestic/sheepthumb.png", "id": 7, "name": "sheep"}], "id": 2, "name": "domestic", "icon": "../media/seticons/chickenIcon.gif"}, {"decks": [], "id": 1, "name": "safari", "icon": "../media/seticons/lionIcon.gif"}]}
+{
+  "sets": [
+    {
+      "decks": [
+        {
+          "name": "chicken",
+          "soundFolder": "chicken",
+          "images": [
+            {
+              "cropSetDict": null,
+              "twelve16": {
+                "masterCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "twM",
+                  "orientation": 0
+                },
+                "activeDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "twM",
+                  "orientation": 0
+                },
+                "title": "12 / 16",
+                "altCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 1,
+                  "key": "twA",
+                  "orientation": 1
+                },
+                "format": 0
+              },
+              "nine16": {
+                "masterCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "nnM",
+                  "orientation": 0
+                },
+                "activeDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "nnM",
+                  "orientation": 0
+                },
+                "title": "9 / 16",
+                "altCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 1,
+                  "key": "nnA",
+                  "orientation": 1
+                },
+                "format": 1
+              },
+              "key": "chicken1.jpg",
+              "indexInDeck": 5,
+              "path": "chicken1.jpg",
+              "name": "chicken1.jpg"
+            },
+            {
+              "cropSetDict": null,
+              "twelve16": {
+                "masterCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "twM",
+                  "orientation": 0
+                },
+                "activeDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "twM",
+                  "orientation": 0
+                },
+                "title": "12 / 16",
+                "altCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 1,
+                  "key": "twA",
+                  "orientation": 1
+                },
+                "format": 0
+              },
+              "nine16": {
+                "masterCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "nnM",
+                  "orientation": 0
+                },
+                "activeDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "nnM",
+                  "orientation": 0
+                },
+                "title": "9 / 16",
+                "altCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 1,
+                  "key": "nnA",
+                  "orientation": 1
+                },
+                "format": 1
+              },
+              "key": "chicken1.jpg",
+              "indexInDeck": 2,
+              "path": "chicken1.jpg",
+              "name": "chicken1.jpg"
+            },
+            {
+              "cropSetDict": null,
+              "twelve16": {
+                "masterCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "twM",
+                  "orientation": 0
+                },
+                "activeDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "twM",
+                  "orientation": 0
+                },
+                "title": "12 / 16",
+                "altCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 1,
+                  "key": "twA",
+                  "orientation": 1
+                },
+                "format": 0
+              },
+              "nine16": {
+                "masterCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "nnM",
+                  "orientation": 0
+                },
+                "activeDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "nnM",
+                  "orientation": 0
+                },
+                "title": "9 / 16",
+                "altCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 1,
+                  "key": "nnA",
+                  "orientation": 1
+                },
+                "format": 1
+              },
+              "key": "chicken1.jpg",
+              "indexInDeck": 3,
+              "path": "chicken1.jpg",
+              "name": "chicken1.jpg"
+            },
+            {
+              "cropSetDict": null,
+              "twelve16": {
+                "masterCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "twM",
+                  "orientation": 0
+                },
+                "activeDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "twM",
+                  "orientation": 0
+                },
+                "title": "12 / 16",
+                "altCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 1,
+                  "key": "twA",
+                  "orientation": 1
+                },
+                "format": 0
+              },
+              "nine16": {
+                "masterCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "nnM",
+                  "orientation": 0
+                },
+                "activeDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "nnM",
+                  "orientation": 0
+                },
+                "title": "9 / 16",
+                "altCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 1,
+                  "key": "nnA",
+                  "orientation": 1
+                },
+                "format": 1
+              },
+              "key": "chicken1.jpg",
+              "indexInDeck": 4,
+              "path": "chicken1.jpg",
+              "name": "chicken1.jpg"
+            },
+            {
+              "cropSetDict": null,
+              "twelve16": {
+                "masterCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "twM",
+                  "orientation": 0
+                },
+                "activeDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "twM",
+                  "orientation": 0
+                },
+                "title": "12 / 16",
+                "altCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 1,
+                  "key": "twA",
+                  "orientation": 1
+                },
+                "format": 0
+              },
+              "nine16": {
+                "masterCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "nnM",
+                  "orientation": 0
+                },
+                "activeDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 0,
+                  "key": "nnM",
+                  "orientation": 0
+                },
+                "title": "9 / 16",
+                "altCropDef": {
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 100,
+                    "h": 100
+                  },
+                  "target": 1,
+                  "key": "nnA",
+                  "orientation": 1
+                },
+                "format": 1
+              },
+              "key": "chicken1.jpg",
+              "indexInDeck": 5,
+              "path": "chicken1.jpg",
+              "name": "chicken1.jpg"
+            }
+          ],
+          "sounds": [
+            {
+              "path": "chicken/Chicken1.mp3",
+              "name": "Chicken1.mp3"
+            },
+            {
+              "path": "chicken/Chicken2.mp3",
+              "name": "Chicken2.mp3"
+            },
+            {
+              "path": "chicken/Chicken3.mp3",
+              "name": "Chicken3.mp3"
+            },
+            {
+              "path": "chicken/Chicken4.mp3",
+              "name": "Chicken4.mp3"
+            },
+            {
+              "path": "chicken/Chicken5.mp3",
+              "name": "Chicken5.mp3"
+            },
+            {
+              "path": "chicken/Chicken6.mp3",
+              "name": "Chicken6.mp3"
+            }
+          ],
+          "id": 1,
+          "icon": "../media/deckthumbs/domestic/chickenThumb.png"
+        },
+        {
+          "name": "cow",
+          "soundFolder": "cow",
+          "images": [],
+          "sounds": [
+            {
+              "path": "cow/Cow1.mp3",
+              "name": "Cow1.mp3"
+            },
+            {
+              "path": "cow/Cow2.mp3",
+              "name": "Cow2.mp3"
+            },
+            {
+              "path": "cow/Cow3.mp3",
+              "name": "Cow3.mp3"
+            },
+            {
+              "path": "cow/Cow4.mp3",
+              "name": "Cow4.mp3"
+            },
+            {
+              "path": "cow/Cow5.mp3",
+              "name": "Cow5.mp3"
+            },
+            {
+              "path": "cow/Cow6.mp3",
+              "name": "Cow6.mp3"
+            }
+          ],
+          "id": 1,
+          "icon": "../media/deckthumbs/domestic/cowThumb.png"
+        },
+        {
+          "name": "horse",
+          "soundFolder": "horse",
+          "images": [],
+          "sounds": [
+            {
+              "path": "horse/Horse1.mp3",
+              "name": "Horse1.mp3"
+            },
+            {
+              "path": "horse/Horse2.mp3",
+              "name": "Horse2.mp3"
+            },
+            {
+              "path": "horse/Horse3.mp3",
+              "name": "Horse3.mp3"
+            },
+            {
+              "path": "horse/Horse4.mp3",
+              "name": "Horse4.mp3"
+            },
+            {
+              "path": "horse/Horse5.mp3",
+              "name": "Horse5.mp3"
+            },
+            {
+              "path": "horse/Horse6.mp3",
+              "name": "Horse6.mp3"
+            }
+          ],
+          "id": 2,
+          "icon": "../media/deckthumbs/domestic/horseThumb.png"
+        },
+        {
+          "images": [],
+          "icon": "../media/deckthumbs/domestic/dogthumb.png",
+          "id": 1,
+          "name": "dog"
+        },
+        {
+          "images": [],
+          "icon": "../media/deckthumbs/domestic/dogthumb.png",
+          "id": 1,
+          "name": "donkey"
+        },
+        {
+          "images": [],
+          "icon": "../media/deckthumbs/domestic/duckthumb.png",
+          "id": 2,
+          "name": "duck"
+        },
+        {
+          "images": [],
+          "icon": "../media/deckthumbs/domestic/goatthumb.png",
+          "id": 3,
+          "name": "goat"
+        },
+        {
+          "images": [],
+          "icon": "../media/deckthumbs/domestic/owlthumb.png",
+          "id": 4,
+          "name": "owl"
+        },
+        {
+          "images": [],
+          "icon": "../media/deckthumbs/domestic/pigthumb.png",
+          "id": 5,
+          "name": "pig"
+        },
+        {
+          "images": [],
+          "icon": "../media/deckthumbs/domestic/rabbitthumb.png",
+          "id": 6,
+          "name": "rabbit"
+        },
+        {
+          "images": [],
+          "icon": "../media/deckthumbs/domestic/sheepthumb.png",
+          "id": 7,
+          "name": "sheep"
+        }
+      ],
+      "id": 2,
+      "name": "domestic",
+      "icon": "../media/seticons/chickenIcon.gif"
+    },
+    {
+      "decks": [],
+      "id": 1,
+      "name": "safari",
+      "icon": "../media/seticons/lionIcon.gif"
+    }
+  ]
+}

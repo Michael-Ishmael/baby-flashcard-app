@@ -29,38 +29,38 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
     };
 
     $scope.$on('$viewContentLoaded', function () {
-        if (!imageDataService.currentItem) {
-            var imageId = $routeParams.imageId;
-            var item = imageDataService.getBacklogItem(imageId);
-            if (item) imageDataService.selectBacklogItem(item);
-            $scope.setPreviewPath(imageDataService.currentItem);
-        }
+
+        imageDataService.ready().then(
+            function isReady(){
+
+                if (!imageDataService.currentItem) {
+                    var imageId = $routeParams.imageId;
+                    var item = imageDataService.getBacklogItem(imageId);
+                    if (item) imageDataService.selectBacklogItem(item);
+                    $scope.setPreviewPath(imageDataService.currentItem);
+                }
+
+                $scope.currentItem = imageDataService.currentItem;
+                if(imageDataService.currentDeck){
+                    $scope.selectedDecks.push(imageDataService.currentDeck)
+                }
+                $scope.sets = imageDataService.sets;
+                $scope.selectedSet = imageDataService.currentSet;
+                $scope.decks = set.decks;
+                //var deckIndex = getIndexFromName(decks, deck.name)
+                $scope.selectedDeck = imageDataService.currentDeck;
+                if (!imageDataService.currentItem || imageDataService.currentItem.indexInDeck == -1)
+                    $scope.selectedIndex = 0;
+                else
+                    $scope.selectedIndex = imageDataService.currentItem.indexInDeck;
+
+                $scope.setPreviewPath(imageDataService.currentItem);
+
+            },
+            function failed(){}
+        );
 
 
-        $scope.currentItem = imageDataService.currentItem;
-        if(imageDataService.currentDeck){
-            $scope.selectedDecks.push(imageDataService.currentDeck)
-        }
-        var sets = imageDataService.sets;
-        $scope.sets = sets;
-        var setIndex = -1;
-        if (imageDataService.currentItem && imageDataService.currentItem.deck != null) {
-            var deck = imageDataService.currentItem.deck;
-            setIndex = getIndexFromName(sets, deck.set);
-
-        }
-        if (setIndex == -1) setIndex = 0;
-        var set = sets[setIndex];
-        $scope.selectedSet = set;
-        $scope.decks = set.decks;
-        //var deckIndex = getIndexFromName(decks, deck.name)
-        $scope.selectedDeck = deck;
-        if (!imageDataService.currentItem || imageDataService.currentItem.indexInDeck == -1)
-            $scope.selectedIndex = 0;
-        else
-            $scope.selectedIndex = imageDataService.currentItem.indexInDeck;
-
-        $scope.setPreviewPath(imageDataService.currentItem);
     });
 
     $scope.setPreviewPath = function (item) {
@@ -73,11 +73,11 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
         function (newValue, oldValue) {
             if (newValue && newValue.length) {
                 var deck = newValue[0];
+                $scope.currentDeck = deck;
                 var item = $scope.currentItem;
-                imageDataService.setDeckOnItem(item, deck);
+                $scope.currentDeck.images.push(item);
+                item.indexInDeck = $scope.currentDeck.images.length;
 
-                $scope.selectedDeck = item.deck;
-                $scope.existingDeckCards = imageDataService.getExistingItemsForDeck(deck);
                 $scope.soundsForDeck = deck.sounds.map(function(s){ return{
                     name: s.name,
                     path: '../media/sounds/' + s.path

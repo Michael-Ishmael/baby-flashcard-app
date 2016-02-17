@@ -10,14 +10,13 @@ interface IIdedItem{
 
 class ImageDataManager {
 
-    public backlog:Array<IDataItem> = [];
     public sets:Array<Set> = [];
     public decks:Array<Deck> = [];
     public items:Array<ImageDataItem> = [];
-    public completed:Array<ImageDataItem> = [];
+    public backlog:Array<IDataItem> = [];
 
     public initWithSeedData(data:ISeedData) {
-        this.backlog = data.sBacklog;
+        this.backlog = data.backlog;
         this.loadFromImageHierarchy(data.data)
     }
 
@@ -58,7 +57,6 @@ class ImageDataManager {
         return true;
     }
 
-
     private static removeItemFromDataSet(itemToDelete:any, dataSet:Array<any>){
         var indexToRemove = -1;
         for (var i = 0; i < dataSet.length; i++) {
@@ -69,7 +67,6 @@ class ImageDataManager {
         }
         if(indexToRemove > -1) dataSet.splice(indexToRemove, 1);
     }
-
 
     private static getNextIdForDataSet(dataSet:Array<IIdedItem>){
         var maxId:number = 0;
@@ -82,44 +79,41 @@ class ImageDataManager {
 
     private loadFromImageHierarchy(imageData:IImageData){
         for (var i = 0; i < imageData.sets.length; i++) {
-            var set  = imageData[i];
-            this.sets.push(set.name);
+            var set  = <Set>imageData.sets[i];
+            this.sets.push(set);
             for (var j = 0; j < set.decks.length; j++) {
-                var deck = set.decks[j];
+                var deck = <Deck>set.decks[j];
                 this.decks.push(deck);
 
-                for (var k = 0; k < deck.cards.length; k++) {
-                    var card = deck.cards[k];
+                for (var k = 0; k < deck.images.length; k++) {
+                    var card = deck.images[k];
                     var imageDataItem = this.createImageDataItemFromCard(card);
-                    this.items.push(imageDataItem)
-
+                    this.items.push(imageDataItem);
                 }
             }
-
         }
     }
 
-    private createImageDataItemFromCard(card:IDataCard, deck:IDataDeck):ImageDataItem{
-        var backlogItem = this.getMatchingBacklogItem(card.id);
+    private createImageDataItemFromCard(card:IDataCard):ImageDataItem{
+        var backlogItem = this.getMatchingBacklogItem(card.key);
         var imageDataItem:ImageDataItem;
         if(backlogItem){
-            imageDataItem = new ImageDataItem(card.id, card.image, backlogItem.path)
+            imageDataItem = new ImageDataItem(card.key, card.path, backlogItem.path)
         } else {
-            imageDataItem = new ImageDataItem(card.id, card.image, null)
+            imageDataItem = new ImageDataItem(card.key, card.path, null)
         }
 
-        imageDataItem.deck = deck;
-        imageDataItem.indexInDeck = card.index;
-        imageDataItem.originalDims = BoxDims.createFromBox(card.originalsize);
+        imageDataItem.indexInDeck = card.indexInDeck;
+        //imageDataItem.originalDims = BoxDims.createFromBox(card.originalsize);
         //imageDataItem.twelve16
 
         return imageDataItem;
     }
 
-    private getMatchingBacklogItem(id:number){
+    private getMatchingBacklogItem(key:string){
         for (var i = 0; i < this.backlog.length; i++) {
             var backlogItem = this.backlog[i];
-            if(backlogItem.id == id){
+            if(backlogItem.key == key){
                 return backlogItem;
             }
         }
@@ -137,11 +131,8 @@ class CropManager {
     public currentItem:ImageDataItem = null;
     public activeCropDef:CropDef;
 
-    constructor(private seedData?:SeedData, private changeCallback?:GeneralCallback) {
-        if (seedData) {
-            this.backlog = seedData.backlog;
-            this.imageDataItems = seedData.imageDataItems;
-        }
+    constructor() {
+
     }
 
     public loadBacklogItem(backlogItem:BacklogItem, target:IImageTarget) {
@@ -149,7 +140,7 @@ class CropManager {
         var targetDims = new BoxDims(0, 0, target.width(), target.height());
         for (var i = 0; i < this.imageDataItems.length; i++) {
             var item = this.imageDataItems[i];
-            if (item.id == backlogItem.id) {
+            if (item.key == backlogItem.key) {
                 this.currentItem = item;
             }
         }
@@ -172,8 +163,6 @@ class CropManager {
         var dm = this;
         img.onload = function () {
             dm.currentItem.originalDims = new BoxDims(0, 0, img.width, img.height);
-            if (dm.changeCallback) dm.changeCallback();
-
         };
         img.src = target.attr('src');
     }
@@ -201,24 +190,14 @@ class CropManager {
 
     public setMasterCropOrientation(orientation:Orientation) {
         if (this.activeCropDef) {
-            var cropSet = this.activeCropDef.parent;
-            cropSet.masterCropDef.orientation = orientation;
-            cropSet.altCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
+            //var cropSet = this.activeCropDef.parent;
+            //cropSet.masterCropDef.orientation = orientation;
+            //cropSet.altCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
             this.recalculateCropStates();
         }
 
     }
 
-    public getExistingIndexesForDeck(deckName:string):Array<number> {
-        var existingIndexes:Array<number> = [];
-        for (var i = 0; i < this.imageDataItems.length; i++) {
-            var item = this.imageDataItems[i];
-            if (item.deck && item.deck.name == deckName && item.indexInDeck > -1) {
-                existingIndexes.push(item.indexInDeck);
-            }
-        }
-        return existingIndexes;
-    }
 
     private static createNewImageDataItem(backlogItem:BacklogItem):ImageDataItem {
 

@@ -141,7 +141,6 @@ var Set = (function () {
         this.decks = [];
     }
     Set.prototype.addDeck = function (deck) {
-        deck.parentSet = this;
         this.decks.push(deck);
     };
     return Set;
@@ -159,8 +158,6 @@ var ImageDataItem = (function () {
         this.key = key;
         this.name = name;
         this.path = path;
-        //public deck:IDataDeck;
-        this.indexInDeck = -1;
         this.cropSetDict = null;
     }
     ImageDataItem.prototype.getCropSetDict = function () {
@@ -174,7 +171,7 @@ var ImageDataItem = (function () {
         return this.cropSetDict;
     };
     ImageDataItem.prototype.getStatus = function () {
-        if (this.deck && this.indexInDeck > -1 && this.sound) {
+        if (this.indexInDeck > -1 && this.sound) {
             if (this.originalDims && this.originalDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete())
                 return ItemStatus.completed;
             return ItemStatus.assigned;
