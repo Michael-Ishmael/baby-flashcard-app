@@ -96,6 +96,8 @@ var ImageDataManager = (function () {
     ImageDataManager.prototype.dataFailed = function (message) {
     };
     ImageDataManager.prototype.setCurrentItem = function (backlogItem) {
+        this.currentSet = null;
+        this.currentDeck = null;
         this.currentItem = null;
         for (var i = 0; i < this.sets.length; i++) {
             var set = this.sets[i];

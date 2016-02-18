@@ -147,6 +147,8 @@ class ImageDataManager implements IAsynDataObject {
     };
 
     private setCurrentItem(backlogItem) {
+        this.currentSet = null;
+        this.currentDeck = null;
         this.currentItem = null;
         for (var i = 0; i < this.sets.length; i++) {
             var set = this.sets[i];

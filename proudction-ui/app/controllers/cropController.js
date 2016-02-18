@@ -2,15 +2,11 @@
  * Created by michaeli on 28/01/2016.
  */
 
-app.controller('imgProcController', ['$scope', 'imageDataService', function ($scope, imageCropDataServiceI) {
+app.controller('cropController', ['$scope', 'imageDataService', function ($scope, imageDataService) {
 
-        $scope.currentItem = null;
         $scope.activeCropSet = null;
         $scope.selectedImg = null;
-        $scope.backlog = seedData_1.backlog;
-        $scope.sets = seedData_1.sets;
-        $scope.selectedSet = seedData_1.sets[0];
-        $scope.selectedDeck = null;
+
         $scope.availableIndexes = [];
         $scope.orientation = Orientation.landscape;
         $scope.cropDefIndex = -1;
@@ -25,8 +21,44 @@ app.controller('imgProcController', ['$scope', 'imageDataService', function ($sc
             {id: 4, path:"../media/horse1.jpg", index: 3}
         ];
 
-        var imageCropDataService = new ImageDataManager();
-        var cropFormatter = new CropFormatter('#cropFormatter');
+        $scope.$on('$viewContentLoaded', function () {
+            $scope.selectedDeck = null;
+            $scope.dataChanged = false;
+            imageDataService.ready().then(
+                function isReady(){
+
+                    if (!imageDataService.currentItem) {
+                        var imageId = $routeParams.imageId;
+                        var item = imageDataService.getBacklogItem(imageId);
+                        if (item) imageDataService.selectBacklogItem(item);
+                        //$scope.setPreviewPath(imageDataService.currentItem);
+                    }
+
+                    $scope.backlog = imageDataService.backlog;
+
+                    $scope.currentItem = imageDataService.currentItem;
+
+                    $scope.sets = imageDataService.sets;
+                    $scope.selectedSet = imageDataService.currentSet;
+                    $scope.decks = set.decks;
+                    $scope.selectedDeck = imageDataService.currentDeck;
+                    if(imageDataService.currentDeck) $scope.selectedDecks.push(imageDataService.currentDeck)
+
+                    if (!imageDataService.currentItem || imageDataService.currentItem.indexInDeck == -1)
+                        $scope.selectedIndex = 0;
+                    else
+                        $scope.selectedIndex = imageDataService.currentItem.indexInDeck;
+
+                    $scope.setPreviewPath(imageDataService.currentItem);
+
+                },
+                function failed(){}
+            );
+
+
+        });
+
+
 
 
         $scope.preImageChange = function () {

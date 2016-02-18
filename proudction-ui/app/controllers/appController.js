@@ -34,7 +34,7 @@ app.controller('appController', ['$scope', '$location',  'imageDataService', fun
 
     $scope.$on('wizard:itemAssigned', function (event, data) {
             var view = 'crop';
-            var path = data.id ? view + '/' + data.id : view;
+            var path = data.key ? view + '/' + data.key : view;
             $location.path(path); // path not hash
         }
     );

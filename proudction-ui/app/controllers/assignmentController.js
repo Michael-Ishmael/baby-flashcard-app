@@ -84,13 +84,24 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
         }
     );
 
+    $scope.$watch('currentItem.sound', function(nv, ov){
+        if(nv && nv != ov){
+            $scope.dataChanged = true;
+        }
+    });
+
+    $scope.saveChanges = function(){
+
+        imageDataService.save();
+        $scope.dataChanged = false;
+    };
+
     function checkAddImageToDeck(deck, image){
         if(!(deck && image)) return;
         for (var i = 0; i < deck.images.length; i++) {
             var deckImage = deck.images[i];
             if(deckImage.key == image.key) return;
         }
-
 
         deck.images.push(image);
         image.indexInDeck = deck.images.length;

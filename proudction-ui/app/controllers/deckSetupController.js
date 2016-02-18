@@ -21,26 +21,34 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
         deckParams: null
     };
 
+
     function init() {
+        imageDataService.ready().then(
+            function success(){
+                $scope.ready = imageDataService.ready;
+                $scope.sets = imageDataService.sets;
+                $scope.setIcons = imageDataService.setIcons;
+                $scope.decks = imageDataService.decks;
+                $scope.deckIcons = imageDataService.deckIcons;
+                $scope.soundFolders = imageDataService.soundFolders;
 
-        $scope.ready = imageDataService.ready;
-        $scope.sets = imageDataService.sets;
-        $scope.setIcons = imageDataService.setIcons;
-        $scope.decks = imageDataService.decks;
-        $scope.deckIcons = imageDataService.deckIcons;
-        $scope.soundFolders = imageDataService.soundFolders;
+                $scope.paramholder.setParams = {
+                    collectionType: "set",
+                    iconList: $scope.setIcons,
+                    existingItems: $scope.sets
+                };
 
-        $scope.paramholder.setParams = {
-            collectionType: "set",
-            iconList: $scope.setIcons,
-            existingItems: $scope.sets
-        };
+                $scope.paramholder.deckParams = {
+                    collectionType: "deck",
+                    iconList: $scope.deckIcons,
+                    existingItems: $scope.decks
+                };
+            },
+            function fail(){
 
-        $scope.paramholder.deckParams = {
-            collectionType: "deck",
-            iconList: $scope.deckIcons,
-            existingItems: $scope.decks
-        };
+            }
+        );
+
 
 
     }
@@ -63,6 +71,13 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
             });
         }
     }
+
+    $scope.$watch('currentDeck.soundFolder', function (nv, ov) {
+        if(nv && nv != ov){
+            setupSounds();
+        }
+
+    }, true);
 
     $scope.$watch('sounds|filter:{selected:true}', function (nv) {
         if($scope.currentDeck)
@@ -103,20 +118,26 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
 
     $scope.saveCollectionItem = function (collectionType, add) {
         if(collectionType == 'set'){
-            imageDataService.saveSet($scope.currentSet, add);
+            if(add) imageDataService.addSet($scope.currentSet);
+            imageDataService.save();
         }
         if(collectionType == 'deck'){
-            imageDataService.saveDeck($scope.currentDeck, add ? $scope.currentSet : null);
+            if(add) imageDataService.addDeck($scope.currentDeck, $scope.currentSet);
+            imageDataService.save();
         }
         //init();
     };
 
     $scope.deleteCollectionItem = function(collectionType){
         if(collectionType == 'set'){
-            imageDataService.deleteSet($scope.currentSet);
+            if(imageDataService.deleteSet($scope.currentSet)){
+                imageDataService.save();
+            }
         }
         if(collectionType == 'deck'){
-            imageDataService.deleteDeck($scope.currentDeck, $scope.currentSet);
+            if(imageDataService.deleteDeck($scope.currentDeck, $scope.currentSet)){
+                imageDataService.save();
+            }
 
         }
     };

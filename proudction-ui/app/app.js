@@ -16,7 +16,7 @@ app.config(['$routeProvider',
         }).
         when('/crop/:imageId', {
             templateUrl: 'views/croppingView.html',
-            controller: 'imgProcController'
+            controller: 'cropController'
         }).
         when('/decks', {
             templateUrl: 'views/deckSetupView.html',
