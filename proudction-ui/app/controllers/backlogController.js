@@ -2,7 +2,7 @@
  * Created by michaelishmael on 04/02/2016.
  */
 
-app.controller('backlogController', ['$scope', 'imageDataService', function ($scope, imageDataService) {
+app.controller('backlogController', ['$scope', '$location', 'imageDataService', function ($scope, $location, imageDataService) {
 
 
     function init(){
@@ -28,6 +28,9 @@ app.controller('backlogController', ['$scope', 'imageDataService', function ($sc
 
     $scope.selectImage = function(item){
         imageDataService.selectBacklogItem(item);
+        var view = 'assign';
+        var path = item.key ? view + '/' + item.key : view;
+        $location.path(path); // path not hash
     };
 
 

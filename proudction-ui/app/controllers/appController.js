@@ -25,7 +25,7 @@ app.controller('appController', ['$scope', '$location',  'imageDataService', fun
 
     };
 
-    $scope.$on('wizard:itemSelected', function (event, data) {
+/*    $scope.$on('wizard:itemSelected', function (event, data) {
             var view = 'assign';
             var path = data.key ? view + '/' + data.key : view;
             $location.path(path); // path not hash
@@ -37,7 +37,7 @@ app.controller('appController', ['$scope', '$location',  'imageDataService', fun
             var path = data.key ? view + '/' + data.key : view;
             $location.path(path); // path not hash
         }
-    );
+    );*/
 
 
 }]);

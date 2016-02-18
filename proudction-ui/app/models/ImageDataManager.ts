@@ -66,7 +66,7 @@ class ImageDataManager implements IAsynDataObject {
 
     public save():void {
         var data = {
-            sets: this.sets
+            sets: this.sets.map(function(s){ s.toJsonObj(); })
         };
         this.loader.syncData(data);
     }
@@ -140,10 +140,15 @@ class ImageDataManager implements IAsynDataObject {
         return null;
     };
 
-    public selectBacklogItem = function (item) {
+    public selectBacklogItem = function (item, view) {
 
         this.setCurrentItem(item);
-        this.loader.broadcast('wizard:itemSelected', this.currentItem);
+        if(view == 'crop'){
+            this.loader.broadcast('wizard:itemAssigned', this.currentItem);
+        } else {
+            this.loader.broadcast('wizard:itemSelected', this.currentItem);
+        }
+
     };
 
     private setCurrentItem(backlogItem) {
@@ -159,7 +164,7 @@ class ImageDataManager implements IAsynDataObject {
                     if (image.key == backlogItem.path) {
                         this.currentSet = set;
                         this.currentDeck = deck;
-                        this.currentItem = image;
+                        this.currentItem = ImageDataItem.createFromIDataCard(image);
                         break;
                     }
                 }
@@ -258,11 +263,19 @@ class ImageDataManager implements IAsynDataObject {
         }
 
         imageDataItem.indexInDeck = card.indexInDeck;
+        imageDataItem.originalDims = card.originalDims ?  BoxDims.createFromBox(card.originalDims) : new BoxDims(0, 0, 100, 100) ;
+        imageDataItem.twelve16 = CropSet.fromICropSet(card.twelve16);
+        imageDataItem.nine16 = CropSet.fromICropSet(card.nine16);
+
+
+        //imageDataItem.twelve16 = card.indexInDeck
         //imageDataItem.originalDims = BoxDims.createFromBox(card.originalsize);
         //imageDataItem.twelve16
 
         return imageDataItem;
     }
+
+
 
     private getMatchingBacklogItem(key:string) {
         for (var i = 0; i < this.backlog.length; i++) {
@@ -279,31 +292,18 @@ class ImageDataManager implements IAsynDataObject {
 
 class CropManager {
 
-    public backlog:Array<IDataItem> = [];
-    public completed:Array<ImageDataItem> = [];
-    public imageDataItems:Array<ImageDataItem> = [];
     public currentItem:ImageDataItem = null;
     public activeCropDef:CropDef;
+    public activeCropSet:CropSet;
 
     constructor() {
 
     }
 
-    public loadBacklogItem(backlogItem:BacklogItem, target:IImageTarget) {
-        this.currentItem = null;
-        var targetDims = new BoxDims(0, 0, target.width(), target.height());
-        for (var i = 0; i < this.imageDataItems.length; i++) {
-            var item = this.imageDataItems[i];
-            if (item.key == backlogItem.key) {
-                this.currentItem = item;
-            }
-        }
-        if (this.currentItem == null) {
-            this.currentItem = CropManager.createNewImageDataItem(backlogItem);
-            this.imageDataItems.push(this.currentItem);
-        }
-        this.currentItem.sizingDims = targetDims;
-
+    public loadItem(item:ImageDataItem, target:IImageTarget) {
+        this.currentItem = item;
+        this.currentItem.sizingDims = new BoxDims(0, 0, target.width(), target.height());
+        this.setStateForIndex(0);
         this.recalculateCropStates();
 
         this.finishLoadAsync(target);
@@ -324,41 +324,55 @@ class CropManager {
     public setStateForIndex(index:number) {
         switch (index) {
             case 0:
+                this.activeCropSet = this.currentItem.twelve16;
                 this.activeCropDef = this.currentItem.twelve16.masterCropDef;
                 break;
             case 1:
+                this.activeCropSet = this.currentItem.twelve16;
                 this.activeCropDef = this.currentItem.twelve16.altCropDef;
                 break;
             case 2:
+                this.activeCropSet = this.currentItem.nine16;
                 this.activeCropDef = this.currentItem.nine16.masterCropDef;
                 break;
             case 3:
+                this.activeCropSet = this.currentItem.nine16;
                 this.activeCropDef = this.currentItem.nine16.altCropDef;
                 break;
         }
     }
 
     public clearCropActions() {
+        this.activeCropSet = null;
         this.activeCropDef = null;
     }
 
     public setMasterCropOrientation(orientation:Orientation) {
         if (this.activeCropDef) {
-            //var cropSet = this.activeCropDef.parent;
-            //cropSet.masterCropDef.orientation = orientation;
-            //cropSet.altCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
+            var cropSet = this.getCropSetForDef(this.activeCropDef);
+            cropSet.masterCropDef.orientation = orientation;
+            cropSet.altCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
             this.recalculateCropStates();
         }
 
+    }
+
+    private getCropSetForDef(def:CropDef){
+        if(this.currentItem){
+            if(this.currentItem.twelve16.masterCropDef == def) return this.currentItem.twelve16;
+            if(this.currentItem.twelve16.altCropDef == def) return this.currentItem.twelve16;
+            if(this.currentItem.nine16.masterCropDef == def) return this.currentItem.nine16;
+            if(this.currentItem.nine16.altCropDef == def) return this.currentItem.nine16;
+        }
     }
 
 
     public static createNewImageDataItem(backlogItem:BacklogItem):ImageDataItem {
 
         var item = new ImageDataItem(backlogItem.key, backlogItem.name, backlogItem.path);
-        item.twelve16 = new CropSet(CropFormat.twelve16, new CropDef('twM', CropTarget.master), new CropDef('twA', CropTarget.alt));
-        item.nine16 = new CropSet(CropFormat.nine16, new CropDef('nnM', CropTarget.master), new CropDef('nnA', CropTarget.alt));
-
+        item.originalDims = new BoxDims(0, 0, 100, 100);
+        item.twelve16 = new CropSet(CropFormat.twelve16, new CropDef( CropTarget.master), new CropDef( CropTarget.alt));
+        item.nine16 = new CropSet(CropFormat.nine16, new CropDef(CropTarget.master), new CropDef( CropTarget.alt));
         return item;
 
     }

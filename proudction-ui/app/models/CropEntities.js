@@ -42,15 +42,21 @@ var BoxDims = (function () {
     BoxDims.prototype.hasDims = function () {
         return (this.w - this.x) > 50 && (this.h - this.y) > 50;
     };
+    BoxDims.prototype.toJsonObj = function () {
+        return {
+            x: this.x,
+            y: this.y,
+            w: this.w,
+            h: this.h
+        };
+    };
     BoxDims.createFromBox = function (box) {
         return new BoxDims(box.x, box.y, box.w, box.h);
     };
     return BoxDims;
 })();
 var CropDef = (function () {
-    //parent:CropSet;
-    function CropDef(key, target) {
-        this.key = key;
+    function CropDef(target) {
         this.target = target;
         if (target == CropTarget.master) {
             this.orientation = Orientation.landscape;
@@ -60,6 +66,13 @@ var CropDef = (function () {
         }
         this.crop = new BoxDims(0, 0, 100, 100);
     }
+    //parent:CropSet;
+    CropDef.fromICropDef = function (iCropDef, target) {
+        var def = new CropDef(target);
+        def.orientation = iCropDef.orientation;
+        def.crop = BoxDims.createFromBox(iCropDef.crop);
+        return def;
+    };
     CropDef.prototype.getAspectRatio = function () {
         var shortSide = 12; // this.parent.format == CropFormat.twelve16 ? 12 : 9;
         if (this.orientation == Orientation.portrait) {
@@ -71,6 +84,12 @@ var CropDef = (function () {
     };
     CropDef.prototype.isComplete = function () {
         return this.orientation && this.crop.hasDims();
+    };
+    CropDef.prototype.toJsonObj = function () {
+        return {
+            orientation: this.orientation,
+            crop: this.crop.toJsonObj()
+        };
     };
     return CropDef;
 })();
@@ -84,8 +103,8 @@ var CropSet = (function () {
         //this.altCropDef.parent = this;
         this.title = ImageCropUtils.getCropTitleFromCropFormat(format);
     }
-    CropSet.prototype.isComplete = function () {
-        return this.masterCropDef.isComplete() && this.altCropDef.isComplete();
+    CropSet.fromICropSet = function (iCropSet) {
+        return new CropSet(iCropSet.format, CropDef.fromICropDef(iCropSet.masterCropDef, CropTarget.master), CropDef.fromICropDef(iCropSet.altCropDef, CropTarget.alt));
     };
     CropSet.prototype.setMasterOrientation = function (orientation) {
         this.masterCropDef.orientation = orientation;
@@ -93,6 +112,17 @@ var CropSet = (function () {
     };
     CropSet.prototype.switchToAltCropDef = function () {
         this.altCropDef.crop = ImageCropUtils.getBoxBounds(this.altCropDef.orientation, this.format, this.masterCropDef.crop);
+    };
+    CropSet.prototype.isComplete = function () {
+        return this.masterCropDef.isComplete() && this.altCropDef.isComplete() && (this.title && this.title.length > 0);
+    };
+    CropSet.prototype.toJsonObj = function () {
+        return {
+            format: this.format,
+            title: this.title,
+            masterCropDef: this.masterCropDef.toJsonObj(),
+            altCropDef: this.altCropDef.toJsonObj()
+        };
     };
     return CropSet;
 })();
@@ -139,6 +169,14 @@ var Set = (function () {
         this.id = id;
         this.name = name;
         this.decks = [];
+        this.toJsonObj = function () {
+            return {
+                id: this.id,
+                name: this.name,
+                icon: this.icon,
+                decks: this.decks.map(function (d) { return d.toJsonObj(); })
+            };
+        };
     }
     Set.prototype.addDeck = function (deck) {
         this.decks.push(deck);
@@ -150,6 +188,15 @@ var Deck = (function () {
         this.id = id;
         this.name = name;
         this.images = [];
+        this.toJsonObj = function () {
+            return {
+                id: this.id,
+                name: this.name,
+                icon: this.icon,
+                sounds: this.sounds,
+                images: this.images.map(function (i) { return i.toJsonObj(); })
+            };
+        };
     }
     return Deck;
 })();
@@ -158,18 +205,29 @@ var ImageDataItem = (function () {
         this.key = key;
         this.name = name;
         this.path = path;
-        this.cropSetDict = null;
     }
-    ImageDataItem.prototype.getCropSetDict = function () {
-        if (!this.cropSetDict) {
-            this.cropSetDict = {};
-            this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
-            this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
-            this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
-            this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
-        }
-        return this.cropSetDict;
+    ImageDataItem.createFromIDataCard = function (iDataCard) {
+        var img = new ImageDataItem(iDataCard.key, iDataCard.name, iDataCard.path);
+        img.sound = iDataCard.sound;
+        img.originalDims = iDataCard.originalDims ? BoxDims.createFromBox(iDataCard.originalDims) : new BoxDims(0, 0, 100, 100);
+        img.twelve16 = CropSet.fromICropSet(iDataCard.twelve16);
+        img.nine16 = CropSet.fromICropSet(iDataCard.nine16);
+        return img;
     };
+    /*    private cropSetDict:{ [id:string]:CropDef } = null;
+    
+        public getCropSetDict():{ [id:string]:CropDef}{
+    
+            if(!this.cropSetDict) {
+                this.cropSetDict = {};
+                this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
+                this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
+                this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
+                this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
+            }
+    
+            return this.cropSetDict;
+        }*/
     ImageDataItem.prototype.getStatus = function () {
         if (this.indexInDeck > -1 && this.sound) {
             if (this.originalDims && this.originalDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete())

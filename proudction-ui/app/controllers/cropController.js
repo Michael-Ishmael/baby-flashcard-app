@@ -2,7 +2,7 @@
  * Created by michaeli on 28/01/2016.
  */
 
-app.controller('cropController', ['$scope', 'imageDataService', function ($scope, imageDataService) {
+app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', function ($scope, $routeParams, imageDataService) {
 
         $scope.activeCropSet = null;
         $scope.selectedImg = null;
@@ -12,14 +12,9 @@ app.controller('cropController', ['$scope', 'imageDataService', function ($scope
         $scope.cropDefIndex = -1;
         $scope.inPreview = false;
         $scope.imageSet = false;
-        $scope.doneAssignment = false;
 
-        $scope.existingDeckCards = [
-            {id: 1, path:"../media/donkey1.jpg", index: 0},
-            {id: 2, path:"../media/cow3.jpg", index: 1},
-            {id: 3, path:"../media/chicken1.jpg", index: 2},
-            {id: 4, path:"../media/horse1.jpg", index: 3}
-        ];
+        var cropManager = new CropManager();
+        var cropFormatter = new CropFormatter('#cropFormatter');
 
         $scope.$on('$viewContentLoaded', function () {
             $scope.selectedDeck = null;
@@ -30,26 +25,17 @@ app.controller('cropController', ['$scope', 'imageDataService', function ($scope
                     if (!imageDataService.currentItem) {
                         var imageId = $routeParams.imageId;
                         var item = imageDataService.getBacklogItem(imageId);
-                        if (item) imageDataService.selectBacklogItem(item);
+                        if (item) imageDataService.selectBacklogItem(item, 'crop');
                         //$scope.setPreviewPath(imageDataService.currentItem);
                     }
-
-                    $scope.backlog = imageDataService.backlog;
 
                     $scope.currentItem = imageDataService.currentItem;
 
                     $scope.sets = imageDataService.sets;
                     $scope.selectedSet = imageDataService.currentSet;
-                    $scope.decks = set.decks;
+                    $scope.decks = imageDataService.currentSet.decks;
                     $scope.selectedDeck = imageDataService.currentDeck;
-                    if(imageDataService.currentDeck) $scope.selectedDecks.push(imageDataService.currentDeck)
-
-                    if (!imageDataService.currentItem || imageDataService.currentItem.indexInDeck == -1)
-                        $scope.selectedIndex = 0;
-                    else
-                        $scope.selectedIndex = imageDataService.currentItem.indexInDeck;
-
-                    $scope.setPreviewPath(imageDataService.currentItem);
+                    //jCropBox.attr('src', '../media/backlog/path' + imageDataService.path)
 
                 },
                 function failed(){}
@@ -57,9 +43,6 @@ app.controller('cropController', ['$scope', 'imageDataService', function ($scope
 
 
         });
-
-
-
 
         $scope.preImageChange = function () {
 
@@ -71,70 +54,31 @@ app.controller('cropController', ['$scope', 'imageDataService', function ($scope
 
         jCropBox.load(function () {
 
-            if (!$scope.selectedImg) return;
-            $scope.imageSet = true;
-            imageCropDataService.loadBacklogItem($scope.selectedImg[0], jCropBox);
-            $scope.currentItem = imageCropDataService.currentItem;
-            $scope.$digest();
+            if (!imageDataService.currentItem) return;
+            cropManager.loadItem(imageDataService.currentItem, jCropBox);
+            $scope.activeCropSet = cropManager.activeCropSet;
+            $scope.activeCropDef = cropManager.activeCropDef;
             $('#imageName').select();
         });
 
 
         $scope.$watch(
-            'selectedDeck',
-            function (newValue, oldValue) {
-                if (newValue == oldValue || newValue == null || $scope.currentItem == null) return;
-                var existingIndexes = imageCropDataService.getExistingIndexesForDeck(newValue);
-                if (existingIndexes.length) {
-                    existingIndexes.sort();
-                    var max = existingIndexes[existingIndexes.length - 1];
-                    existingIndexes.push(max + 1);
-                    $scope.availableIndexes = existingIndexes;
-                } else {
-                    $scope.availableIndexes = [0];
-                }
-            },
-            true
-        );
-
-        $scope.setDeck = function(selectedIndex){
-            if ( $scope.currentItem == null) return;
-            $scope.currentItem.deck = new Deck($scope.selectedSet.name, $scope.selectedDeck);
-            $scope.currentItem.indexInDeck = selectedIndex;
-            $scope.doneAssignment = true;
-        }   ;
-
-        $scope.$watch(
             'orientation',
             function (newValue, oldValue) {
                 if (newValue == oldValue) return;
-                imageCropDataService.setMasterCropOrientation(newValue);
+                cropManager.setMasterCropOrientation(newValue);
                 cropFormatter.clear();
-                cropFormatter.setCrop(imageCropDataService.activeCropDef)
+                cropFormatter.setCrop(cropManager.activeCropDef)
             },
             true
         );
 
-        $scope.$watch(
-            'currentItem'
-            , function (newValue, oldValue) {
-                if (newValue == oldValue) return;
-                $scope.cropDefIndex = -1;
-                $scope.doNextCropAction();
-
-
-            }
-        );
-
-
         $scope.getImagePath = function () {
 
-            if (!$scope.selectedImg) {
+            if (!$scope.currentItem) {
                 return "placeholder.gif";
             }
-            var imgPath = "../media/" + $scope.selectedImg[0].path;
-
-            return imgPath;
+            return "../media/backlog/" + $scope.currentItem.path;
         };
 
 
@@ -151,10 +95,10 @@ app.controller('cropController', ['$scope', 'imageDataService', function ($scope
         };
 
         function setStateForIndex() {
-            imageCropDataService.setStateForIndex($scope.cropDefIndex);
-            if (imageCropDataService.activeCropDef) {
-                cropFormatter.setCrop(imageCropDataService.activeCropDef);
-                $scope.activeCropSet = imageCropDataService.activeCropDef.parent;
+            cropManager.setStateForIndex($scope.cropDefIndex);
+            if (cropManager.activeCropDef) {
+                cropFormatter.setCrop(cropManager.activeCropDef);
+                $scope.activeCropSet = cropManager.activeCropSet;
                 $scope.orientation = $scope.activeCropSet.masterCropDef.orientation;
             }
         }
@@ -162,12 +106,10 @@ app.controller('cropController', ['$scope', 'imageDataService', function ($scope
         $scope.cancelCropAction = function () {
             $scope.inPreview = true;
             $scope.previewCrop();
-            imageCropDataService.clearCropActions();
+            cropManager.clearCropActions();
             cropFormatter.clear();
             $scope.cropDefIndex = -1;
             $scope.doNextCropAction();
-
-
         };
 
         $scope.previewCrop = function () {

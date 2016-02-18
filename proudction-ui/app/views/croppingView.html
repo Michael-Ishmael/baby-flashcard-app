@@ -1,51 +1,7 @@
-<div class="row" ng-controller="imgProcController">
+<div class="row" ng-controller="cropController">
     <div class="col-md-3">
 
         <form action="" method="post">
-
-            <div class="form-group">
-                <label for="backlog" class="control-label">Backlog:</label>
-                <select id="backlog" name="backlog" multiple="multiple" class="form-control"
-                        ng-class="{'tall-list-box':!imageSet}"
-                        ng-options="img as img.path for img in backlog" ng-model="selectedImg"
-                        ng-change="preImageChange()">
-                </select>
-            </div>
-
-            <div class="panel panel-default" id="assignment" ng-show="imageSet">
-
-                <div class="panel-heading">
-                    <h3 class="panel-title">Assign Image
-                        <a class="pull-right pointer-cursor " ng-show="doneAssignment" ng-click="doneAssignment = false"><i class="fa fa-chevron-down"></i></a>
-                    </h3>
-                </div>
-                <div class="panel-body" ng-class="{'collapse':doneAssignment}">
-                    <div class="form-group">
-                        <label for="set" class="control-label">Deck:</label>
-                        <select id="set" name="set" class="form-control"
-                                ng-options="set as set.name for set in sets" ng-model="selectedSet">
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="deck" class="control-label">Deck:</label>
-                        <select id="deck" name="deck" multiple="multiple" class="form-control"
-                                ng-options="deck as deck for deck in selectedSet.decks" ng-model="selectedDeck">
-                        </select>
-                    </div>
-
-                    <div class="form-group" ng-show="selectedDeck" ng-cloak>
-                        <ul ui-sortable class="list-group" ng-model="existingDeckCards">
-                            <li class="list-group-item pointer-cursor" ng-repeat="card in existingDeckCards" id="{{ card.id }}">
-                                <span class="badge">{{ card.index }}</span>
-                                <img class="list-thumbnail" src="{{ ::card.path }}" />
-                                {{ card.path }}</li>
-                        </ul>
-                    </div>
-                </div>
-
-
-            </div>
 
             <div id="cropTools" ng-show="activeCropSet != null">
                 <div class="panel panel-default" id="cropWizard">

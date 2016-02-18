@@ -2,7 +2,8 @@
  * Created by michaelishmael on 04/02/2016.
  */
 
-app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataService', function ($scope, $routeParams, imageDataService) {
+app.controller('assignmentController', ['$scope', '$routeParams', '$location', 'imageDataService',
+        function ($scope, $routeParams, $location, imageDataService) {
 
 
     function init() {
@@ -138,7 +139,10 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
     };
 
     $scope.moveNext = function(){
-        $scope.$emit('wizard:itemAssigned', imageDataService.currentItem);
+        var view = 'crop';
+        var path = $scope.currentItem ? view + '/' + $scope.currentItem .key : view;
+        $location.path(path); // path not hash
+
     };
 
     init();
