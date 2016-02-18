@@ -4,19 +4,27 @@
 
 app.controller('backlogController', ['$scope', 'imageDataService', function ($scope, imageDataService) {
 
-    $scope.backlog = [];
-    $scope.ready = false;
 
     function init(){
         $scope.ready = imageDataService.ready;
     }
 
 
-    $scope.$on('wizard:ready', function (event, data) {
-            $scope.ready = true;
-            $scope.backlog = data.backlog;
-        }
-    );
+    $scope.$on('$viewContentLoaded', function () {
+
+        imageDataService.ready().then(
+            function isReady(){
+
+                $scope.backlog = imageDataService.backlog;
+                $scope.ready = false;
+
+
+            },
+            function failed(){}
+        );
+
+
+    });
 
     $scope.selectImage = function(item){
         imageDataService.selectBacklogItem(item);

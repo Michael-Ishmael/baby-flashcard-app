@@ -3,15 +3,122 @@
  * Created by scorpio on 01/02/2016.
  */
 var ImageDataManager = (function () {
-    function ImageDataManager() {
+    function ImageDataManager(loader) {
+        this.loaded = false;
+        this.setIcons = [];
+        this.deckIcons = [];
+        this.sounds = [];
+        this.soundFolders = [];
+        this.currentItem = null;
+        this.currentDeck = null;
+        this.currentSet = null;
         this.sets = [];
         this.decks = [];
         this.items = [];
         this.backlog = [];
+        this.initialised = false;
+        this.loader = null;
+        this.getBacklogItem = function (itemKey) {
+            for (var i = 0; i < this.backlog.length; i++) {
+                var item = this.backlog[i];
+                if (item.key == itemKey)
+                    return item;
+            }
+            return null;
+        };
+        this.selectBacklogItem = function (item) {
+            this.setCurrentItem(item);
+            this.loader.broadcast('wizard:itemSelected', this.currentItem);
+        };
+        this.loader = loader;
+        this.init();
     }
-    ImageDataManager.prototype.initWithSeedData = function (data) {
-        this.backlog = data.backlog;
-        this.loadFromImageHierarchy(data.data);
+    ImageDataManager.prototype.init = function () {
+        if (this.loader) {
+            var self = this;
+            this.loader.loadData(function (responses) {
+                self.dataLoaded(responses);
+            }, function (response) {
+                self.dataFailed(response);
+            });
+            this.initialised = true;
+        }
+    };
+    ImageDataManager.prototype.save = function () {
+        var data = {
+            sets: this.sets
+        };
+        this.loader.syncData(data);
+    };
+    ImageDataManager.prototype.ready = function () {
+        return this.loader.ready(this);
+    };
+    ImageDataManager.prototype.dataLoaded = function (responses) {
+        var resourceData = responses[0].data;
+        var applicationData = responses[1].data;
+        this.initWithData(resourceData, applicationData);
+        this.loaded = true;
+    };
+    ImageDataManager.prototype.initWithData = function (resourceData, applicationData) {
+        this.setIcons = resourceData.setIcons.map(function (i) {
+            return {
+                name: i.name,
+                path: '../media/seticons/' + i.path
+            };
+        });
+        this.deckIcons = resourceData.deckIcons.map(function (i) {
+            return {
+                name: i.name,
+                path: '../media/deckthumbs/' + i.path
+            };
+        });
+        this.soundFolders = [];
+        var foundSubs = {};
+        for (var i = 0; i < resourceData.sounds.length; i++) {
+            var sound = resourceData.sounds[i];
+            var subFolder = sound.subFolder;
+            if (!foundSubs.hasOwnProperty(subFolder)) {
+                this.soundFolders.push(subFolder);
+                foundSubs[subFolder] = subFolder;
+            }
+        }
+        this.sounds = resourceData.sounds;
+        this.backlog = resourceData.backlog.map(function (i) {
+            return {
+                name: i.name,
+                path: i.path,
+                displayPath: '../media/backlog/' + i.path,
+                key: i.path
+            };
+        });
+        this.loadFromImageHierarchy(applicationData);
+    };
+    ImageDataManager.prototype.dataFailed = function (message) {
+    };
+    ImageDataManager.prototype.setCurrentItem = function (backlogItem) {
+        this.currentItem = null;
+        for (var i = 0; i < this.sets.length; i++) {
+            var set = this.sets[i];
+            for (var j = 0; j < this.decks.length; j++) {
+                var deck = this.decks[j];
+                for (var k = 0; k < deck.images.length; k++) {
+                    var image = deck.images[k];
+                    if (image.key == backlogItem.path) {
+                        this.currentSet = set;
+                        this.currentDeck = deck;
+                        this.currentItem = image;
+                        break;
+                    }
+                }
+                if (this.currentItem)
+                    break;
+            }
+            if (this.currentItem)
+                break;
+        }
+        if (this.currentItem == null) {
+            this.currentItem = CropManager.createNewImageDataItem(backlogItem);
+        }
     };
     ImageDataManager.prototype.createSet = function (setName) {
         var newSetId = ImageDataManager.getNextIdForDataSet(this.sets);

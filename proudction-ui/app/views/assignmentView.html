@@ -36,10 +36,10 @@
                     </div>
 
                     <div class="form-group" ng-show="selectedDeck" ng-cloak>
-                        <ul ui-sortable="sortableOptions" class="list-group" ng-model="existingDeckCards">
-                            <li class="list-group-item pointer-cursor" ng-repeat="card in existingDeckCards" id="{{ card.id }}">
-                                <span class="badge">{{ card.index }}</span>
-                                <img class="list-thumbnail" ng-src="{{ ::card.displayPath }}" ng-click="setPreviewPath(card)" />
+                        <ul ui-sortable="sortableOptions" class="list-group" ng-model="selectedDeck.images">
+                            <li class="list-group-item pointer-cursor" ng-repeat="card in selectedDeck.images" id="{{ card.id }}">
+                                <span class="badge">{{ card.indexInDeck }}</span>
+                                <img class="list-thumbnail" ng-src="{{ getImagePath(card.path) }}" ng-click="setPreviewPath(card)" />
                                 {{ card.displayPath }}</li>
                         </ul>
                     </div>
@@ -62,12 +62,12 @@
 
         <div class="sound-previews">
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="sound in soundsForDeck">
-                    <audio controls ng-src="{{sound.path}}" type="audio/mpeg" >
+                <li class="list-group-item" ng-repeat="sound in selectedDeck.sounds">
+                    <audio controls ng-src="{{ getSoundPath(sound.path) }}" type="audio/mpeg" >
                         Your browser does not support audio
                     </audio>
                     {{ sound.name }}
-                    <input type="radio" name="selectedSound" ng-value="sound.path" ng-model="selectedData.selectedSound" />
+                    <input type="radio" name="selectedSound" ng-value="sound.path" ng-model="currentItem.sound" />
                 </li>
             </ul>
 

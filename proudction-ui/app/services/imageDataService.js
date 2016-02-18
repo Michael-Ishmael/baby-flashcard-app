@@ -4,6 +4,62 @@
 
 app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', function ($rootScope, $http, $q, $timeout) {
 
+    var loader = {
+        loadData: function (resolve, reject) {
+
+            var resourcePromise = $http({
+                method: 'GET',
+                url: 'http://localhost:8000/imageprocessor/resources'
+            });
+
+            var dataPromise = $http({
+                method: 'GET',
+                url: 'http://localhost:8000/imageprocessor/'
+            });
+
+            $q.all([resourcePromise, dataPromise]).then(
+                function successCallback(responses) {
+                    if (resolve) resolve(responses);
+                },
+                function errorCallback(response) {
+                    if (reject) reject(response);
+                });
+
+
+        },
+        syncData: function (data) {
+
+            $http.post('http://localhost:8000/imageprocessor/update', data).then(function (response) {
+            }, function (response) {
+
+            });
+
+        },
+        ready: function (dataObj) {
+            return $q(function (resolve, reject) {
+                if (dataObj.loaded) {
+                    resolve();
+                } else {
+                    var interval = setInterval(function () {
+                        if (dataObj.loaded) {
+                            clearInterval(interval);
+                            resolve();
+                        }
+
+                    }, 100)
+                }
+            });
+        },
+        broadcast: function(message, data){
+            $timeout(function () {
+                $rootScope.$broadcast(message, data);
+            }, 100);
+        }
+    };
+
+    return new ImageDataManager(loader);
+
+
     var self = {};
     self.wizardIndex = 0;
 
@@ -20,41 +76,6 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
     self.loaded = false;
 
     self.data = {};
-
-    function loadData(resolve, reject) {
-
-        var resourcePromise = $http({
-            method: 'GET',
-            url: 'http://localhost:8000/imageprocessor/resources'
-        });
-
-        var dataPromise = $http({
-            method: 'GET',
-            url: 'http://localhost:8000/imageprocessor/'
-        });
-
-        $q.all([resourcePromise, dataPromise]).then(
-            function successCallback(repsonses) {
-                var resourceData = repsonses[0].data;
-                var applicationData = repsonses[1].data;
-                initWithData(resourceData, applicationData);
-                self.loaded = true;
-                if(resolve) resolve(true);
-                /*                $timeout(function () {
-                 $rootScope.$broadcast('wizard:ready', {
-                 backlog: self.backlog,
-                 data: data
-                 }
-                 );
-                 }, 100);*/
-
-            },
-            function errorCallback(response) {
-                if(reject) reject(response);
-            });
-
-
-    }
 
     function initWithData(resourceData, applicationData) {
         self.setIcons = resourceData.setIcons.map(
@@ -106,37 +127,11 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
 
     }
 
-    function syncData() {
-        var data = {
-            sets: self.imageDataManger.sets
-        };
-        $http.post('http://localhost:8000/imageprocessor/update', data).then(function (response) {
-        }, function (response) {
-
-        });
-
-    }
 
     function init() {
         loadData();
     }
 
-    self.ready = function () {
-        return $q(function (resolve, reject) {
-            if (self.loaded) {
-                resolve(self);
-            } else {
-                var interval =  setInterval(function(){
-                    if(self.loaded){
-                        clearInterval(interval)
-                        resolve(self);
-
-                    }
-
-                }, 100)
-            }
-        });
-    };
 
     self.createSet = function (setName) {
         return self.imageDataManger.createSet(setName)
@@ -208,7 +203,6 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
 
         if (self.currentItem == null) {
             self.currentItem = CropManager.createNewImageDataItem(backlogItem);
-            self.imageDataItems.push(self.currentItem);
         }
     }
 
@@ -216,79 +210,3 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
 
     return self;
 }]);
-
-
-var seedData_1 = {
-    backlog: [
-        {id: 1, path: "donkey1.jpg"},
-        {id: 2, path: "cow3.jpg"},
-        {id: 3, path: "chicken1.jpg"},
-        {id: 4, path: "horse1.jpg"},
-        {id: 5, path: "cow2.jpg"}
-    ],
-    sets: [
-        {
-            name: 'domestic',
-            decks: [
-                'sheep', 'goat', 'chicken',
-                'owl', 'cow', 'cat',
-                'horse', 'pig', 'donkey',
-                'rabbit', 'dog', 'duck'
-            ]
-        }
-    ],
-    sounds: {
-        'chicken': [
-            'Chicken1.mp3',
-            'Chicken2.mp3',
-            'Chicken3.mp3',
-            'Chicken4.mp3',
-            'Chicken5.mp3',
-            'Chicken6.mp3'
-        ],
-        'cow': [
-            'Cow1.mp3',
-            'Cow2.mp3',
-            'Cow3.mp3',
-            'Cow4.mp3',
-            'Cow5.mp3',
-            'Cow6.mp3'
-        ],
-        'horse': [
-            'Horse1.mp3',
-            'Horse2.mp3',
-            'Horse3.mp3',
-            'Horse4.mp3',
-            'Horse5.mp3',
-            'Horse6.mp3'
-        ]
-    },
-    imageDataItems: [
-        {
-            id: 1,
-            original: 'crit1.png',
-            name: 'Cow',
-            twelve16: {
-                master: {
-                    orientation: "landscape",
-                    crop: [0, 0, 1, 1]
-                },
-                alt: {
-                    orientation: "portrait",
-                    crop: [0, 0, 1, 1]
-                }
-            },
-            nine16: {
-                master: {
-                    orientation: "landscape",
-                    crop: [0, 0, 1, 1]
-                },
-                alt: {
-                    orientation: "portrait",
-                    crop: [0, 0, 1, 1]
-                }
-            }
-
-        }
-    ]
-};

@@ -9,18 +9,22 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
 
     }
 
-    $scope.selectedData = {};
-    $scope.selectedDecks = [];
 
     $scope.getImagePath = function (seedPath) {
+        if(!seedPath)  return "mask.png";
         return '../media/backlog/' + seedPath;
+    };
+
+    $scope.getSoundPath = function (seedPath) {
+        if(!seedPath)  return "#";
+        return '../media/sounds/' + seedPath;
     };
 
 
     $scope.sortableOptions = {
 
         stop: function (e, ui) {
-            var deckItems = $scope.existingDeckCards;
+            var deckItems = $scope.selectedDeck.images;
             for (var i = 0; i < deckItems.length; i++) {
                 var item = deckItems[i];
                 item.indexInDeck = i;
@@ -29,7 +33,8 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
     };
 
     $scope.$on('$viewContentLoaded', function () {
-
+        $scope.selectedDecks = [];
+        $scope.dataChanged = false;
         imageDataService.ready().then(
             function isReady(){
 
@@ -41,14 +46,13 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
                 }
 
                 $scope.currentItem = imageDataService.currentItem;
-                if(imageDataService.currentDeck){
-                    $scope.selectedDecks.push(imageDataService.currentDeck)
-                }
+
                 $scope.sets = imageDataService.sets;
                 $scope.selectedSet = imageDataService.currentSet;
                 $scope.decks = set.decks;
-                //var deckIndex = getIndexFromName(decks, deck.name)
                 $scope.selectedDeck = imageDataService.currentDeck;
+                if(imageDataService.currentDeck) $scope.selectedDecks.push(imageDataService.currentDeck)
+
                 if (!imageDataService.currentItem || imageDataService.currentItem.indexInDeck == -1)
                     $scope.selectedIndex = 0;
                 else
@@ -73,18 +77,39 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
         function (newValue, oldValue) {
             if (newValue && newValue.length) {
                 var deck = newValue[0];
-                $scope.currentDeck = deck;
+                $scope.selectedDeck = deck;
                 var item = $scope.currentItem;
-                $scope.currentDeck.images.push(item);
-                item.indexInDeck = $scope.currentDeck.images.length;
-
-                $scope.soundsForDeck = deck.sounds.map(function(s){ return{
-                    name: s.name,
-                    path: '../media/sounds/' + s.path
-                } }); // imageDataService.getSoundsForDeck(deck);
+                checkAddImageToDeck(deck, item);
             }
         }
     );
+
+    function checkAddImageToDeck(deck, image){
+        if(!(deck && image)) return;
+        for (var i = 0; i < deck.images.length; i++) {
+            var deckImage = deck.images[i];
+            if(deckImage.key == image.key) return;
+        }
+
+
+        deck.images.push(image);
+        image.indexInDeck = deck.images.length;
+        $scope.dataChanged = true;
+    }
+
+    function removeImageFromDeck(deck, image){
+        var indexFound = -1;
+        for (var i = 0; i < deck.images.length; i++) {
+            var deckImage = deck.images[i];
+            if(deckImage.key == image.key){
+                indexFound = i;
+                break;
+            }
+        }
+        if(indexFound > -1){
+            deck.images.splice(indexFound, 1);
+        }
+    }
 
     function getIndexFromName(arr, name) {
         for (var i = 0; i < arr.length; i++) {
@@ -98,7 +123,7 @@ app.controller('assignmentController', ['$scope', '$routeParams', 'imageDataServ
 
     $scope.itemComplete = function () {
         var item = $scope.currentItem;
-        return item && item.deck && item.indexInDeck > -1
+        return item && item.sound && item.indexInDeck > -1
     };
 
     $scope.moveNext = function(){

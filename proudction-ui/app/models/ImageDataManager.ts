@@ -3,83 +3,235 @@
  * Created by scorpio on 01/02/2016.
  */
 
-interface IIdedItem{
+interface IIdedItem {
     id: number;
 }
+interface IFileItem {
+    name: string;
+    path: string;
+    subFolder: string;
+}
 
+interface IPromise {
+    then(success:(data:any) => void, fail:(failMessage:any) => void):void;
+}
 
-class ImageDataManager {
+interface IAsynDataObject {
+    loaded: boolean;
+}
+
+interface IDataLoader {
+    loadData(success:(data:any) => void, fail:(failMessage:any) => void);
+    syncData(data:any);
+    ready(dataObj:IAsynDataObject):IPromise;
+    broadcast(message:string, data:any):void;
+}
+
+class ImageDataManager implements IAsynDataObject {
+
+    public loaded:boolean = false;
+    public setIcons:Array<IFileItem> = [];
+    public deckIcons:Array<IFileItem> = [];
+    public sounds:Array<IFileItem> = [];
+    public soundFolders:Array<string> = [];
+
+    public currentItem:ImageDataItem = null;
+    public currentDeck:Deck = null;
+    public currentSet:Set = null;
 
     public sets:Array<Set> = [];
     public decks:Array<Deck> = [];
     public items:Array<ImageDataItem> = [];
     public backlog:Array<IDataItem> = [];
 
-    public initWithSeedData(data:ISeedData) {
-        this.backlog = data.backlog;
-        this.loadFromImageHierarchy(data.data)
+    private initialised:boolean = false;
+    private loader:IDataLoader = null;
+
+    constructor(loader:IDataLoader) {
+        this.loader = loader;
+        this.init();
     }
 
-    public createSet(setName:string):Set{
+    private init():void {
+        if (this.loader) {
+            var self = this;
+            this.loader.loadData(function (responses) {
+                self.dataLoaded(responses);
+            }, function (response) {
+                self.dataFailed(response);
+            });
+            this.initialised = true;
+        }
+    }
+
+    public save():void {
+        var data = {
+            sets: this.sets
+        };
+        this.loader.syncData(data);
+    }
+
+    public ready():IPromise {
+        return this.loader.ready(this);
+    }
+
+    private dataLoaded(responses:Array<any>):void {
+
+        var resourceData = responses[0].data;
+        var applicationData = responses[1].data;
+        this.initWithData(resourceData, applicationData);
+
+        this.loaded = true;
+    }
+
+    private initWithData(resourceData, applicationData):void {
+        this.setIcons = resourceData.setIcons.map(
+            function (i) {
+                return {
+                    name: i.name,
+                    path: '../media/seticons/' + i.path
+                }
+            }
+        );
+
+        this.deckIcons = resourceData.deckIcons.map(
+            function (i) {
+                return {
+                    name: i.name,
+                    path: '../media/deckthumbs/' + i.path
+                }
+            }
+        );
+
+        this.soundFolders = [];
+        var foundSubs = {};
+        for (var i = 0; i < resourceData.sounds.length; i++) {
+            var sound = resourceData.sounds[i];
+            var subFolder = sound.subFolder;
+            if (!foundSubs.hasOwnProperty(subFolder)) {
+                this.soundFolders.push(subFolder);
+                foundSubs[subFolder] = subFolder;
+            }
+        }
+
+        this.sounds = resourceData.sounds;
+
+        this.backlog = resourceData.backlog.map(function (i) {
+            return {
+                name: i.name,
+                path: i.path,
+                displayPath: '../media/backlog/' + i.path,
+                key: i.path
+            }
+        });
+
+        this.loadFromImageHierarchy(applicationData)
+    }
+
+    private dataFailed(message:any):void {
+
+    }
+
+    public getBacklogItem = function (itemKey) {
+        for (var i = 0; i < this.backlog.length; i++) {
+            var item = this.backlog[i];
+            if (item.key == itemKey) return item;
+        }
+        return null;
+    };
+
+    public selectBacklogItem = function (item) {
+
+        this.setCurrentItem(item);
+        this.loader.broadcast('wizard:itemSelected', this.currentItem);
+    };
+
+    private setCurrentItem(backlogItem) {
+        this.currentItem = null;
+        for (var i = 0; i < this.sets.length; i++) {
+            var set = this.sets[i];
+            for (var j = 0; j < this.decks.length; j++) {
+                var deck = this.decks[j];
+                for (var k = 0; k < deck.images.length; k++) {
+                    var image = deck.images[k];
+                    if (image.key == backlogItem.path) {
+                        this.currentSet = set;
+                        this.currentDeck = deck;
+                        this.currentItem = image;
+                        break;
+                    }
+                }
+                if (this.currentItem) break;
+            }
+            if (this.currentItem) break;
+        }
+
+        if (this.currentItem == null) {
+            this.currentItem = CropManager.createNewImageDataItem(backlogItem);
+        }
+    }
+
+
+    public createSet(setName:string):Set {
         var newSetId = ImageDataManager.getNextIdForDataSet(this.sets);
         var set = new Set(newSetId, setName);
         set.icon = "";
         return set;
     }
 
-    public addSet(set:Set){
+    public addSet(set:Set) {
         this.sets.push(set);
     }
 
-    public deleteSet(setToDelete:Set):boolean{
-        if(setToDelete.decks.length > 0) return false;
+    public deleteSet(setToDelete:Set):boolean {
+        if (setToDelete.decks.length > 0) return false;
         ImageDataManager.removeItemFromDataSet(setToDelete, this.sets);
         return true;
     }
 
-    public createDeck(deckName:string):Deck{
+    public createDeck(deckName:string):Deck {
         var newSetId = ImageDataManager.getNextIdForDataSet(this.decks);
         var deck = new Deck(newSetId, deckName);
         deck.icon = "";
         return deck;
     }
 
-    public addDeck(deck:Deck, parentSet:Set){
+    public addDeck(deck:Deck, parentSet:Set) {
         this.decks.push(deck);
         //deck.parentSet = parentSet;
         parentSet.decks.push(deck);
     }
 
-    public deleteDeck(deckToDelete:Deck, parentSet:Set):boolean{
-        if(deckToDelete.images.length > 0) return false;
+    public deleteDeck(deckToDelete:Deck, parentSet:Set):boolean {
+        if (deckToDelete.images.length > 0) return false;
         ImageDataManager.removeItemFromDataSet(deckToDelete, this.decks);
         ImageDataManager.removeItemFromDataSet(deckToDelete, parentSet.decks);
         return true;
     }
 
-    private static removeItemFromDataSet(itemToDelete:any, dataSet:Array<any>){
+    private static removeItemFromDataSet(itemToDelete:any, dataSet:Array<any>) {
         var indexToRemove = -1;
         for (var i = 0; i < dataSet.length; i++) {
-            if(dataSet[i] == itemToDelete){
+            if (dataSet[i] == itemToDelete) {
                 indexToRemove = i;
                 break;
             }
         }
-        if(indexToRemove > -1) dataSet.splice(indexToRemove, 1);
+        if (indexToRemove > -1) dataSet.splice(indexToRemove, 1);
     }
 
-    private static getNextIdForDataSet(dataSet:Array<IIdedItem>){
+    private static getNextIdForDataSet(dataSet:Array<IIdedItem>) {
         var maxId:number = 0;
         for (var i = 0; i < dataSet.length; i++) {
             var item = dataSet[i];
-            if(item.id > maxId) maxId = item.id;
+            if (item.id > maxId) maxId = item.id;
         }
         return maxId + 1;
     }
 
-    private loadFromImageHierarchy(imageData:IImageData){
+    private loadFromImageHierarchy(imageData:IImageData) {
         for (var i = 0; i < imageData.sets.length; i++) {
-            var set  = <Set>imageData.sets[i];
+            var set = <Set>imageData.sets[i];
             this.sets.push(set);
             for (var j = 0; j < set.decks.length; j++) {
                 var deck = <Deck>set.decks[j];
@@ -94,10 +246,10 @@ class ImageDataManager {
         }
     }
 
-    private createImageDataItemFromCard(card:IDataCard):ImageDataItem{
+    private createImageDataItemFromCard(card:IDataCard):ImageDataItem {
         var backlogItem = this.getMatchingBacklogItem(card.key);
         var imageDataItem:ImageDataItem;
-        if(backlogItem){
+        if (backlogItem) {
             imageDataItem = new ImageDataItem(card.key, card.path, backlogItem.path)
         } else {
             imageDataItem = new ImageDataItem(card.key, card.path, null)
@@ -110,10 +262,10 @@ class ImageDataManager {
         return imageDataItem;
     }
 
-    private getMatchingBacklogItem(key:string){
+    private getMatchingBacklogItem(key:string) {
         for (var i = 0; i < this.backlog.length; i++) {
             var backlogItem = this.backlog[i];
-            if(backlogItem.key == key){
+            if (backlogItem.key == key) {
                 return backlogItem;
             }
         }
@@ -199,7 +351,7 @@ class CropManager {
     }
 
 
-    private static createNewImageDataItem(backlogItem:BacklogItem):ImageDataItem {
+    public static createNewImageDataItem(backlogItem:BacklogItem):ImageDataItem {
 
         var item = new ImageDataItem(backlogItem.key, backlogItem.name, backlogItem.path);
         item.twelve16 = new CropSet(CropFormat.twelve16, new CropDef('twM', CropTarget.master), new CropDef('twA', CropTarget.alt));
