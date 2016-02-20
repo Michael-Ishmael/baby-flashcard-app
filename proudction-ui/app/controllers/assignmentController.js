@@ -61,6 +61,8 @@ app.controller('assignmentController', ['$scope', '$routeParams', '$location', '
 
                 $scope.setPreviewPath(imageDataService.currentItem);
 
+                $scope.dataChanged = false;
+
             },
             function failed(){}
         );
@@ -76,7 +78,7 @@ app.controller('assignmentController', ['$scope', '$routeParams', '$location', '
     $scope.$watch(
         'selectedDecks',
         function (newValue, oldValue) {
-            if (newValue && newValue.length) {
+            if (newValue && newValue != oldValue && newValue.length) {
                 var deck = newValue[0];
                 $scope.selectedDeck = deck;
                 var item = $scope.currentItem;
@@ -86,7 +88,7 @@ app.controller('assignmentController', ['$scope', '$routeParams', '$location', '
     );
 
     $scope.$watch('currentItem.sound', function(nv, ov){
-        if(nv && nv != ov){
+        if(nv != ov && ov != undefined){
             $scope.dataChanged = true;
         }
     });

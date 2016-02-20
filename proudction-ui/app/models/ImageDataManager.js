@@ -28,12 +28,11 @@ var ImageDataManager = (function () {
         };
         this.selectBacklogItem = function (item, view) {
             this.setCurrentItem(item);
-            if (view == 'crop') {
-                this.loader.broadcast('wizard:itemAssigned', this.currentItem);
-            }
-            else {
-                this.loader.broadcast('wizard:itemSelected', this.currentItem);
-            }
+            //if(view == 'crop'){
+            //    this.loader.broadcast('wizard:itemAssigned', this.currentItem);
+            //} else {
+            //    this.loader.broadcast('wizard:itemSelected', this.currentItem);
+            //}
         };
         this.loader = loader;
         this.init();
@@ -51,7 +50,7 @@ var ImageDataManager = (function () {
     };
     ImageDataManager.prototype.save = function () {
         var data = {
-            sets: this.sets.map(function (s) { s.toJsonObj(); })
+            sets: this.sets.map(function (s) { return s.toJsonObj(); })
         };
         this.loader.syncData(data);
     };
@@ -93,7 +92,8 @@ var ImageDataManager = (function () {
                 name: i.name,
                 path: i.path,
                 displayPath: '../media/backlog/' + i.path,
-                key: i.path
+                key: i.path,
+                status: ItemStatus.untouched
             };
         });
         this.loadFromImageHierarchy(applicationData);
@@ -113,7 +113,7 @@ var ImageDataManager = (function () {
                     if (image.key == backlogItem.path) {
                         this.currentSet = set;
                         this.currentDeck = deck;
-                        this.currentItem = ImageDataItem.createFromIDataCard(image);
+                        this.currentItem = image; //ImageDataItem.createFromIDataCard(image);
                         break;
                     }
                 }
@@ -125,6 +125,7 @@ var ImageDataManager = (function () {
         }
         if (this.currentItem == null) {
             this.currentItem = CropManager.createNewImageDataItem(backlogItem);
+            backlogItem.status = this.currentItem.getStatus();
         }
     };
     ImageDataManager.prototype.createSet = function (setName) {
@@ -182,16 +183,26 @@ var ImageDataManager = (function () {
     };
     ImageDataManager.prototype.loadFromImageHierarchy = function (imageData) {
         for (var i = 0; i < imageData.sets.length; i++) {
-            var set = imageData.sets[i];
+            var set = Set.fromIDataSet(imageData.sets[i]);
             this.sets.push(set);
             for (var j = 0; j < set.decks.length; j++) {
                 var deck = set.decks[j];
                 this.decks.push(deck);
                 for (var k = 0; k < deck.images.length; k++) {
                     var card = deck.images[k];
-                    var imageDataItem = this.createImageDataItemFromCard(card);
-                    this.items.push(imageDataItem);
+                    this.items.push(card);
+                    var matchingBacklogItem = this.findItemInBacklog(card);
+                    if (matchingBacklogItem)
+                        matchingBacklogItem.status = card.getStatus();
                 }
+            }
+        }
+    };
+    ImageDataManager.prototype.findItemInBacklog = function (item) {
+        for (var i = 0; i < this.backlog.length; i++) {
+            var backlogItem = this.backlog[i];
+            if (backlogItem.key == item.key) {
+                return backlogItem;
             }
         }
     };

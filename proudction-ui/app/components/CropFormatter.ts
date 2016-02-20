@@ -6,7 +6,7 @@
 
 interface ICropFormatter{
 
-    setCrop(cropDef:CropDef)
+    setCrop(cropDef:CropDef, cropSet:CropSet)
 
 }
 
@@ -23,6 +23,7 @@ interface JQueryStatic{
 class CropFormatter implements ICropFormatter{
 
     private activeCropDef:CropDef;
+    private activeCropSet:CropSet;
     private jImageContainer:JQuery;
     private jMaskContainer:JQuery;
     private jPreviewContainer:JQuery;
@@ -30,8 +31,10 @@ class CropFormatter implements ICropFormatter{
     private jMask:JQuery;
     private jPreview:JQuery;
     private jCropApi:IJCropApi;
+    private callback:any;
 
-    constructor(holdingDiv:string){
+    constructor(holdingDiv:string, callback:any){
+        this.callback = callback;
         this.jImageContainer = $(holdingDiv + ' #imageContainer');
         this.jMaskContainer = $(holdingDiv + ' #maskContainer');
         this.jPreviewContainer = $(holdingDiv + ' #previewContainer');
@@ -40,8 +43,9 @@ class CropFormatter implements ICropFormatter{
         this.jPreview = $('#preview', this.j);
     }
 
-    public setCrop(cropDef:CropDef) {
+    public setCrop(cropDef:CropDef, cropSet:CropSet) {
         this.activeCropDef = cropDef;
+        this.activeCropSet = cropSet;
         if(cropDef.target == CropTarget.master){
             this.displayMasterCrop();
         } else {
@@ -88,7 +92,7 @@ class CropFormatter implements ICropFormatter{
     private displayAltCrop(){
         this.removeJCrop();
         this.initJCrop(this.jImage);
-        var masterCropDef = this.activeCropDef.parent.masterCropDef;
+        var masterCropDef = this.activeCropSet.masterCropDef;
         this.displayMask(masterCropDef.crop);
         this.setCropPosition(this.activeCropDef.crop);
     }
@@ -119,7 +123,7 @@ class CropFormatter implements ICropFormatter{
         this.jCropApi.setOptions(
             {
                 allowResize: true,
-                aspectRatio: dm.activeCropDef.getAspectRatio(),
+                aspectRatio: dm.activeCropDef.getAspectRatio(dm.activeCropSet.format),
                 onSelect: function(c){
                     dm.cropMoved(dm.activeCropDef, c);
                 }
@@ -131,6 +135,7 @@ class CropFormatter implements ICropFormatter{
     private setCropPosition(crop:BoxDims){
 
         this.jCropApi.setSelect(crop.toCoordArray());
+
         $('.jcrop-holder').css('background-color', 'transparent');
     }
 
@@ -138,6 +143,7 @@ class CropFormatter implements ICropFormatter{
         // set crop on active cropdef
         //console.log(crop);
         activeCropDef.crop.setFromBox(crop);
+        if(this.callback) this.callback();
     }
 
 }

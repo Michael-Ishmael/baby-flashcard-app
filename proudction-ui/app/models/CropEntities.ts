@@ -25,17 +25,7 @@ enum ItemStatus {
     untouched
 }
 
-interface IDataCard {
-    key:string;
-    name:string;
-    path:string;
-    indexInDeck:number;
-    sound:string;
-    originalDims:IBox;
-    twelve16:ICropSet;
-    nine16:ICropSet;
 
-}
 
 interface IDataDeck {
     id:number;
@@ -132,8 +122,8 @@ class CropDef implements ICropDef {
         this.crop = new BoxDims(0, 0, 100, 100);
     }
 
-    getAspectRatio():number{
-        var shortSide = 12; // this.parent.format == CropFormat.twelve16 ? 12 : 9;
+    getAspectRatio(format:CropFormat):number{
+        var shortSide = format == CropFormat.twelve16 ? 12 : 9;
         if(this.orientation == Orientation.portrait){
             return shortSide / 16;
         } else {
@@ -142,7 +132,7 @@ class CropDef implements ICropDef {
     }
 
     isComplete():boolean{
-        return this.orientation && this.crop.hasDims();
+        return (this.orientation == Orientation.landscape || this.orientation == Orientation.portrait ) && this.crop.hasDims();
     }
 
     toJsonObj():ICropDef{
@@ -265,6 +255,13 @@ class Set implements IDataSet {
             icon: this.icon,
             decks: this.decks.map(function(d){ return d.toJsonObj() })
         }
+    };
+
+    public static fromIDataSet = function(iDataSet:IDataSet):Set{
+        var set = new Set(iDataSet.id, iDataSet.name);
+        set.icon = iDataSet.icon;
+        set.decks = iDataSet.decks.map(function(d){ return Deck.fromIDataDeck(d) });
+        return set;
     }
 }
 
@@ -279,6 +276,14 @@ class Deck implements IDataDeck {
     constructor(public id:number, public name:string){
 
     }
+
+    public static fromIDataDeck = function(idataDeck:IDataDeck):Deck{
+        var deck = new Deck(idataDeck.id, idataDeck.name);
+        deck.icon = idataDeck.icon;
+        deck.sounds = idataDeck.sounds;
+        deck.images = idataDeck.images.map(function(i){ return ImageDataItem.createFromIDataCard(i); });
+        return deck;
+    };
 
     toJsonObj = function(){
         return {
@@ -297,7 +302,18 @@ interface IDataItem{
     name:string;
     path:string;
 
-    getStatus():ItemStatus;
+}
+
+interface IDataCard {
+    key:string;
+    name:string;
+    path:string;
+    indexInDeck:number;
+    sound:string;
+    originalDims:IBox;
+    twelve16:ICropSet;
+    nine16:ICropSet;
+
 }
 
 class ImageDataItem implements IDataCard, IDataItem{
@@ -317,6 +333,7 @@ class ImageDataItem implements IDataCard, IDataItem{
         img.originalDims = iDataCard.originalDims ? BoxDims.createFromBox(iDataCard.originalDims) : new BoxDims(0, 0, 100, 100);
         img.twelve16 = CropSet.fromICropSet(iDataCard.twelve16);
         img.nine16 = CropSet.fromICropSet(iDataCard.nine16);
+        img.indexInDeck = iDataCard.indexInDeck;
         return img;
     }
 
@@ -324,20 +341,18 @@ class ImageDataItem implements IDataCard, IDataItem{
 
     }
 
-/*    private cropSetDict:{ [id:string]:CropDef } = null;
-
-    public getCropSetDict():{ [id:string]:CropDef}{
-
-        if(!this.cropSetDict) {
-            this.cropSetDict = {};
-            this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
-            this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
-            this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
-            this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
+    public toJsonObj():IDataCard{
+        return {
+            key: this.key,
+            name: this.name,
+            path: this.path,
+            indexInDeck: this.indexInDeck,
+            sound: this.sound,
+            originalDims: this.originalDims.toJsonObj(),
+            twelve16: this.twelve16.toJsonObj(),
+            nine16: this.nine16.toJsonObj()
         }
-
-        return this.cropSetDict;
-    }*/
+    }
 
     public getStatus():ItemStatus{
         if(this.indexInDeck > -1 && this.sound){
@@ -357,7 +372,5 @@ class BacklogItem{
 
     }
 
-    getStatus():ItemStatus {
-        return ItemStatus.untouched;
-    }
+    status:ItemStatus;
 }

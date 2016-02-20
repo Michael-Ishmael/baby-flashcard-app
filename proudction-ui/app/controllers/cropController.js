@@ -4,7 +4,7 @@
 
 app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', function ($scope, $routeParams, imageDataService) {
 
-        $scope.activeCropSet = null;
+
         $scope.selectedImg = null;
 
         $scope.availableIndexes = [];
@@ -14,7 +14,11 @@ app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', 
         $scope.imageSet = false;
 
         var cropManager = new CropManager();
-        var cropFormatter = new CropFormatter('#cropFormatter');
+        var cropFormatter = new CropFormatter('#cropFormatter', cropChangedCallback);
+
+        function cropChangedCallback(){
+            $scope.dataChanged = true;
+        }
 
         $scope.$on('$viewContentLoaded', function () {
             $scope.selectedDeck = null;
@@ -51,14 +55,15 @@ app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', 
         };
 
         var jCropBox = $('#currentImage');
-
+        var pScope = $scope;
         jCropBox.load(function () {
 
             if (!imageDataService.currentItem) return;
             cropManager.loadItem(imageDataService.currentItem, jCropBox);
-            $scope.activeCropSet = cropManager.activeCropSet;
-            $scope.activeCropDef = cropManager.activeCropDef;
+            pScope.activeCropSet = cropManager.activeCropSet;
+            pScope.activeCropDef = cropManager.activeCropDef;
             $('#imageName').select();
+            pScope.$digest();
         });
 
 
@@ -95,9 +100,10 @@ app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', 
         };
 
         function setStateForIndex() {
+
             cropManager.setStateForIndex($scope.cropDefIndex);
             if (cropManager.activeCropDef) {
-                cropFormatter.setCrop(cropManager.activeCropDef);
+                cropFormatter.setCrop(cropManager.activeCropDef, cropManager.activeCropSet);
                 $scope.activeCropSet = cropManager.activeCropSet;
                 $scope.orientation = $scope.activeCropSet.masterCropDef.orientation;
             }
@@ -121,6 +127,11 @@ app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', 
                 $scope.inPreview = false;
             }
 
+        };
+
+        $scope.saveChanges = function () {
+            imageDataService.save();
+            $scope.dataChanged = false;
         }
 
     }]

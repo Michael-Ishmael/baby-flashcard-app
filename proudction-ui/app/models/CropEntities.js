@@ -73,8 +73,8 @@ var CropDef = (function () {
         def.crop = BoxDims.createFromBox(iCropDef.crop);
         return def;
     };
-    CropDef.prototype.getAspectRatio = function () {
-        var shortSide = 12; // this.parent.format == CropFormat.twelve16 ? 12 : 9;
+    CropDef.prototype.getAspectRatio = function (format) {
+        var shortSide = format == CropFormat.twelve16 ? 12 : 9;
         if (this.orientation == Orientation.portrait) {
             return shortSide / 16;
         }
@@ -83,7 +83,7 @@ var CropDef = (function () {
         }
     };
     CropDef.prototype.isComplete = function () {
-        return this.orientation && this.crop.hasDims();
+        return (this.orientation == Orientation.landscape || this.orientation == Orientation.portrait) && this.crop.hasDims();
     };
     CropDef.prototype.toJsonObj = function () {
         return {
@@ -181,6 +181,12 @@ var Set = (function () {
     Set.prototype.addDeck = function (deck) {
         this.decks.push(deck);
     };
+    Set.fromIDataSet = function (iDataSet) {
+        var set = new Set(iDataSet.id, iDataSet.name);
+        set.icon = iDataSet.icon;
+        set.decks = iDataSet.decks.map(function (d) { return Deck.fromIDataDeck(d); });
+        return set;
+    };
     return Set;
 })();
 var Deck = (function () {
@@ -198,6 +204,13 @@ var Deck = (function () {
             };
         };
     }
+    Deck.fromIDataDeck = function (idataDeck) {
+        var deck = new Deck(idataDeck.id, idataDeck.name);
+        deck.icon = idataDeck.icon;
+        deck.sounds = idataDeck.sounds;
+        deck.images = idataDeck.images.map(function (i) { return ImageDataItem.createFromIDataCard(i); });
+        return deck;
+    };
     return Deck;
 })();
 var ImageDataItem = (function () {
@@ -212,22 +225,21 @@ var ImageDataItem = (function () {
         img.originalDims = iDataCard.originalDims ? BoxDims.createFromBox(iDataCard.originalDims) : new BoxDims(0, 0, 100, 100);
         img.twelve16 = CropSet.fromICropSet(iDataCard.twelve16);
         img.nine16 = CropSet.fromICropSet(iDataCard.nine16);
+        img.indexInDeck = iDataCard.indexInDeck;
         return img;
     };
-    /*    private cropSetDict:{ [id:string]:CropDef } = null;
-    
-        public getCropSetDict():{ [id:string]:CropDef}{
-    
-            if(!this.cropSetDict) {
-                this.cropSetDict = {};
-                this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
-                this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
-                this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
-                this.cropSetDict[this.twelve16.masterCropDef.key] = this.twelve16.masterCropDef;
-            }
-    
-            return this.cropSetDict;
-        }*/
+    ImageDataItem.prototype.toJsonObj = function () {
+        return {
+            key: this.key,
+            name: this.name,
+            path: this.path,
+            indexInDeck: this.indexInDeck,
+            sound: this.sound,
+            originalDims: this.originalDims.toJsonObj(),
+            twelve16: this.twelve16.toJsonObj(),
+            nine16: this.nine16.toJsonObj()
+        };
+    };
     ImageDataItem.prototype.getStatus = function () {
         if (this.indexInDeck > -1 && this.sound) {
             if (this.originalDims && this.originalDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete())
@@ -244,9 +256,6 @@ var BacklogItem = (function () {
         this.name = name;
         this.path = path;
     }
-    BacklogItem.prototype.getStatus = function () {
-        return ItemStatus.untouched;
-    };
     return BacklogItem;
 })();
 //# sourceMappingURL=CropEntities.js.map

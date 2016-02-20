@@ -1,15 +1,12 @@
-Backlog
-
-
-
 <div class="row" ng-controller="backlogController">
     <div class="jumbotron" ng-hide="ready">
         <h1 class="text-center">Loading...</h1>
     </div>
-    <div class="col-md-3"></div>
-    <div class="col-md-6" ng-cloak>
+    <div class="col-md-2"></div>
+    <div class="col-md-4" ng-cloak>
+        <h2>Backlog</h2>
         <ul ui-sortable class="list-group" ng-model="backlog">
-            <li class="list-group-item pointer-cursor"  ng-repeat="backlogItem in backlog"
+            <li class="list-group-item pointer-cursor"  ng-repeat="backlogItem in backlog | filter:{status: '!2'}  "
                 id="{{ backlogItem.id }}" ng-click="selectImage(backlogItem)" >
                 <span class="badge">{{ backlogItem.id }}</span>
                 <img class="list-thumbnail" ng-src="{{::backlogItem.displayPath }}"/>
@@ -17,5 +14,16 @@ Backlog
             </li>
         </ul>
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-4" ng-cloak>
+        <h2>Completed</h2>
+        <ul ui-sortable class="list-group" ng-model="backlog">
+            <li class="list-group-item pointer-cursor"  ng-repeat="backlogItem in backlog | filter:{status: '2'}  "
+                id="{{ backlogItem.id }}" ng-click="selectImage(backlogItem)" >
+                <span class="badge">{{ backlogItem.id }}</span>
+                <img class="list-thumbnail" ng-src="{{::backlogItem.displayPath }}"/>
+                {{ backlogItem.path }}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-2"></div>
 </div>

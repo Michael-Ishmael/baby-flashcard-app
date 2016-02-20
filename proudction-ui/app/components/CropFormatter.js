@@ -4,7 +4,8 @@
  * Created by scorpio on 02/02/2016.
  */
 var CropFormatter = (function () {
-    function CropFormatter(holdingDiv) {
+    function CropFormatter(holdingDiv, callback) {
+        this.callback = callback;
         this.jImageContainer = $(holdingDiv + ' #imageContainer');
         this.jMaskContainer = $(holdingDiv + ' #maskContainer');
         this.jPreviewContainer = $(holdingDiv + ' #previewContainer');
@@ -12,8 +13,9 @@ var CropFormatter = (function () {
         this.jMask = $('#mask', this.jMaskContainer);
         this.jPreview = $('#preview', this.j);
     }
-    CropFormatter.prototype.setCrop = function (cropDef) {
+    CropFormatter.prototype.setCrop = function (cropDef, cropSet) {
         this.activeCropDef = cropDef;
+        this.activeCropSet = cropSet;
         if (cropDef.target == CropTarget.master) {
             this.displayMasterCrop();
         }
@@ -53,7 +55,7 @@ var CropFormatter = (function () {
     CropFormatter.prototype.displayAltCrop = function () {
         this.removeJCrop();
         this.initJCrop(this.jImage);
-        var masterCropDef = this.activeCropDef.parent.masterCropDef;
+        var masterCropDef = this.activeCropSet.masterCropDef;
         this.displayMask(masterCropDef.crop);
         this.setCropPosition(this.activeCropDef.crop);
     };
@@ -79,7 +81,7 @@ var CropFormatter = (function () {
         var dm = this;
         this.jCropApi.setOptions({
             allowResize: true,
-            aspectRatio: dm.activeCropDef.getAspectRatio(),
+            aspectRatio: dm.activeCropDef.getAspectRatio(dm.activeCropSet.format),
             onSelect: function (c) {
                 dm.cropMoved(dm.activeCropDef, c);
             }
@@ -93,6 +95,8 @@ var CropFormatter = (function () {
         // set crop on active cropdef
         //console.log(crop);
         activeCropDef.crop.setFromBox(crop);
+        if (this.callback)
+            this.callback();
     };
     return CropFormatter;
 })();

@@ -3,7 +3,7 @@
 
         <form action="" method="post">
 
-            <div id="cropTools" ng-show="activeCropSet != null">
+            <div id="cropTools" >
                 <div class="panel panel-default" id="cropWizard">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ activeCropSet.title }}</h3>
@@ -48,19 +48,25 @@
 
 
                 <div class="form-group">
-                    <input class="btn btn-primary" type="submit" value="Submit" ng-disabled="inPreview">
                     <button class="btn btn-info pull-right" type="button" value="Preview"
                             ng-click="previewCrop()">{{ inPreview ? "Hide Preview" : "Preview" }}
                     </button>
                 </div>
             </div>
 
+            <div class="form-group" ng-show="dataChanged">
+                <button class="btn btn-success btn-lg btn-block" type="button" ng-click="saveChanges()">
+                    Save
+                </button>
+            </div>
+
         </form>
+
     </div>
 
     <div id="cropFormatter" class="col-md-9">
         <div id="imageContainer">
-            <img id="currentImage" ng-src="{{ getImagePath() }}" class="working-image"/>
+            <img id="currentImage"  ng-src="{{ getImagePath() }}" class=""/>
         </div>
         <div id="maskContainer">
             <img id="mask" src="mask.png"/>
@@ -70,5 +76,7 @@
         </div>
 
     </div>
+
+
 
 </div>
