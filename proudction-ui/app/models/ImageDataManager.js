@@ -54,6 +54,32 @@ var ImageDataManager = (function () {
         };
         this.loader.syncData(data);
     };
+    ImageDataManager.prototype.markComplete = function (item) {
+        if (item.getStatus() == ItemStatus.cropped) {
+            item.completed = true;
+            var matchingBacklogItem = this.findItemInBacklog(item);
+            if (matchingBacklogItem)
+                matchingBacklogItem.status = item.getStatus();
+            this.save();
+        }
+    };
+    ImageDataManager.prototype.discardImage = function (item) {
+        var indexToRemove = -1;
+        for (var i = 0; i < this.decks.length; i++) {
+            var deck = this.decks[i];
+            indexToRemove = -1;
+            for (var j = 0; j < deck.images.length; j++) {
+                var image = deck.images[j];
+                if (image.key == item.key) {
+                    indexToRemove = j;
+                }
+            }
+            if (indexToRemove > -1) {
+                this.decks.splice(indexToRemove, 1);
+                return;
+            }
+        }
+    };
     ImageDataManager.prototype.ready = function () {
         return this.loader.ready(this);
     };
@@ -92,7 +118,7 @@ var ImageDataManager = (function () {
                 name: i.name,
                 path: i.path,
                 displayPath: '../media/backlog/' + i.path,
-                key: i.path,
+                key: i.name,
                 status: ItemStatus.untouched
             };
         });
@@ -243,7 +269,8 @@ var CropManager = (function () {
         this.currentItem = item;
         this.currentItem.sizingDims = new BoxDims(0, 0, target.width(), target.height());
         this.setStateForIndex(0);
-        this.recalculateCropStates();
+        if (item.getStatus() < ItemStatus.cropped)
+            this.recalculateCropStates();
         this.finishLoadAsync(target);
         return this.currentItem;
     };

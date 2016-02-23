@@ -71,6 +71,34 @@ class ImageDataManager implements IAsynDataObject {
         this.loader.syncData(data);
     }
 
+    public markComplete(item:ImageDataItem){
+        if(item.getStatus() == ItemStatus.cropped){
+            item.completed = true;
+            var matchingBacklogItem = this.findItemInBacklog(item);
+            if(matchingBacklogItem) matchingBacklogItem.status = item.getStatus();
+            this.save();
+        }
+    }
+
+    public discardImage(item:ImageDataItem){
+        var indexToRemove = -1;
+        for (var i = 0; i < this.decks.length; i++) {
+            var deck = this.decks[i];
+            indexToRemove = -1;
+            for (var j = 0; j < deck.images.length; j++) {
+                var image = deck.images[j];
+                if(image.key == item.key) {
+                    indexToRemove = j;
+                }
+            }
+            if(indexToRemove > -1){
+                this.decks.splice(indexToRemove, 1);
+                return;
+
+            }
+        }
+    }
+
     public ready():IPromise {
         return this.loader.ready(this);
     }
@@ -121,7 +149,7 @@ class ImageDataManager implements IAsynDataObject {
                 name: i.name,
                 path: i.path,
                 displayPath: '../media/backlog/' + i.path,
-                key: i.path,
+                key: i.name,
                 status: ItemStatus.untouched
             }
         });
@@ -141,7 +169,7 @@ class ImageDataManager implements IAsynDataObject {
         return null;
     };
 
-    public selectBacklogItem = function (item, view) {
+    public selectBacklogItem = function (item:BacklogItem, view) {
 
         this.setCurrentItem(item);
         //if(view == 'crop'){
@@ -152,7 +180,7 @@ class ImageDataManager implements IAsynDataObject {
 
     };
 
-    private setCurrentItem(backlogItem) {
+    private setCurrentItem(backlogItem:BacklogItem) {
         this.currentSet = null;
         this.currentDeck = null;
         this.currentItem = null;
@@ -316,7 +344,7 @@ class CropManager {
         this.currentItem = item;
         this.currentItem.sizingDims = new BoxDims(0, 0, target.width(), target.height());
         this.setStateForIndex(0);
-        this.recalculateCropStates();
+        if(item.getStatus() < ItemStatus.cropped) this.recalculateCropStates();
 
         this.finishLoadAsync(target);
 
@@ -391,6 +419,7 @@ class CropManager {
 
     private recalculateCropStates() {
         var ci = this.currentItem;
+
         ci.twelve16.masterCropDef.crop =
             ImageCropUtils.getBoxBounds(ci.twelve16.masterCropDef.orientation, ci.twelve16.format, ci.sizingDims);
 

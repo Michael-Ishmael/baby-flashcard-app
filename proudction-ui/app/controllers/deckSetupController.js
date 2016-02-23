@@ -24,7 +24,7 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
 
     function init() {
         imageDataService.ready().then(
-            function success(){
+            function success() {
                 $scope.ready = imageDataService.ready;
                 $scope.sets = imageDataService.sets;
                 $scope.setIcons = imageDataService.setIcons;
@@ -44,23 +44,24 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
                     existingItems: $scope.decks
                 };
             },
-            function fail(){
+            function fail() {
 
             }
         );
 
 
-
     }
 
-    function setupSounds(){
+    function setupSounds() {
 
         var deck = $scope.currentDeck;
-        if(imageDataService.sounds && deck){
+        if (imageDataService.sounds && deck) {
 
-            var selectedPaths = deck.sounds ? deck.sounds.map(function(s){return s.path }) : [] ;
+            var selectedPaths = deck.sounds ? deck.sounds.map(function (s) {
+                return s.path
+            }) : [];
 
-            $scope.sounds = imageDataService.sounds.map(function(s){
+            $scope.sounds = imageDataService.sounds.map(function (s) {
                 var selected = selectedPaths.indexOf(s.path) > -1;
                 return {
                     name: s.name,
@@ -73,69 +74,80 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
     }
 
     $scope.$watch('currentDeck.soundFolder', function (nv, ov) {
-        if(nv && nv != ov){
+        if (nv && nv != ov) {
             setupSounds();
         }
 
     }, true);
 
+    $scope.selectAllSounds = function () {
+
+        for (var i = 0; i < $scope.sounds.length; i++) {
+            var sound = $scope.sounds[i];
+            if (sound.subFolder == $scope.currentDeck.soundFolder) {
+                sound.selected = true;
+            }
+        }
+    };
+
+
     $scope.$watch('sounds|filter:{selected:true}', function (nv) {
-        if($scope.currentDeck)
-            $scope.currentDeck.sounds = nv.map(function(s){
-               return {
-                   name: s.name,
-                   path: s.path
-               }
+        if ($scope.currentDeck)
+            $scope.currentDeck.sounds = nv.map(function (s) {
+                return {
+                    name: s.name,
+                    path: s.path
+                }
             });
     }, true);
 
     $scope.createCollectionItem = function (collectionType) {
         var item = null;
-        if(collectionType == 'set'){
+        if (collectionType == 'set') {
             item = imageDataService.createSet();
             $scope.currentSet = item;
             $scope.currentDeck = null;
             $scope.paramholder.deckParams.existingItems = $scope.currentSet.decks;
         }
-        if(collectionType == 'deck'){
+        if (collectionType == 'deck') {
             item = imageDataService.createDeck();
             $scope.currentDeck = item;
         }
         return item;
     };
 
-    $scope.setCurrentCollectionItem = function(collectionType, item) {
-        if(collectionType == 'set'){
+    $scope.setCurrentCollectionItem = function (collectionType, item) {
+        if (collectionType == 'set') {
             $scope.currentSet = item;
             $scope.currentDeck = null;
             $scope.paramholder.deckParams.existingItems = $scope.currentSet.decks;
         }
-        if(collectionType == 'deck'){
+        if (collectionType == 'deck') {
             $scope.currentDeck = item;
             setupSounds();
         }
     };
 
     $scope.saveCollectionItem = function (collectionType, add) {
-        if(collectionType == 'set'){
-            if(add) imageDataService.addSet($scope.currentSet);
+        if (collectionType == 'set') {
+            if (add) imageDataService.addSet($scope.currentSet);
             imageDataService.save();
         }
-        if(collectionType == 'deck'){
-            if(add) imageDataService.addDeck($scope.currentDeck, $scope.currentSet);
+        if (collectionType == 'deck') {
+            if (add) imageDataService.addDeck($scope.currentDeck, $scope.currentSet);
             imageDataService.save();
         }
         //init();
     };
 
-    $scope.deleteCollectionItem = function(collectionType){
-        if(collectionType == 'set'){
-            if(imageDataService.deleteSet($scope.currentSet)){
+    $scope.deleteCollectionItem = function (collectionType) {
+        if (collectionType == 'set') {
+            if (imageDataService.deleteSet($scope.currentSet)) {
                 imageDataService.save();
             }
         }
-        if(collectionType == 'deck'){
-            if(imageDataService.deleteDeck($scope.currentDeck, $scope.currentSet)){
+        if (collectionType == 'deck') {
+            if (imageDataService.deleteDeck($scope.currentDeck, $scope.currentSet)) {
                 imageDataService.save();
             }
 
@@ -173,4 +185,5 @@ app.controller('deckSetupController', ['$scope', 'imageDataService', function ($
 
     init();
 
-}]);
+}])
+;

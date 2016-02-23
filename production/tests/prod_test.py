@@ -1,4 +1,6 @@
 import unittest
+
+from production.business.ImageConversion import CsvCreator
 from production.business.imagedata import *
 
 __author__ = 'scorpio'
@@ -82,3 +84,17 @@ class ImageDataTest(unittest.TestCase):
 
         self.assertTrue(len(workflow.backlog) > 10)
         self.assertTrue(len(workflow.sounds) > 10)
+
+
+class CsvCreatorTest(unittest.TestCase):
+
+    def can_load_json_test(self):
+        path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
+        creator = CsvCreator(path)
+        creator.load()
+
+        result = 1
+
+        expected = 1
+
+        self.assertEqual(result, expected)

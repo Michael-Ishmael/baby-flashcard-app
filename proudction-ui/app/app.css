@@ -5,6 +5,9 @@ html body {
     margin: 20px;
 }
 
+/* for angular ui stying */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
 .panel-default {
     background-color: gray;
 }

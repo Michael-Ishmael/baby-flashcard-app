@@ -6,8 +6,8 @@
     <div class="col-md-4" ng-cloak>
         <h2>Backlog</h2>
         <ul ui-sortable class="list-group" ng-model="backlog">
-            <li class="list-group-item pointer-cursor"  ng-repeat="backlogItem in backlog | filter:{status: '!2'}  "
-                id="{{ backlogItem.id }}" ng-click="selectImage(backlogItem)" >
+            <li class="list-group-item pointer-cursor"  ng-repeat="backlogItem in backlog | filter:{status: 0}  "
+                id="{{ backlogItem.key }}" ng-click="selectImage(backlogItem)" >
                 <span class="badge">{{ backlogItem.id }}</span>
                 <img class="list-thumbnail" ng-src="{{::backlogItem.displayPath }}"/>
                 {{ backlogItem.path }}
@@ -15,15 +15,43 @@
         </ul>
     </div>
     <div class="col-md-4" ng-cloak>
-        <h2>Completed</h2>
+
+        <h2>In Progress</h2>
+
+
         <ul ui-sortable class="list-group" ng-model="backlog">
-            <li class="list-group-item pointer-cursor"  ng-repeat="backlogItem in backlog | filter:{status: '2'}  "
-                id="{{ backlogItem.id }}" ng-click="selectImage(backlogItem)" >
+            <li class="list-group-item pointer-cursor" ng-repeat="backlogItem in backlog | filter:isInProgress  "
+                id="{{ backlogItem.id }}" ng-click="selectImage(backlogItem)">
                 <span class="badge">{{ backlogItem.id }}</span>
                 <img class="list-thumbnail" ng-src="{{::backlogItem.displayPath }}"/>
                 {{ backlogItem.path }}
             </li>
         </ul>
+
+        <h2>Completed</h2>
+
+        <uib-accordion close-others="true">
+            <uib-accordion-group heading="{{ deck.name}}" ng-repeat="deck in completedHierarchy.decks">
+
+                <uib-accordion-heading>
+                    <span class="badge pull-right ">{{ deck.images.length }}  </span>
+                    {{deck.name}}
+                </uib-accordion-heading>
+
+
+                <ul  class="list-group" ng-model="backlog">
+                    <li class="list-group-item pointer-cursor"  ng-repeat="image in deck.images"
+                        id="{{ image.key }}" ng-click="selectImage(image)" >
+                        <span class="badge">{{ backlogItem.id }}</span>
+                        <img class="list-thumbnail" ng-src="{{ getImagePath(image.path)  }}"/>
+                        {{ image.path }}
+                    </li>
+                </ul>
+
+            </uib-accordion-group>
+
+        </uib-accordion>
+
     </div>
     <div class="col-md-2"></div>
 </div>

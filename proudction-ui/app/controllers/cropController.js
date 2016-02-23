@@ -16,7 +16,7 @@ app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', 
         var cropManager = new CropManager();
         var cropFormatter = new CropFormatter('#cropFormatter', cropChangedCallback);
 
-        function cropChangedCallback(){
+        function cropChangedCallback() {
             $scope.dataChanged = true;
         }
 
@@ -24,7 +24,7 @@ app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', 
             $scope.selectedDeck = null;
             $scope.dataChanged = false;
             imageDataService.ready().then(
-                function isReady(){
+                function isReady() {
 
                     if (!imageDataService.currentItem) {
                         var imageId = $routeParams.imageId;
@@ -42,7 +42,8 @@ app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', 
                     //jCropBox.attr('src', '../media/backlog/path' + imageDataService.path)
 
                 },
-                function failed(){}
+                function failed() {
+                }
             );
 
 
@@ -109,6 +110,11 @@ app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', 
             }
         }
 
+        $scope.isCompleteable = function () {
+            if (!(imageDataService && imageDataService.currentItem)) return false;
+            return imageDataService.currentItem.getStatus() >= ItemStatus.cropped;
+        };
+
         $scope.cancelCropAction = function () {
             $scope.inPreview = true;
             $scope.previewCrop();
@@ -132,7 +138,17 @@ app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', 
         $scope.saveChanges = function () {
             imageDataService.save();
             $scope.dataChanged = false;
-        }
+        };
+
+        $scope.discardImage = function () {
+            imageDataService.discardImage(imageDataService.currentItem);
+            $scope.dataChanged = false;
+        };
+
+        $scope.markComplete = function () {
+            imageDataService.markComplete(imageDataService.currentItem);
+            $scope.dataChanged = false;
+        };
 
     }]
 );

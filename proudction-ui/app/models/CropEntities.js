@@ -18,10 +18,10 @@ var CropTarget;
 })(CropTarget || (CropTarget = {}));
 var ItemStatus;
 (function (ItemStatus) {
-    ItemStatus[ItemStatus["loaded"] = 0] = "loaded";
+    ItemStatus[ItemStatus["untouched"] = 0] = "untouched";
     ItemStatus[ItemStatus["assigned"] = 1] = "assigned";
-    ItemStatus[ItemStatus["completed"] = 2] = "completed";
-    ItemStatus[ItemStatus["untouched"] = 3] = "untouched";
+    ItemStatus[ItemStatus["cropped"] = 2] = "cropped";
+    ItemStatus[ItemStatus["completed"] = 3] = "completed";
 })(ItemStatus || (ItemStatus = {}));
 var BoxDims = (function () {
     function BoxDims(x, y, w, h) {
@@ -174,7 +174,9 @@ var Set = (function () {
                 id: this.id,
                 name: this.name,
                 icon: this.icon,
-                decks: this.decks.map(function (d) { return d.toJsonObj(); })
+                decks: this.decks.map(function (d) {
+                    return d.toJsonObj();
+                })
             };
         };
     }
@@ -184,7 +186,9 @@ var Set = (function () {
     Set.fromIDataSet = function (iDataSet) {
         var set = new Set(iDataSet.id, iDataSet.name);
         set.icon = iDataSet.icon;
-        set.decks = iDataSet.decks.map(function (d) { return Deck.fromIDataDeck(d); });
+        set.decks = iDataSet.decks.map(function (d) {
+            return Deck.fromIDataDeck(d);
+        });
         return set;
     };
     return Set;
@@ -200,7 +204,9 @@ var Deck = (function () {
                 name: this.name,
                 icon: this.icon,
                 sounds: this.sounds,
-                images: this.images.map(function (i) { return i.toJsonObj(); })
+                images: this.images.map(function (i) {
+                    return i.toJsonObj();
+                })
             };
         };
     }
@@ -208,7 +214,9 @@ var Deck = (function () {
         var deck = new Deck(idataDeck.id, idataDeck.name);
         deck.icon = idataDeck.icon;
         deck.sounds = idataDeck.sounds;
-        deck.images = idataDeck.images.map(function (i) { return ImageDataItem.createFromIDataCard(i); });
+        deck.images = idataDeck.images.map(function (i) {
+            return ImageDataItem.createFromIDataCard(i);
+        });
         return deck;
     };
     return Deck;
@@ -226,6 +234,7 @@ var ImageDataItem = (function () {
         img.twelve16 = CropSet.fromICropSet(iDataCard.twelve16);
         img.nine16 = CropSet.fromICropSet(iDataCard.nine16);
         img.indexInDeck = iDataCard.indexInDeck;
+        img.completed = iDataCard.completed;
         return img;
     };
     ImageDataItem.prototype.toJsonObj = function () {
@@ -237,16 +246,23 @@ var ImageDataItem = (function () {
             sound: this.sound,
             originalDims: this.originalDims.toJsonObj(),
             twelve16: this.twelve16.toJsonObj(),
-            nine16: this.nine16.toJsonObj()
+            nine16: this.nine16.toJsonObj(),
+            completed: this.completed
         };
     };
     ImageDataItem.prototype.getStatus = function () {
         if (this.indexInDeck > -1 && this.sound) {
-            if (this.originalDims && this.originalDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete())
-                return ItemStatus.completed;
+            if (this.originalDims && this.originalDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete()) {
+                if (this.completed) {
+                    return ItemStatus.completed;
+                }
+                else {
+                    return ItemStatus.cropped;
+                }
+            }
             return ItemStatus.assigned;
         }
-        return ItemStatus.loaded;
+        return ItemStatus.untouched;
     };
     return ImageDataItem;
 })();

@@ -110,36 +110,40 @@ class ImageData:
             decks = dict_set.get("decks", [])
             for dict_deck in decks:
                 deck = Deck(dict_deck["id"], dict_deck["name"])
-                deck.thumb = dict_deck.get("thumb", "")
-                cards = dict_deck.get("cards", [])
+                deck.icon = dict_deck.get("icon", "")
+                cards = dict_deck.get("images", [])
                 for dict_card in cards:
-                    card = FlashCard(current_card_id, dict_card["image"])
-                    card.index = dict_card["index"]
-                    card.sound = dict_card.get("sound")
-                    card.original_image_size = self.load_bounds_from_dict_prop(dict_card, "originalsize")
-                    landscape_bounds = self.load_bounds_from_dict_prop(dict_card, "landscapebounds")
-                    portrait_bounds = self.load_bounds_from_dict_prop(dict_card, "portraitbounds")
+                    completed = dict_card.get("completed", False)
+                    if completed:
+                        card = FlashCard(current_card_id, dict_card["name"])
+                        card.index = dict_card["indexInDeck"]
+                        card.sound = dict_card.get("sound")
+                        card.original_image_size = self.load_bounds_from_dict_prop(dict_card, "originalDims")
 
-                    crop_set_12 = CropSet(CropFormat.twelve16)
-                    crop_set_12.master_crop_def = CropDef(Orientation.landscape)
-                    crop_set_12.master_crop_def.crop = landscape_bounds
-                    crop_set_12.alt_crop_def = CropDef(Orientation.portrait)
-                    crop_set_12.alt_crop_def.crop = portrait_bounds
+                        twelve16 = self.load_crop_set(dict_card, "twelve16", CropFormat.twelve16)
+                        nine16 = self.load_crop_set(dict_card, "nine16", CropFormat.nine16)
+                        card.crop_sets.append(twelve16)
+                        card.crop_sets.append(nine16)
 
-                    card.crop_sets.append(crop_set_12)
-
-                    crop_set_9 = CropSet(CropFormat.nine16)
-                    crop_set_9.master_crop_def = CropDef(Orientation.landscape)
-                    crop_set_9.master_crop_def.crop = landscape_bounds
-                    crop_set_9.alt_crop_def = CropDef(Orientation.portrait)
-                    crop_set_9.alt_crop_def.crop = portrait_bounds
-
-                    card.crop_sets.append(crop_set_9)
-
-                    deck.cards.append(card)
-                    current_card_id += 1
+                        deck.cards.append(card)
+                        current_card_id += 1
                 deck_set.decks.append(deck)
             self.deck_sets.append(deck_set)
+
+    def load_crop_set(self, parent_dict, prop_name, crop_format):
+        dict_crop_set = parent_dict.get(prop_name)
+        crop_set = CropSet(crop_format)
+        crop_set.master_crop_def = self.load_crop_def(dict_crop_set, "masterCropDef")
+        crop_set.alt_crop_def = self.load_crop_def(dict_crop_set, "altCropDef")
+        return crop_set
+
+    def load_crop_def(self, parent_dict, prop_name):
+        dict_crop_def = parent_dict.get(prop_name);
+        l_orientation =  dict_crop_def.get("orientation")
+        orientation = Orientation.portrait if l_orientation == 1 else Orientation.landscape
+        crop_def = CropDef(orientation)
+        crop_def.crop = self.load_bounds_from_dict_prop(dict_crop_def, "crop")
+        return crop_def
 
     def load_bounds_from_dict_prop(self, parent_dict, prop_name):
         dict_bounds = parent_dict.get(prop_name, None)
@@ -176,7 +180,7 @@ class Deck:
     def __init__(self, id, name):
         self.id = id
         self.name = name
-        self.thumb = ""
+        self.icon = ""
         self.cards = []  # type: List[FlashCard]
         self.sounds = []  # type: List[FileItem]
 

@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var app = angular.module('imgProcessor', ['ngRoute','ui.sortable']);
+var app = angular.module('imgProcessor', ['ngRoute','ui.sortable', 'ui.bootstrap']);
 
 app.config(['$routeProvider',
     function($routeProvider) {
