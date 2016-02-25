@@ -98,3 +98,14 @@ class CsvCreatorTest(unittest.TestCase):
         expected = 1
 
         self.assertEqual(result, expected)
+
+    def can_write_lines_test(self):
+        path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
+        creator = CsvCreator(path)
+        creator.load()
+        creator.write_csv_lines()
+        result = 1
+
+        expected = 1
+
+        self.assertEqual(result, expected)

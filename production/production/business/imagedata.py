@@ -251,6 +251,14 @@ class CropSet:
         self.master_crop_def = None  # type:CropDef
         self.alt_crop_def = None  # type:CropDef
 
+    def get_combined_rect(self):
+        x = min(self.master_crop_def.crop.x, self.alt_crop_def.crop.x)
+        y = min(self.master_crop_def.crop.x, self.alt_crop_def.crop.x)
+        x2 = max(self.master_crop_def.crop.x2(), self.alt_crop_def.crop.x2())
+        y2 = max(self.master_crop_def.crop.y2(), self.alt_crop_def.crop.y2())
+
+        return Bounds(x, y, x2 - x, y2 - y)
+
     def to_json_dict(self):
         return {
             "format": 12 if self.crop_format is CropFormat.twelve16 else 9,
@@ -275,6 +283,12 @@ class Bounds:
         h = bounds_dict.get("h", 0)
 
         return Bounds(x, y, w, h)
+
+    def x2(self):
+        return self.x + self.w
+
+    def y2(self):
+        return self.y + self.h
 
     def to_json(self):
         return simplejson.dumps(self.__dict__)

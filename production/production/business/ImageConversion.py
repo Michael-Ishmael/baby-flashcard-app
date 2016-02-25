@@ -16,6 +16,12 @@ from production.business.imagedata import *
 # ipad Other	2048	1536    12/16	  3/4
 # iPad Pro	    2732	2048    12/16	  3/4
 
+class TargetFormat(object):
+    def __init__(self, name, path, bounds):
+        self.name = name
+        self.folder_path = path
+        self.target_bounds = bounds  # type:Bounds
+
 
 class CsvCreator:
     data_file_name = 'data2.json'
@@ -50,17 +56,32 @@ class CsvCreator:
                 for card in deck.cards:
                     for crop_set in card.crop_sets:
                         if crop_set.crop_format == CropFormat.twelve16:
-                            target_formats = target_formats.
-                        line = self.create_csv_line(card, deck, deck_set)
-                    self.csv_lines.append(line)
+                            target_format_list = CsvCreator.target_formats["twelve16"]
+                        else:
+                            target_format_list = CsvCreator.target_formats["nine16"]
+                        for target_format in target_format_list:
+                            line = self.create_csv_line(target_format, crop_set, card.image, deck.name, deck_set.name)
+                            self.csv_lines.append(line)
 
-    def create_csv_line(self, image_name, set_name, deck_name, crop_set):
+    def create_csv_line(self, target_format, crop_set, image_name, deck_name, set_name):
         line = CsvRecord()
         line.original_path = os.path.join(CsvCreator.original_root, set_name, deck_name, image_name)
-        line.target_path = os.path.join(CsvCreator.target_root, set_name, deck_name)
+        file_name = image_name.replace('.jpg', '_' + target_format.name + '.jpg')
+        line.target_path = os.path.join(CsvCreator.target_root, set_name, deck_name, target_format.folder_path,
+                                        file_name)
 
+        dims = self.get_pc_dim_array()
 
-        return {}
+        return line
+
+    def get_pc_dim_array(self, image_dims, crop_dims):
+        pc_x1 = crop_dims.x / image_dims.w
+        pc_x2 = crop_dims.x2() / image_dims.w
+        pc_y1 = crop_dims.y / image_dims.h
+        pc_y2 = crop_dims.y2() / image_dims.h
+
+        return [pc_x1, pc_y1, pc_x2, pc_y2]
+
 
 
 class CsvRecord:
@@ -73,10 +94,3 @@ class CsvRecord:
         self.crop_end_y_pc = 1
         self.targetDimension = 0  # 0 for width, 2 for height
         self.targetSize = 0
-
-
-class TargetFormat:
-    def __init__(self, name, path, bounds):
-        self.name = name
-        self.folder_path = path
-        self.target_bounds = bounds  # type:Bounds
