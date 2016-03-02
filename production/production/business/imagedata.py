@@ -139,7 +139,7 @@ class ImageData:
 
     def load_crop_def(self, parent_dict, prop_name):
         dict_crop_def = parent_dict.get(prop_name);
-        l_orientation =  dict_crop_def.get("orientation")
+        l_orientation = dict_crop_def.get("orientation")
         orientation = Orientation.portrait if l_orientation == 1 else Orientation.landscape
         crop_def = CropDef(orientation)
         crop_def.crop = self.load_bounds_from_dict_prop(dict_crop_def, "crop")
@@ -237,6 +237,8 @@ class CropDef:
     def __init__(self, orientation):
         self.orientation = orientation
         self.crop = None  # type:Bounds
+        self.offset_x = 0
+        self.offset_y = 0
 
     def to_json_dict(self):
         return {
@@ -259,6 +261,23 @@ class CropSet:
 
         return Bounds(x, y, x2 - x, y2 - y)
 
+    def get_new_rect_bounds(self, long_side, short_size):
+        offset_x = max(self.master_crop_def.crop.x - self.alt_crop_def.crop.x, 0)
+        extra_after_x = max(self.alt_crop_def.crop.x2() - self.master_crop_def.crop.x2(), 0)
+
+        offset_y = max(self.master_crop_def.crop.y - self.alt_crop_def.crop.y, 0)
+        extra_after_y = max(self.alt_crop_def.crop.y2() - self.master_crop_def.crop.y2(), 0)
+
+        target_orientation = Orientation.landscape if self.master_crop_def.crop.w > self.master_crop_def.crop.h \
+            else Orientation.portrait
+
+        if target_orientation == Orientation.landscape:
+            extra = offset_x + extra_after_x
+            extra_ratio = extra / self.master_crop_def.crop.w
+            new_extra_size = long_side * extra_ratio
+
+        return 0
+
     def to_json_dict(self):
         return {
             "format": 12 if self.crop_format is CropFormat.twelve16 else 9,
@@ -266,6 +285,31 @@ class CropSet:
             "altCropDef": self.alt_crop_def.to_json_dict()
         }
 
+
+class EvaluatedDimension:
+    def __init__(self, crop_set, target_orientation, target_size):
+        alt_orientation = Orientation.portrait if target_orientation == Orientation.landscape else Orientation.landscape
+        self.master_crop = crop_set.master_crop_def.crop if crop_set.master_crop_def.orientation == target_orientation \
+            else crop_set.alt_crop_def.crop
+        self.alt_crop = self.master_crop_def.crop if crop_set.master_crop_def.orientation == alt_orientation \
+            else crop_set.alt_crop_def.crop
+
+        current_dim_size = self.master_crop.w if target_orientation == Orientation.landscape else self.master_crop.h
+
+        self.p1m = self.master_crop.x if target_orientation == Orientation.landscape else self.master_crop.y
+        self.p2m = self.master_crop.x2() if target_orientation == Orientation.landscape else self.master_crop.y2()
+        self.p1a = self.alt_crop.x if target_orientation == Orientation.landscape else self.alt_crop.y
+        self.p2a = self.alt_crop.x2() if target_orientation == Orientation.landscape else self.alt_crop.y2()
+
+        extra_before = 0 if self.p1a >= self.p1m else self.p1m - self.p1a
+        extra_after = 0 if self.p2a <= self.p2m else self.p2a - self.p2m
+        extra = extra_before + extra_after
+        t_extra = 0
+        if extra > 0:
+            extra_ratio = extra / self.current_dim_size
+            t_extra = target_size * extra_ratio
+        self.new_image_size = target_size + t_extra
+        self.offset = extra_before
 
 
 class Bounds:
@@ -290,5 +334,38 @@ class Bounds:
     def y2(self):
         return self.y + self.h
 
+    def is_outside_x_bounds(self, other):
+        if other.x < self.x:
+            return True
+        if other.x2() > self.x2():
+            return True
+        return False
+
+    def is_outside_y_bounds(self, other):
+        if other.y < self.y:
+            return True
+        if other.y2() > self.y2():
+            return True
+        return False
+
+    def get_adjusted(self, offset_x, offset_y):
+        return Bounds(self.x + offset_x, self.y + offset_y, self.w, self.h)
+
+    def to_bounds_pcs(self, container_width, container_height):
+        bounds_pcs = BoundsPcs()
+        bounds_pcs.x1 = self.x / container_width
+        bounds_pcs.x2 = self.x2() / container_width
+        bounds_pcs.y1 = self.y / container_height
+        bounds_pcs.y2 = self.y2() / container_height
+        return bounds_pcs
+
     def to_json(self):
         return simplejson.dumps(self.__dict__)
+
+
+class BoundsPcs:
+    def __init__(self):
+        self.x1 = 0.0
+        self.y2 = 0.0
+        self.x2 = 0.0
+        self.y2 = 0.0

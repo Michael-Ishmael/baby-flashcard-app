@@ -26,7 +26,7 @@ class TargetFormat(object):
 class CsvCreator:
     data_file_name = 'data2.json'
     target_root = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/media'
-    original_root = '/Users/scorpio/Dev/Projects/baby-flashcard-app/media/originals'
+    original_root = 'originals'  # '/Users/scorpio/Dev/Projects/baby-flashcard-app/media/originals'
     target_formats = {
         "twelve16": [
             TargetFormat("iphone4", "iphone4", Bounds(0, 0, 960, 640)),
@@ -60,17 +60,19 @@ class CsvCreator:
                         else:
                             target_format_list = CsvCreator.target_formats["nine16"]
                         for target_format in target_format_list:
-                            line = self.create_csv_line(target_format, crop_set, card.image, deck.name, deck_set.name)
+                            line = self.create_csv_line(target_format, crop_set, card.original_image_size, card.image, deck.name, deck_set.name)
                             self.csv_lines.append(line)
 
-    def create_csv_line(self, target_format, crop_set, image_name, deck_name, set_name):
+    def create_csv_line(self, target_format, crop_set, image_dims, image_name, deck_name, set_name):
         line = CsvRecord()
         line.original_path = os.path.join(CsvCreator.original_root, set_name, deck_name, image_name)
         file_name = image_name.replace('.jpg', '_' + target_format.name + '.jpg')
-        line.target_path = os.path.join(CsvCreator.target_root, set_name, deck_name, target_format.folder_path,
-                                        file_name)
+        line.target_path = os.path.join(set_name, target_format.folder_path, file_name)
 
-        dims = self.get_pc_dim_array()
+        min_width = crop_set.get_minimum_width(target_format.target_bounds.w)
+
+        dims = self.get_pc_dim_array(image_dims)
+
 
         return line
 
