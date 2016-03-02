@@ -4,6 +4,14 @@ import simplejson
 import os
 
 
+class TargetFormat(object):
+    def __init__(self, name, path, crop_format, bounds):
+        self.name = name
+        self.crop_format = crop_format
+        self.folder_path = path
+        self.target_bounds = bounds  # type:Bounds
+
+
 class Workflow:
     def __init__(self, media_path):
         self.media_path = media_path
@@ -222,7 +230,6 @@ class FlashCard:
             # "portraitbounds": None if self.portrait_bounds is None else self.portrait_bounds.__dict__,
         }
 
-
 class Orientation(Enum):
     portrait = 1
     landscape = 2
@@ -261,7 +268,25 @@ class CropSet:
 
         return Bounds(x, y, x2 - x, y2 - y)
 
-    def get_new_rect_bounds(self, long_side, short_size):
+    def min_x(self):
+        return min(self.master_crop_def.crop.x, self.alt_crop_def.crop.x)
+
+    def min_y(self):
+        return min(self.master_crop_def.crop.y, self.alt_crop_def.crop.y)
+
+    def max_x(self):
+        return max(self.master_crop_def.crop.x2(), self.alt_crop_def.crop.x2())
+
+    def max_y(self):
+        return max(self.master_crop_def.crop.y2(), self.alt_crop_def.crop.y2())
+
+    def combined_width(self):
+        return self.max_x() - self.min_x()
+
+    def combined_height(self):
+        return self.max_y() - self.min_y()
+
+    def get_new_rect_bounds(self, long_side, short_side):
         offset_x = max(self.master_crop_def.crop.x - self.alt_crop_def.crop.x, 0)
         extra_after_x = max(self.alt_crop_def.crop.x2() - self.master_crop_def.crop.x2(), 0)
 
@@ -271,12 +296,33 @@ class CropSet:
         target_orientation = Orientation.landscape if self.master_crop_def.crop.w > self.master_crop_def.crop.h \
             else Orientation.portrait
 
-        if target_orientation == Orientation.landscape:
-            extra = offset_x + extra_after_x
-            extra_ratio = extra / self.master_crop_def.crop.w
-            new_extra_size = long_side * extra_ratio
+        width = 0
+        height = 0
 
-        return 0
+        extra_x = offset_x + extra_after_x
+        if extra_x > 0:
+            extra_x_ratio = extra_x / self.master_crop_def.crop.w
+
+        extra_y = offset_y + extra_after_y
+        if extra_y > 0:
+            extra_y_ratio = extra_y / self.master_crop_def.crop.h
+
+        if target_orientation == Orientation.landscape:
+            width = long_side
+            height = short_side
+        elif target_orientation == Orientation.portrait:
+            width = short_side
+            height = long_side
+
+        if extra_x > 0:
+            new_extra_x_size = width * extra_x_ratio
+            width += new_extra_x_size
+
+        if extra_y > 0:
+            new_extra_y_size = height * extra_y_ratio
+            height += new_extra_y_size
+
+        return Bounds(0,0,width, height)
 
     def to_json_dict(self):
         return {

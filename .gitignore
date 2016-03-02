@@ -250,3 +250,5 @@ production/.idea/dataSources.xml
 production/.idea/production.iml
 
 .DS_Store
+
+production/.idea/dataSources.local.xml

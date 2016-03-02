@@ -16,11 +16,7 @@ from production.business.imagedata import *
 # ipad Other	2048	1536    12/16	  3/4
 # iPad Pro	    2732	2048    12/16	  3/4
 
-class TargetFormat(object):
-    def __init__(self, name, path, bounds):
-        self.name = name
-        self.folder_path = path
-        self.target_bounds = bounds  # type:Bounds
+
 
 
 class CsvCreator:
@@ -29,15 +25,15 @@ class CsvCreator:
     original_root = 'originals'  # '/Users/scorpio/Dev/Projects/baby-flashcard-app/media/originals'
     target_formats = {
         "twelve16": [
-            TargetFormat("iphone4", "iphone4", Bounds(0, 0, 960, 640)),
-            TargetFormat("ipad", "ipad", Bounds(0, 0, 1024, 768)),
-            TargetFormat("ipadretina", "ipadretina", Bounds(0, 0, 2048, 1536)),
-            TargetFormat("ipadpro", "ipadpro", Bounds(0, 0, 2732, 2048)),
+            TargetFormat("iphone4", "iphone4", CropFormat.twelve16, Bounds(0, 0, 960, 640)),
+            TargetFormat("ipad", "ipad", CropFormat.twelve16, Bounds(0, 0, 1024, 768)),
+            TargetFormat("ipadretina", "ipadretina", CropFormat.twelve16, Bounds(0, 0, 2048, 1536)),
+            TargetFormat("ipadpro", "ipadpro", CropFormat.twelve16, Bounds(0, 0, 2732, 2048)),
         ],
         "nine16": [
-            TargetFormat("iphone5", "iphone5", Bounds(0, 0, 1138, 640)),
-            TargetFormat("iphone6", "iphone6", Bounds(0, 0, 1334, 750)),
-            TargetFormat("iphone6plus", "iphone6plus", Bounds(0, 0, 2208, 1242)),
+            TargetFormat("iphone5", "iphone5", CropFormat.nine16, Bounds(0, 0, 1138, 640)),
+            TargetFormat("iphone6", "iphone6", CropFormat.nine16, Bounds(0, 0, 1334, 750)),
+            TargetFormat("iphone6plus", "iphone6plus", CropFormat.nine16, Bounds(0, 0, 2208, 1242)),
         ]
     }
 
@@ -69,12 +65,34 @@ class CsvCreator:
         file_name = image_name.replace('.jpg', '_' + target_format.name + '.jpg')
         line.target_path = os.path.join(set_name, target_format.folder_path, file_name)
 
-        min_width = crop_set.get_minimum_width(target_format.target_bounds.w)
+        crop_percentages = self.get_crop_percentages(crop_set, image_dims)
+        target_size = self.get_crop_size(crop_set, target_format)
 
-        dims = self.get_pc_dim_array(image_dims)
-
+        line.crop_start_x_pc = crop_percentages[0]
+        line.crop_start_y_pc = crop_percentages[1]
+        line.crop_end_x_pc = crop_percentages[2]
+        line.crop_end_y_pc = crop_percentages[3]
+        line.target_width = target_size.w
+        line.target_height = target_size.h
 
         return line
+
+    def get_crop_percentages(self, target_set, original_image_size):
+        x = target_set.min_x()
+        y = target_set.min_y()
+        x2 = target_set.max_x()
+        y2 = target_set.max_y()
+
+        return [x / original_image_size.w, y / original_image_size.h,
+                x2 / original_image_size.w, y2 / original_image_size.h]
+
+    def get_crop_size(self, target_set, target_format):
+        long_side = target_format.target_bounds.w if target_format.target_bounds.w > target_format.target_bounds.h \
+            else target_format.target_bounds.h
+        short_side = target_format.target_bounds.w if target_format.target_bounds.w < target_format.target_bounds.h \
+            else target_format.target_bounds.h
+
+        return target_set.get_new_rect_bounds(long_side, short_side)
 
     def get_pc_dim_array(self, image_dims, crop_dims):
         pc_x1 = crop_dims.x / image_dims.w
@@ -94,5 +112,5 @@ class CsvRecord:
         self.crop_start_y_pc = 0
         self.crop_end_x_pc = 1
         self.crop_end_y_pc = 1
-        self.targetDimension = 0  # 0 for width, 2 for height
-        self.targetSize = 0
+        self.target_width = 0
+        self.target_height = 0

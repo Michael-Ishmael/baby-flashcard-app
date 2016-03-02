@@ -19,7 +19,7 @@
                   "orientation": 0,
                   "crop": {
                     "y": 0,
-                    "x": 82,
+                    "x": 88,
                     "w": 712,
                     "h": 534
                   }
@@ -28,7 +28,7 @@
                   "orientation": 1,
                   "crop": {
                     "y": 0,
-                    "x": 245,
+                    "x": 111,
                     "w": 400.5,
                     "h": 534
                   }
@@ -40,7 +40,7 @@
                 "masterCropDef": {
                   "orientation": 0,
                   "crop": {
-                    "y": 56,
+                    "y": 46,
                     "x": 0,
                     "w": 800,
                     "h": 450
@@ -49,10 +49,10 @@
                 "altCropDef": {
                   "orientation": 1,
                   "crop": {
-                    "y": 56,
-                    "x": 282,
-                    "w": 253.125,
-                    "h": 450
+                    "y": 0,
+                    "x": 221,
+                    "w": 300.375,
+                    "h": 534
                   }
                 },
                 "title": "9 / 16",
@@ -63,22 +63,23 @@
               "path": "chicken1.jpg"
             },
             {
-              "sound": "chicken/Chicken1.mp3",
-              "name": "chicken3.jpg",
+              "sound": "chicken/Chicken6.mp3",
+              "name": "chicken5.jpg",
+              "completed": true,
               "originalDims": {
                 "y": 0,
                 "x": 0,
-                "w": 997,
-                "h": 1024
+                "w": 1024,
+                "h": 680
               },
               "twelve16": {
                 "masterCropDef": {
-                  "orientation": 0,
+                  "orientation": "0",
                   "crop": {
-                    "y": 100,
+                    "y": 0,
                     "x": 0,
-                    "w": 584,
-                    "h": 438
+                    "w": 708,
+                    "h": 531
                   }
                 },
                 "altCropDef": {
@@ -86,8 +87,8 @@
                   "crop": {
                     "y": 0,
                     "x": 0,
-                    "w": 450,
-                    "h": 600
+                    "w": 398.25,
+                    "h": 531
                   }
                 },
                 "title": "12 / 16",
@@ -99,6 +100,64 @@
                   "crop": {
                     "y": 0,
                     "x": 0,
+                    "w": 800,
+                    "h": 450
+                  }
+                },
+                "altCropDef": {
+                  "orientation": 1,
+                  "crop": {
+                    "y": 0,
+                    "x": 0,
+                    "w": 298.6875,
+                    "h": 531
+                  }
+                },
+                "title": "9 / 16",
+                "format": 1
+              },
+              "key": "chicken5.jpg",
+              "indexInDeck": 1,
+              "path": "chicken5.jpg"
+            },
+            {
+              "sound": "chicken/Chicken1.mp3",
+              "name": "chicken3.jpg",
+              "completed": true,
+              "originalDims": {
+                "y": 0,
+                "x": 0,
+                "w": 997,
+                "h": 1024
+              },
+              "twelve16": {
+                "masterCropDef": {
+                  "orientation": 0,
+                  "crop": {
+                    "y": 62,
+                    "x": 0,
+                    "w": 584,
+                    "h": 438
+                  }
+                },
+                "altCropDef": {
+                  "orientation": 1,
+                  "crop": {
+                    "y": 0,
+                    "x": 43,
+                    "w": 450,
+                    "h": 600
+                  }
+                },
+                "title": "12 / 16",
+                "format": 0
+              },
+              "nine16": {
+                "masterCropDef": {
+                  "orientation": 0,
+                  "crop": {
+                    "y": 71,
+                    "x": 0,
                     "w": 584,
                     "h": 328.5
                   }
@@ -107,7 +166,7 @@
                   "orientation": 1,
                   "crop": {
                     "y": 0,
-                    "x": 0,
+                    "x": 124,
                     "w": 337.5,
                     "h": 600
                   }
@@ -116,7 +175,7 @@
                 "format": 1
               },
               "key": "chicken3.jpg",
-              "indexInDeck": 1,
+              "indexInDeck": 2,
               "path": "chicken3.jpg"
             },
             {
@@ -133,7 +192,7 @@
                 "masterCropDef": {
                   "orientation": 0,
                   "crop": {
-                    "y": 0,
+                    "y": 114,
                     "x": 0,
                     "w": 647,
                     "h": 485.25
@@ -143,7 +202,7 @@
                   "orientation": 1,
                   "crop": {
                     "y": 0,
-                    "x": 0,
+                    "x": 2,
                     "w": 450,
                     "h": 600
                   }
@@ -155,10 +214,10 @@
                 "masterCropDef": {
                   "orientation": 0,
                   "crop": {
-                    "y": 87,
+                    "y": 114,
                     "x": 0,
-                    "w": 647,
-                    "h": 363.9375
+                    "w": 645.3333333333333,
+                    "h": 363
                   }
                 },
                 "altCropDef": {
@@ -174,12 +233,13 @@
                 "format": 1
               },
               "key": "chicken2.jpg",
-              "indexInDeck": 2,
+              "indexInDeck": 3,
               "path": "chicken2.jpg"
             },
             {
-              "sound": "chicken/Chicken3.mp3",
+              "sound": "chicken/Chicken1.mp3",
               "name": "chicken4.jpg",
+              "completed": true,
               "originalDims": {
                 "y": 0,
                 "x": 0,
@@ -235,31 +295,32 @@
               "path": "chicken4.jpg"
             },
             {
-              "sound": "chicken/Chicken4.mp3",
-              "name": "chicken5.jpg",
+              "sound": "chicken/Chicken1.mp3",
+              "name": "chicken6.jpg",
+              "completed": true,
               "originalDims": {
                 "y": 0,
                 "x": 0,
                 "w": 1024,
-                "h": 680
+                "h": 1024
               },
               "twelve16": {
                 "masterCropDef": {
-                  "orientation": "1",
+                  "orientation": 0,
                   "crop": {
-                    "y": 0,
-                    "x": 0,
-                    "w": 398.25,
-                    "h": 531
+                    "y": 35,
+                    "x": 10,
+                    "w": 320,
+                    "h": 240
                   }
                 },
                 "altCropDef": {
-                  "orientation": 0,
+                  "orientation": 1,
                   "crop": {
                     "y": 0,
-                    "x": 0,
-                    "w": 708,
-                    "h": 531
+                    "x": 74,
+                    "w": 450,
+                    "h": 600
                   }
                 },
                 "title": "12 / 16",
@@ -269,27 +330,27 @@
                 "masterCropDef": {
                   "orientation": 0,
                   "crop": {
-                    "y": 0,
-                    "x": 0,
-                    "w": 800,
-                    "h": 450
+                    "y": 47,
+                    "x": 5,
+                    "w": 343.1111111111111,
+                    "h": 193
                   }
                 },
                 "altCropDef": {
                   "orientation": 1,
                   "crop": {
                     "y": 0,
-                    "x": 270,
-                    "w": 298.6875,
-                    "h": 531
+                    "x": 49,
+                    "w": 222.1875,
+                    "h": 395
                   }
                 },
                 "title": "9 / 16",
                 "format": 1
               },
-              "key": "chicken5.jpg",
-              "indexInDeck": 5,
-              "path": "chicken5.jpg"
+              "key": "chicken6.jpg",
+              "indexInDeck": 6,
+              "path": "chicken6.jpg"
             }
           ],
           "sounds": [
