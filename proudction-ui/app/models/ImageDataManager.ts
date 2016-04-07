@@ -97,6 +97,7 @@ class ImageDataManager implements IAsynDataObject {
 
             }
         }
+        item.discarded = true;
     }
 
     public ready():IPromise {

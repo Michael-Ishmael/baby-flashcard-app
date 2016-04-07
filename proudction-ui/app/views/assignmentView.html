@@ -61,9 +61,17 @@
     </div>
 
     <div class="col-md-5">
-        <div >
+
+        <div ng-hide="showPreviews" >
             <img id="imagePreview" ng-src="{{ previewPath }}" class="working-image" />
         </div>
+        <div ng-show="showPreviews">
+            <image-crop-preview crop-index="1" scale=".25" current-item="currentItem"></image-crop-preview>
+            <image-crop-preview crop-index="2" scale=".25" current-item="currentItem"></image-crop-preview>
+            <image-crop-preview crop-index="3" scale=".25" current-item="currentItem" row-start="true"></image-crop-preview>
+            <image-crop-preview crop-index="4" scale=".25" current-item="currentItem"></image-crop-preview>
+        </div>
+
 
     </div>
 

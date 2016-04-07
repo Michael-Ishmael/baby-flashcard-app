@@ -50,14 +50,25 @@ var CropFormatter = (function () {
     CropFormatter.prototype.displayMasterCrop = function () {
         this.clear();
         this.initJCrop(this.jImage);
-        this.setCropPosition(this.activeCropDef.crop);
+        this.displayCrop(this.activeCropDef.percentages);
     };
     CropFormatter.prototype.displayAltCrop = function () {
         this.removeJCrop();
         this.initJCrop(this.jImage);
         var masterCropDef = this.activeCropSet.masterCropDef;
-        this.displayMask(masterCropDef.crop);
-        this.setCropPosition(this.activeCropDef.crop);
+        var maskCrop = this.getAdjustedCrop(masterCropDef.percentages);
+        this.displayMask(maskCrop);
+        this.displayCrop(this.activeCropDef.percentages);
+    };
+    CropFormatter.prototype.displayCrop = function (cropPercentages) {
+        var calcCrop = this.getAdjustedCrop(cropPercentages);
+        this.setCropPosition(calcCrop);
+    };
+    CropFormatter.prototype.getAdjustedCrop = function (cropPercentages) {
+        var w = this.jImage.width();
+        var h = this.jImage.height();
+        var x = w * cropPercentages.x, y = h * cropPercentages.y, w = w * cropPercentages.w, h = h * cropPercentages.h;
+        return new BoxDims(x, y, w, h);
     };
     CropFormatter.prototype.displayMask = function (position) {
         this.jMaskContainer.remove();
@@ -95,9 +106,14 @@ var CropFormatter = (function () {
         // set crop on active cropdef
         //console.log(crop);
         activeCropDef.crop.setFromBox(crop);
+        var pcs = this.cropToPercentages(crop, this.jImage.width(), this.jImage.height());
+        activeCropDef.percentages.setFromBox(pcs);
         if (this.callback)
             this.callback();
     };
+    CropFormatter.prototype.cropToPercentages = function (crop, w, h) {
+        return new BoxDims(crop.x / w, crop.y / h, crop.w / w, crop.h / h);
+    };
     return CropFormatter;
-})();
+}());
 //# sourceMappingURL=CropFormatter.js.map

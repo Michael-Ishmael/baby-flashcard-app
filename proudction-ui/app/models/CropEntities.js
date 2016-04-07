@@ -40,7 +40,8 @@ var BoxDims = (function () {
         this.h = coords.h;
     };
     BoxDims.prototype.hasDims = function () {
-        return (this.w - this.x) > 50 && (this.h - this.y) > 50;
+        var hasDims = (this.w - this.x) > 10 && (this.h - this.y) > 10;
+        return hasDims;
     };
     BoxDims.prototype.toJsonObj = function () {
         return {
@@ -54,7 +55,7 @@ var BoxDims = (function () {
         return new BoxDims(box.x, box.y, box.w, box.h);
     };
     return BoxDims;
-})();
+}());
 var CropDef = (function () {
     function CropDef(target) {
         this.target = target;
@@ -65,12 +66,15 @@ var CropDef = (function () {
             this.orientation = Orientation.portrait;
         }
         this.crop = new BoxDims(0, 0, 100, 100);
+        this.percentages = new BoxDims(0, 0, 1, 1);
     }
     //parent:CropSet;
     CropDef.fromICropDef = function (iCropDef, target) {
         var def = new CropDef(target);
         def.orientation = iCropDef.orientation;
         def.crop = BoxDims.createFromBox(iCropDef.crop);
+        if (iCropDef.percentages)
+            def.percentages = BoxDims.createFromBox(iCropDef.percentages);
         return def;
     };
     CropDef.prototype.getAspectRatio = function (format) {
@@ -83,16 +87,18 @@ var CropDef = (function () {
         }
     };
     CropDef.prototype.isComplete = function () {
-        return (this.orientation == Orientation.landscape || this.orientation == Orientation.portrait) && this.crop.hasDims();
+        var isComplete = (this.orientation == Orientation.landscape || this.orientation == Orientation.portrait) && this.crop.hasDims();
+        return isComplete;
     };
     CropDef.prototype.toJsonObj = function () {
         return {
             orientation: this.orientation,
-            crop: this.crop.toJsonObj()
+            crop: this.crop.toJsonObj(),
+            percentages: this.percentages.toJsonObj()
         };
     };
     return CropDef;
-})();
+}());
 var CropSet = (function () {
     function CropSet(format, masterCropDef, altCropDef) {
         this.format = format;
@@ -114,7 +120,8 @@ var CropSet = (function () {
         this.altCropDef.crop = ImageCropUtils.getBoxBounds(this.altCropDef.orientation, this.format, this.masterCropDef.crop);
     };
     CropSet.prototype.isComplete = function () {
-        return this.masterCropDef.isComplete() && this.altCropDef.isComplete() && (this.title && this.title.length > 0);
+        var isComplete = this.masterCropDef.isComplete() && this.altCropDef.isComplete() && (this.title && this.title.length > 0);
+        return isComplete;
     };
     CropSet.prototype.toJsonObj = function () {
         return {
@@ -125,7 +132,7 @@ var CropSet = (function () {
         };
     };
     return CropSet;
-})();
+}());
 var ImageCropUtils = (function () {
     function ImageCropUtils() {
     }
@@ -163,7 +170,7 @@ var ImageCropUtils = (function () {
         return "9 / 16";
     };
     return ImageCropUtils;
-})();
+}());
 var Set = (function () {
     function Set(id, name) {
         this.id = id;
@@ -192,7 +199,7 @@ var Set = (function () {
         return set;
     };
     return Set;
-})();
+}());
 var Deck = (function () {
     function Deck(id, name) {
         this.id = id;
@@ -220,7 +227,7 @@ var Deck = (function () {
         return deck;
     };
     return Deck;
-})();
+}());
 var ImageDataItem = (function () {
     function ImageDataItem(key, name, path) {
         this.key = key;
@@ -247,7 +254,8 @@ var ImageDataItem = (function () {
             originalDims: this.originalDims.toJsonObj(),
             twelve16: this.twelve16.toJsonObj(),
             nine16: this.nine16.toJsonObj(),
-            completed: this.completed
+            completed: this.completed,
+            discarded: this.discarded
         };
     };
     ImageDataItem.prototype.getStatus = function () {
@@ -265,7 +273,7 @@ var ImageDataItem = (function () {
         return ItemStatus.untouched;
     };
     return ImageDataItem;
-})();
+}());
 var BacklogItem = (function () {
     function BacklogItem(key, name, path) {
         this.key = key;
@@ -273,5 +281,5 @@ var BacklogItem = (function () {
         this.path = path;
     }
     return BacklogItem;
-})();
+}());
 //# sourceMappingURL=CropEntities.js.map
