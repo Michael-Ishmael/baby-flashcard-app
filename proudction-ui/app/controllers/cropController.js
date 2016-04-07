@@ -2,7 +2,8 @@
  * Created by michaeli on 28/01/2016.
  */
 
-app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', function ($scope, $routeParams, imageDataService) {
+app.controller('cropController', ['$scope', '$routeParams', '$location', 'imageDataService',
+    function ($scope, $routeParams, $location, imageDataService) {
 
 
         $scope.selectedImg = null;
@@ -106,7 +107,7 @@ app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', 
             if (cropManager.activeCropDef) {
                 cropFormatter.setCrop(cropManager.activeCropDef, cropManager.activeCropSet);
                 $scope.activeCropSet = cropManager.activeCropSet;
-                $scope.orientation = $scope.activeCropSet.masterCropDef.orientation;
+                $scope.orientation = $scope.activeCropSet.landscapeCropDef.orientation;
             }
         }
 
@@ -148,6 +149,9 @@ app.controller('cropController', ['$scope', '$routeParams', 'imageDataService', 
         $scope.markComplete = function () {
             imageDataService.markComplete(imageDataService.currentItem);
             $scope.dataChanged = false;
+            //var view = 'backlog';
+            //var path = $scope.currentItem ? view + '/' + $scope.currentItem .key : view;
+            $location.path('backlog'); // path not hash
         };
 
     }]

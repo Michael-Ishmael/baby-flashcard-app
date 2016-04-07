@@ -55,7 +55,7 @@ var ImageDataManager = (function () {
         this.loader.syncData(data);
     };
     ImageDataManager.prototype.markComplete = function (item) {
-        if (item.getStatus() == ItemStatus.cropped) {
+        if (item.getStatus() == ItemStatus.cropped || item.getStatus() == ItemStatus.completed) {
             item.completed = true;
             var matchingBacklogItem = this.findItemInBacklog(item);
             if (matchingBacklogItem)
@@ -286,19 +286,19 @@ var CropManager = (function () {
         switch (index) {
             case 0:
                 this.activeCropSet = this.currentItem.twelve16;
-                this.activeCropDef = this.currentItem.twelve16.masterCropDef;
+                this.activeCropDef = this.currentItem.twelve16.landscapeCropDef;
                 break;
             case 1:
                 this.activeCropSet = this.currentItem.twelve16;
-                this.activeCropDef = this.currentItem.twelve16.altCropDef;
+                this.activeCropDef = this.currentItem.twelve16.portraitCropDef;
                 break;
             case 2:
                 this.activeCropSet = this.currentItem.nine16;
-                this.activeCropDef = this.currentItem.nine16.masterCropDef;
+                this.activeCropDef = this.currentItem.nine16.landscapeCropDef;
                 break;
             case 3:
                 this.activeCropSet = this.currentItem.nine16;
-                this.activeCropDef = this.currentItem.nine16.altCropDef;
+                this.activeCropDef = this.currentItem.nine16.portraitCropDef;
                 break;
         }
     };
@@ -309,18 +309,18 @@ var CropManager = (function () {
     CropManager.prototype.setMasterCropOrientation = function (orientation) {
         if (this.activeCropDef) {
             var cropSet = this.getCropSetForDef(this.activeCropDef);
-            cropSet.masterCropDef.orientation = orientation;
+            cropSet.landscapeCropDef.orientation = orientation;
             cropSet.altCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
             this.recalculateCropStates();
         }
     };
     CropManager.prototype.getCropSetForDef = function (def) {
         if (this.currentItem) {
-            if (this.currentItem.twelve16.masterCropDef == def)
+            if (this.currentItem.twelve16.landscapeCropDef == def)
                 return this.currentItem.twelve16;
             if (this.currentItem.twelve16.altCropDef == def)
                 return this.currentItem.twelve16;
-            if (this.currentItem.nine16.masterCropDef == def)
+            if (this.currentItem.nine16.landscapeCropDef == def)
                 return this.currentItem.nine16;
             if (this.currentItem.nine16.altCropDef == def)
                 return this.currentItem.nine16;
@@ -329,20 +329,20 @@ var CropManager = (function () {
     CropManager.createNewImageDataItem = function (backlogItem) {
         var item = new ImageDataItem(backlogItem.key, backlogItem.name, backlogItem.path);
         item.originalDims = new BoxDims(0, 0, 100, 100);
-        item.twelve16 = new CropSet(CropFormat.twelve16, new CropDef(CropTarget.master), new CropDef(CropTarget.alt));
-        item.nine16 = new CropSet(CropFormat.nine16, new CropDef(CropTarget.master), new CropDef(CropTarget.alt));
+        item.twelve16 = new CropSet(CropFormat.twelve16, new CropDef(Orientation.landscape), new CropDef(Orientation.portrait));
+        item.nine16 = new CropSet(CropFormat.nine16, new CropDef(Orientation.landscape), new CropDef(Orientation.portrait));
         return item;
     };
     CropManager.prototype.recalculateCropStates = function () {
         var ci = this.currentItem;
-        ci.twelve16.masterCropDef.crop =
-            ImageCropUtils.getBoxBounds(ci.twelve16.masterCropDef.orientation, ci.twelve16.format, ci.sizingDims);
-        ci.twelve16.altCropDef.crop =
-            ImageCropUtils.getBoxBounds(ci.twelve16.altCropDef.orientation, ci.twelve16.format, ci.sizingDims);
-        ci.nine16.masterCropDef.crop =
-            ImageCropUtils.getBoxBounds(ci.nine16.masterCropDef.orientation, ci.nine16.format, ci.sizingDims);
-        ci.nine16.altCropDef.crop =
-            ImageCropUtils.getBoxBounds(ci.nine16.altCropDef.orientation, ci.nine16.format, ci.sizingDims);
+        ci.twelve16.landscapeCropDef.crop =
+            ImageCropUtils.getBoxBounds(ci.twelve16.landscapeCropDef.orientation, ci.twelve16.format, ci.sizingDims);
+        ci.twelve16.portraitCropDef.crop =
+            ImageCropUtils.getBoxBounds(ci.twelve16.portraitCropDef.orientation, ci.twelve16.format, ci.sizingDims);
+        ci.nine16.landscapeCropDef.crop =
+            ImageCropUtils.getBoxBounds(ci.nine16.landscapeCropDef.orientation, ci.nine16.format, ci.sizingDims);
+        ci.nine16.portraitCropDef.crop =
+            ImageCropUtils.getBoxBounds(ci.nine16.portraitCropDef.orientation, ci.nine16.format, ci.sizingDims);
     };
     return CropManager;
 })();

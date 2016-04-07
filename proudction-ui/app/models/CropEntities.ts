@@ -13,11 +13,6 @@ enum CropFormat{
     nine16
 }
 
-enum CropTarget {
-    master,
-    alt
-}
-
 enum ItemStatus {
     untouched,
     assigned,
@@ -76,7 +71,7 @@ class BoxDims implements IBox {
     }
 
     hasDims() {
-        return (this.w - this.x) > 50 && (this.h - this.y) > 50;
+        return (this.w - this.x) > 20 && (this.h - this.y) > 20;
     }
 
     toJsonObj():IBox {
@@ -97,29 +92,35 @@ interface ICropDef {
 
     orientation:Orientation;
     crop:IBox;
+    cropPercentages:Array<number>;
 }
 
 class CropDef implements ICropDef {
 
-    orientation:Orientation;
     crop:BoxDims;
+    cropPercentages:Array<number>;
     //parent:CropSet;
 
-    public static fromICropDef(iCropDef:ICropDef, target:CropTarget):CropDef {
-        var def = new CropDef(target);
-        def.orientation = iCropDef.orientation;
+    public static fromICropDef(iCropDef:ICropDef, orientation:Orientation):CropDef {
+        var def = new CropDef(orientation);
         def.crop = BoxDims.createFromBox(iCropDef.crop);
         return def;
     }
 
-    constructor(public target:CropTarget) {
-        if (target == CropTarget.master) {
-            this.orientation = Orientation.landscape;
-        } else {
-            this.orientation = Orientation.portrait;
-        }
-        this.crop = new BoxDims(0, 0, 100, 100);
+    constructor(public orientation:Orientation) {
+
+        this.crop = new BoxDims(0, 0, 20, 20);
     }
+
+    setCropPercentages(sizingDims:IBox){
+        this.cropPercentages = [
+            this.crop.x / sizingDims.w,
+            this.crop.y / sizingDims.h,
+            (this.crop.x + this.crop.w) / sizingDims.w,
+            (this.crop.y + this.crop.h) / sizingDims.h,
+        ];
+    }
+
 
     getAspectRatio(format:CropFormat):number {
         var shortSide = format == CropFormat.twelve16 ? 12 : 9;
@@ -137,59 +138,55 @@ class CropDef implements ICropDef {
     toJsonObj():ICropDef {
         return {
             orientation: this.orientation,
-            crop: this.crop.toJsonObj()
+            crop: this.crop.toJsonObj(),
+            cropPercentages: this.cropPercentages
         }
     }
 }
 
 interface ICropSet {
     format:CropFormat;
-    masterCropDef:ICropDef;
-    altCropDef:ICropDef;
+    landscapeCropDef:ICropDef;
+    portraitCropDef:ICropDef;
     title:string;
 }
 
 class CropSet implements ICropSet {
 
-    public masterCropDef:CropDef;
-    public altCropDef:CropDef;
+    public landscapeCropDef:CropDef;
+    public portraitCropDef:CropDef;
     public activeDef:CropDef;
     public title:string;
 
     public static fromICropSet(iCropSet:ICropSet):CropSet {
         return new CropSet(iCropSet.format,
-            CropDef.fromICropDef(iCropSet.masterCropDef, CropTarget.master),
-            CropDef.fromICropDef(iCropSet.altCropDef, CropTarget.alt))
+            CropDef.fromICropDef(iCropSet.landscapeCropDef, Orientation.landscape),
+            CropDef.fromICropDef(iCropSet.portraitCropDef, Orientation.portrait));
     }
 
     constructor(public format:CropFormat, masterCropDef:CropDef, altCropDef:CropDef) {
-        this.masterCropDef = masterCropDef;
-        //this.masterCropDef.parent = this;
+        this.landscapeCropDef = masterCropDef;
         this.activeDef = masterCropDef;
-        this.altCropDef = altCropDef;
-        //this.altCropDef.parent = this;
+        this.portraitCropDef = altCropDef;
         this.title = ImageCropUtils.getCropTitleFromCropFormat(format);
     }
 
-    public setMasterOrientation(orientation:Orientation) {
-        this.masterCropDef.orientation = orientation;
-        this.altCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
-    }
-
-    public switchToAltCropDef() {
-        this.altCropDef.crop = ImageCropUtils.getBoxBounds(this.altCropDef.orientation, this.format, this.masterCropDef.crop)
-    }
 
     public isComplete():boolean {
-        return this.masterCropDef.isComplete() && this.altCropDef.isComplete() && (this.title && this.title.length > 0);
+        return this.landscapeCropDef.isComplete() && this.portraitCropDef.isComplete() && (this.title && this.title.length > 0);
+    }
+
+    public setPercentages(sizingDims:IBox){
+        this.landscapeCropDef.setCropPercentages(sizingDims);
+        this.portraitCropDef.setCropPercentages(sizingDims);
     }
 
     public toJsonObj():ICropSet {
         return {
             format: this.format,
             title: this.title,
-            masterCropDef: this.masterCropDef.toJsonObj(),
-            altCropDef: this.altCropDef.toJsonObj()
+            landscapeCropDef: this.landscapeCropDef.toJsonObj(),
+            portraitCropDef: this.portraitCropDef.toJsonObj()
         }
     }
 
@@ -318,6 +315,7 @@ interface IDataCard {
     indexInDeck:number;
     sound:string;
     originalDims:IBox;
+    sizingDims:IBox;
     twelve16:ICropSet;
     nine16:ICropSet;
     completed:boolean;
@@ -340,7 +338,8 @@ class ImageDataItem implements IDataCard, IDataItem {
 
         var img = new ImageDataItem(iDataCard.key, iDataCard.name, iDataCard.path);
         img.sound = iDataCard.sound;
-        img.originalDims = iDataCard.originalDims ? BoxDims.createFromBox(iDataCard.originalDims) : new BoxDims(0, 0, 100, 100);
+        img.originalDims = iDataCard.originalDims ? BoxDims.createFromBox(iDataCard.originalDims) : new BoxDims(0, 0, 20, 20);
+        img.sizingDims = iDataCard.sizingDims ? BoxDims.createFromBox(iDataCard.sizingDims) : new BoxDims(0, 0, 20, 20);
         img.twelve16 = CropSet.fromICropSet(iDataCard.twelve16);
         img.nine16 = CropSet.fromICropSet(iDataCard.nine16);
         img.indexInDeck = iDataCard.indexInDeck;
@@ -352,7 +351,14 @@ class ImageDataItem implements IDataCard, IDataItem {
 
     }
 
+    setPercentages(){
+        if(!this.sizingDims) return;
+        this.twelve16.setPercentages(this.sizingDims);
+        this.nine16.setPercentages(this.sizingDims);
+    }
+
     public toJsonObj():IDataCard {
+        this.setPercentages();
         return {
             key: this.key,
             name: this.name,
@@ -360,6 +366,7 @@ class ImageDataItem implements IDataCard, IDataItem {
             indexInDeck: this.indexInDeck,
             sound: this.sound,
             originalDims: this.originalDims.toJsonObj(),
+            sizingDims: this.sizingDims ? this.sizingDims.toJsonObj() : null,
             twelve16: this.twelve16.toJsonObj(),
             nine16: this.nine16.toJsonObj(),
             completed: this.completed
@@ -368,7 +375,7 @@ class ImageDataItem implements IDataCard, IDataItem {
 
     public getStatus():ItemStatus {
         if (this.indexInDeck > -1 && this.sound) {
-            if (this.originalDims && this.originalDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete()) {
+            if (this.sizingDims && this.sizingDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete()) {
                 if (this.completed) {
                     return ItemStatus.completed;
                 } else {

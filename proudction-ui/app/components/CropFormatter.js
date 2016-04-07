@@ -16,7 +16,7 @@ var CropFormatter = (function () {
     CropFormatter.prototype.setCrop = function (cropDef, cropSet) {
         this.activeCropDef = cropDef;
         this.activeCropSet = cropSet;
-        if (cropDef.target == CropTarget.master) {
+        if (cropDef.orientation == Orientation.landscape) {
             this.displayMasterCrop();
         }
         else {
@@ -55,7 +55,7 @@ var CropFormatter = (function () {
     CropFormatter.prototype.displayAltCrop = function () {
         this.removeJCrop();
         this.initJCrop(this.jImage);
-        var masterCropDef = this.activeCropSet.masterCropDef;
+        var masterCropDef = this.activeCropSet.landscapeCropDef;
         this.displayMask(masterCropDef.crop);
         this.setCropPosition(this.activeCropDef.crop);
     };

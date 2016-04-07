@@ -127,6 +127,7 @@ class ImageData:
                         card.index = dict_card["indexInDeck"]
                         card.sound = dict_card.get("sound")
                         card.original_image_size = self.load_bounds_from_dict_prop(dict_card, "originalDims")
+                        card.ref_image_size = self.load_bounds_from_dict_prop(dict_card, "sizingDims")
 
                         twelve16 = self.load_crop_set(dict_card, "twelve16", CropFormat.twelve16)
                         nine16 = self.load_crop_set(dict_card, "nine16", CropFormat.nine16)
@@ -141,15 +142,16 @@ class ImageData:
     def load_crop_set(self, parent_dict, prop_name, crop_format):
         dict_crop_set = parent_dict.get(prop_name)
         crop_set = CropSet(crop_format)
-        crop_set.master_crop_def = self.load_crop_def(dict_crop_set, "masterCropDef")
-        crop_set.alt_crop_def = self.load_crop_def(dict_crop_set, "altCropDef")
+        crop_set.landscape_crop_def = self.load_crop_def(dict_crop_set, "landscapeCropDef")
+        crop_set.portrait_crop_def = self.load_crop_def(dict_crop_set, "portraitCropDef")
         return crop_set
 
     def load_crop_def(self, parent_dict, prop_name):
-        dict_crop_def = parent_dict.get(prop_name);
+        dict_crop_def = parent_dict.get(prop_name)
         l_orientation = dict_crop_def.get("orientation")
         orientation = Orientation.portrait if l_orientation == 1 else Orientation.landscape
         crop_def = CropDef(orientation)
+        crop_def.percentages = dict_crop_def.get("cropPercentages", [])
         crop_def.crop = self.load_bounds_from_dict_prop(dict_crop_def, "crop")
         return crop_def
 
@@ -214,6 +216,7 @@ class FlashCard:
         self.sub_path = ""
         self.full_path = ""
         self.original_image_size = None  # type: Bounds
+        self.ref_image_size = None  # type:Bounds
         self.crop_sets = []  # type: [CropSet]
         # self.landscape_bounds = None  # type: Bounds
         # self.portrait_bounds = None  # type: Bounds
@@ -246,6 +249,7 @@ class CropDef:
         self.crop = None  # type:Bounds
         self.offset_x = 0
         self.offset_y = 0
+        self.percentages = []
 
     def to_json_dict(self):
         return {
@@ -257,28 +261,28 @@ class CropDef:
 class CropSet:
     def __init__(self, crop_format):
         self.crop_format = crop_format  # type:CropFormat
-        self.master_crop_def = None  # type:CropDef
-        self.alt_crop_def = None  # type:CropDef
+        self.landscape_crop_def = None  # type:CropDef
+        self.portrait_crop_def = None  # type:CropDef
 
     def get_combined_rect(self):
-        x = min(self.master_crop_def.crop.x, self.alt_crop_def.crop.x)
-        y = min(self.master_crop_def.crop.x, self.alt_crop_def.crop.x)
-        x2 = max(self.master_crop_def.crop.x2(), self.alt_crop_def.crop.x2())
-        y2 = max(self.master_crop_def.crop.y2(), self.alt_crop_def.crop.y2())
+        x = min(self.landscape_crop_def.crop.x, self.portrait_crop_def.crop.x)
+        y = min(self.landscape_crop_def.crop.x, self.portrait_crop_def.crop.x)
+        x2 = max(self.landscape_crop_def.crop.x2(), self.portrait_crop_def.crop.x2())
+        y2 = max(self.landscape_crop_def.crop.y2(), self.portrait_crop_def.crop.y2())
 
         return Bounds(x, y, x2 - x, y2 - y)
 
     def min_x(self):
-        return min(self.master_crop_def.crop.x, self.alt_crop_def.crop.x)
+        return min(self.landscape_crop_def.percentages[0], self.portrait_crop_def.percentages[0])
 
     def min_y(self):
-        return min(self.master_crop_def.crop.y, self.alt_crop_def.crop.y)
+        return min(self.landscape_crop_def.percentages[1], self.portrait_crop_def.percentages[1])
 
     def max_x(self):
-        return max(self.master_crop_def.crop.x2(), self.alt_crop_def.crop.x2())
+        return max(self.landscape_crop_def.percentages[2], self.portrait_crop_def.percentages[2])
 
     def max_y(self):
-        return max(self.master_crop_def.crop.y2(), self.alt_crop_def.crop.y2())
+        return max(self.landscape_crop_def.percentages[3], self.portrait_crop_def.percentages[3])
 
     def combined_width(self):
         return self.max_x() - self.min_x()
@@ -287,32 +291,41 @@ class CropSet:
         return self.max_y() - self.min_y()
 
     def get_new_rect_bounds(self, long_side, short_side):
-        offset_x = max(self.master_crop_def.crop.x - self.alt_crop_def.crop.x, 0)
-        extra_after_x = max(self.alt_crop_def.crop.x2() - self.master_crop_def.crop.x2(), 0)
 
-        offset_y = max(self.master_crop_def.crop.y - self.alt_crop_def.crop.y, 0)
-        extra_after_y = max(self.alt_crop_def.crop.y2() - self.master_crop_def.crop.y2(), 0)
+        target_crop = self.landscape_crop_def.crop if self.landscape_crop_def.crop.w < self.portrait_crop_def.crop.h else self.portrait_crop_def.crop;
+        alt_crop = self.landscape_crop_def.crop if self.landscape_crop_def.crop.w > self.portrait_crop_def.crop.h else self.portrait_crop_def.crop;
 
-        target_orientation = Orientation.landscape if self.master_crop_def.crop.w > self.master_crop_def.crop.h \
+        offset_x = max(target_crop.x - alt_crop.x, 0)
+        extra_after_x = max(alt_crop.x2() - target_crop.x2(), 0)
+
+        offset_y = max(target_crop.y - alt_crop.y, 0)
+        extra_after_y = max(alt_crop.y2() - target_crop.y2(), 0)
+
+        target_orientation = Orientation.landscape if target_crop.w < target_crop.h \
             else Orientation.portrait
 
         width = 0
         height = 0
+        extra_x_ratio = 1
+        extra_y_ratio = 1
 
         extra_x = offset_x + extra_after_x
-        if extra_x > 0:
-            extra_x_ratio = extra_x / self.master_crop_def.crop.w
-
         extra_y = offset_y + extra_after_y
-        if extra_y > 0:
-            extra_y_ratio = extra_y / self.master_crop_def.crop.h
 
         if target_orientation == Orientation.landscape:
             width = long_side
             height = short_side
+            if extra_x > 0:
+                extra_x_ratio = extra_x / target_crop.h
+            if extra_y > 0:
+                extra_y_ratio = extra_y / target_crop.w
         elif target_orientation == Orientation.portrait:
             width = short_side
             height = long_side
+            if extra_x > 0:
+                extra_x_ratio = extra_x / target_crop.w
+            if extra_y > 0:
+                extra_y_ratio = extra_y / target_crop.h
 
         if extra_x > 0:
             new_extra_x_size = width * extra_x_ratio
@@ -327,35 +340,9 @@ class CropSet:
     def to_json_dict(self):
         return {
             "format": 12 if self.crop_format is CropFormat.twelve16 else 9,
-            "masterCropDef": self.master_crop_def.to_json_dict(),
-            "altCropDef": self.alt_crop_def.to_json_dict()
+            "masterCropDef": self.landscape_crop_def.to_json_dict(),
+            "altCropDef": self.portrait_crop_def.to_json_dict()
         }
-
-
-class EvaluatedDimension:
-    def __init__(self, crop_set, target_orientation, target_size):
-        alt_orientation = Orientation.portrait if target_orientation == Orientation.landscape else Orientation.landscape
-        self.master_crop = crop_set.master_crop_def.crop if crop_set.master_crop_def.orientation == target_orientation \
-            else crop_set.alt_crop_def.crop
-        self.alt_crop = self.master_crop_def.crop if crop_set.master_crop_def.orientation == alt_orientation \
-            else crop_set.alt_crop_def.crop
-
-        current_dim_size = self.master_crop.w if target_orientation == Orientation.landscape else self.master_crop.h
-
-        self.p1m = self.master_crop.x if target_orientation == Orientation.landscape else self.master_crop.y
-        self.p2m = self.master_crop.x2() if target_orientation == Orientation.landscape else self.master_crop.y2()
-        self.p1a = self.alt_crop.x if target_orientation == Orientation.landscape else self.alt_crop.y
-        self.p2a = self.alt_crop.x2() if target_orientation == Orientation.landscape else self.alt_crop.y2()
-
-        extra_before = 0 if self.p1a >= self.p1m else self.p1m - self.p1a
-        extra_after = 0 if self.p2a <= self.p2m else self.p2a - self.p2m
-        extra = extra_before + extra_after
-        t_extra = 0
-        if extra > 0:
-            extra_ratio = extra / self.current_dim_size
-            t_extra = target_size * extra_ratio
-        self.new_image_size = target_size + t_extra
-        self.offset = extra_before
 
 
 class Bounds:

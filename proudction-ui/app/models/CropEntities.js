@@ -11,11 +11,6 @@ var CropFormat;
     CropFormat[CropFormat["twelve16"] = 0] = "twelve16";
     CropFormat[CropFormat["nine16"] = 1] = "nine16";
 })(CropFormat || (CropFormat = {}));
-var CropTarget;
-(function (CropTarget) {
-    CropTarget[CropTarget["master"] = 0] = "master";
-    CropTarget[CropTarget["alt"] = 1] = "alt";
-})(CropTarget || (CropTarget = {}));
 var ItemStatus;
 (function (ItemStatus) {
     ItemStatus[ItemStatus["untouched"] = 0] = "untouched";
@@ -40,7 +35,7 @@ var BoxDims = (function () {
         this.h = coords.h;
     };
     BoxDims.prototype.hasDims = function () {
-        return (this.w - this.x) > 50 && (this.h - this.y) > 50;
+        return (this.w - this.x) > 20 && (this.h - this.y) > 20;
     };
     BoxDims.prototype.toJsonObj = function () {
         return {
@@ -56,22 +51,23 @@ var BoxDims = (function () {
     return BoxDims;
 })();
 var CropDef = (function () {
-    function CropDef(target) {
-        this.target = target;
-        if (target == CropTarget.master) {
-            this.orientation = Orientation.landscape;
-        }
-        else {
-            this.orientation = Orientation.portrait;
-        }
-        this.crop = new BoxDims(0, 0, 100, 100);
+    function CropDef(orientation) {
+        this.orientation = orientation;
+        this.crop = new BoxDims(0, 0, 20, 20);
     }
     //parent:CropSet;
-    CropDef.fromICropDef = function (iCropDef, target) {
-        var def = new CropDef(target);
-        def.orientation = iCropDef.orientation;
+    CropDef.fromICropDef = function (iCropDef, orientation) {
+        var def = new CropDef(orientation);
         def.crop = BoxDims.createFromBox(iCropDef.crop);
         return def;
+    };
+    CropDef.prototype.setCropPercentages = function (sizingDims) {
+        this.cropPercentages = [
+            this.crop.x / sizingDims.w,
+            this.crop.y / sizingDims.h,
+            (this.crop.x + this.crop.w) / sizingDims.w,
+            (this.crop.y + this.crop.h) / sizingDims.h,
+        ];
     };
     CropDef.prototype.getAspectRatio = function (format) {
         var shortSide = format == CropFormat.twelve16 ? 12 : 9;
@@ -88,7 +84,8 @@ var CropDef = (function () {
     CropDef.prototype.toJsonObj = function () {
         return {
             orientation: this.orientation,
-            crop: this.crop.toJsonObj()
+            crop: this.crop.toJsonObj(),
+            cropPercentages: this.cropPercentages
         };
     };
     return CropDef;
@@ -96,32 +93,27 @@ var CropDef = (function () {
 var CropSet = (function () {
     function CropSet(format, masterCropDef, altCropDef) {
         this.format = format;
-        this.masterCropDef = masterCropDef;
-        //this.masterCropDef.parent = this;
+        this.landscapeCropDef = masterCropDef;
         this.activeDef = masterCropDef;
-        this.altCropDef = altCropDef;
-        //this.altCropDef.parent = this;
+        this.portraitCropDef = altCropDef;
         this.title = ImageCropUtils.getCropTitleFromCropFormat(format);
     }
     CropSet.fromICropSet = function (iCropSet) {
-        return new CropSet(iCropSet.format, CropDef.fromICropDef(iCropSet.masterCropDef, CropTarget.master), CropDef.fromICropDef(iCropSet.altCropDef, CropTarget.alt));
-    };
-    CropSet.prototype.setMasterOrientation = function (orientation) {
-        this.masterCropDef.orientation = orientation;
-        this.altCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
-    };
-    CropSet.prototype.switchToAltCropDef = function () {
-        this.altCropDef.crop = ImageCropUtils.getBoxBounds(this.altCropDef.orientation, this.format, this.masterCropDef.crop);
+        return new CropSet(iCropSet.format, CropDef.fromICropDef(iCropSet.landscapeCropDef, Orientation.landscape), CropDef.fromICropDef(iCropSet.portraitCropDef, Orientation.portrait));
     };
     CropSet.prototype.isComplete = function () {
-        return this.masterCropDef.isComplete() && this.altCropDef.isComplete() && (this.title && this.title.length > 0);
+        return this.landscapeCropDef.isComplete() && this.portraitCropDef.isComplete() && (this.title && this.title.length > 0);
+    };
+    CropSet.prototype.setPercentages = function (sizingDims) {
+        this.landscapeCropDef.setCropPercentages(sizingDims);
+        this.portraitCropDef.setCropPercentages(sizingDims);
     };
     CropSet.prototype.toJsonObj = function () {
         return {
             format: this.format,
             title: this.title,
-            masterCropDef: this.masterCropDef.toJsonObj(),
-            altCropDef: this.altCropDef.toJsonObj()
+            landscapeCropDef: this.landscapeCropDef.toJsonObj(),
+            portraitCropDef: this.portraitCropDef.toJsonObj()
         };
     };
     return CropSet;
@@ -230,14 +222,22 @@ var ImageDataItem = (function () {
     ImageDataItem.createFromIDataCard = function (iDataCard) {
         var img = new ImageDataItem(iDataCard.key, iDataCard.name, iDataCard.path);
         img.sound = iDataCard.sound;
-        img.originalDims = iDataCard.originalDims ? BoxDims.createFromBox(iDataCard.originalDims) : new BoxDims(0, 0, 100, 100);
+        img.originalDims = iDataCard.originalDims ? BoxDims.createFromBox(iDataCard.originalDims) : new BoxDims(0, 0, 20, 20);
+        img.sizingDims = iDataCard.sizingDims ? BoxDims.createFromBox(iDataCard.sizingDims) : new BoxDims(0, 0, 20, 20);
         img.twelve16 = CropSet.fromICropSet(iDataCard.twelve16);
         img.nine16 = CropSet.fromICropSet(iDataCard.nine16);
         img.indexInDeck = iDataCard.indexInDeck;
         img.completed = iDataCard.completed;
         return img;
     };
+    ImageDataItem.prototype.setPercentages = function () {
+        if (!this.sizingDims)
+            return;
+        this.twelve16.setPercentages(this.sizingDims);
+        this.nine16.setPercentages(this.sizingDims);
+    };
     ImageDataItem.prototype.toJsonObj = function () {
+        this.setPercentages();
         return {
             key: this.key,
             name: this.name,
@@ -245,6 +245,7 @@ var ImageDataItem = (function () {
             indexInDeck: this.indexInDeck,
             sound: this.sound,
             originalDims: this.originalDims.toJsonObj(),
+            sizingDims: this.sizingDims ? this.sizingDims.toJsonObj() : null,
             twelve16: this.twelve16.toJsonObj(),
             nine16: this.nine16.toJsonObj(),
             completed: this.completed
@@ -252,7 +253,7 @@ var ImageDataItem = (function () {
     };
     ImageDataItem.prototype.getStatus = function () {
         if (this.indexInDeck > -1 && this.sound) {
-            if (this.originalDims && this.originalDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete()) {
+            if (this.sizingDims && this.sizingDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete()) {
                 if (this.completed) {
                     return ItemStatus.completed;
                 }

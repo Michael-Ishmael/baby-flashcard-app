@@ -1,3 +1,4 @@
+from __future__ import division
 from aetypes import Enum
 
 import simplejson
@@ -21,6 +22,7 @@ from production.business.imagedata import *
 
 class CsvCreator:
     data_file_name = 'data2.json'
+    csv_file_name= "cropping.csv"
     target_root = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/media'
     original_root = 'originals'  # '/Users/scorpio/Dev/Projects/baby-flashcard-app/media/originals'
     target_formats = {
@@ -56,8 +58,17 @@ class CsvCreator:
                         else:
                             target_format_list = CsvCreator.target_formats["nine16"]
                         for target_format in target_format_list:
-                            line = self.create_csv_line(target_format, crop_set, card.original_image_size, card.image, deck.name, deck_set.name)
-                            self.csv_lines.append(line)
+                            if card.ref_image_size is not None:
+                                line = self.create_csv_line(target_format, crop_set, card.ref_image_size, card.image, deck.name, deck_set.name)
+                                self.csv_lines.append(line)
+
+    def dump_csv_file(self):
+        test_line = self.csv_lines[0].to_string()
+        path = os.path.join(self.media_path, self.csv_file_name)
+        with open(path, 'w') as csv_file:
+            for ln in self.csv_lines:
+                csv_file.write(ln.to_string())
+                csv_file.write('\n')
 
     def create_csv_line(self, target_format, crop_set, image_dims, image_name, deck_name, set_name):
         line = CsvRecord()
@@ -83,8 +94,7 @@ class CsvCreator:
         x2 = target_set.max_x()
         y2 = target_set.max_y()
 
-        return [x / original_image_size.w, y / original_image_size.h,
-                x2 / original_image_size.w, y2 / original_image_size.h]
+        return [x, y, x2, y2]
 
     def get_crop_size(self, target_set, target_format):
         long_side = target_format.target_bounds.w if target_format.target_bounds.w > target_format.target_bounds.h \
@@ -114,3 +124,7 @@ class CsvRecord:
         self.crop_end_y_pc = 1
         self.target_width = 0
         self.target_height = 0
+
+    def to_string(self):
+        return "{},{},{},{},{},{},{},{}".format(self.original_path, self.target_path, self.target_width, self.target_height, \
+                                                self.crop_start_x_pc, self.crop_start_y_pc, self.crop_end_x_pc, self.crop_end_y_pc)
