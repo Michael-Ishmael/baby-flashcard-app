@@ -1,7 +1,7 @@
 /**
  * Created by scorpio on 14/02/2016.
  */
-app.directive('iconCollectionSetup', ['$parse', function ($parse) {
+app.directive('iconCollectionSetup', function () {
     return {
         restrict: 'E',
         scope: true,
@@ -21,4 +21,4 @@ app.directive('iconCollectionSetup', ['$parse', function ($parse) {
             ctrlr.init();
         }
     };
-}]);
+});
