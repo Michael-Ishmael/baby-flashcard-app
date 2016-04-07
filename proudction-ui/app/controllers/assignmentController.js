@@ -45,8 +45,11 @@ app.controller('assignmentController', ['$scope', '$routeParams', '$location', '
                     if (item) imageDataService.selectBacklogItem(item);
                     $scope.setPreviewPath(imageDataService.currentItem);
                 }
-
+                var ci = imageDataService.currentItem;
                 $scope.currentItem = imageDataService.currentItem;
+
+                //TODO: Change to is complete
+                $scope.showPreviews = (ci && ci.twelve16 && ci.twelve16.masterCropDef && ci.twelve16.masterCropDef.crop);
 
                 $scope.sets = imageDataService.sets;
                 $scope.selectedSet = imageDataService.currentSet;
@@ -71,7 +74,8 @@ app.controller('assignmentController', ['$scope', '$routeParams', '$location', '
     });
 
     $scope.setPreviewPath = function (item) {
-        $scope.previewPath = '../media/backlog/' + item.path;
+        $scope.currentItem = item;
+       $scope.previewPath = '../media/backlog/' + item.path;
 
     };
 
@@ -142,7 +146,8 @@ app.controller('assignmentController', ['$scope', '$routeParams', '$location', '
 
     $scope.moveNext = function(){
         var view = 'crop';
-        var path = $scope.currentItem ? view + '/' + $scope.currentItem .key : view;
+        if($scope.currentItem) imageDataService.setCurrentItem($scope.currentItem);
+        var path = $scope.currentItem ? view + '/' + $scope.currentItem.key : view;
         $location.path(path); // path not hash
 
     };

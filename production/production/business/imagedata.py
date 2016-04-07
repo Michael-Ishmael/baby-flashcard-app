@@ -140,6 +140,11 @@ class ImageData:
             self.deck_sets.append(deck_set)
 
     def load_crop_set(self, parent_dict, prop_name, crop_format):
+        """
+        :type crop_format: CropFormat
+        :type prop_name: str
+        :type parent_dict: object
+        """
         dict_crop_set = parent_dict.get(prop_name)
         crop_set = CropSet(crop_format)
         crop_set.landscape_crop_def = self.load_crop_def(dict_crop_set, "landscapeCropDef")
