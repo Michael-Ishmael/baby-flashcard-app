@@ -35,12 +35,7 @@ var BoxDims = (function () {
         this.h = coords.h;
     };
     BoxDims.prototype.hasDims = function () {
-<<<<<<< HEAD
         return (this.w - this.x) > 20 && (this.h - this.y) > 20;
-=======
-        var hasDims = (this.w - this.x) > 10 && (this.h - this.y) > 10;
-        return hasDims;
->>>>>>> origin/master
     };
     BoxDims.prototype.toJsonObj = function () {
         return {
@@ -54,31 +49,16 @@ var BoxDims = (function () {
         return new BoxDims(box.x, box.y, box.w, box.h);
     };
     return BoxDims;
-}());
+})();
 var CropDef = (function () {
-<<<<<<< HEAD
     function CropDef(orientation) {
         this.orientation = orientation;
         this.crop = new BoxDims(0, 0, 20, 20);
-=======
-    function CropDef(target) {
-        this.target = target;
-        if (target == CropTarget.master) {
-            this.orientation = Orientation.landscape;
-        }
-        else {
-            this.orientation = Orientation.portrait;
-        }
-        this.crop = new BoxDims(0, 0, 100, 100);
-        this.percentages = new BoxDims(0, 0, 1, 1);
->>>>>>> origin/master
     }
     //parent:CropSet;
     CropDef.fromICropDef = function (iCropDef, orientation) {
         var def = new CropDef(orientation);
         def.crop = BoxDims.createFromBox(iCropDef.crop);
-        if (iCropDef.percentages)
-            def.percentages = BoxDims.createFromBox(iCropDef.percentages);
         return def;
     };
     CropDef.prototype.setCropPercentages = function (sizingDims) {
@@ -99,22 +79,17 @@ var CropDef = (function () {
         }
     };
     CropDef.prototype.isComplete = function () {
-        var isComplete = (this.orientation == Orientation.landscape || this.orientation == Orientation.portrait) && this.crop.hasDims();
-        return isComplete;
+        return (this.orientation == Orientation.landscape || this.orientation == Orientation.portrait) && this.crop.hasDims();
     };
     CropDef.prototype.toJsonObj = function () {
         return {
             orientation: this.orientation,
             crop: this.crop.toJsonObj(),
-<<<<<<< HEAD
             cropPercentages: this.cropPercentages
-=======
-            percentages: this.percentages.toJsonObj()
->>>>>>> origin/master
         };
     };
     return CropDef;
-}());
+})();
 var CropSet = (function () {
     function CropSet(format, masterCropDef, altCropDef) {
         this.format = format;
@@ -127,16 +102,11 @@ var CropSet = (function () {
         return new CropSet(iCropSet.format, CropDef.fromICropDef(iCropSet.landscapeCropDef, Orientation.landscape), CropDef.fromICropDef(iCropSet.portraitCropDef, Orientation.portrait));
     };
     CropSet.prototype.isComplete = function () {
-<<<<<<< HEAD
         return this.landscapeCropDef.isComplete() && this.portraitCropDef.isComplete() && (this.title && this.title.length > 0);
     };
     CropSet.prototype.setPercentages = function (sizingDims) {
         this.landscapeCropDef.setCropPercentages(sizingDims);
         this.portraitCropDef.setCropPercentages(sizingDims);
-=======
-        var isComplete = this.masterCropDef.isComplete() && this.altCropDef.isComplete() && (this.title && this.title.length > 0);
-        return isComplete;
->>>>>>> origin/master
     };
     CropSet.prototype.toJsonObj = function () {
         return {
@@ -147,7 +117,7 @@ var CropSet = (function () {
         };
     };
     return CropSet;
-}());
+})();
 var ImageCropUtils = (function () {
     function ImageCropUtils() {
     }
@@ -185,7 +155,7 @@ var ImageCropUtils = (function () {
         return "9 / 16";
     };
     return ImageCropUtils;
-}());
+})();
 var Set = (function () {
     function Set(id, name) {
         this.id = id;
@@ -214,7 +184,7 @@ var Set = (function () {
         return set;
     };
     return Set;
-}());
+})();
 var Deck = (function () {
     function Deck(id, name) {
         this.id = id;
@@ -242,7 +212,7 @@ var Deck = (function () {
         return deck;
     };
     return Deck;
-}());
+})();
 var ImageDataItem = (function () {
     function ImageDataItem(key, name, path) {
         this.key = key;
@@ -278,8 +248,7 @@ var ImageDataItem = (function () {
             sizingDims: this.sizingDims ? this.sizingDims.toJsonObj() : null,
             twelve16: this.twelve16.toJsonObj(),
             nine16: this.nine16.toJsonObj(),
-            completed: this.completed,
-            discarded: this.discarded
+            completed: this.completed
         };
     };
     ImageDataItem.prototype.getStatus = function () {
@@ -297,7 +266,7 @@ var ImageDataItem = (function () {
         return ItemStatus.untouched;
     };
     return ImageDataItem;
-}());
+})();
 var BacklogItem = (function () {
     function BacklogItem(key, name, path) {
         this.key = key;
@@ -305,5 +274,5 @@ var BacklogItem = (function () {
         this.path = path;
     }
     return BacklogItem;
-}());
+})();
 //# sourceMappingURL=CropEntities.js.map

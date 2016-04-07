@@ -86,39 +86,15 @@ class CropFormatter implements ICropFormatter{
     private displayMasterCrop(){
         this.clear();
         this.initJCrop(this.jImage);
-        this.displayCrop(this.activeCropDef.percentages);
+        this.setCropPosition(this.activeCropDef.crop);
     }
 
     private displayAltCrop(){
         this.removeJCrop();
         this.initJCrop(this.jImage);
-<<<<<<< HEAD
         var masterCropDef = this.activeCropSet.landscapeCropDef;
         this.displayMask(masterCropDef.crop);
         this.setCropPosition(this.activeCropDef.crop);
-=======
-        var masterCropDef = this.activeCropSet.masterCropDef;
-        var maskCrop = this.getAdjustedCrop(masterCropDef.percentages);
-        this.displayMask(maskCrop);
-        this.displayCrop(this.activeCropDef.percentages);
-    }
-
-    private displayCrop(cropPercentages){
-
-        var calcCrop = this.getAdjustedCrop(cropPercentages);
-        this.setCropPosition(calcCrop);
-    }
-
-    private getAdjustedCrop(cropPercentages){
-        var w = this.jImage.width();
-        var h = this.jImage.height();
-        var x = w * cropPercentages.x,
-            y = h * cropPercentages.y,
-            w = w * cropPercentages.w,
-            h = h * cropPercentages.h
-            ;
-        return new BoxDims(x, y, w, h);
->>>>>>> origin/master
     }
 
     private displayMask(position:BoxDims){
@@ -167,13 +143,7 @@ class CropFormatter implements ICropFormatter{
         // set crop on active cropdef
         //console.log(crop);
         activeCropDef.crop.setFromBox(crop);
-        var pcs = this.cropToPercentages(crop, this.jImage.width(), this.jImage.height());
-        activeCropDef.percentages.setFromBox(pcs);
         if(this.callback) this.callback();
-    }
-
-    private cropToPercentages(crop:IBox, w:number, h:number):IBox{
-        return new BoxDims(crop.x / w, crop.y / h, crop.w/ w, crop.h / h);
     }
 
 }

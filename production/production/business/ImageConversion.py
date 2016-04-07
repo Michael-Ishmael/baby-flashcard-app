@@ -40,9 +40,6 @@ class CsvCreator:
     }
 
     def __init__(self, media_path):
-        """
-        :type media_path: str
-        """
         self.media_path = media_path
         self.image_data = ImageData()
         self.csv_lines = []

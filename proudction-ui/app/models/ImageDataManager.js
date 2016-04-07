@@ -79,7 +79,6 @@ var ImageDataManager = (function () {
                 return;
             }
         }
-        item.discarded = true;
     };
     ImageDataManager.prototype.ready = function () {
         return this.loader.ready(this);
@@ -261,7 +260,7 @@ var ImageDataManager = (function () {
         return null;
     };
     return ImageDataManager;
-}());
+})();
 var CropManager = (function () {
     function CropManager() {
         this.currentItem = null;
@@ -346,5 +345,5 @@ var CropManager = (function () {
             ImageCropUtils.getBoxBounds(ci.nine16.portraitCropDef.orientation, ci.nine16.format, ci.sizingDims);
     };
     return CropManager;
-}());
+})();
 //# sourceMappingURL=ImageDataManager.js.map
