@@ -66,10 +66,10 @@
             <img id="imagePreview" ng-src="{{ previewPath }}" class="working-image" />
         </div>
         <div ng-show="showPreviews">
-            <image-crop-preview crop-index="1" scale=".25" current-item="currentItem"></image-crop-preview>
-            <image-crop-preview crop-index="2" scale=".25" current-item="currentItem"></image-crop-preview>
-            <image-crop-preview crop-index="3" scale=".25" current-item="currentItem" row-start="true"></image-crop-preview>
-            <image-crop-preview crop-index="4" scale=".25" current-item="currentItem"></image-crop-preview>
+            <image-crop-preview crop-index="1" scale=".25" current-item="currentItem" ng-click="jumpToCropSet(0)"></image-crop-preview>
+            <image-crop-preview crop-index="2" scale=".25" current-item="currentItem" ng-click="jumpToCropSet(1)"></image-crop-preview>
+            <image-crop-preview crop-index="3" scale=".25" current-item="currentItem" row-start="true"  ng-click="jumpToCropSet(2)"></image-crop-preview>
+            <image-crop-preview crop-index="4" scale=".25" current-item="currentItem"  ng-click="jumpToCropSet(3)"></image-crop-preview>
         </div>
 
 

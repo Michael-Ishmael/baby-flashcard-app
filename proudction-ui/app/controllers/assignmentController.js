@@ -49,7 +49,7 @@ app.controller('assignmentController', ['$scope', '$routeParams', '$location', '
                 $scope.currentItem = imageDataService.currentItem;
 
                 //TODO: Change to is complete
-                $scope.showPreviews = (ci && ci.twelve16 && ci.twelve16.masterCropDef && ci.twelve16.masterCropDef.crop);
+                $scope.showPreviews = (ci && ci.twelve16 && ci.twelve16.landscapeCropDef && ci.twelve16.landscapeCropDef.percentages && ci.twelve16.landscapeCropDef.percentages.hasDims());
 
                 $scope.sets = imageDataService.sets;
                 $scope.selectedSet = imageDataService.currentSet;
@@ -143,6 +143,14 @@ app.controller('assignmentController', ['$scope', '$routeParams', '$location', '
         var item = $scope.currentItem;
         return item && item.sound && item.indexInDeck > -1
     };
+
+
+    $scope.jumpToCropSet = function(cropIndex){
+        var view = 'crop';
+        var path = $scope.currentItem ? view + '/' + $scope.currentItem.key + '/' + cropIndex : view;
+        $location.path(path); // path not hash
+    };
+
 
     $scope.moveNext = function(){
         var view = 'crop';

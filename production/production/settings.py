@@ -90,5 +90,5 @@ STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'ImageProcessor/templates'),)
 
-MEDIA_ROOT = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media' #'/Users/scorpio/Dev/Projects/baby-flashcard-app/'
+MEDIA_ROOT = '/Users/scorpio/Dev/Projects/baby-flashcard-app/proudction-ui/media' #'/Users/scorpio/Dev/Projects/baby-flashcard-app/'
 MEDIA_URL = '/media/'

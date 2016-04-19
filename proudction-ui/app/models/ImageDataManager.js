@@ -28,10 +28,11 @@ var ImageDataManager = (function () {
         };
         this.selectBacklogItem = function (item, view) {
             this.setCurrentItem(item);
+            this.loader.broadcast('wizard:itemSelected', this.currentItem);
             //if(view == 'crop'){
             //    this.loader.broadcast('wizard:itemAssigned', this.currentItem);
             //} else {
-            //    this.loader.broadcast('wizard:itemSelected', this.currentItem);
+            //    
             //}
         };
         this.loader = loader;
@@ -266,12 +267,12 @@ var CropManager = (function () {
     function CropManager() {
         this.currentItem = null;
     }
-    CropManager.prototype.loadItem = function (item, target) {
+    CropManager.prototype.loadItem = function (item, target, cropIndex) {
+        if (cropIndex === void 0) { cropIndex = 0; }
         this.currentItem = item;
         this.currentItem.sizingDims = new BoxDims(0, 0, target.width(), target.height());
-        this.setStateForIndex(0);
-        if (item.getStatus() < ItemStatus.cropped)
-            this.recalculateCropStates();
+        this.setStateForIndex(cropIndex);
+        //if(item.getStatus() < ItemStatus.cropped) this.recalculateCropStates();
         this.finishLoadAsync(target);
         return this.currentItem;
     };
@@ -311,7 +312,7 @@ var CropManager = (function () {
         if (this.activeCropDef) {
             var cropSet = this.getCropSetForDef(this.activeCropDef);
             cropSet.landscapeCropDef.orientation = orientation;
-            cropSet.altCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
+            cropSet.portraitCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
             this.recalculateCropStates();
         }
     };
@@ -319,11 +320,11 @@ var CropManager = (function () {
         if (this.currentItem) {
             if (this.currentItem.twelve16.landscapeCropDef == def)
                 return this.currentItem.twelve16;
-            if (this.currentItem.twelve16.altCropDef == def)
+            if (this.currentItem.twelve16.portraitCropDef == def)
                 return this.currentItem.twelve16;
             if (this.currentItem.nine16.landscapeCropDef == def)
                 return this.currentItem.nine16;
-            if (this.currentItem.nine16.altCropDef == def)
+            if (this.currentItem.nine16.portraitCropDef == def)
                 return this.currentItem.nine16;
         }
     };
@@ -336,14 +337,17 @@ var CropManager = (function () {
     };
     CropManager.prototype.recalculateCropStates = function () {
         var ci = this.currentItem;
-        ci.twelve16.landscapeCropDef.crop =
-            ImageCropUtils.getBoxBounds(ci.twelve16.landscapeCropDef.orientation, ci.twelve16.format, ci.sizingDims);
-        ci.twelve16.portraitCropDef.crop =
-            ImageCropUtils.getBoxBounds(ci.twelve16.portraitCropDef.orientation, ci.twelve16.format, ci.sizingDims);
-        ci.nine16.landscapeCropDef.crop =
-            ImageCropUtils.getBoxBounds(ci.nine16.landscapeCropDef.orientation, ci.nine16.format, ci.sizingDims);
-        ci.nine16.portraitCropDef.crop =
-            ImageCropUtils.getBoxBounds(ci.nine16.portraitCropDef.orientation, ci.nine16.format, ci.sizingDims);
+        /*        ci.twelve16.landscapeCropDef.crop =
+                    ImageCropUtils.getBoxBounds(ci.twelve16.landscapeCropDef.orientation, ci.twelve16.format, ci.sizingDims);
+        
+                ci.twelve16.portraitCropDef.crop =
+                    ImageCropUtils.getBoxBounds(ci.twelve16.portraitCropDef.orientation, ci.twelve16.format, ci.sizingDims);
+        
+                ci.nine16.landscapeCropDef.crop =
+                    ImageCropUtils.getBoxBounds(ci.nine16.landscapeCropDef.orientation, ci.nine16.format, ci.sizingDims);
+        
+                ci.nine16.portraitCropDef.crop =
+                    ImageCropUtils.getBoxBounds(ci.nine16.portraitCropDef.orientation, ci.nine16.format, ci.sizingDims);*/
     };
     return CropManager;
 }());

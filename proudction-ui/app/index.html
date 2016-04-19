@@ -22,17 +22,18 @@
     <link rel="stylesheet" href="app.css">
 
 </head>
-<body>
+<body ng-controller="appController">
 
 <nav class="navbar">
     <ul class="nav navbar-nav navbar-right">
         <li><a href="#/backlog">Images</a></li>
+        <li><a href="#/assign/{{ currentItemKey }}">Assignment</a></li>
         <li class="dropdown"><a href="#/decks">Decks</a>
         </li>
     </ul>
 </nav>
 
-<div class="container-fluid" ng-controller="appController">
+<div class="container-fluid" >
 
 
     <ng-view></ng-view>

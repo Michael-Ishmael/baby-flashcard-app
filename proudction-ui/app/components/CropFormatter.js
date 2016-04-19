@@ -11,7 +11,7 @@ var CropFormatter = (function () {
         this.jPreviewContainer = $(holdingDiv + ' #previewContainer');
         this.jImage = $('#currentImage', this.jImageContainer);
         this.jMask = $('#mask', this.jMaskContainer);
-        this.jPreview = $('#preview', this.j);
+        this.jPreview = $('#preview', this.jPreviewContainer);
     }
     CropFormatter.prototype.setCrop = function (cropDef, cropSet) {
         this.activeCropDef = cropDef;
@@ -31,7 +31,14 @@ var CropFormatter = (function () {
     CropFormatter.prototype.showPreview = function () {
         this.jPreview.attr('style', null);
         this.jPreviewContainer.attr('style', null);
-        var crop = this.activeCropDef.crop;
+        var crop;
+        if (this.activeCropDef.percentages && this.activeCropDef.percentages.hasDims()) {
+            crop = this.getAdjustedCrop(this.activeCropDef.percentages);
+        }
+        else {
+            var basePcs = new BoxDims(0, 0, 1, 1);
+            crop = this.getAdjustedCrop(basePcs);
+        }
         this.jPreviewContainer.css('left', crop.x);
         this.jPreviewContainer.css('top', 10 + crop.y);
         this.jPreviewContainer.css('width', crop.w);
@@ -55,18 +62,20 @@ var CropFormatter = (function () {
     CropFormatter.prototype.displayAltCrop = function () {
         this.removeJCrop();
         this.initJCrop(this.jImage);
-<<<<<<< HEAD
         var masterCropDef = this.activeCropSet.landscapeCropDef;
-        this.displayMask(masterCropDef.crop);
-        this.setCropPosition(this.activeCropDef.crop);
-=======
-        var masterCropDef = this.activeCropSet.masterCropDef;
         var maskCrop = this.getAdjustedCrop(masterCropDef.percentages);
         this.displayMask(maskCrop);
         this.displayCrop(this.activeCropDef.percentages);
     };
     CropFormatter.prototype.displayCrop = function (cropPercentages) {
-        var calcCrop = this.getAdjustedCrop(cropPercentages);
+        var calcCrop;
+        if (cropPercentages && cropPercentages.hasDims()) {
+            calcCrop = this.getAdjustedCrop(cropPercentages);
+        }
+        else {
+            var basePcs = new BoxDims(0, 0, 1, 1);
+            calcCrop = this.getAdjustedCrop(basePcs);
+        }
         this.setCropPosition(calcCrop);
     };
     CropFormatter.prototype.getAdjustedCrop = function (cropPercentages) {
@@ -74,7 +83,6 @@ var CropFormatter = (function () {
         var h = this.jImage.height();
         var x = w * cropPercentages.x, y = h * cropPercentages.y, w = w * cropPercentages.w, h = h * cropPercentages.h;
         return new BoxDims(x, y, w, h);
->>>>>>> origin/master
     };
     CropFormatter.prototype.displayMask = function (position) {
         this.jMaskContainer.remove();
@@ -110,8 +118,6 @@ var CropFormatter = (function () {
     };
     CropFormatter.prototype.cropMoved = function (activeCropDef, crop) {
         // set crop on active cropdef
-        //console.log(crop);
-        activeCropDef.crop.setFromBox(crop);
         var pcs = this.cropToPercentages(crop, this.jImage.width(), this.jImage.height());
         activeCropDef.percentages.setFromBox(pcs);
         if (this.callback)

@@ -71,12 +71,8 @@ class BoxDims implements IBox {
     }
 
     hasDims() {
-<<<<<<< HEAD
-        return (this.w - this.x) > 20 && (this.h - this.y) > 20;
-=======
-        var hasDims = (this.w - this.x) > 10 && (this.h - this.y) > 10;
+        var hasDims = (this.w - this.x) > 0 && (this.h - this.y) > 0;
         return hasDims;
->>>>>>> origin/master
     }
 
     toJsonObj():IBox {
@@ -93,58 +89,34 @@ class BoxDims implements IBox {
     }
 }
 
+enum CropTarget{
+    master = 1,
+    alt = 2
+}
+
 interface ICropDef {
 
     orientation:Orientation;
-    crop:IBox;
-<<<<<<< HEAD
-    cropPercentages:Array<number>;
-=======
     percentages:IBox;
->>>>>>> origin/master
+    cropPercentages:Array<number>;
 }
 
 class CropDef implements ICropDef {
 
-    crop:BoxDims;
-<<<<<<< HEAD
-    cropPercentages:Array<number>;
-=======
     percentages:BoxDims;
->>>>>>> origin/master
-    //parent:CropSet;
+    cropPercentages:Array<number>;
 
     public static fromICropDef(iCropDef:ICropDef, orientation:Orientation):CropDef {
         var def = new CropDef(orientation);
-        def.crop = BoxDims.createFromBox(iCropDef.crop);
         if(iCropDef.percentages)
             def.percentages = BoxDims.createFromBox(iCropDef.percentages);
+            def.cropPercentages = def.percentages.toCoordArray();
         return def;
     }
 
-<<<<<<< HEAD
+
     constructor(public orientation:Orientation) {
-
-        this.crop = new BoxDims(0, 0, 20, 20);
-    }
-
-    setCropPercentages(sizingDims:IBox){
-        this.cropPercentages = [
-            this.crop.x / sizingDims.w,
-            this.crop.y / sizingDims.h,
-            (this.crop.x + this.crop.w) / sizingDims.w,
-            (this.crop.y + this.crop.h) / sizingDims.h,
-        ];
-=======
-    constructor(public target:CropTarget) {
-        if (target == CropTarget.master) {
-            this.orientation = Orientation.landscape;
-        } else {
-            this.orientation = Orientation.portrait;
-        }
-        this.crop = new BoxDims(0, 0, 100, 100);
-        this.percentages = new BoxDims(0, 0, 1, 1);
->>>>>>> origin/master
+        this.percentages = new BoxDims(0, 0, 0, 0);
     }
 
 
@@ -158,19 +130,15 @@ class CropDef implements ICropDef {
     }
 
     isComplete():boolean {
-        var isComplete = (this.orientation == Orientation.landscape || this.orientation == Orientation.portrait ) && this.crop.hasDims();
+        var isComplete = (this.orientation == Orientation.landscape || this.orientation == Orientation.portrait ) && this.percentages.hasDims();
         return isComplete;
     }
 
     toJsonObj():ICropDef {
         return {
             orientation: this.orientation,
-            crop: this.crop.toJsonObj(),
-<<<<<<< HEAD
-            cropPercentages: this.cropPercentages
-=======
-            percentages: this.percentages.toJsonObj()
->>>>>>> origin/master
+            percentages: this.percentages.toJsonObj(),
+            cropPercentages: this.percentages.toCoordArray()
         }
     }
 }
@@ -204,18 +172,8 @@ class CropSet implements ICropSet {
 
 
     public isComplete():boolean {
-        return this.landscapeCropDef.isComplete() && this.portraitCropDef.isComplete() && (this.title && this.title.length > 0);
-    }
-
-<<<<<<< HEAD
-    public setPercentages(sizingDims:IBox){
-        this.landscapeCropDef.setCropPercentages(sizingDims);
-        this.portraitCropDef.setCropPercentages(sizingDims);
-=======
-    public isComplete():boolean {
-        var isComplete = this.masterCropDef.isComplete() && this.altCropDef.isComplete() && (this.title && this.title.length > 0);
+        var isComplete = this.landscapeCropDef.isComplete() && this.portraitCropDef.isComplete() && (this.title && this.title.length > 0);
         return isComplete;
->>>>>>> origin/master
     }
 
     public toJsonObj():ICropSet {
@@ -391,8 +349,8 @@ class ImageDataItem implements IDataCard, IDataItem {
 
     setPercentages(){
         if(!this.sizingDims) return;
-        this.twelve16.setPercentages(this.sizingDims);
-        this.nine16.setPercentages(this.sizingDims);
+        //this.twelve16.setPercentages(this.sizingDims);
+        //this.nine16.setPercentages(this.sizingDims);
     }
 
     public toJsonObj():IDataCard {

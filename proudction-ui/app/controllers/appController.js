@@ -12,6 +12,7 @@ app.controller('appController', ['$scope', '$location',  'imageDataService', fun
 
     $scope.currentViewIndex = 0;
     $scope.currentView = $scope.subViews[0];
+    $scope.currentItemKey = null;
 
     $scope.nextView = function(){
         var currentIndex = $scope.currentViewIndex;
@@ -25,13 +26,12 @@ app.controller('appController', ['$scope', '$location',  'imageDataService', fun
 
     };
 
-/*    $scope.$on('wizard:itemSelected', function (event, data) {
-            var view = 'assign';
-            var path = data.key ? view + '/' + data.key : view;
-            $location.path(path); // path not hash
+    $scope.$on('wizard:itemSelected', function (event, item) {
+            $scope.currentItemKey = item.key;
         }
     );
 
+    /*
     $scope.$on('wizard:itemAssigned', function (event, data) {
             var view = 'crop';
             var path = data.key ? view + '/' + data.key : view;

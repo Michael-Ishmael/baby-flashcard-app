@@ -36,24 +36,23 @@ app.directive('imageCropPreview',  function () {
             self.ci = ci;
             self.jPreview.attr('src', '../media/backlog/' + ci.path);
             var scl = Number($scope.scale);
-            var cropToUse, label, landscapeCrop;
+            var cropToUse, label, landscape;
             switch (Number($scope.cropIndex)){
                 case 1:
-                    cropToUse = ci.twelve16.masterCropDef.percentages;
+                    cropToUse = ci.twelve16.landscapeCropDef.percentages;
                     label = 'Landscape, 16 / 12';
                     break;
                 case 2:
-                    cropToUse = ci.twelve16.altCropDef.percentages;
-                    landscapeCrop = ci.twelve16.masterCropDef.crop;
-                    label = 'Portrait, 16 / 12';
+                    cropToUse = ci.twelve16.portraitCropDef.percentages;
+                    landscape = true;
                     break;
                 case 3:
-                    cropToUse = ci.nine16.masterCropDef.percentages;
+                    cropToUse = ci.nine16.landscapeCropDef.percentages;
                     label = 'Landscape, 16 / 9';
                     break;
                 case 4:
-                    cropToUse = ci.nine16.altCropDef.percentages;
-                    landscapeCrop = ci.nine16.masterCropDef.crop;
+                    cropToUse = ci.nine16.portraitCropDef.percentages;
+                    landscape = true;
                     label = 'Portrait, 16 / 9';
                     break;
                 default:
@@ -62,9 +61,8 @@ app.directive('imageCropPreview',  function () {
             if(cropToUse == null) return;
             $scope.label = label;
 
-            if(landscapeCrop){
-                var portraitUpscale = ci.originalDims.w / ci.originalDims.h;
-                scl *= portraitUpscale;
+            if(landscape){
+                scl *= ci.originalDims.w / ci.originalDims.h;
             }
             var scaledImage = self.adjustCropForScale(ci.originalDims, scl);
             var scaledCrop = self.scaleImageDimsToCrop(scaledImage, cropToUse);

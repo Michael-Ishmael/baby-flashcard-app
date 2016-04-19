@@ -2,12 +2,8 @@
  * Created by michaeli on 28/01/2016.
  */
 
-<<<<<<< HEAD
 app.controller('cropController', ['$scope', '$routeParams', '$location', 'imageDataService',
     function ($scope, $routeParams, $location, imageDataService) {
-=======
-app.controller('cropController', ['$scope', '$routeParams', '$location', 'imageDataService', function ($scope, $routeParams, $location, imageDataService) {
->>>>>>> origin/master
 
 
         $scope.selectedImg = null;
@@ -65,7 +61,9 @@ app.controller('cropController', ['$scope', '$routeParams', '$location', 'imageD
         jCropBox.load(function () {
 
             if (!imageDataService.currentItem) return;
-            cropManager.loadItem(imageDataService.currentItem, jCropBox);
+            var cropIndex = $routeParams.cropIndex;
+            cropIndex = cropIndex ? Number(cropIndex) : 0;
+            cropManager.loadItem(imageDataService.currentItem, jCropBox, cropIndex);
             pScope.activeCropSet = cropManager.activeCropSet;
             pScope.activeCropDef = cropManager.activeCropDef;
             $('#imageName').select();
@@ -108,10 +106,14 @@ app.controller('cropController', ['$scope', '$routeParams', '$location', 'imageD
         function setStateForIndex() {
 
             cropManager.setStateForIndex($scope.cropDefIndex);
+            showCrop();
+        }
+
+        function showCrop() {
             if (cropManager.activeCropDef) {
                 cropFormatter.setCrop(cropManager.activeCropDef, cropManager.activeCropSet);
                 $scope.activeCropSet = cropManager.activeCropSet;
-                $scope.orientation = $scope.activeCropSet.landscapeCropDef.orientation;
+                $scope.orientation = $scope.activeCropSet.activeDef.orientation;
             }
         }
 
@@ -155,14 +157,11 @@ app.controller('cropController', ['$scope', '$routeParams', '$location', 'imageD
         $scope.markComplete = function () {
             imageDataService.markComplete(imageDataService.currentItem);
             $scope.dataChanged = false;
-<<<<<<< HEAD
+
             //var view = 'backlog';
             //var path = $scope.currentItem ? view + '/' + $scope.currentItem .key : view;
             $location.path('backlog'); // path not hash
-=======
-            var view = 'backlog';
-            $location.path(view); // path not hash
->>>>>>> origin/master
+
         };
 
     }]

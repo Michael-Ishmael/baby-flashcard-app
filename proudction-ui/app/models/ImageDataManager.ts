@@ -173,10 +173,11 @@ class ImageDataManager implements IAsynDataObject {
     public selectBacklogItem = function (item:BacklogItem, view) {
 
         this.setCurrentItem(item);
+        this.loader.broadcast('wizard:itemSelected', this.currentItem);
         //if(view == 'crop'){
         //    this.loader.broadcast('wizard:itemAssigned', this.currentItem);
         //} else {
-        //    this.loader.broadcast('wizard:itemSelected', this.currentItem);
+        //    
         //}
 
     };
@@ -341,11 +342,11 @@ class CropManager {
 
     }
 
-    public loadItem(item:ImageDataItem, target:IImageTarget) {
+    public loadItem(item:ImageDataItem, target:IImageTarget, cropIndex:number = 0) {
         this.currentItem = item;
         this.currentItem.sizingDims = new BoxDims(0, 0, target.width(), target.height());
-        this.setStateForIndex(0);
-        if(item.getStatus() < ItemStatus.cropped) this.recalculateCropStates();
+        this.setStateForIndex(cropIndex);
+        //if(item.getStatus() < ItemStatus.cropped) this.recalculateCropStates();
 
         this.finishLoadAsync(target);
 
@@ -392,7 +393,7 @@ class CropManager {
         if (this.activeCropDef) {
             var cropSet = this.getCropSetForDef(this.activeCropDef);
             cropSet.landscapeCropDef.orientation = orientation;
-            cropSet.altCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
+            cropSet.portraitCropDef.orientation = ImageCropUtils.getOtherOrientation(orientation);
             this.recalculateCropStates();
         }
 
@@ -401,9 +402,9 @@ class CropManager {
     private getCropSetForDef(def:CropDef){
         if(this.currentItem){
             if(this.currentItem.twelve16.landscapeCropDef == def) return this.currentItem.twelve16;
-            if(this.currentItem.twelve16.altCropDef == def) return this.currentItem.twelve16;
+            if(this.currentItem.twelve16.portraitCropDef == def) return this.currentItem.twelve16;
             if(this.currentItem.nine16.landscapeCropDef == def) return this.currentItem.nine16;
-            if(this.currentItem.nine16.altCropDef == def) return this.currentItem.nine16;
+            if(this.currentItem.nine16.portraitCropDef == def) return this.currentItem.nine16;
         }
     }
 
@@ -421,7 +422,7 @@ class CropManager {
     private recalculateCropStates() {
         var ci = this.currentItem;
 
-        ci.twelve16.landscapeCropDef.crop =
+/*        ci.twelve16.landscapeCropDef.crop =
             ImageCropUtils.getBoxBounds(ci.twelve16.landscapeCropDef.orientation, ci.twelve16.format, ci.sizingDims);
 
         ci.twelve16.portraitCropDef.crop =
@@ -431,7 +432,7 @@ class CropManager {
             ImageCropUtils.getBoxBounds(ci.nine16.landscapeCropDef.orientation, ci.nine16.format, ci.sizingDims);
 
         ci.nine16.portraitCropDef.crop =
-            ImageCropUtils.getBoxBounds(ci.nine16.portraitCropDef.orientation, ci.nine16.format, ci.sizingDims);
+            ImageCropUtils.getBoxBounds(ci.nine16.portraitCropDef.orientation, ci.nine16.format, ci.sizingDims);*/
     }
 
 

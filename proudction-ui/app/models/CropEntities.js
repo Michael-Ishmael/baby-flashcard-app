@@ -35,12 +35,8 @@ var BoxDims = (function () {
         this.h = coords.h;
     };
     BoxDims.prototype.hasDims = function () {
-<<<<<<< HEAD
-        return (this.w - this.x) > 20 && (this.h - this.y) > 20;
-=======
-        var hasDims = (this.w - this.x) > 10 && (this.h - this.y) > 10;
+        var hasDims = (this.w - this.x) > 0 && (this.h - this.y) > 0;
         return hasDims;
->>>>>>> origin/master
     };
     BoxDims.prototype.toJsonObj = function () {
         return {
@@ -55,39 +51,22 @@ var BoxDims = (function () {
     };
     return BoxDims;
 }());
+var CropTarget;
+(function (CropTarget) {
+    CropTarget[CropTarget["master"] = 1] = "master";
+    CropTarget[CropTarget["alt"] = 2] = "alt";
+})(CropTarget || (CropTarget = {}));
 var CropDef = (function () {
-<<<<<<< HEAD
     function CropDef(orientation) {
         this.orientation = orientation;
-        this.crop = new BoxDims(0, 0, 20, 20);
-=======
-    function CropDef(target) {
-        this.target = target;
-        if (target == CropTarget.master) {
-            this.orientation = Orientation.landscape;
-        }
-        else {
-            this.orientation = Orientation.portrait;
-        }
-        this.crop = new BoxDims(0, 0, 100, 100);
-        this.percentages = new BoxDims(0, 0, 1, 1);
->>>>>>> origin/master
+        this.percentages = new BoxDims(0, 0, 0, 0);
     }
-    //parent:CropSet;
     CropDef.fromICropDef = function (iCropDef, orientation) {
         var def = new CropDef(orientation);
-        def.crop = BoxDims.createFromBox(iCropDef.crop);
         if (iCropDef.percentages)
             def.percentages = BoxDims.createFromBox(iCropDef.percentages);
+        def.cropPercentages = def.percentages.toCoordArray();
         return def;
-    };
-    CropDef.prototype.setCropPercentages = function (sizingDims) {
-        this.cropPercentages = [
-            this.crop.x / sizingDims.w,
-            this.crop.y / sizingDims.h,
-            (this.crop.x + this.crop.w) / sizingDims.w,
-            (this.crop.y + this.crop.h) / sizingDims.h,
-        ];
     };
     CropDef.prototype.getAspectRatio = function (format) {
         var shortSide = format == CropFormat.twelve16 ? 12 : 9;
@@ -99,18 +78,14 @@ var CropDef = (function () {
         }
     };
     CropDef.prototype.isComplete = function () {
-        var isComplete = (this.orientation == Orientation.landscape || this.orientation == Orientation.portrait) && this.crop.hasDims();
+        var isComplete = (this.orientation == Orientation.landscape || this.orientation == Orientation.portrait) && this.percentages.hasDims();
         return isComplete;
     };
     CropDef.prototype.toJsonObj = function () {
         return {
             orientation: this.orientation,
-            crop: this.crop.toJsonObj(),
-<<<<<<< HEAD
-            cropPercentages: this.cropPercentages
-=======
-            percentages: this.percentages.toJsonObj()
->>>>>>> origin/master
+            percentages: this.percentages.toJsonObj(),
+            cropPercentages: this.percentages.toCoordArray()
         };
     };
     return CropDef;
@@ -127,16 +102,8 @@ var CropSet = (function () {
         return new CropSet(iCropSet.format, CropDef.fromICropDef(iCropSet.landscapeCropDef, Orientation.landscape), CropDef.fromICropDef(iCropSet.portraitCropDef, Orientation.portrait));
     };
     CropSet.prototype.isComplete = function () {
-<<<<<<< HEAD
-        return this.landscapeCropDef.isComplete() && this.portraitCropDef.isComplete() && (this.title && this.title.length > 0);
-    };
-    CropSet.prototype.setPercentages = function (sizingDims) {
-        this.landscapeCropDef.setCropPercentages(sizingDims);
-        this.portraitCropDef.setCropPercentages(sizingDims);
-=======
-        var isComplete = this.masterCropDef.isComplete() && this.altCropDef.isComplete() && (this.title && this.title.length > 0);
+        var isComplete = this.landscapeCropDef.isComplete() && this.portraitCropDef.isComplete() && (this.title && this.title.length > 0);
         return isComplete;
->>>>>>> origin/master
     };
     CropSet.prototype.toJsonObj = function () {
         return {
@@ -263,8 +230,8 @@ var ImageDataItem = (function () {
     ImageDataItem.prototype.setPercentages = function () {
         if (!this.sizingDims)
             return;
-        this.twelve16.setPercentages(this.sizingDims);
-        this.nine16.setPercentages(this.sizingDims);
+        //this.twelve16.setPercentages(this.sizingDims);
+        //this.nine16.setPercentages(this.sizingDims);
     };
     ImageDataItem.prototype.toJsonObj = function () {
         this.setPercentages();
