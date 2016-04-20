@@ -50,7 +50,7 @@ var BoxDims = (function () {
         return new BoxDims(box.x, box.y, box.w, box.h);
     };
     return BoxDims;
-}());
+})();
 var CropTarget;
 (function (CropTarget) {
     CropTarget[CropTarget["master"] = 1] = "master";
@@ -89,7 +89,7 @@ var CropDef = (function () {
         };
     };
     return CropDef;
-}());
+})();
 var CropSet = (function () {
     function CropSet(format, masterCropDef, altCropDef) {
         this.format = format;
@@ -114,7 +114,7 @@ var CropSet = (function () {
         };
     };
     return CropSet;
-}());
+})();
 var ImageCropUtils = (function () {
     function ImageCropUtils() {
     }
@@ -152,7 +152,7 @@ var ImageCropUtils = (function () {
         return "9 / 16";
     };
     return ImageCropUtils;
-}());
+})();
 var Set = (function () {
     function Set(id, name) {
         this.id = id;
@@ -181,7 +181,7 @@ var Set = (function () {
         return set;
     };
     return Set;
-}());
+})();
 var Deck = (function () {
     function Deck(id, name) {
         this.id = id;
@@ -209,7 +209,7 @@ var Deck = (function () {
         return deck;
     };
     return Deck;
-}());
+})();
 var ImageDataItem = (function () {
     function ImageDataItem(key, name, path) {
         this.key = key;
@@ -264,7 +264,7 @@ var ImageDataItem = (function () {
         return ItemStatus.untouched;
     };
     return ImageDataItem;
-}());
+})();
 var BacklogItem = (function () {
     function BacklogItem(key, name, path) {
         this.key = key;
@@ -272,5 +272,5 @@ var BacklogItem = (function () {
         this.path = path;
     }
     return BacklogItem;
-}());
+})();
 //# sourceMappingURL=CropEntities.js.map

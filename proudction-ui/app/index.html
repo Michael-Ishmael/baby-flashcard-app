@@ -25,6 +25,9 @@
 <body ng-controller="appController">
 
 <nav class="navbar">
+    <div ng-show="lastPage" class="navbar-left">
+        <a href="#/{{ lastPage }}"><- Back</a>
+    </div>
     <ul class="nav navbar-nav navbar-right">
         <li><a href="#/backlog">Images</a></li>
         <li><a href="#/assign/{{ currentItemKey }}">Assignment</a></li>

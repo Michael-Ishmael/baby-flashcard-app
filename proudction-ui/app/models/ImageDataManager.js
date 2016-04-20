@@ -262,16 +262,14 @@ var ImageDataManager = (function () {
         return null;
     };
     return ImageDataManager;
-}());
+})();
 var CropManager = (function () {
     function CropManager() {
         this.currentItem = null;
     }
-    CropManager.prototype.loadItem = function (item, target, cropIndex) {
-        if (cropIndex === void 0) { cropIndex = 0; }
+    CropManager.prototype.loadItem = function (item, target) {
         this.currentItem = item;
         this.currentItem.sizingDims = new BoxDims(0, 0, target.width(), target.height());
-        this.setStateForIndex(cropIndex);
         //if(item.getStatus() < ItemStatus.cropped) this.recalculateCropStates();
         this.finishLoadAsync(target);
         return this.currentItem;
@@ -350,5 +348,5 @@ var CropManager = (function () {
                     ImageCropUtils.getBoxBounds(ci.nine16.portraitCropDef.orientation, ci.nine16.format, ci.sizingDims);*/
     };
     return CropManager;
-}());
+})();
 //# sourceMappingURL=ImageDataManager.js.map

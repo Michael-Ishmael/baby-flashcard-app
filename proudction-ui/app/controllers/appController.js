@@ -31,6 +31,10 @@ app.controller('appController', ['$scope', '$location',  'imageDataService', fun
         }
     );
 
+    $scope.storeLastPage = function(lastPage){
+        $scope.lastPage = lastPage;
+    };
+
     /*
     $scope.$on('wizard:itemAssigned', function (event, data) {
             var view = 'crop';

@@ -17,9 +17,6 @@ from production.business.imagedata import *
 # ipad Other	2048	1536    12/16	  3/4
 # iPad Pro	    2732	2048    12/16	  3/4
 
-
-
-
 class CsvCreator:
     data_file_name = 'data2.json'
     csv_file_name= "cropping.csv"
@@ -116,7 +113,6 @@ class CsvCreator:
         return [pc_x1, pc_y1, pc_x2, pc_y2]
 
 
-
 class CsvRecord:
     def __init__(self):
         self.original_path = ""
@@ -131,3 +127,23 @@ class CsvRecord:
     def to_string(self):
         return "{},{},{},{},{},{},{},{}".format(self.original_path, self.target_path, self.target_width, self.target_height, \
                                                 self.crop_start_x_pc, self.crop_start_y_pc, self.crop_end_x_pc, self.crop_end_y_pc)
+
+
+class XcassettCreator:
+    data_file_name = 'data2.json'
+    csv_file_name= "cropping.csv"
+    target_root = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/media'
+    original_root = 'originals'  # '/Users/scorpio/Dev/Projects/baby-flashcard-app/media/originals'
+    target_formats = {
+        "twelve16": [
+            TargetFormat("iphone4", "iphone4", CropFormat.twelve16, Bounds(0, 0, 960, 640)),
+            TargetFormat("ipad", "ipad", CropFormat.twelve16, Bounds(0, 0, 1024, 768)),
+            TargetFormat("ipadretina", "ipadretina", CropFormat.twelve16, Bounds(0, 0, 2048, 1536)),
+            TargetFormat("ipadpro", "ipadpro", CropFormat.twelve16, Bounds(0, 0, 2732, 2048)),
+        ],
+        "nine16": [
+            TargetFormat("iphone5", "iphone5", CropFormat.nine16, Bounds(0, 0, 1138, 640)),
+            TargetFormat("iphone6", "iphone6", CropFormat.nine16, Bounds(0, 0, 1334, 750)),
+            TargetFormat("iphone6plus", "iphone6plus", CropFormat.nine16, Bounds(0, 0, 2208, 1242)),
+        ]
+    }

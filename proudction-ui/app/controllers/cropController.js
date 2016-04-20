@@ -63,9 +63,11 @@ app.controller('cropController', ['$scope', '$routeParams', '$location', 'imageD
             if (!imageDataService.currentItem) return;
             var cropIndex = $routeParams.cropIndex;
             cropIndex = cropIndex ? Number(cropIndex) : 0;
-            cropManager.loadItem(imageDataService.currentItem, jCropBox, cropIndex);
+            cropManager.loadItem(imageDataService.currentItem, jCropBox);
             pScope.activeCropSet = cropManager.activeCropSet;
             pScope.activeCropDef = cropManager.activeCropDef;
+            pScope.cropDefIndex = cropIndex;
+            setStateForIndex();
             $('#imageName').select();
             pScope.$digest();
         });

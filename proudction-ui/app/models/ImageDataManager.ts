@@ -342,10 +342,9 @@ class CropManager {
 
     }
 
-    public loadItem(item:ImageDataItem, target:IImageTarget, cropIndex:number = 0) {
+    public loadItem(item:ImageDataItem, target:IImageTarget) {
         this.currentItem = item;
         this.currentItem.sizingDims = new BoxDims(0, 0, target.width(), target.height());
-        this.setStateForIndex(cropIndex);
         //if(item.getStatus() < ItemStatus.cropped) this.recalculateCropStates();
 
         this.finishLoadAsync(target);
