@@ -52,6 +52,18 @@
 
         </uib-accordion>
 
+        <h2>Discarded</h2>
+
+        <ul ui-sortable class="list-group" ng-model="discardedImages">
+            <li class="list-group-item pointer-cursor clearfix" ng-repeat="dItem in discardedImages"
+                id="{{ dItem.key }}">
+                <b>{{ dItem.path }}</b>
+                <a ng-click="restoreDiscardedImage(dItem.key)" class="btn btn-danger btn-sm pull-right ">Restore</a>
+            </li>
+        </ul>
+
+
+
     </div>
     <div class="col-md-2"></div>
 </div>

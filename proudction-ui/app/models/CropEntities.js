@@ -17,6 +17,7 @@ var ItemStatus;
     ItemStatus[ItemStatus["assigned"] = 1] = "assigned";
     ItemStatus[ItemStatus["cropped"] = 2] = "cropped";
     ItemStatus[ItemStatus["completed"] = 3] = "completed";
+    ItemStatus[ItemStatus["discarded"] = 4] = "discarded";
 })(ItemStatus || (ItemStatus = {}));
 var BoxDims = (function () {
     function BoxDims(x, y, w, h) {
@@ -35,7 +36,7 @@ var BoxDims = (function () {
         this.h = coords.h;
     };
     BoxDims.prototype.hasDims = function () {
-        var hasDims = (this.w - this.x) > 0 && (this.h - this.y) > 0;
+        var hasDims = this.w > 0 && this.h > 0;
         return hasDims;
     };
     BoxDims.prototype.toJsonObj = function () {
@@ -50,7 +51,7 @@ var BoxDims = (function () {
         return new BoxDims(box.x, box.y, box.w, box.h);
     };
     return BoxDims;
-})();
+}());
 var CropTarget;
 (function (CropTarget) {
     CropTarget[CropTarget["master"] = 1] = "master";
@@ -89,7 +90,7 @@ var CropDef = (function () {
         };
     };
     return CropDef;
-})();
+}());
 var CropSet = (function () {
     function CropSet(format, masterCropDef, altCropDef) {
         this.format = format;
@@ -114,7 +115,7 @@ var CropSet = (function () {
         };
     };
     return CropSet;
-})();
+}());
 var ImageCropUtils = (function () {
     function ImageCropUtils() {
     }
@@ -152,7 +153,7 @@ var ImageCropUtils = (function () {
         return "9 / 16";
     };
     return ImageCropUtils;
-})();
+}());
 var Set = (function () {
     function Set(id, name) {
         this.id = id;
@@ -181,7 +182,7 @@ var Set = (function () {
         return set;
     };
     return Set;
-})();
+}());
 var Deck = (function () {
     function Deck(id, name) {
         this.id = id;
@@ -209,7 +210,7 @@ var Deck = (function () {
         return deck;
     };
     return Deck;
-})();
+}());
 var ImageDataItem = (function () {
     function ImageDataItem(key, name, path) {
         this.key = key;
@@ -225,6 +226,7 @@ var ImageDataItem = (function () {
         img.nine16 = CropSet.fromICropSet(iDataCard.nine16);
         img.indexInDeck = iDataCard.indexInDeck;
         img.completed = iDataCard.completed;
+        img.discarded = iDataCard.discarded;
         return img;
     };
     ImageDataItem.prototype.setPercentages = function () {
@@ -250,6 +252,8 @@ var ImageDataItem = (function () {
         };
     };
     ImageDataItem.prototype.getStatus = function () {
+        if (this.discarded)
+            return ItemStatus.discarded;
         if (this.indexInDeck > -1 && this.sound) {
             if (this.sizingDims && this.sizingDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete()) {
                 if (this.completed) {
@@ -264,7 +268,7 @@ var ImageDataItem = (function () {
         return ItemStatus.untouched;
     };
     return ImageDataItem;
-})();
+}());
 var BacklogItem = (function () {
     function BacklogItem(key, name, path) {
         this.key = key;
@@ -272,5 +276,5 @@ var BacklogItem = (function () {
         this.path = path;
     }
     return BacklogItem;
-})();
+}());
 //# sourceMappingURL=CropEntities.js.map

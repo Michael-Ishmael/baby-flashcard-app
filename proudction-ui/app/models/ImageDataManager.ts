@@ -93,7 +93,7 @@ class ImageDataManager implements IAsynDataObject {
             }
             if(indexToRemove > -1){
                 this.decks.splice(indexToRemove, 1);
-                return;
+                break;
 
             }
         }
@@ -280,7 +280,9 @@ class ImageDataManager implements IAsynDataObject {
                     var card = <ImageDataItem>deck.images[k];
                     this.items.push(card);
                     var matchingBacklogItem = this.findItemInBacklog(card);
-                    if(matchingBacklogItem) matchingBacklogItem.status = card.getStatus();
+                    if(matchingBacklogItem){
+                        matchingBacklogItem.status = card.getStatus();
+                    } 
                 }
             }
         }

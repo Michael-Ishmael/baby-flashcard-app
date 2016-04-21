@@ -148,6 +148,7 @@ app.controller('assignmentController', ['$scope', '$routeParams', '$location', '
     $scope.jumpToCropSet = function(cropIndex){
         var view = 'crop';
         var path = $scope.currentItem ? view + '/' + $scope.currentItem.key + '/' + cropIndex : view;
+        imageDataService.currentItem = null;
         $scope.storeLastPage('assign/' + $scope.currentItem.key);
         $location.path(path); // path not hash
     };

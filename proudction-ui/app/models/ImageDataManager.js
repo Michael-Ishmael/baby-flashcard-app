@@ -77,7 +77,7 @@ var ImageDataManager = (function () {
             }
             if (indexToRemove > -1) {
                 this.decks.splice(indexToRemove, 1);
-                return;
+                break;
             }
         }
         item.discarded = true;
@@ -220,8 +220,9 @@ var ImageDataManager = (function () {
                     var card = deck.images[k];
                     this.items.push(card);
                     var matchingBacklogItem = this.findItemInBacklog(card);
-                    if (matchingBacklogItem)
+                    if (matchingBacklogItem) {
                         matchingBacklogItem.status = card.getStatus();
+                    }
                 }
             }
         }
@@ -262,7 +263,7 @@ var ImageDataManager = (function () {
         return null;
     };
     return ImageDataManager;
-})();
+}());
 var CropManager = (function () {
     function CropManager() {
         this.currentItem = null;
@@ -348,5 +349,5 @@ var CropManager = (function () {
                     ImageCropUtils.getBoxBounds(ci.nine16.portraitCropDef.orientation, ci.nine16.format, ci.sizingDims);*/
     };
     return CropManager;
-})();
+}());
 //# sourceMappingURL=ImageDataManager.js.map

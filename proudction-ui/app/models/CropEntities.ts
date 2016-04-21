@@ -17,7 +17,8 @@ enum ItemStatus {
     untouched,
     assigned,
     cropped,
-    completed
+    completed,
+    discarded
 }
 
 
@@ -71,7 +72,7 @@ class BoxDims implements IBox {
     }
 
     hasDims() {
-        var hasDims = (this.w - this.x) > 0 && (this.h - this.y) > 0;
+        var hasDims = this.w > 0 && this.h > 0;
         return hasDims;
     }
 
@@ -340,6 +341,7 @@ class ImageDataItem implements IDataCard, IDataItem {
         img.nine16 = CropSet.fromICropSet(iDataCard.nine16);
         img.indexInDeck = iDataCard.indexInDeck;
         img.completed  = iDataCard.completed;
+        img.discarded = iDataCard.discarded;
         return img;
     }
 
@@ -371,6 +373,7 @@ class ImageDataItem implements IDataCard, IDataItem {
     }
 
     public getStatus():ItemStatus {
+        if(this.discarded) return ItemStatus.discarded;
         if (this.indexInDeck > -1 && this.sound) {
             if (this.sizingDims && this.sizingDims.hasDims() && this.twelve16.isComplete() && this.nine16.isComplete()) {
                 if (this.completed) {

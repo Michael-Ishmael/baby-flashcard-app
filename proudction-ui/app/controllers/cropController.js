@@ -70,6 +70,7 @@ app.controller('cropController', ['$scope', '$routeParams', '$location', 'imageD
             setStateForIndex();
             $('#imageName').select();
             pScope.$digest();
+
         });
 
 
