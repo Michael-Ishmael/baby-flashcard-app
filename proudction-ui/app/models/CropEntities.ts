@@ -39,6 +39,7 @@ interface IDataSet {
 
 interface IImageData {
     sets:Array<IDataSet>;
+    discarded:Array<ImageDataItem>;
 }
 
 interface IImageTarget {
@@ -389,12 +390,24 @@ class ImageDataItem implements IDataCard, IDataItem {
 
 }
 
-class BacklogItem {
 
+class BacklogItem implements IDataItem {
+
+    public static createFromIDataItem(item:IDataItem):BacklogItem{
+        return new BacklogItem(item.key, item.name, item.path);
+    }
 
     constructor(public key:string, public name:string, public path:string) {
 
     }
+
+    public toJsonObj = function () {
+        return {
+            key: this.key,
+            name: this.name,
+            path: this.path,
+        }
+    };
 
     status:ItemStatus;
 }

@@ -112,6 +112,7 @@ app.controller('assignmentController', ['$scope', '$routeParams', '$location', '
 
         deck.images.push(image);
         image.indexInDeck = deck.images.length;
+        
         $scope.dataChanged = true;
     }
 

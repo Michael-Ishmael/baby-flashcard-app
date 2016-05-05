@@ -1,5 +1,6 @@
 import unittest
 
+from production.business.FileCompiler import FileCompiler
 from production.business.ImageConversion import CsvCreator
 from production.business.imagedata import *
 
@@ -110,12 +111,48 @@ class CsvCreatorTest(unittest.TestCase):
 
         self.assertEqual(result, expected)
 
+    def can_write_lines_2_test(self):
+        path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
+        creator = FileCompiler(path)
+        creator.load()
+        creator.compile_files()
+        result = 1
+
+        expected = 1
+
+        self.assertEqual(result, expected)
+
     def can_create_file_test(self):
         path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
         creator = CsvCreator(path)
         creator.load()
         creator.write_csv_lines()
         creator.dump_csv_file()
+        result = 1
+
+        expected = 1
+
+        self.assertEqual(result, expected)
+
+
+    def can_create_xcassets_test(self):
+        path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
+        creator = CsvCreator(path)
+        creator.load()
+        creator.write_csv_lines()
+        creator.dump_xcasset_files()
+        result = 1
+
+        expected = 1
+
+        self.assertEqual(result, expected)
+
+    def can_create_app_json_test(self):
+        path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
+        creator = CsvCreator(path)
+        creator.load()
+        creator.write_csv_lines()
+        creator.dump_app_json()
         result = 1
 
         expected = 1

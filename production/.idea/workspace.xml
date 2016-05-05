@@ -2,7 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6914c79-6e5a-4d74-979f-f67d9261783d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/production/business/FileCompiler.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/production/business/cropentities.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/production/business/notes" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../media/domestic/iphone6/chicken1_iphone6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../media/domestic/iphone6/chicken2_iphone6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../media/domestic/iphone6/chicken3_iphone6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../media/domestic/iphone6/chicken4_iphone6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../media/domestic/iphone6/chicken5_iphone6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../media/domestic/iphone6/chicken6_iphone6.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Sizing notes.key" afterPath="$PROJECT_DIR$/../Sizing notes.key" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/media/backlog/chicken6.jpg" afterPath="$PROJECT_DIR$/../proudction-ui/media/backlog/chicken6.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photoshop/script.jsx" afterPath="$PROJECT_DIR$/../photoshop/script.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photoshop/workingtest/cropping.csv" afterPath="$PROJECT_DIR$/../photoshop/workingtest/cropping.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/production/business/ImageConversion.py" afterPath="$PROJECT_DIR$/production/business/ImageConversion.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/production/business/imagedata.py" afterPath="$PROJECT_DIR$/production/business/imagedata.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/production/settings.py" afterPath="$PROJECT_DIR$/production/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/prod_test.py" afterPath="$PROJECT_DIR$/tests/prod_test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/controllers/assignmentController.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/controllers/assignmentController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/controllers/backlogController.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/controllers/backlogController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/controllers/cropController.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/controllers/cropController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/CropEntities.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/CropEntities.js" />
@@ -11,8 +29,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/ImageDataManager.js" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/ImageDataManager.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/ImageDataManager.js.map" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/ImageDataManager.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/models/ImageDataManager.ts" afterPath="$PROJECT_DIR$/../proudction-ui/app/models/ImageDataManager.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/app/views/backlogView.html" afterPath="$PROJECT_DIR$/../proudction-ui/app/views/backlogView.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/media/cropping.csv" afterPath="$PROJECT_DIR$/../proudction-ui/media/cropping.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../proudction-ui/media/data2.json" afterPath="$PROJECT_DIR$/../proudction-ui/media/data2.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/data.json" afterPath="$PROJECT_DIR$/../xamarin/baby-flashcards/baby-flashcards/Resources/data.json" />
     </list>
     <ignored path="production.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,17 +45,20 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/production$Unittest_ImageDataTest_bounds_to_json_test.coverage" NAME="Unittest ImageDataTest.bounds_to_json_test Coverage Results" MODIFIED="1455102577411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/production$Unittest_CsvCreatorTest_can_write_lines_test.coverage" NAME="Unittest CsvCreatorTest.can_write_lines_test Coverage Results" MODIFIED="1456940695504" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/production$Unittest_ImageDataTest_deck_to_json_test.coverage" NAME="Unittest ImageDataTest.deck_to_json_test Coverage Results" MODIFIED="1455108781665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/production$Unittest_ImageDataTest_can_load_from_json_string_test.coverage" NAME="Unittest ImageDataTest.can_load_from_json_string_test Coverage Results" MODIFIED="1455105112218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/production$Unittest_ImageDataTest_can_write_image_data_to_json_test.coverage" NAME="Unittest ImageDataTest.can_write_image_data_to_json_test Coverage Results" MODIFIED="1455109259094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/production$Unittest_CsvCreatorTest_can_create_file_test.coverage" NAME="Unittest CsvCreatorTest.can_create_file_test Coverage Results" MODIFIED="1457341522206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/production$Unittest_ImageDataTest_can_load_backlog_test.coverage" NAME="Unittest ImageDataTest.can_load_backlog_test Coverage Results" MODIFIED="1455178384861" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/production$Unittest_ImageDataTest_flashcard_to_json_test.coverage" NAME="Unittest ImageDataTest.flashcard_to_json_test Coverage Results" MODIFIED="1455108749705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/production$Unittest_ImageDataTest_can_load_from_json_file_test.coverage" NAME="Unittest ImageDataTest.can_load_from_json_file_test Coverage Results" MODIFIED="1455108021010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/production$Unittests_in_ImageDataTest.coverage" NAME="Unittests in ImageDataTest Coverage Results" MODIFIED="1455104652061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/production$Unittest_CsvCreatorTest_can_load_json_test.coverage" NAME="Unittest CsvCreatorTest.can_load_json_test Coverage Results" MODIFIED="1456250183308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/production$Unittest_ImageDataTest_flashcard_to_json_test.coverage" NAME="Unittest ImageDataTest.flashcard_to_json_test Coverage Results" MODIFIED="1455108749705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/production$Unittest_CsvCreatorTest_can_create_app_json_test.coverage" NAME="Unittest CsvCreatorTest.can_create_app_json_test Coverage Results" MODIFIED="1461948139917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/production$Unittest_ImageDataTest_can_load_from_json_file_test.coverage" NAME="Unittest ImageDataTest.can_load_from_json_file_test Coverage Results" MODIFIED="1455108021010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/production$Unittest_ImageDataTest_can_load_from_json_string_test.coverage" NAME="Unittest ImageDataTest.can_load_from_json_string_test Coverage Results" MODIFIED="1455105112218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/production$Unittest_CsvCreatorTest_can_create_file_test.coverage" NAME="Unittest CsvCreatorTest.can_create_file_test Coverage Results" MODIFIED="1461949555489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/production$Unittest_ImageDataTest_bounds_to_json_test.coverage" NAME="Unittest ImageDataTest.bounds_to_json_test Coverage Results" MODIFIED="1455102577411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/production$Unittest_CsvCreatorTest_can_write_lines_2_test.coverage" NAME="Unittest CsvCreatorTest.can_write_lines_2_test Coverage Results" MODIFIED="1462471920410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/production$Unittests_in_ImageDataTest.coverage" NAME="Unittests in ImageDataTest Coverage Results" MODIFIED="1455104652061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/production$Unittest_CsvCreatorTest_can_create_xcassets_test.coverage" NAME="Unittest CsvCreatorTest.can_create_xcassets_test Coverage Results" MODIFIED="1461949299197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/production$Unittest_ImageDataTest_can_write_image_data_to_json_test.coverage" NAME="Unittest ImageDataTest.can_write_image_data_to_json_test Coverage Results" MODIFIED="1455109259094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/production$Unittest_CsvCreatorTest_can_write_lines_test.coverage" NAME="Unittest CsvCreatorTest.can_write_lines_test Coverage Results" MODIFIED="1461706172888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -50,24 +72,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ImageProcessor/views.py">
+      <file leaf-file-name="FileCompiler.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/production/business/FileCompiler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="340">
+              <caret line="75" column="59" selection-start-line="75" selection-start-column="59" selection-end-line="75" selection-end-column="59" />
               <folding>
-                <element signature="e#58#102#0" expanded="true" />
+                <element signature="e#0#70#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file:///Library/Python/2.7/site-packages/django/conf/__init__.py">
+      <file leaf-file-name="cropentities.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/production/business/cropentities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="265">
+              <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#2809#4457#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,25 +100,45 @@
       <file leaf-file-name="imagedata.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/production/business/imagedata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+            <state relative-caret-position="145">
+              <caret line="313" column="8" selection-start-line="313" selection-start-column="8" selection-end-line="313" selection-end-column="8" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
+                <element signature="e#3637#4076#0" expanded="false" />
+                <element signature="e#13426#14262#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImageConversion.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/production/business/ImageConversion.py">
+      <file leaf-file-name="prod_test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/prod_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="148" column="5" selection-start-line="148" selection-start-column="5" selection-end-line="148" selection-end-column="5" />
+            <state relative-caret-position="91">
+              <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
               <folding>
-                <element signature="e#0#31#0" expanded="true" />
-                <element signature="e#470#4762#0" expanded="false" />
-                <element signature="e#4786#5341#0" expanded="false" />
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="notes" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/production/business/notes">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="690">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="case.py" pinned="false" current-in-tab="false">
+        <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/unittest/case.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4755">
+              <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -101,7 +146,7 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ImageProcessor/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="195">
               <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -113,8 +158,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/production/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1290">
-              <caret line="86" column="59" selection-start-line="86" selection-start-column="59" selection-end-line="86" selection-end-column="59" />
+            <state relative-caret-position="1380">
+              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -149,10 +194,16 @@
         <option value="$PROJECT_DIR$/ImageProcessor/models.py" />
         <option value="$PROJECT_DIR$/ImageProcessor/urls.py" />
         <option value="$PROJECT_DIR$/ImageProcessor/views.py" />
+        <option value="$PROJECT_DIR$/production/settings.py" />
+        <option value="$PROJECT_DIR$/production/business/notes" />
+        <option value="$PROJECT_DIR$/production/business/cropentities.pyi.py" />
+        <option value="$PROJECT_DIR$/production/business/ImageConversion.py" />
+        <option value="$PROJECT_DIR$/production/business/imagedata.pyi" />
+        <option value="$PROJECT_DIR$/production/business/cropentities.pyi" />
+        <option value="$PROJECT_DIR$/production/business/FileCompiler.py" />
         <option value="$PROJECT_DIR$/tests/prod_test.py" />
         <option value="$PROJECT_DIR$/production/business/imagedata.py" />
-        <option value="$PROJECT_DIR$/production/business/ImageConversion.py" />
-        <option value="$PROJECT_DIR$/production/settings.py" />
+        <option value="$PROJECT_DIR$/production/business/cropentities.py" />
       </list>
     </option>
   </component>
@@ -163,10 +214,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1280" />
-    <option name="y" value="124" />
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -212,21 +261,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Problems" />
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="production">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -284,8 +318,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="production" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="business" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="production" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="production" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="ImageProcessor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Problems" />
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="production">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -297,7 +364,7 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="true" />
@@ -311,76 +378,7 @@
       <recent name="$PROJECT_DIR$/ImageProcessor/templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Django server.production">
-    <configuration default="false" name="Unittest ImageDataTest.can_write_image_data_to_json_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="production" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/prod_test.py" />
-      <option name="CLASS_NAME" value="ImageDataTest" />
-      <option name="METHOD_NAME" value="can_write_image_data_to_json_test" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest ImageDataTest.can_load_backlog_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="production" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/prod_test.py" />
-      <option name="CLASS_NAME" value="ImageDataTest" />
-      <option name="METHOD_NAME" value="can_load_backlog_test" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest CsvCreatorTest.can_load_json_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="production" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/prod_test.py" />
-      <option name="CLASS_NAME" value="CsvCreatorTest" />
-      <option name="METHOD_NAME" value="can_load_json_test" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittest CsvCreatorTest.can_write_lines_2_test">
     <configuration default="false" name="Unittest CsvCreatorTest.can_write_lines_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -418,6 +416,75 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/prod_test.py" />
       <option name="CLASS_NAME" value="CsvCreatorTest" />
       <option name="METHOD_NAME" value="can_create_file_test" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest CsvCreatorTest.can_create_xcassets_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="production" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/prod_test.py" />
+      <option name="CLASS_NAME" value="CsvCreatorTest" />
+      <option name="METHOD_NAME" value="can_create_xcassets_test" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest CsvCreatorTest.can_create_app_json_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="production" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/prod_test.py" />
+      <option name="CLASS_NAME" value="CsvCreatorTest" />
+      <option name="METHOD_NAME" value="can_create_app_json_test" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest CsvCreatorTest.can_write_lines_2_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="production" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/prod_test.py" />
+      <option name="CLASS_NAME" value="CsvCreatorTest" />
+      <option name="METHOD_NAME" value="can_write_lines_2_test" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -684,19 +751,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Django server.production" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest ImageDataTest.can_write_image_data_to_json_test" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest ImageDataTest.can_load_backlog_test" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_load_json_test" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_write_lines_test" />
-      <item index="5" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_create_file_test" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_write_lines_test" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_create_file_test" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_create_xcassets_test" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_create_app_json_test" />
+      <item index="5" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_write_lines_2_test" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_create_file_test" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_write_lines_test" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_load_json_test" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest ImageDataTest.can_load_backlog_test" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest ImageDataTest.can_write_image_data_to_json_test" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_write_lines_2_test" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_create_file_test" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_create_xcassets_test" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_create_app_json_test" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest CsvCreatorTest.can_write_lines_test" />
       </list>
     </recent_temporary>
   </component>
@@ -717,59 +784,59 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittest_CsvCreatorTest_can_create_file_test - 2016.03.02 at 17h 53m 21s.xml">
-      <configuration name="Unittest CsvCreatorTest.can_create_file_test" configurationId="tests" />
+    <history-entry file="Unittest_CsvCreatorTest_can_create_xcassets_test - 2016.04.29 at 18h 01m 06s.xml">
+      <configuration name="Unittest CsvCreatorTest.can_create_xcassets_test" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_CsvCreatorTest_can_create_file_test - 2016.03.02 at 17h 55m 46s.xml">
-      <configuration name="Unittest CsvCreatorTest.can_create_file_test" configurationId="tests" />
+    <history-entry file="Unittest_CsvCreatorTest_can_create_xcassets_test - 2016.04.29 at 18h 01m 40s.xml">
+      <configuration name="Unittest CsvCreatorTest.can_create_xcassets_test" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_CsvCreatorTest_can_create_file_test - 2016.03.02 at 18h 00m 37s.xml">
-      <configuration name="Unittest CsvCreatorTest.can_create_file_test" configurationId="tests" />
+    <history-entry file="Unittest_CsvCreatorTest_can_write_lines_2_test - 2016.05.05 at 17h 41m 17s.xml">
+      <configuration name="Unittest CsvCreatorTest.can_write_lines_2_test" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_CsvCreatorTest_can_create_file_test - 2016.03.07 at 08h 17m 27s.xml">
-      <configuration name="Unittest CsvCreatorTest.can_create_file_test" configurationId="tests" />
+    <history-entry file="Unittest_CsvCreatorTest_can_write_lines_2_test - 2016.05.05 at 17h 45m 34s.xml">
+      <configuration name="Unittest CsvCreatorTest.can_write_lines_2_test" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_CsvCreatorTest_can_create_file_test - 2016.03.07 at 08h 33m 29s.xml">
-      <configuration name="Unittest CsvCreatorTest.can_create_file_test" configurationId="tests" />
+    <history-entry file="Unittest_CsvCreatorTest_can_write_lines_2_test - 2016.05.05 at 17h 46m 04s.xml">
+      <configuration name="Unittest CsvCreatorTest.can_write_lines_2_test" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_CsvCreatorTest_can_create_file_test - 2016.03.07 at 08h 39m 28s.xml">
-      <configuration name="Unittest CsvCreatorTest.can_create_file_test" configurationId="tests" />
+    <history-entry file="Unittest_CsvCreatorTest_can_write_lines_2_test - 2016.05.05 at 17h 49m 50s.xml">
+      <configuration name="Unittest CsvCreatorTest.can_write_lines_2_test" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_CsvCreatorTest_can_create_file_test - 2016.03.07 at 09h 01m 59s.xml">
-      <configuration name="Unittest CsvCreatorTest.can_create_file_test" configurationId="tests" />
+    <history-entry file="Unittest_CsvCreatorTest_can_write_lines_2_test - 2016.05.05 at 17h 55m 41s.xml">
+      <configuration name="Unittest CsvCreatorTest.can_write_lines_2_test" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_CsvCreatorTest_can_create_file_test - 2016.03.07 at 09h 06m 34s.xml">
-      <configuration name="Unittest CsvCreatorTest.can_create_file_test" configurationId="tests" />
+    <history-entry file="Unittest_CsvCreatorTest_can_write_lines_2_test - 2016.05.05 at 17h 56m 59s.xml">
+      <configuration name="Unittest CsvCreatorTest.can_write_lines_2_test" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_CsvCreatorTest_can_write_lines_test - 2016.03.02 at 17h 44m 55s.xml">
-      <configuration name="Unittest CsvCreatorTest.can_write_lines_test" configurationId="tests" />
+    <history-entry file="Unittest_CsvCreatorTest_can_write_lines_2_test - 2016.05.05 at 17h 59m 39s.xml">
+      <configuration name="Unittest CsvCreatorTest.can_write_lines_2_test" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_CsvCreatorTest_can_write_lines_test - 2016.03.02 at 17h 47m 41s.xml">
-      <configuration name="Unittest CsvCreatorTest.can_write_lines_test" configurationId="tests" />
+    <history-entry file="Unittest_CsvCreatorTest_can_write_lines_2_test - 2016.05.05 at 19h 14m 06s.xml">
+      <configuration name="Unittest CsvCreatorTest.can_write_lines_2_test" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1280" y="124" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24248926" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21324718" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30597016" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3409091" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -807,6 +874,23 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/prod_test.py</url>
+          <line>117</line>
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/production/business/FileCompiler.py</url>
+          <line>72</line>
+          <option name="timeStamp" value="137" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/production/business/cropentities.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -814,7 +898,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="96" />
+      <option name="time" value="140" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python.DjangoServer">
@@ -826,42 +910,10 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/production/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/production/settings.py" />
-    <entry file="file://$PROJECT_DIR$/ImageProcessor/static/js/im-proc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ImageProcessor/notes.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ImageProcessor/static/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ImageProcessor/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#58#102#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -908,9 +960,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#58#102#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -957,9 +1006,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#58#102#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1031,13 +1077,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/production/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ImageProcessor/static/js/im-proc.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1101,40 +1140,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/unittest/case.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/prod_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="115" column="15" selection-start-line="115" selection-start-column="15" selection-end-line="115" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/production/business/ImageConversion.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="148" column="5" selection-start-line="148" selection-start-column="5" selection-end-line="148" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#470#4762#0" expanded="false" />
-            <element signature="e#4786#5341#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1147,7 +1156,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ImageProcessor/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="195">
           <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -1155,38 +1164,117 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/production/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1290">
-          <caret line="86" column="59" selection-start-line="86" selection-start-column="59" selection-end-line="86" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Python/2.7/site-packages/django/conf/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/production/business/imagedata.py">
+    <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/unittest/case.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="4755">
+          <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ImageProcessor/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="253">
+          <caret line="52" column="42" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/business/notes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/business/imagedata.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/business/cropentities.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/business/ImageConversion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="82" column="22" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
           <folding>
-            <element signature="e#58#102#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/business/imagedata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="313" column="8" selection-start-line="313" selection-start-column="8" selection-end-line="313" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#3637#4076#0" expanded="false" />
+            <element signature="e#13426#14262#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/prod_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/business/cropentities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#2809#4457#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/business/FileCompiler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="75" column="59" selection-start-line="75" selection-start-column="59" selection-end-line="75" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#70#0" expanded="true" />
           </folding>
         </state>
       </provider>

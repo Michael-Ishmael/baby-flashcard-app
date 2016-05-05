@@ -22,7 +22,7 @@ app.controller('backlogController', ['$scope', '$location', 'imageDataService', 
                     decks: []
                 };
 
-                var discardedImages = [];
+                var discardedImages = imageDataService.discardedItems;
 
                 for (var i = 0; i < imageDataService.sets.length; i++) {
                     var set = imageDataService.sets[i];
@@ -38,7 +38,6 @@ app.controller('backlogController', ['$scope', '$location', 'imageDataService', 
                                 }
                                 localDeck.images.push(image);
                             }
-                            if(image.discarded) discardedImages.push(image);
                         }
                     }
                 }
@@ -69,8 +68,9 @@ app.controller('backlogController', ['$scope', '$location', 'imageDataService', 
         $location.path(path); // path not hash
     };
 
-    $scope.restoreDiscardedImage = function(item){
-        imageDataService.discardImage(item);
+    $scope.restoreDiscardedImage = function(itemKey){
+        imageDataService.restoredDiscardedItem(itemKey);
+        imageDataService.save();
     };
 
 

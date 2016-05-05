@@ -43,6 +43,7 @@ class ImageDataManager implements IAsynDataObject {
     public decks:Array<Deck> = [];
     public items:Array<ImageDataItem> = [];
     public backlog:Array<BacklogItem> = [];
+    public discardedItems:Array<BacklogItem> = [];
 
     private initialised:boolean = false;
     private loader:IDataLoader = null;
@@ -66,7 +67,8 @@ class ImageDataManager implements IAsynDataObject {
 
     public save():void {
         var data = {
-            sets: this.sets.map(function(s){ return s.toJsonObj(); })
+            sets: this.sets.map(function(s){ return s.toJsonObj(); }),
+            discarded: this.discardedItems.map(function(d){ return d.toJsonObj() })
         };
         this.loader.syncData(data);
     }
@@ -92,12 +94,30 @@ class ImageDataManager implements IAsynDataObject {
                 }
             }
             if(indexToRemove > -1){
-                this.decks.splice(indexToRemove, 1);
+                this.decks[i].images.splice(indexToRemove, 1);
                 break;
 
             }
         }
-        item.discarded = true;
+        this.discardedItems.push( BacklogItem.createFromIDataItem(image) )
+    }
+
+    public restoredDiscardedItem(itemKey:string){
+        var indexToRemove = -1;
+        var item;
+        for (var i = 0; i < this.discardedItems.length; i++) {
+            var loopItem = this.discardedItems[i];
+            if(loopItem.key == itemKey){
+                indexToRemove = i;
+                item = loopItem;
+                break;
+            }
+        }
+        if(indexToRemove > -1){
+            this.discardedItems.splice(indexToRemove, 1);
+            this.backlog.push(BacklogItem.createFromIDataItem(item));
+        }
+
     }
 
     public ready():IPromise {
@@ -145,7 +165,16 @@ class ImageDataManager implements IAsynDataObject {
 
         this.sounds = resourceData.sounds;
 
-        this.backlog = resourceData.backlog.map(function (i) {
+        this.backlog = resourceData.backlog
+            .filter(function(i){
+                if(!applicationData.discarded) return true;
+                for (var j = 0; j < applicationData.discarded.length; j++) {
+                    var discardedItem  = applicationData.discarded[j];
+                    if(i.name == discardedItem.key) return false;
+                }
+                return true;
+            })
+            .map(function (i) {
             return {
                 name: i.name,
                 path: i.path,
@@ -157,6 +186,8 @@ class ImageDataManager implements IAsynDataObject {
 
         this.loadFromImageHierarchy(applicationData)
     }
+    
+
 
     private dataFailed(message:any):void {
 
@@ -277,7 +308,7 @@ class ImageDataManager implements IAsynDataObject {
                 this.decks.push(<Deck>deck);
 
                 for (var k = 0; k < deck.images.length; k++) {
-                    var card = <ImageDataItem>deck.images[k];
+                    var card = ImageDataItem.createFromIDataCard(deck.images[k]);
                     this.items.push(card);
                     var matchingBacklogItem = this.findItemInBacklog(card);
                     if(matchingBacklogItem){
@@ -286,19 +317,32 @@ class ImageDataManager implements IAsynDataObject {
                 }
             }
         }
+        
+        if(imageData.discarded){
+            this.discardedItems = imageData.discarded.map(
+                function (discardedEl:IDataItem) {
+                    return BacklogItem.createFromIDataItem(discardedEl)
+                }
+            );
+        }
     }
 
-    private findItemInBacklog(item):BacklogItem{
-        for (var i = 0; i < this.backlog.length; i++) {
-            var backlogItem = this.backlog[i];
+    private findItemInBacklog(item:IDataItem, searchDiscardedBacklog:boolean = false):BacklogItem{
+
+        var arr = searchDiscardedBacklog ? this.discardedItems : this.backlog;
+
+        for (var i = 0; i < arr.length; i++) {
+            var backlogItem = arr[i];
             if(backlogItem.key == item.key){
                 return backlogItem;
             }
         }
+
+        return null;
     }
 
-    private createImageDataItemFromCard(card:IDataCard):ImageDataItem {
-        var backlogItem = this.getMatchingBacklogItem(card.key);
+  /*  private createImageDataItemFromCard(card:IDataCard):ImageDataItem {
+        var backlogItem = this.findItemInBacklog(card);
         var imageDataItem:ImageDataItem;
         if (backlogItem) {
             imageDataItem = new ImageDataItem(card.key, card.path, backlogItem.path)
@@ -317,19 +361,7 @@ class ImageDataManager implements IAsynDataObject {
         //imageDataItem.twelve16
 
         return imageDataItem;
-    }
-
-
-
-    private getMatchingBacklogItem(key:string) {
-        for (var i = 0; i < this.backlog.length; i++) {
-            var backlogItem = this.backlog[i];
-            if (backlogItem.key == key) {
-                return backlogItem;
-            }
-        }
-        return null;
-    }
+    }*/
 
 }
 

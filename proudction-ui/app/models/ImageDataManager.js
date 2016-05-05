@@ -16,6 +16,7 @@ var ImageDataManager = (function () {
         this.decks = [];
         this.items = [];
         this.backlog = [];
+        this.discardedItems = [];
         this.initialised = false;
         this.loader = null;
         this.getBacklogItem = function (itemKey) {
@@ -51,7 +52,8 @@ var ImageDataManager = (function () {
     };
     ImageDataManager.prototype.save = function () {
         var data = {
-            sets: this.sets.map(function (s) { return s.toJsonObj(); })
+            sets: this.sets.map(function (s) { return s.toJsonObj(); }),
+            discarded: this.discardedItems.map(function (d) { return d.toJsonObj(); })
         };
         this.loader.syncData(data);
     };
@@ -76,11 +78,27 @@ var ImageDataManager = (function () {
                 }
             }
             if (indexToRemove > -1) {
-                this.decks.splice(indexToRemove, 1);
+                this.decks[i].images.splice(indexToRemove, 1);
                 break;
             }
         }
-        item.discarded = true;
+        this.discardedItems.push(BacklogItem.createFromIDataItem(image));
+    };
+    ImageDataManager.prototype.restoredDiscardedItem = function (itemKey) {
+        var indexToRemove = -1;
+        var item;
+        for (var i = 0; i < this.discardedItems.length; i++) {
+            var loopItem = this.discardedItems[i];
+            if (loopItem.key == itemKey) {
+                indexToRemove = i;
+                item = loopItem;
+                break;
+            }
+        }
+        if (indexToRemove > -1) {
+            this.discardedItems.splice(indexToRemove, 1);
+            this.backlog.push(BacklogItem.createFromIDataItem(item));
+        }
     };
     ImageDataManager.prototype.ready = function () {
         return this.loader.ready(this);
@@ -115,7 +133,18 @@ var ImageDataManager = (function () {
             }
         }
         this.sounds = resourceData.sounds;
-        this.backlog = resourceData.backlog.map(function (i) {
+        this.backlog = resourceData.backlog
+            .filter(function (i) {
+            if (!applicationData.discarded)
+                return true;
+            for (var j = 0; j < applicationData.discarded.length; j++) {
+                var discardedItem = applicationData.discarded[j];
+                if (i.name == discardedItem.key)
+                    return false;
+            }
+            return true;
+        })
+            .map(function (i) {
             return {
                 name: i.name,
                 path: i.path,
@@ -217,7 +246,7 @@ var ImageDataManager = (function () {
                 var deck = set.decks[j];
                 this.decks.push(deck);
                 for (var k = 0; k < deck.images.length; k++) {
-                    var card = deck.images[k];
+                    var card = ImageDataItem.createFromIDataCard(deck.images[k]);
                     this.items.push(card);
                     var matchingBacklogItem = this.findItemInBacklog(card);
                     if (matchingBacklogItem) {
@@ -226,37 +255,18 @@ var ImageDataManager = (function () {
                 }
             }
         }
+        if (imageData.discarded) {
+            this.discardedItems = imageData.discarded.map(function (discardedEl) {
+                return BacklogItem.createFromIDataItem(discardedEl);
+            });
+        }
     };
-    ImageDataManager.prototype.findItemInBacklog = function (item) {
-        for (var i = 0; i < this.backlog.length; i++) {
-            var backlogItem = this.backlog[i];
+    ImageDataManager.prototype.findItemInBacklog = function (item, searchDiscardedBacklog) {
+        if (searchDiscardedBacklog === void 0) { searchDiscardedBacklog = false; }
+        var arr = searchDiscardedBacklog ? this.discardedItems : this.backlog;
+        for (var i = 0; i < arr.length; i++) {
+            var backlogItem = arr[i];
             if (backlogItem.key == item.key) {
-                return backlogItem;
-            }
-        }
-    };
-    ImageDataManager.prototype.createImageDataItemFromCard = function (card) {
-        var backlogItem = this.getMatchingBacklogItem(card.key);
-        var imageDataItem;
-        if (backlogItem) {
-            imageDataItem = new ImageDataItem(card.key, card.path, backlogItem.path);
-        }
-        else {
-            imageDataItem = new ImageDataItem(card.key, card.path, null);
-        }
-        imageDataItem.indexInDeck = card.indexInDeck;
-        imageDataItem.originalDims = card.originalDims ? BoxDims.createFromBox(card.originalDims) : new BoxDims(0, 0, 100, 100);
-        imageDataItem.twelve16 = CropSet.fromICropSet(card.twelve16);
-        imageDataItem.nine16 = CropSet.fromICropSet(card.nine16);
-        //imageDataItem.twelve16 = card.indexInDeck
-        //imageDataItem.originalDims = BoxDims.createFromBox(card.originalsize);
-        //imageDataItem.twelve16
-        return imageDataItem;
-    };
-    ImageDataManager.prototype.getMatchingBacklogItem = function (key) {
-        for (var i = 0; i < this.backlog.length; i++) {
-            var backlogItem = this.backlog[i];
-            if (backlogItem.key == key) {
                 return backlogItem;
             }
         }

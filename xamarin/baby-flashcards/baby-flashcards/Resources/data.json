@@ -36,6 +36,7 @@
           {
             "index": 0,
             "image": "horse3",
+
             "sound": "horse3.mp3",
             "portraitbounds": {
               "x": 10,
@@ -170,6 +171,7 @@
           {
             "index": 0,
             "image": "chicken1",
+						
             "sound": "chicken1.mp3",
             "portraitbounds": {
               "x": 10,

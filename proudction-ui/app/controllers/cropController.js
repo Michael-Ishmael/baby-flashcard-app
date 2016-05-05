@@ -38,7 +38,7 @@ app.controller('cropController', ['$scope', '$routeParams', '$location', 'imageD
 
                     $scope.sets = imageDataService.sets;
                     $scope.selectedSet = imageDataService.currentSet;
-                    $scope.decks = imageDataService.currentSet.decks;
+                    if(imageDataService.currentSet) $scope.decks = imageDataService.currentSet.decks;
                     $scope.selectedDeck = imageDataService.currentDeck;
                     //jCropBox.attr('src', '../media/backlog/path' + imageDataService.path)
 

@@ -274,7 +274,17 @@ var BacklogItem = (function () {
         this.key = key;
         this.name = name;
         this.path = path;
+        this.toJsonObj = function () {
+            return {
+                key: this.key,
+                name: this.name,
+                path: this.path
+            };
+        };
     }
+    BacklogItem.createFromIDataItem = function (item) {
+        return new BacklogItem(item.key, item.name, item.path);
+    };
     return BacklogItem;
 }());
 //# sourceMappingURL=CropEntities.js.map

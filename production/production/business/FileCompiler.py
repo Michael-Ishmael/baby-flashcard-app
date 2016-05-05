@@ -1,25 +1,9 @@
-from __future__ import division
-from aetypes import Enum
-
-import simplejson
-import os
+from production.business.ImageConversion import XCassetItem, CsvRecord
+from production.business.cropentities import CardFileManager
 from production.business.imagedata import *
 
 
-# 	                W	H	    Ratio
-#
-# iPhone5	    1138	640	    9/16	  9/16
-# iPhone6	    1334	750	    9/16	  9/16
-# iPhone6plus	2208	1242    9/16	  9/16
-#
-# iPhone4	    960	    640	    11/16	  2/3
-# iPad Mini	    1024	768	    12/16	  3/4
-# ipad Other	2048	1536    12/16	  3/4
-# iPad Pro	    2732	2048    12/16	  3/4
-
-#/Users/michaelishmael/Dev/Projects/baby-flashcard-app/xamarin/baby-flashcards/baby-flashcards/Resources/Images.xcassets
-
-class CsvCreator:
+class FileCompiler:
     data_file_name = 'data2.json'
     csv_file_name= "cropping.csv"
     target_root = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/media'
@@ -41,15 +25,14 @@ class CsvCreator:
     def __init__(self, media_path):
         self.media_path = media_path
         self.image_data = ImageData()
-        self.csv_lines = []
-        self.xcassets = {}
+        self.card_formats = []
         self.xamarin = { "sets": [] }
 
     def load(self):
         with open(os.path.join(self.media_path, self.data_file_name)) as json_file:
             self.image_data.load_from_json(json_file)
 
-    def write_csv_lines(self):
+    def compile_files(self):
         for deck_set in self.image_data.deck_sets:
             set_dict = deck_set.to_json_dict().copy()  # type:dict
             set_dict["decks"] = []
@@ -62,60 +45,36 @@ class CsvCreator:
 
                 for card in deck.cards:     # type: FlashCard
 
+                    card_key = os.path.splitext(card.image)[0]
                     card_dict = {
                         "id": card.id,
                         "index": card.index,
-                        "imagekey": os.path.splitext(card.image)[0],
+                        "imagekey": card_key,
                         "sound": card.sound,
                         "imagedef": {}
                     }
 
                     deck_dict["cards"].append(card_dict)
 
+                    manager = CardFileManager(card_key, card.image)
+
                     for crop_set in card.crop_sets:
                         if crop_set.crop_format == AspectRatio.twelve16:
                             format_key = "twelve16"
-                            target_format_list = CsvCreator.target_formats["twelve16"]
+                            target_format_list = FileCompiler.target_formats["twelve16"]
                         else:
                             format_key = "nine16"
-                            target_format_list = CsvCreator.target_formats["nine16"]
+                            target_format_list = FileCompiler.target_formats["nine16"]
 
                         for target_format in target_format_list:
-                            lines = self.create_csv_lines(target_format, crop_set, card.image, deck.name, deck_set.name, format_key)
+
+                            manager.add_format(target_format, crop_set)
+                            src_path_root = os.path.join(FileCompiler.original_root, deck_set.name, deck.name, card.image)
+                            lines = manager.get_card_csv_lines(src_path_root, self.target_root)
+
                             for line in lines:
                                 self.csv_lines.append(line)
-                            xcasset_name = os.path.splitext(card.image)[0] + "_" + format_key
-                            if len(lines) == 1:
-                                self.add_xcasset_image(xcasset_name, lines[0].file_name, target_format)
-                                crops = crop_set.get_combined_crops(target_format.target_bounds.long_side(), target_format.target_bounds.short_side())
 
-                                if not card_dict["imagedef"].has_key(format_key):
-                                    card_dict["imagedef"][format_key] = {
-                                        "imagetype": "combined",
-                                        "imageattributes": {
-                                            "combinedview": {
-                                                "xcassetname": xcasset_name,
-                                                "landscapecrop": crops[0].to_json_dict(),
-                                                "portraitcrop": crops[1].to_json_dict()
-                                            }
-                                        }
-                                    }
-                            elif len(lines) == 2:
-                                self.add_xcasset_image(xcasset_name + "_ls", lines[0].file_name, target_format)
-                                self.add_xcasset_image(xcasset_name + "_pt", lines[1].file_name, target_format)
-
-                                if not card_dict["imagedef"].has_key(format_key):
-                                    card_dict["imagedef"][format_key] = {
-                                        "imagetype": "split",
-                                        "imageattributes": {
-                                            "landscape": {
-                                                "xcassetname": xcasset_name + "_ls",
-                                            },
-                                            "portrait": {
-                                                "xcassetname": xcasset_name + "_pt",
-                                            }
-                                        }
-                                    }
 
 
     def add_xcasset_image(self, casset_name, image_name, target_format):
@@ -192,7 +151,7 @@ class CsvCreator:
 
     def get_starter_line(self,target_format, image_name, deck_name, set_name, aspect_suffix, format_key):
         line = CsvRecord()
-        line.original_path = os.path.join(CsvCreator.original_root, set_name, deck_name, image_name)
+        line.original_path = os.path.join(FileCompiler.original_root, set_name, deck_name, image_name)
         line.file_name = image_name.replace('.jpg', '_' + target_format.name + aspect_suffix + '.jpg')
         casset_name = os.path.splitext(image_name)[0] + '_' + format_key
         if aspect_suffix == "_landscape":
@@ -233,59 +192,3 @@ class CsvCreator:
         pc_y2 = crop_dims.y2() / image_dims.h
 
         return [pc_x1, pc_y1, pc_x2, pc_y2]
-
-
-class CsvRecord:
-    def __init__(self):
-        self.original_path = ""
-        self.target_path = ""
-        self.crop_start_x_pc = 0
-        self.crop_start_y_pc = 0
-        self.crop_end_x_pc = 1
-        self.crop_end_y_pc = 1
-        self.target_width = 0
-        self.target_height = 0
-        self.file_name = ""
-
-    def to_string(self):
-        return "{},{},{},{},{},{},{},{}".format(self.original_path, self.target_path, self.target_width, self.target_height, \
-                                                self.crop_start_x_pc, self.crop_start_y_pc, self.crop_end_x_pc, self.crop_end_y_pc)
-
-class XCassetItem:
-    def __init__(self, file_name, idiom, scale, sub_type):
-        self.file_name = file_name
-        self.idiom = idiom
-        self.scale = scale
-        self.sub_type = sub_type
-
-    def to_json_dict(self):
-        dict = {
-            "filename": self.file_name,
-            "idiom": self.idiom,
-            "scale": self.scale
-        }
-        if not self.sub_type is None:
-            dict["subtype"] = self.sub_type
-
-        return dict
-
-
-
-# class XcassettCreator:
-#     data_file_name = 'data2.json'
-#     csv_file_name= "cropping.csv"
-#     target_root = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/media'
-#     original_root = 'originals'  # '/Users/scorpio/Dev/Projects/baby-flashcard-app/media/originals'
-#     target_formats = {
-#         "twelve16": [
-#             TargetFormat("iphone4", "iphone4", CropFormat.twelve16, Bounds(0, 0, 960, 640)),
-#             TargetFormat("ipad", "ipad", CropFormat.twelve16, Bounds(0, 0, 1024, 768)),
-#             TargetFormat("ipadretina", "ipadretina", CropFormat.twelve16, Bounds(0, 0, 2048, 1536)),
-#             TargetFormat("ipadpro", "ipadpro", CropFormat.twelve16, Bounds(0, 0, 2732, 2048)),
-#         ],
-#         "nine16": [
-#             TargetFormat("iphone5", "iphone5", CropFormat.nine16, Bounds(0, 0, 1138, 640)),
-#             TargetFormat("iphone6", "iphone6", CropFormat.nine16, Bounds(0, 0, 1334, 750)),
-#             TargetFormat("iphone6plus", "iphone6plus", CropFormat.nine16, Bounds(0, 0, 2208, 1242)),
-#         ]
-#     }

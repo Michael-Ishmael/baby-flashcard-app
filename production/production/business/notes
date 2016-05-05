@@ -1,0 +1,46 @@
+1.  Create 'ghost' icons for each flashcard set: domestic, safari, woodland, birds, ?? aquatic?
+
+2.  Create vector icons for each animal deck in each set
+
+3.  Find six sounds for each animal.
+
+4.  Put icons and sounds in relevant #resource# folder
+
+4.  Get hi-res images from web and store in #originals# folder
+
+5.  Scale down to manageable size for production system and put in #image backlog folder#
+
+6.  Use production system to organise resources into sets, decks and cards with correct icons, images and sounds
+    --> #data2.json#
+
+7.  Python: Loop through #data2.json# and create CSV instructions for Photoshop for cropping and scaling original images
+
+8.  ExtendScript: Execute script to scale and resize original images and save to #target format folders#
+
+9.  Python: Loop through #data2.json# and create XCasset files for each Card
+     (will need 1 when image combined, 2 when split between landscape and portrait)
+
+10. Python: Loop through #data2.json# and move images to correct resource folders, one for each XCasset.
+
+11. Python: Loop through #data2.json# and create Xamarin data.json file, indicating icons, sounds and XCasset names
+     (will need to indicate wether a card should be looking for landscape/portrait XCasset or single file)
+
+
+
+For a single card:
+
+    It's image key  -  chicken2
+
+    For each i format:
+
+        Either combined or split rects
+            crops for combined
+            or split names
+
+        Data to tell it which xcasset to looking
+
+
+
+Card
+    imagekey
+    dict<string, string>  xcassetForFormat
