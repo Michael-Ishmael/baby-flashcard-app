@@ -3,6 +3,7 @@ import unittest
 from production.business.FileCompiler import FileCompiler
 from production.business.ImageConversion import CsvCreator
 from production.business.imagedata import *
+from os.path import expanduser
 
 __author__ = 'scorpio'
 
@@ -112,7 +113,8 @@ class CsvCreatorTest(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def can_write_lines_2_test(self):
-        path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
+        home = expanduser("~")
+        path = home + '/Dev/Projects/baby-flashcard-app/proudction-ui/media'
         creator = FileCompiler(path)
         creator.load()
         creator.compile_files()
@@ -123,7 +125,8 @@ class CsvCreatorTest(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def can_create_file_test(self):
-        path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
+        home = expanduser("~")
+        path = home + '/Dev/Projects/baby-flashcard-app/proudction-ui/media'
         creator = CsvCreator(path)
         creator.load()
         creator.write_csv_lines()

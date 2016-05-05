@@ -3,7 +3,7 @@ from production.business.cropentities import CardFileManager
 from production.business.imagedata import *
 
 
-class FileCompiler:
+class FileCompilationSettings:
     data_file_name = 'data2.json'
     csv_file_name= "cropping.csv"
     target_root = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/media'
@@ -22,10 +22,12 @@ class FileCompiler:
         ]
     }
 
+class FileCompiler:
+
     def __init__(self, media_path):
         self.media_path = media_path
         self.image_data = ImageData()
-        self.card_formats = []
+        self.csv_lines = []
         self.xamarin = { "sets": [] }
 
     def load(self):

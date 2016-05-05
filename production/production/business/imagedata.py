@@ -246,9 +246,9 @@ class Orientation(Enum):
     landscape = 2
 
 
-class AspectRatio(Enum):
-    twelve16 = 1
-    nine16 = 2
+class AspectRatio():
+    twelve16 = "twelve16"
+    nine16 = "nine16"
 
 
 class CropDef:

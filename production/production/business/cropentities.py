@@ -35,7 +35,7 @@ class CardFileManager:
             ins_set = CombinedCropInstructionSet(self.image_name, target_format, crop_set)
         else:
             ins_set = SpitCropInstructionSet(self.image_name, target_format, crop_set)
-        self.formats[str(target_format.crop_format)].append(ins_set)
+        self.formats[target_format.crop_format].append(ins_set)
 
     def get_card_csv_lines(self, card_base_path, target_root):
         lines = []
