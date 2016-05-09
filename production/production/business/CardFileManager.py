@@ -1,23 +1,12 @@
 import os
 from aetypes import Enum
 
-from pyparsing import Dict
-
-from production.business.ImageConversion import CsvRecord
-from production.business.imagedata import AspectRatio, Orientation, CropSet, Bounds, TargetFormat
+from production.business.Entities import CsvRecord, Orientation
 
 
 class RectDistribution(Enum):
     combined = 1
     split = 2
-
-# combined for 3 twelve16s
-
-# split for 2 nine16s
-
-# xcassets: chicken2 x 6, chicken2_ls x 2, chicken2_pt x 2
-
-# 5 formats, ls + pt, 10 crops
 
 
 class CardFileManager:
@@ -99,6 +88,10 @@ class CardFileManager:
         #             }
         #         }
 
+    def get_xcasset_images(self):
+        pass
+
+
 class CropInstructionSet:
     def __init__(self, format_name, rect_dist):
         self.format_name = format_name
@@ -126,7 +119,7 @@ class CombinedCropInstructionSet(CropInstructionSet):
         """
 
         :type target_format: TargetFormat
-        :type crop_set: CropSet
+        :type crop_set: production.business.Entities.CropSet
         """
         CropInstructionSet.__init__(self, target_format.name, RectDistribution.combined)
         crop_pcs = crop_set.get_combined_crop_percentages()
