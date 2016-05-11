@@ -1,4 +1,4 @@
-from production.business.ImageData import TargetFormat, AspectRatio
+from production.business.Entities import TargetFormat, AspectRatio
 from production.business.Entities import Bounds, TargetFormat
 from os.path import expanduser
 

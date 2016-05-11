@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{ADF5C53F-497F-4548-9BC3-6028158C1A64}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>babyflashcards</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>babyflashcards</AssemblyName>
+    <XamarinInsightsApiKey>4a4dbecc7662a37920881cf4ee05e886bed2100d</XamarinInsightsApiKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchFloat32>true</MtouchFloat32>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Xamarin.Insights">
+      <HintPath>..\packages\Xamarin.Insights.1.10.6\lib\Xamarin.iOS10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="PLCrashReporterUnifiedBinding">
+      <HintPath>..\packages\Xamarin.Insights.1.10.6\lib\Xamarin.iOS10\PLCrashReporterUnifiedBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="Calabash">
+      <HintPath>..\packages\Xamarin.TestCloud.Agent.0.14.1\lib\Xamarin.iOS10\Calabash.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+    <BundleResource Include="Resources\appdata.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="FirstViewController.cs" />
+    <Compile Include="SecondViewController.cs" />
+    <Compile Include="FirstViewController.designer.cs">
+      <DependentUpon>FirstViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SecondViewController.designer.cs">
+      <DependentUpon>SecondViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AppData.cs" />
+    <Compile Include="Entities\FlashCard.cs" />
+    <Compile Include="Entities\FlashCardDeck.cs" />
+    <Compile Include="Entities\FlashCardSet.cs" />
+    <Compile Include="ViewLogic\DeckViewData.cs" />
+    <Compile Include="ViewLogic\DeckViewCell.cs" />
+    <Compile Include="ViewLogic\DeckCollectionViewController.cs" />
+    <Compile Include="ViewLogic\IApplicationEventHandler.cs" />
+    <Compile Include="ViewLogic\JumbleFlowLayout.cs" />
+    <Compile Include="ViewLogic\FlashCardSetTabViewController.cs" />
+    <Compile Include="ViewLogic\FlashCardViewController.cs" />
+    <Compile Include="ViewLogic\FlashCardViewTransitioningDelegate.cs" />
+    <Compile Include="ViewLogic\FlashCardViewControllerAnimatedTransitioning.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Insights.1.10.6\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.6\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
+  <ItemGroup />
+  <ItemGroup>
+    <BundleResource Include="Resources\data.json" />
+    <BundleResource Include="Resources\catthumb.png" />
+    <BundleResource Include="Resources\chickenthumb.png" />
+    <BundleResource Include="Resources\cowThumb.png" />
+    <BundleResource Include="Resources\dogthumb.png" />
+    <BundleResource Include="Resources\donkeythumb.png" />
+    <BundleResource Include="Resources\duckthumb.png" />
+    <BundleResource Include="Resources\goatthumb.png" />
+    <BundleResource Include="Resources\horsethumb.png" />
+    <BundleResource Include="Resources\owlthumb.png" />
+    <BundleResource Include="Resources\pigthumb.png" />
+    <BundleResource Include="Resources\rabbitthumb.png" />
+    <BundleResource Include="Resources\sheepthumb.png" />
+    <BundleResource Include="Resources\domesticicon.png" />
+    <BundleResource Include="Resources\domesticicon%402x.png" />
+    <BundleResource Include="Resources\lionIcon.png" />
+    <BundleResource Include="Resources\lionIcon%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Info.plist" />
+    <BundleResource Include="Resources\sounds\chicken\Chicken1.mp3" />
+    <BundleResource Include="Resources\sounds\chicken\Chicken2.mp3" />
+    <BundleResource Include="Resources\sounds\chicken\Chicken3.mp3" />
+    <BundleResource Include="Resources\sounds\chicken\Chicken4.mp3" />
+    <BundleResource Include="Resources\sounds\chicken\Chicken5.mp3" />
+    <BundleResource Include="Resources\sounds\chicken\Chicken6.mp3" />
+    <BundleResource Include="Resources\sounds\cow\Cow1.mp3" />
+    <BundleResource Include="Resources\sounds\cow\Cow2.mp3" />
+    <BundleResource Include="Resources\sounds\cow\Cow3.mp3" />
+    <BundleResource Include="Resources\sounds\cow\Cow4.mp3" />
+    <BundleResource Include="Resources\sounds\cow\Cow5.mp3" />
+    <BundleResource Include="Resources\sounds\cow\Cow6.mp3" />
+    <BundleResource Include="Resources\sounds\cow\moo...2.mp3" />
+    <BundleResource Include="Resources\sounds\horse\Horse1.mp3" />
+    <BundleResource Include="Resources\sounds\horse\Horse2.mp3" />
+    <BundleResource Include="Resources\sounds\horse\Horse3.mp3" />
+    <BundleResource Include="Resources\sounds\horse\Horse4.mp3" />
+    <BundleResource Include="Resources\sounds\horse\Horse5.mp3" />
+    <BundleResource Include="Resources\sounds\horse\Horse6.mp3" />
+    <BundleResource Include="Resources\seticons\domesticicon.png" />
+    <BundleResource Include="Resources\seticons\lionIcon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\cow6.imageset\cow6_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow6.imageset\cow6_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow6.imageset\cow6_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow6.imageset\cow6_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow6.imageset\cow6_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow5.imageset\cow5_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow5.imageset\cow5_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow5.imageset\cow5_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow5.imageset\cow5_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow5.imageset\cow5_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow4_pt.imageset\cow4_pt_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow4_pt.imageset\cow4_pt_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow4_pt.imageset\cow4_pt_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow4_ls.imageset\cow4_ls_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow4_ls.imageset\cow4_ls_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow4_ls.imageset\cow4_ls_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow4.imageset\cow4_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow4.imageset\cow4_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\cow2_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\cow2_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\cow2_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\cow2_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\cow2_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\cow1_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\cow1_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\cow1_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\cow1_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\cow1_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_pt.imageset\chicken6_pt_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_pt.imageset\chicken6_pt_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_pt.imageset\chicken6_pt_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_pt.imageset\chicken6_pt_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_pt.imageset\chicken6_pt_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_ls.imageset\chicken6_ls_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_ls.imageset\chicken6_ls_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_ls.imageset\chicken6_ls_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_ls.imageset\chicken6_ls_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_ls.imageset\chicken6_ls_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken5.imageset\chicken5_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken5.imageset\chicken5_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken5.imageset\chicken5_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken5.imageset\chicken5_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken5.imageset\chicken5_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken4.imageset\chicken4_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken4.imageset\chicken4_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken4.imageset\chicken4_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken4.imageset\chicken4_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken4.imageset\chicken4_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken3.imageset\chicken3_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken3.imageset\chicken3_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken3.imageset\chicken3_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken3.imageset\chicken3_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken3.imageset\chicken3_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken2_pt.imageset\chicken2_pt_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken2_pt.imageset\chicken2_pt_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken2_ls.imageset\chicken2_ls_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken2_ls.imageset\chicken2_ls_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken2.imageset\chicken2_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken2.imageset\chicken2_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken2.imageset\chicken2_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\chicken1_iphone6.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\chicken1_iphone5.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\chicken1_iphone4.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\chicken1_ipadretina.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\chicken1_ipad.jpg">
+      <InProject>false</InProject>
+    </ImageAsset>
+  </ItemGroup>
+</Project>
