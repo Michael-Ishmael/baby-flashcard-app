@@ -1,9 +1,8 @@
 from __future__ import division
-from aetypes import Enum
 
-import simplejson
 import os
-from production.business.imagedata import *
+
+from production.business.ImageData import *
 
 
 # 	                W	H	    Ratio
@@ -233,59 +232,3 @@ class CsvCreator:
         pc_y2 = crop_dims.y2() / image_dims.h
 
         return [pc_x1, pc_y1, pc_x2, pc_y2]
-
-
-class CsvRecord:
-    def __init__(self):
-        self.original_path = ""
-        self.target_path = ""
-        self.crop_start_x_pc = 0
-        self.crop_start_y_pc = 0
-        self.crop_end_x_pc = 1
-        self.crop_end_y_pc = 1
-        self.target_width = 0
-        self.target_height = 0
-        self.file_name = ""
-
-    def to_string(self):
-        return "{},{},{},{},{},{},{},{}".format(self.original_path, self.target_path, self.target_width, self.target_height, \
-                                                self.crop_start_x_pc, self.crop_start_y_pc, self.crop_end_x_pc, self.crop_end_y_pc)
-
-class XCassetItem:
-    def __init__(self, file_name, idiom, scale, sub_type):
-        self.file_name = file_name
-        self.idiom = idiom
-        self.scale = scale
-        self.sub_type = sub_type
-
-    def to_json_dict(self):
-        dict = {
-            "filename": self.file_name,
-            "idiom": self.idiom,
-            "scale": self.scale
-        }
-        if not self.sub_type is None:
-            dict["subtype"] = self.sub_type
-
-        return dict
-
-
-
-# class XcassettCreator:
-#     data_file_name = 'data2.json'
-#     csv_file_name= "cropping.csv"
-#     target_root = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/media'
-#     original_root = 'originals'  # '/Users/scorpio/Dev/Projects/baby-flashcard-app/media/originals'
-#     target_formats = {
-#         "twelve16": [
-#             TargetFormat("iphone4", "iphone4", CropFormat.twelve16, Bounds(0, 0, 960, 640)),
-#             TargetFormat("ipad", "ipad", CropFormat.twelve16, Bounds(0, 0, 1024, 768)),
-#             TargetFormat("ipadretina", "ipadretina", CropFormat.twelve16, Bounds(0, 0, 2048, 1536)),
-#             TargetFormat("ipadpro", "ipadpro", CropFormat.twelve16, Bounds(0, 0, 2732, 2048)),
-#         ],
-#         "nine16": [
-#             TargetFormat("iphone5", "iphone5", CropFormat.nine16, Bounds(0, 0, 1138, 640)),
-#             TargetFormat("iphone6", "iphone6", CropFormat.nine16, Bounds(0, 0, 1334, 750)),
-#             TargetFormat("iphone6plus", "iphone6plus", CropFormat.nine16, Bounds(0, 0, 2208, 1242)),
-#         ]
-#     }

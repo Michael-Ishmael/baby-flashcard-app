@@ -12,7 +12,8 @@ import os
 
 from django.http import JsonResponse
 
-from production.business.imagedata import Workflow
+from production.business.Workflow import Workflow
+
 
 def resources(request):
     workflow = Workflow(settings.MEDIA_ROOT)

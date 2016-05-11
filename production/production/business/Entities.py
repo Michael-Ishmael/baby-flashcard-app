@@ -1,5 +1,7 @@
 from aetypes import Enum
 
+import simplejson
+
 
 class DeckSet:
     def __init__(self, id, name):
@@ -217,3 +219,144 @@ class CropSet:
             "masterCropDef": self.landscape_crop_def.to_json_dict(),
             "altCropDef": self.portrait_crop_def.to_json_dict()
         }
+
+
+class XCassetItem:
+    def __init__(self, file_name, idiom, scale, sub_type):
+        self.xcasset_name = None
+        self.file_name = file_name
+        self.idiom = idiom
+        self.scale = scale
+        self.sub_type = sub_type
+
+    def to_json_dict(self):
+        dict = {
+            "filename": self.file_name,
+            "idiom": self.idiom,
+            "scale": self.scale
+        }
+        if not self.sub_type is None:
+            dict["subtype"] = self.sub_type
+
+        return dict
+
+
+
+# class XcassettCreator:
+#     data_file_name = 'data2.json'
+#     csv_file_name= "cropping.csv"
+#     target_root = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/media'
+#     original_root = 'originals'  # '/Users/scorpio/Dev/Projects/baby-flashcard-app/media/originals'
+#     target_formats = {
+#         "twelve16": [
+#             TargetFormat("iphone4", "iphone4", CropFormat.twelve16, Bounds(0, 0, 960, 640)),
+#             TargetFormat("ipad", "ipad", CropFormat.twelve16, Bounds(0, 0, 1024, 768)),
+#             TargetFormat("ipadretina", "ipadretina", CropFormat.twelve16, Bounds(0, 0, 2048, 1536)),
+#             TargetFormat("ipadpro", "ipadpro", CropFormat.twelve16, Bounds(0, 0, 2732, 2048)),
+#         ],
+#         "nine16": [
+#             TargetFormat("iphone5", "iphone5", CropFormat.nine16, Bounds(0, 0, 1138, 640)),
+#             TargetFormat("iphone6", "iphone6", CropFormat.nine16, Bounds(0, 0, 1334, 750)),
+#             TargetFormat("iphone6plus", "iphone6plus", CropFormat.nine16, Bounds(0, 0, 2208, 1242)),
+#         ]
+#     }
+
+
+class CsvRecord:
+    def __init__(self):
+        self.original_path = ""
+        self.target_path = ""
+        self.crop_start_x_pc = 0
+        self.crop_start_y_pc = 0
+        self.crop_end_x_pc = 1
+        self.crop_end_y_pc = 1
+        self.target_width = 0
+        self.target_height = 0
+        self.file_name = ""
+
+    def to_string(self):
+        return "{},{},{},{},{},{},{},{}".format(self.original_path, self.target_path, self.target_width, self.target_height, \
+                                                self.crop_start_x_pc, self.crop_start_y_pc, self.crop_end_x_pc, self.crop_end_y_pc)
+
+
+class Bounds:
+    def __init__(self, x, y, w, h):
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+
+    @staticmethod
+    def load_from_dict(bounds_dict):
+        x = bounds_dict.get("x", 0)
+        y = bounds_dict.get("y", 0)
+        w = bounds_dict.get("w", 0)
+        h = bounds_dict.get("h", 0)
+
+        return Bounds(x, y, w, h)
+
+    def x2(self):
+        return self.x + self.w
+
+    def y2(self):
+        return self.y + self.h
+
+    def is_outside_x_bounds(self, other):
+        if other.x < self.x:
+            return True
+        if other.x2() > self.x2():
+            return True
+        return False
+
+    def is_outside_y_bounds(self, other):
+        if other.y < self.y:
+            return True
+        if other.y2() > self.y2():
+            return True
+        return False
+
+    def get_adjusted(self, offset_x, offset_y):
+        return Bounds(self.x + offset_x, self.y + offset_y, self.w, self.h)
+
+    def long_side(self):
+        return self.w if self.w >= self.h else self.h
+
+    def short_side(self):
+        return self.h if self.h <= self.w else self.w
+
+    def to_bounds_pcs(self, container_width, container_height):
+        bounds_pcs = BoundsPcs()
+        bounds_pcs.x1 = self.x / container_width
+        bounds_pcs.x2 = self.x2() / container_width
+        bounds_pcs.y1 = self.y / container_height
+        bounds_pcs.y2 = self.y2() / container_height
+        return bounds_pcs
+
+    def to_json(self):
+        return simplejson.dumps(self.__dict__)
+
+
+class BoundsPcs:
+    def __init__(self):
+        self.x1 = 0.0
+        self.y2 = 0.0
+        self.x2 = 0.0
+        self.y2 = 0.0
+
+    def to_json_dict(self):
+        return {
+            "x1": self.x1,
+            "y1": self.y1,
+            "x2": self.x2,
+            "y2": self.y2
+        }
+
+
+class TargetFormat(object):
+    def __init__(self, name, crop_format, bounds, idiom, scale, sub_type):
+        self.name = name
+        self.crop_format = crop_format
+        self.target_bounds = bounds  # type:Bounds
+        self.scale = scale
+        self.idiom = idiom
+        self.sub_type = sub_type

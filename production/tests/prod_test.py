@@ -1,9 +1,10 @@
 import unittest
+from os.path import expanduser
 
 from production.business.FileCompiler import FileCompiler
 from production.business.ImageConversion import CsvCreator
-from production.business.imagedata import *
-from os.path import expanduser
+from production.business.Workflow import Workflow
+from production.business.ImageData import *
 
 __author__ = 'scorpio'
 
@@ -62,7 +63,7 @@ class ImageDataTest(unittest.TestCase):
     def can_load_from_json_file_test(self):
         with open('/Users/scorpio/Dev/Projects/baby-flashcard-app/media/data.json') as json_file:
             image_data = ImageData()
-            #json_string = '{ "sets": [ { "id": 1, "name": "domestic" } , { "id": 2, "name": "safari" }   ]}'
+            # json_string = '{ "sets": [ { "id": 1, "name": "domestic" } , { "id": 2, "name": "safari" }   ]}'
             image_data.load_from_json(json_file)
 
         self.assertEqual(3, len(image_data.deck_sets[0].decks))
@@ -89,7 +90,6 @@ class ImageDataTest(unittest.TestCase):
 
 
 class CsvCreatorTest(unittest.TestCase):
-
     def can_load_json_test(self):
         path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
         creator = CsvCreator(path)
@@ -113,11 +113,10 @@ class CsvCreatorTest(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def can_write_lines_2_test(self):
-        home = expanduser("~")
-        path = home + '/Dev/Projects/baby-flashcard-app/proudction-ui/media'
-        creator = FileCompiler(path)
+        creator = FileCompiler()  # type:FileCompiler
         creator.load()
         creator.compile_files()
+        creator.dump_csv_file()
         result = 1
 
         expected = 1
@@ -137,12 +136,10 @@ class CsvCreatorTest(unittest.TestCase):
 
         self.assertEqual(result, expected)
 
-
     def can_create_xcassets_test(self):
-        path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
-        creator = CsvCreator(path)
+        creator = FileCompiler()
         creator.load()
-        creator.write_csv_lines()
+        creator.compile_files()
         creator.dump_xcasset_files()
         result = 1
 
@@ -151,13 +148,13 @@ class CsvCreatorTest(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def can_create_app_json_test(self):
-        path = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/proudction-ui/media'
-        creator = CsvCreator(path)
+        creator = FileCompiler()
         creator.load()
-        creator.write_csv_lines()
-        creator.dump_app_json()
+        creator.compile_files()
+        creator.dump_app_data_json()
         result = 1
 
         expected = 1
 
         self.assertEqual(result, expected)
+

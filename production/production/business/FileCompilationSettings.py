@@ -1,11 +1,16 @@
-from production.business.imagedata import TargetFormat, AspectRatio, Bounds
+from production.business.ImageData import TargetFormat, AspectRatio
+from production.business.Entities import Bounds, TargetFormat
+from os.path import expanduser
 
 
 class FileCompilationSettings:
+    home = expanduser("~")
+    media_path = home + '/Dev/Projects/baby-flashcard-app/proudction-ui/media'
     data_file_name = 'data2.json'
-    csv_file_name= "cropping.csv"
-    target_root = '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/media'
+    csv_file_name = "cropping.csv"
+    target_root = home + '/Dev/Projects/baby-flashcard-app/media'
     original_root = 'originals'  # '/Users/scorpio/Dev/Projects/baby-flashcard-app/media/originals'
+    ps_path = home + '/Dev/Projects/baby-flashcard-app/photoshop'
     target_formats = {
          "twelve16": [
             TargetFormat("iphone4", AspectRatio.twelve16, Bounds(0, 0, 960, 640), "iphone", "1x", None),
