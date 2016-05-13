@@ -18,16 +18,27 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>UISupportedInterfaceOrientations</key>
-	<array/>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array/>
+	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 	<key>UIStatusBarHidden~ipad</key>
 	<true/>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Main</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Default-568h@2x.png</string>
+	</array>
 </dict>
 </plist>

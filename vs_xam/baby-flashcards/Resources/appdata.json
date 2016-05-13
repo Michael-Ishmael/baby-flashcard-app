@@ -278,7 +278,7 @@
        }
       }
      ],
-     "thumb": "chickenThumb.png",
+     "thumb": "thumbs/chickenThumb.png",
      "name": "chicken",
      "id": 1
     },
@@ -525,61 +525,61 @@
        }
       }
      ],
-     "thumb": "cowThumb.png",
+     "thumb": "thumbs/cowThumb.png",
      "name": "cow",
      "id": 1
     },
     {
      "cards": [],
-     "thumb": "horseThumb.png",
+     "thumb": "thumbs/horseThumb.png",
      "name": "horse",
      "id": 2
     },
     {
      "cards": [],
-     "thumb": "dogthumb.png",
+     "thumb": "thumbs/dogthumb.png",
      "name": "dog",
      "id": 1
     },
     {
      "cards": [],
-     "thumb": "donkeythumb.png",
+     "thumb": "thumbs/donkeythumb.png",
      "name": "donkey",
      "id": 1
     },
     {
      "cards": [],
-     "thumb": "duckthumb.png",
+     "thumb": "thumbs/duckthumb.png",
      "name": "duck",
      "id": 2
     },
     {
      "cards": [],
-     "thumb": "goatthumb.png",
+     "thumb": "thumbs/goatthumb.png",
      "name": "goat",
      "id": 3
     },
     {
      "cards": [],
-     "thumb": "owlthumb.png",
+     "thumb": "thumbs/owlthumb.png",
      "name": "owl",
      "id": 4
     },
     {
      "cards": [],
-     "thumb": "pigthumb.png",
+     "thumb": "thumbs/pigthumb.png",
      "name": "pig",
      "id": 5
     },
     {
      "cards": [],
-     "thumb": "rabbitthumb.png",
+     "thumb": "thumbs/rabbitthumb.png",
      "name": "rabbit",
      "id": 6
     },
     {
      "cards": [],
-     "thumb": "sheepthumb.png",
+     "thumb": "thumbs/sheepthumb.png",
      "name": "sheep",
      "id": 7
     }
@@ -592,7 +592,7 @@
    "decks": [
     {
      "cards": [],
-     "thumb": "donkeythumb.png",
+     "thumb": "thumbs/donkeythumb.png",
      "name": "lion",
      "id": 8
     }

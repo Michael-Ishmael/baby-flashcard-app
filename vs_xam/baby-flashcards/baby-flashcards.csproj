@@ -100,12 +100,29 @@
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
     <BundleResource Include="Resources\appdata.json" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2_ls.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2_pt.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken3.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken4.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken5.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_ls.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_pt.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\cow4.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\cow4_ls.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\cow4_pt.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\cow5.imageset\contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\cow6.imageset\contents.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -134,21 +151,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.10.6\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.10.6\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\thumbs\iPhone6\" />
+  </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\data.json" />
-    <BundleResource Include="Resources\catthumb.png" />
-    <BundleResource Include="Resources\chickenthumb.png" />
-    <BundleResource Include="Resources\cowThumb.png" />
     <BundleResource Include="Resources\dogthumb.png" />
-    <BundleResource Include="Resources\donkeythumb.png" />
-    <BundleResource Include="Resources\duckthumb.png" />
-    <BundleResource Include="Resources\goatthumb.png" />
-    <BundleResource Include="Resources\horsethumb.png" />
-    <BundleResource Include="Resources\owlthumb.png" />
-    <BundleResource Include="Resources\pigthumb.png" />
-    <BundleResource Include="Resources\rabbitthumb.png" />
-    <BundleResource Include="Resources\sheepthumb.png" />
     <BundleResource Include="Resources\domesticicon.png" />
     <BundleResource Include="Resources\domesticicon%402x.png" />
     <BundleResource Include="Resources\lionIcon.png" />
@@ -177,6 +185,86 @@
     <BundleResource Include="Resources\sounds\horse\Horse6.mp3" />
     <BundleResource Include="Resources\seticons\domesticicon.png" />
     <BundleResource Include="Resources\seticons\lionIcon.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\thumbs\catthumb.png" />
+    <BundleResource Include="Resources\thumbs\chickenthumb.png" />
+    <BundleResource Include="Resources\thumbs\cowThumb.png" />
+    <BundleResource Include="Resources\thumbs\donkeythumb.png" />
+    <BundleResource Include="Resources\thumbs\duckthumb.png" />
+    <BundleResource Include="Resources\thumbs\goatthumb.png" />
+    <BundleResource Include="Resources\thumbs\horsethumb.png" />
+    <BundleResource Include="Resources\thumbs\owlthumb.png" />
+    <BundleResource Include="Resources\thumbs\pigthumb.png" />
+    <BundleResource Include="Resources\thumbs\rabbitthumb.png" />
+    <BundleResource Include="Resources\thumbs\sheepthumb.png" />
+    <ImageAsset Include="Resources\chicken1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\cow6.imageset\cow6_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow6.imageset\cow6_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow6.imageset\cow6_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow6.imageset\cow6_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow6.imageset\cow6_ipad.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow5.imageset\cow5_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow5.imageset\cow5_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow5.imageset\cow5_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow5.imageset\cow5_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow5.imageset\cow5_ipad.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow4_pt.imageset\cow4_pt_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow4_pt.imageset\cow4_pt_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow4_pt.imageset\cow4_pt_ipad.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow4_ls.imageset\cow4_ls_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow4_ls.imageset\cow4_ls_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow4_ls.imageset\cow4_ls_ipad.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow4.imageset\cow4_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow4.imageset\cow4_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\cow2_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\cow2_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\cow2_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\cow2_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow2.imageset\cow2_ipad.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\cow1_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\cow1_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\cow1_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\cow1_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\cow1.imageset\cow1_ipad.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_pt.imageset\chicken6_pt_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_pt.imageset\chicken6_pt_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_pt.imageset\chicken6_pt_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_pt.imageset\chicken6_pt_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_pt.imageset\chicken6_pt_ipad.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_ls.imageset\chicken6_ls_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_ls.imageset\chicken6_ls_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_ls.imageset\chicken6_ls_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_ls.imageset\chicken6_ls_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken6_ls.imageset\chicken6_ls_ipad.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken5.imageset\chicken5_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken5.imageset\chicken5_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken5.imageset\chicken5_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken5.imageset\chicken5_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken5.imageset\chicken5_ipad.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken4.imageset\chicken4_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken4.imageset\chicken4_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken4.imageset\chicken4_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken4.imageset\chicken4_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken4.imageset\chicken4_ipad.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken3.imageset\chicken3_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken3.imageset\chicken3_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken3.imageset\chicken3_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken3.imageset\chicken3_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken3.imageset\chicken3_ipad.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2_pt.imageset\chicken2_pt_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2_pt.imageset\chicken2_pt_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2_ls.imageset\chicken2_ls_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2_ls.imageset\chicken2_ls_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2.imageset\chicken2_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2.imageset\chicken2_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken2.imageset\chicken2_ipad.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\chicken1_iphone6.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\chicken1_iphone5.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\chicken1_iphone4.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\chicken1_ipadretina.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\chicken1.imageset\chicken1_ipad.jpg" />
     <ImageAsset Include="Resources\Images.xcassets\cow6.imageset\cow6_iphone6.jpg">
       <InProject>false</InProject>
     </ImageAsset>

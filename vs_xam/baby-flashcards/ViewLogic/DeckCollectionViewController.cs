@@ -30,7 +30,12 @@ namespace babyflashcards
 			}
 		}
 
-		public override void ViewDidLoad ()
+        public override bool PrefersStatusBarHidden()
+        {
+            return true;
+        }
+
+        public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
@@ -41,11 +46,6 @@ namespace babyflashcards
 				new UIMenuItem ("Custom", new Selector ("custom"))
 			};
 		}
-
-        public override bool PrefersStatusBarHidden()
-        {
-            return true;
-        }
 
         public override nint NumberOfSections (UICollectionView collectionView)
 		{

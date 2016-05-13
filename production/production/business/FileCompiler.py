@@ -3,7 +3,7 @@ import os
 from production.business.AppDataCollector import AppDataCollector
 from production.business.CardFileManager import CardFileManager
 
-from production.business.imagedata import *
+from production.business.ImageData import *
 from FileCompilationSettings import FileCompilationSettings as FCS
 from production.business.XCassetCollector import XCassetCollector
 

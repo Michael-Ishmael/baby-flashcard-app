@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6214" systemVersion="14A314h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6207"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2016 michaelishmael" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye" misplaced="YES">
+                    <rect key="frame" x="20" y="439" width="441" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="baby-flashcards" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX" misplaced="YES">
+                    <rect key="frame" x="20" y="140" width="441" height="43"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="bottom" multiplier="1/3" constant="1" id="5cJ-9S-tgC"/>
+                <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="Koa-jz-hwk"/>
+                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
+                <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="fvb-Df-36g"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="548" y="455"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dogthumb.png" width="240" height="293"/>
+        <image name="domesticicon.png" width="30" height="30"/>
+        <image name="lionIcon.png" width="30" height="30"/>
+        <image name="seticons/domesticicon.png" width="30" height="30"/>
+        <image name="seticons/lionIcon.png" width="30" height="30"/>
+        <image name="Default-568h.png" width="320" height="568"/>
+        <image name="thumbs/catthumb.png" width="239" height="294"/>
+        <image name="thumbs/chickenthumb.png" width="239" height="294"/>
+        <image name="thumbs/cowThumb.png" width="240" height="294"/>
+        <image name="thumbs/donkeythumb.png" width="239" height="294"/>
+        <image name="thumbs/duckthumb.png" width="239" height="293"/>
+        <image name="thumbs/goatthumb.png" width="240" height="294"/>
+        <image name="thumbs/horsethumb.png" width="240" height="294"/>
+        <image name="thumbs/owlthumb.png" width="240" height="294"/>
+        <image name="thumbs/pigthumb.png" width="240" height="294"/>
+        <image name="thumbs/rabbitthumb.png" width="240" height="293"/>
+        <image name="thumbs/sheepthumb.png" width="240" height="294"/>
+        <image name="chicken1.jpg" width="1125" height="750"/>
+        <image name="cow6" width="1024" height="768"/>
+        <image name="cow5" width="1024" height="768"/>
+        <image name="cow4_pt" width="768" height="1023"/>
+        <image name="cow4_ls" width="1024" height="767"/>
+        <image name="cow4" width="960" height="640"/>
+        <image name="cow2" width="1024" height="748"/>
+        <image name="cow1" width="1024" height="768"/>
+        <image name="chicken6_pt" width="768" height="1024"/>
+        <image name="chicken6_ls" width="1024" height="768"/>
+        <image name="chicken5" width="1023" height="768"/>
+        <image name="chicken4" width="1024" height="764"/>
+        <image name="chicken3" width="748" height="768"/>
+        <image name="chicken2_pt" width="640" height="1137"/>
+        <image name="chicken2_ls" width="1138" height="640"/>
+        <image name="chicken2" width="829" height="768"/>
+        <image name="chicken1" width="1024" height="767"/>
+    </resources>
+</document>

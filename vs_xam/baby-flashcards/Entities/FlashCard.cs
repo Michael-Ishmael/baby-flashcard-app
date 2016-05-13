@@ -56,9 +56,19 @@ namespace babyflashcards
 
 		public float Y2 { get; set; }
 
-		public float Width { get; set; }
+		public float Width
+        {
+            get
+            {
+                return X2 - X1;
+            }
+        }
 
-		public float Height { get; set; }
+		public float Height {
+            get {
+                return Y2 - Y1;
+            }
+        }
 	}
 }
 

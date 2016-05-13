@@ -39,9 +39,19 @@ namespace babyflashcards
 			//_imageView.Layer.MasksToBounds = true;
 			//_imageView.Center = View.Center;
 			var orientation = UIDevice.CurrentDevice.Orientation;
-			//if(orientation == UIDeviceOrientation.Portrait)
-			//_imageView.Layer.ContentsRect = new CGRect { X = 0.31f, Y = 0, Width = 0.375f, Height = 1  };
-			_imageView.Image = UIImage.FromBundle (_flashCard.ImageDef[AspectRatio.Twelve16].Portrait.XCasset);
+            FlashCardImageCrop crop;
+            string xCassetName;
+            if (orientation == UIDeviceOrientation.Portrait)
+            {
+                crop = _flashCard.ImageDef[AspectRatio.Twelve16].Portrait.Crop;
+                xCassetName = _flashCard.ImageDef[AspectRatio.Twelve16].Portrait.XCasset;
+            } else
+            {
+                crop = _flashCard.ImageDef[AspectRatio.Twelve16].Landscape.Crop;
+                xCassetName = _flashCard.ImageDef[AspectRatio.Twelve16].Landscape.XCasset;
+            }
+			_imageView.Layer.ContentsRect = new CGRect { X = crop.X1, Y = crop.Y1, Width = crop.Width, Height = crop.Height  };
+			_imageView.Image = UIImage.FromBundle (xCassetName);
 			//_imageView.SetImage(UIImage.FromBundle(_flashCard.Image), UIControlState.Normal);
 
 
