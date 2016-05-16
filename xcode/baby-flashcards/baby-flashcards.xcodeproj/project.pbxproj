@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8143D02B1CE7BBE100482437 /* FlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8143D02A1CE7BBE100482437 /* FlashCardViewController.swift */; };
+		8143D02D1CEA695000482437 /* DeckViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8143D02C1CEA695000482437 /* DeckViewCell.swift */; };
+		8143D02F1CEA7FB500482437 /* DeckCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8143D02E1CEA7FB500482437 /* DeckCollectionViewController.swift */; };
 		8158C1E91CE65DF600555981 /* DeckViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8158C1E81CE65DF600555981 /* DeckViewData.swift */; };
 		8158C1EB1CE6754B00555981 /* FlashCardSetTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8158C1EA1CE6754B00555981 /* FlashCardSetTabViewController.swift */; };
 		980D17421CE636EE005DABD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D17411CE636EE005DABD2 /* AppDelegate.swift */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		8143D02A1CE7BBE100482437 /* FlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardViewController.swift; sourceTree = "<group>"; };
+		8143D02C1CEA695000482437 /* DeckViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckViewCell.swift; sourceTree = "<group>"; };
+		8143D02E1CEA7FB500482437 /* DeckCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewController.swift; sourceTree = "<group>"; };
 		8158C1E81CE65DF600555981 /* DeckViewData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckViewData.swift; sourceTree = "<group>"; };
 		8158C1EA1CE6754B00555981 /* FlashCardSetTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardSetTabViewController.swift; sourceTree = "<group>"; };
 		980D173E1CE636EE005DABD2 /* baby-flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "baby-flashcards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +95,8 @@
 				980D17571CE63803005DABD2 /* JumbleFlowLayout.swift */,
 				8158C1EA1CE6754B00555981 /* FlashCardSetTabViewController.swift */,
 				8143D02A1CE7BBE100482437 /* FlashCardViewController.swift */,
+				8143D02C1CEA695000482437 /* DeckViewCell.swift */,
+				8143D02E1CEA7FB500482437 /* DeckCollectionViewController.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -167,12 +173,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				980D17441CE636EE005DABD2 /* ViewController.swift in Sources */,
+				8143D02F1CEA7FB500482437 /* DeckCollectionViewController.swift in Sources */,
 				8143D02B1CE7BBE100482437 /* FlashCardViewController.swift in Sources */,
 				980D17421CE636EE005DABD2 /* AppDelegate.swift in Sources */,
 				8158C1EB1CE6754B00555981 /* FlashCardSetTabViewController.swift in Sources */,
 				980D17581CE63803005DABD2 /* JumbleFlowLayout.swift in Sources */,
 				8158C1E91CE65DF600555981 /* DeckViewData.swift in Sources */,
 				980D174A1CE636EE005DABD2 /* baby_flashcards.xcdatamodeld in Sources */,
+				8143D02D1CEA695000482437 /* DeckViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

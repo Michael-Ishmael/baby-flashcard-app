@@ -9,13 +9,6 @@
 import Foundation
 import UIKit
 
-class DeckCollectionViewController: UICollectionViewController {
-    var tiles:[DeckViewData] = []
-    func jumble(){
-        
-    }
-}
-
 class JumbleFlowLayout : UICollectionViewFlowLayout {
     
     var _lastPositions = [Int: PosStore]()
