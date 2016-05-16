@@ -10,7 +10,10 @@ import Foundation
 import UIKit
 
 class DeckCollectionViewController: UICollectionViewController {
-    var tiles:[Int] = []
+    var tiles:[DeckViewData] = []
+    func jumble(){
+        
+    }
 }
 
 class JumbleFlowLayout : UICollectionViewFlowLayout {
@@ -23,19 +26,17 @@ class JumbleFlowLayout : UICollectionViewFlowLayout {
         if let cellCount =  collectionView?.numberOfItemsInSection(0) {
             for i in 0...cellCount {
                 let itemIndexPath = NSIndexPath(forItem: i, inSection: 0)
-                var item = collectionView?.dataSource.Tiles[itemIndexPath.Row]; //DeckCollectionViewController
-                var attributes = LayoutAttributesForItem (itemIndexPath);
-                if (!_lastPositions.ContainsKey (item.ThumbId))
-                _lastPositions.Add (item.ThumbId, new PosStore ());
-                _lastPositions [item.ThumbId].StorePos (attributes.Center);
+                let item = (collectionView?.dataSource as! DeckCollectionViewController!).tiles[itemIndexPath.row]
+                let attributes = self.layoutAttributesForItemAtIndexPath(itemIndexPath)
+                
+                if _lastPositions[item.thumbId] != nil {
+                    _lastPositions[item.thumbId] = PosStore()
+                }
+                _lastPositions [item.thumbId]!.storePos ((attributes?.center)!);
                 
             }
         }
-        
-
     }
-    
-    
     
     class PosStore
     {

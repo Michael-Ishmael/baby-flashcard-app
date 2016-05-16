@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8143D02B1CE7BBE100482437 /* FlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8143D02A1CE7BBE100482437 /* FlashCardViewController.swift */; };
+		8158C1E91CE65DF600555981 /* DeckViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8158C1E81CE65DF600555981 /* DeckViewData.swift */; };
+		8158C1EB1CE6754B00555981 /* FlashCardSetTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8158C1EA1CE6754B00555981 /* FlashCardSetTabViewController.swift */; };
 		980D17421CE636EE005DABD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D17411CE636EE005DABD2 /* AppDelegate.swift */; };
 		980D17441CE636EE005DABD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D17431CE636EE005DABD2 /* ViewController.swift */; };
 		980D17471CE636EE005DABD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 980D17451CE636EE005DABD2 /* Main.storyboard */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8143D02A1CE7BBE100482437 /* FlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardViewController.swift; sourceTree = "<group>"; };
+		8158C1E81CE65DF600555981 /* DeckViewData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckViewData.swift; sourceTree = "<group>"; };
+		8158C1EA1CE6754B00555981 /* FlashCardSetTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardSetTabViewController.swift; sourceTree = "<group>"; };
 		980D173E1CE636EE005DABD2 /* baby-flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "baby-flashcards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		980D17411CE636EE005DABD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		980D17431CE636EE005DABD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8158C1E71CE65DD400555981 /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				8158C1E81CE65DF600555981 /* DeckViewData.swift */,
+			);
+			name = entities;
+			sourceTree = "<group>";
+		};
 		980D17351CE636EE005DABD2 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +72,7 @@
 		980D17401CE636EE005DABD2 /* baby-flashcards */ = {
 			isa = PBXGroup;
 			children = (
+				8158C1E71CE65DD400555981 /* entities */,
 				980D17561CE637C8005DABD2 /* views */,
 				980D17411CE636EE005DABD2 /* AppDelegate.swift */,
 				980D17431CE636EE005DABD2 /* ViewController.swift */,
@@ -74,6 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				980D17571CE63803005DABD2 /* JumbleFlowLayout.swift */,
+				8158C1EA1CE6754B00555981 /* FlashCardSetTabViewController.swift */,
+				8143D02A1CE7BBE100482437 /* FlashCardViewController.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -150,8 +167,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				980D17441CE636EE005DABD2 /* ViewController.swift in Sources */,
+				8143D02B1CE7BBE100482437 /* FlashCardViewController.swift in Sources */,
 				980D17421CE636EE005DABD2 /* AppDelegate.swift in Sources */,
+				8158C1EB1CE6754B00555981 /* FlashCardSetTabViewController.swift in Sources */,
 				980D17581CE63803005DABD2 /* JumbleFlowLayout.swift in Sources */,
+				8158C1E91CE65DF600555981 /* DeckViewData.swift in Sources */,
 				980D174A1CE636EE005DABD2 /* baby_flashcards.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +324,7 @@
 				980D17551CE636EE005DABD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
