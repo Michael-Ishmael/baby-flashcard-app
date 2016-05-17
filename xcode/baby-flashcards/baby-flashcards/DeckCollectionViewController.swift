@@ -56,24 +56,92 @@ class DeckCollectionViewController : UICollectionViewController {
         return 1;
     }
     
-    func getItemsCount() -> Int{
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return _tiles.count
     }
-
-
-//    
-//    public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
-//    {
-//    var tilePictureCell = (DeckViewCell)collectionView.DequeueReusableCell (deckViewCellId, indexPath);
-//    tilePictureCell.Layer.Hidden = false;
-//    
-//    var tile = _tiles [indexPath.Row];
-//    
-//    tilePictureCell.ImagePath = tile.ImageThumb;
-//    
-//    return tilePictureCell;
-//    }
     
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = self.collectionView?.dequeueReusableCellWithReuseIdentifier(deckViewCellId as String, forIndexPath: indexPath) as! DeckViewCell
+        
+        cell.layer.hidden = false;
+        
+        let tile = _tiles[indexPath.row]
+        
+        cell.setImagePath(tile.imageThumb)
+        
+        return cell;
+    }
+
+    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let item = _tiles[indexPath.row]
+        let cell = self.collectionViewLayout.layoutAttributesForItemAtIndexPath(<#T##indexPath: NSIndexPath##NSIndexPath#>)
+        _eventHandler.deckSelected(item, frame: (cell?.frame)!)
+        
+    }
     
+    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true;
+    }
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true;
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.resignFirstResponder()
+    }
+    
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        super.motionEnded(<#T##motion: UIEventSubtype##UIEventSubtype#>, withEvent: <#T##UIEvent?#>)
+    }
+    
+    func jumble(){
+        self.collectionView?.performBatchUpdates({
+            self._tiles.shuffle()
+            self.collectionView?.reloadSections(NSIndexSet(index: 0))
+            }, completion: nil)
+    }
+ 
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
+        //
+        //			var lineLayout = CollectionView.CollectionViewLayout as LineLayout;
+        //			if (lineLayout != null)
+        //			{
+        //				if((toInterfaceOrientation == UIInterfaceOrientation.Portrait) || (toInterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown))
+        //					lineLayout.SectionInset = new UIEdgeInsets (400,0,400,0);
+        //				else
+        //					lineLayout.SectionInset  = new UIEdgeInsets (220, 0.0f, 200, 0.0f);
+        //			}
+    }
+}
+
+extension Array{
+   
+    mutating func shuffle(){
+        var n = self.count;
+        while(n > 1){
+            n--;
+            var k = Int(arc4random_uniform(UInt32(n)) + 1)
+            while(k == n){
+                k = Int(arc4random_uniform(UInt32(n)) + 1)
+            }
+            let value = self[k];
+            self[k] = self[n];
+            self[n] = value;
+        }
+    }
     
 }
+
+
+
+
+
+
+
+

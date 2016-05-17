@@ -21,8 +21,8 @@ class FlashCardViewController: UIViewController {
     private var _eventHandler:IApplicationEventHandler;
     private var _sourceFrame:CGRect;
     
-    init(coder:NSCoder, flashCard:FlashCard, sourceFrame:CGRect, eventHandler:IApplicationEventHandler ){
-        super.init(coder: coder)!
+    init(coder: NSCoder, flashCard:FlashCard?, sourceFrame:CGRect, eventHandler:IApplicationEventHandler ){
+        super.init(coder: <#T##NSCoder#>)!
         _flashCard = flashCard;
         _sourceFrame = sourceFrame
         _eventHandler = eventHandler

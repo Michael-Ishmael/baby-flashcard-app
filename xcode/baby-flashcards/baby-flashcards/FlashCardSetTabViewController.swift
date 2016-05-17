@@ -72,8 +72,7 @@ class FlashCardSetTabViewController : UITabBarController, IApplicationEventHandl
     }
     
     func deckSelected(tile:DeckViewData, frame:CGRect){
-        //_pictureController = FlashCardV
-//        _pictureController = new FlashCardViewController (tile.GetNextFlashCard(), frame, this);
+        _pictureController = FlashCardViewController(self.coder, tile.getNextFlashCard(), frame, self as IApplicationEventHandler)
 //        var tr = new FlashCardViewTransitioningDelegate ();
 //        _pictureController.TransitioningDelegate = tr;
         

@@ -43,7 +43,7 @@ class DeckViewCell : UICollectionViewCell {
         }
     }
     
-    func setIimagePath(value:String) {
+    func setImagePath(value:String) {
         
         _imageView.image = UIImage.init(contentsOfFile: value)
         
