@@ -15,17 +15,17 @@ class FlashCardViewController: UIViewController {
     
     
     private var _flashCard:FlashCard? = nil;
-    private var _imageView:UIImageView;
-    private var _cancelButton:UIButton;
+    private var _imageView:UIImageView? = nil;
+    private var _cancelButton:UIButton? = nil;
     private var _itemSound:AVAudioPlayer? = nil;
     private var _eventHandler:IApplicationEventHandler;
     private var _sourceFrame:CGRect;
     
-    init(coder: NSCoder, flashCard:FlashCard?, sourceFrame:CGRect, eventHandler:IApplicationEventHandler ){
-        super.init(coder: <#T##NSCoder#>)!
+    init(flashCard:FlashCard?, sourceFrame:CGRect, eventHandler:IApplicationEventHandler ){
         _flashCard = flashCard;
         _sourceFrame = sourceFrame
         _eventHandler = eventHandler
+        super.init(nibName: nil, bundle: nil )
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,23 +46,23 @@ class FlashCardViewController: UIViewController {
         let xCassetName:String;
         
         if(orientation == UIDeviceOrientation.Portrait){
-            crop = (_flashCard?.ImageDef[AspectRatio.Twelve16]!.portrait.crop)!
-            xCassetName = (_flashCard?.ImageDef[AspectRatio.Twelve16]!.portrait.xCasset)!
+            crop = (_flashCard?.imageDef[AspectRatio.Twelve16]!.portrait.crop)!
+            xCassetName = (_flashCard?.imageDef[AspectRatio.Twelve16]!.portrait.xCasset)!
         } else {
-            crop = (_flashCard?.ImageDef[AspectRatio.Twelve16]!.landscape.crop)!
-            xCassetName = (_flashCard?.ImageDef[AspectRatio.Twelve16]!.landscape.xCasset)!
+            crop = (_flashCard?.imageDef[AspectRatio.Twelve16]!.landscape.crop)!
+            xCassetName = (_flashCard?.imageDef[AspectRatio.Twelve16]!.landscape.xCasset)!
         }
         
-        _imageView.layer.contentsRect = CGRect(x: crop.X1, y: crop.Y1, width: crop.Width, height: crop.Height)
-        _imageView.image = UIImage.init(contentsOfFile: xCassetName)
+        _imageView!.layer.contentsRect = CGRect(x: crop.X1, y: crop.Y1, width: crop.Width, height: crop.Height)
+        _imageView!.image = UIImage.init(contentsOfFile: xCassetName)
         
         _cancelButton = UIButton.init(type: UIButtonType.Custom);
-        _cancelButton.frame = self.view.bounds;
-        _cancelButton.addTarget(self, action: "cancelPressed", forControlEvents: .TouchUpInside)
-        self.view.addSubview(_imageView)
-        self.view.addSubview(_cancelButton)
+        _cancelButton!.frame = self.view.bounds;
+        _cancelButton!.addTarget(self, action: "cancelPressed", forControlEvents: .TouchUpInside)
+        self.view.addSubview(_imageView!)
+        self.view.addSubview(_cancelButton!)
         
-        let songURL = NSURL.init(fileReferenceLiteral: "sounds/" + _flashCard!.Sound);
+        let songURL = NSURL.init(fileReferenceLiteral: "sounds/" + _flashCard!.sound);
        
         //_itemSound = AVPlayer.init(URL: songURL)  //.init(contentsOfURL: <#T##NSURL#>, fileTypeHint: <#T##String?#>)
         do{

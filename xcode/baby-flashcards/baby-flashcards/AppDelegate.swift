@@ -14,10 +14,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var _tabViewController:FlashCardSetTabViewController? = nil;
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        application.statusBarHidden = true;
+        application.applicationSupportsShakeToEdit = true;
+        
+        //let path = NSBundle.mainBundle().pathForResource("appdata", ofType: "json")
+        getAppData{
+            (appData) -> Void in
+            
+            self.window?.backgroundColor = UIColor.whiteColor()
+            self._tabViewController = FlashCardSetTabViewController(appData: appData!)
+            //_tabViewController
+            self.window?.rootViewController = self._tabViewController;
+            
+        }
+
         return true
+    }
+    
+    func getAppData(callback: (appData:AppData?) ->Void) -> Void {
+
+        DataManager.getTopAppsDataFromFileWithSuccess { (data) -> Void in
+            
+            var json: [String: AnyObject]!
+            
+            // 1
+            do {
+                json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String: AnyObject]
+            } catch {
+                print(error)
+                return
+            }
+            
+            // 2
+            guard let lAppData = AppData(json: json) else {
+                print("Error initializing object")
+                return
+            }
+            
+            callback(appData: lAppData)
+            
+        }
+
     }
 
     func applicationWillResignActive(application: UIApplication) {

@@ -1,0 +1,602 @@
+{
+    "decksets": [
+                 {
+                 "icon": "seticons/domesticicon.png",
+                 "id": 2,
+                 "name": "domestic",
+                 "decks": [
+                           {
+                           "cards": [
+                                     {
+                                     "sound": "chicken/Chicken5.mp3",
+                                     "index": 0,
+                                     "imagekey": "chicken1",
+                                     "id": 1,
+                                     "imagedef": {
+                                     "twelve16": {
+                                     "portrait": {
+                                     "xcasset": "chicken1",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.42624999999999996,
+                                     "x1": 0.09250000000000001,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "chicken1",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.9075,
+                                     "x1": 0.01749999999999998,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     },
+                                     "nine16": {
+                                     "portrait": {
+                                     "xcasset": "chicken1",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.3665202108963093,
+                                     "x1": 0.1553602811950791,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "chicken1",
+                                     "crop": {
+                                     "y1": 0.08614232209737828,
+                                     "x2": 1,
+                                     "x1": 0,
+                                     "y2": 0.9288389513108614
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     }
+                                     }
+                                     },
+                                     {
+                                     "sound": "chicken/Chicken6.mp3",
+                                     "index": 1,
+                                     "imagekey": "chicken5",
+                                     "id": 2,
+                                     "imagedef": {
+                                     "twelve16": {
+                                     "portrait": {
+                                     "xcasset": "chicken5",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.3502083333333334,
+                                     "x1": 0.018333333333333333,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "chicken5",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.885,
+                                     "x1": 0,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     },
+                                     "nine16": {
+                                     "portrait": {
+                                     "xcasset": "chicken5",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.29433216168717047,
+                                     "x1": 0.0843585237258348,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "chicken5",
+                                     "crop": {
+                                     "y1": 0.08286252354048965,
+                                     "x2": 1,
+                                     "x1": 0,
+                                     "y2": 0.9303201506591335
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     }
+                                     }
+                                     },
+                                     {
+                                     "sound": "chicken/Chicken3.mp3",
+                                     "index": 2,
+                                     "imagekey": "chicken3",
+                                     "id": 3,
+                                     "imagedef": {
+                                     "twelve16": {
+                                     "portrait": {
+                                     "xcasset": "chicken3",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.5627853881278538,
+                                     "x1": 0.049086757990867584,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "chicken3",
+                                     "crop": {
+                                     "y1": 0.10333333333333332,
+                                     "x2": 1,
+                                     "x1": 0,
+                                     "y2": 0.8333333333333333
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     },
+                                     "nine16": {
+                                     "portrait": {
+                                     "xcasset": "chicken3",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.44442304451452924,
+                                     "x1": 0.11941160892698077,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "chicken3",
+                                     "crop": {
+                                     "y1": 0.11833333333333333,
+                                     "x2": 1,
+                                     "x1": 0,
+                                     "y2": 0.6658333333333333
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     }
+                                     }
+                                     },
+                                     {
+                                     "sound": "chicken/Chicken2.mp3",
+                                     "index": 3,
+                                     "imagekey": "chicken2",
+                                     "id": 4,
+                                     "imagedef": {
+                                     "twelve16": {
+                                     "portrait": {
+                                     "xcasset": "chicken2",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.4636785162287481,
+                                     "x1": 0,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "chicken2",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 1,
+                                     "x1": 0,
+                                     "y2": 0.8087500000000001
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     },
+                                     "nine16": {
+                                     "portrait": {
+                                     "xcasset": "chicken2_pt",
+                                     "crop": null
+                                     },
+                                     "landscape": {
+                                     "xcasset": "chicken2_ls",
+                                     "crop": null
+                                     },
+                                     "imagetype": "split"
+                                     }
+                                     }
+                                     },
+                                     {
+                                     "sound": "chicken/Chicken1.mp3",
+                                     "index": 4,
+                                     "imagekey": "chicken4",
+                                     "id": 5,
+                                     "imagedef": {
+                                     "twelve16": {
+                                     "portrait": {
+                                     "xcasset": "chicken4",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.5954166666666667,
+                                     "x1": 0.26166666666666666,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "chicken4",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.89,
+                                     "x1": 0,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     },
+                                     "nine16": {
+                                     "portrait": {
+                                     "xcasset": "chicken4",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.46704745166959577,
+                                     "x1": 0.25588752196836556,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "chicken4",
+                                     "crop": {
+                                     "y1": 0.10674157303370786,
+                                     "x2": 1,
+                                     "x1": 0,
+                                     "y2": 0.9494382022471909
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     }
+                                     }
+                                     },
+                                     {
+                                     "sound": "chicken/Chicken1.mp3",
+                                     "index": 6,
+                                     "imagekey": "chicken6",
+                                     "id": 6,
+                                     "imagedef": {
+                                     "twelve16": {
+                                     "portrait": {
+                                     "xcasset": "chicken6_pt",
+                                     "crop": null
+                                     },
+                                     "landscape": {
+                                     "xcasset": "chicken6_ls",
+                                     "crop": null
+                                     },
+                                     "imagetype": "split"
+                                     },
+                                     "nine16": {
+                                     "portrait": {
+                                     "xcasset": "chicken6_pt",
+                                     "crop": null
+                                     },
+                                     "landscape": {
+                                     "xcasset": "chicken6_ls",
+                                     "crop": null
+                                     },
+                                     "imagetype": "split"
+                                     }
+                                     }
+                                     }
+                                     ],
+                           "thumb": "thumbs/chickenThumb.png",
+                           "name": "chicken",
+                           "id": 1
+                           },
+                           {
+                           "cards": [
+                                     {
+                                     "sound": "cow/Cow3.mp3",
+                                     "index": 1,
+                                     "imagekey": "cow1",
+                                     "id": 7,
+                                     "imagedef": {
+                                     "twelve16": {
+                                     "portrait": {
+                                     "xcasset": "cow1",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.5214583333333334,
+                                     "x1": 0.17333333333333334,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "cow1",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.9283333333333332,
+                                     "x1": 0,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     },
+                                     "nine16": {
+                                     "portrait": {
+                                     "xcasset": "cow1",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.4213093145869947,
+                                     "x1": 0.20105448154657293,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "cow1",
+                                     "crop": {
+                                     "y1": 0.05026929982046678,
+                                     "x2": 1,
+                                     "x1": 0,
+                                     "y2": 0.8581687612208257
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     }
+                                     }
+                                     },
+                                     {
+                                     "sound": "cow/Cow1.mp3",
+                                     "index": 2,
+                                     "imagekey": "cow2",
+                                     "id": 8,
+                                     "imagedef": {
+                                     "twelve16": {
+                                     "portrait": {
+                                     "xcasset": "cow2",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.3920833333333333,
+                                     "x1": 0.058333333333333334,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "cow2",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.9416666666666667,
+                                     "x1": 0.05166666666666666,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     },
+                                     "nine16": {
+                                     "portrait": {
+                                     "xcasset": "cow2",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.2849736379613357,
+                                     "x1": 0.07381370826010544,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "cow2",
+                                     "crop": {
+                                     "y1": 0.05617977528089888,
+                                     "x2": 1,
+                                     "x1": 0,
+                                     "y2": 0.8988764044943819
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     }
+                                     }
+                                     },
+                                     {
+                                     "sound": "cow/Cow2.mp3",
+                                     "index": 4,
+                                     "imagekey": "cow4",
+                                     "id": 9,
+                                     "imagedef": {
+                                     "twelve16": {
+                                     "portrait": {
+                                     "xcasset": "cow4_pt",
+                                     "crop": null
+                                     },
+                                     "landscape": {
+                                     "xcasset": "cow4_ls",
+                                     "crop": null
+                                     },
+                                     "imagetype": "split"
+                                     },
+                                     "nine16": {
+                                     "portrait": {
+                                     "xcasset": "cow4",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.5303163444639719,
+                                     "x1": 0.31915641476274165,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "cow4",
+                                     "crop": {
+                                     "y1": 0.10112359550561797,
+                                     "x2": 1,
+                                     "x1": 0,
+                                     "y2": 0.943820224719101
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     }
+                                     }
+                                     },
+                                     {
+                                     "sound": "cow/Cow5.mp3",
+                                     "index": 5,
+                                     "imagekey": "cow6",
+                                     "id": 10,
+                                     "imagedef": {
+                                     "twelve16": {
+                                     "portrait": {
+                                     "xcasset": "cow6",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.47250000000000003,
+                                     "x1": 0.14250000000000002,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "cow6",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.88,
+                                     "x1": 0,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     },
+                                     "nine16": {
+                                     "portrait": {
+                                     "xcasset": "cow6",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.3753954305799649,
+                                     "x1": 0.16660808435852376,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "cow6",
+                                     "crop": {
+                                     "y1": 0.14772727272727273,
+                                     "x2": 1,
+                                     "x1": 0,
+                                     "y2": 1.0
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     }
+                                     }
+                                     },
+                                     {
+                                     "sound": "cow/Cow4.mp3",
+                                     "index": 6,
+                                     "imagekey": "cow5",
+                                     "id": 11,
+                                     "imagedef": {
+                                     "twelve16": {
+                                     "portrait": {
+                                     "xcasset": "cow5",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.3558333333333333,
+                                     "x1": 0.02208333333333333,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "cow5",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.9287500000000001,
+                                     "x1": 0.03875,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     },
+                                     "nine16": {
+                                     "portrait": {
+                                     "xcasset": "cow5",
+                                     "crop": {
+                                     "y1": 0,
+                                     "x2": 0.3046572934973638,
+                                     "x1": 0.09349736379613358,
+                                     "y2": 1
+                                     }
+                                     },
+                                     "landscape": {
+                                     "xcasset": "cow5",
+                                     "crop": {
+                                     "y1": 0.018726591760299626,
+                                     "x2": 1,
+                                     "x1": 0,
+                                     "y2": 0.8614232209737827
+                                     }
+                                     },
+                                     "imagetype": "combined"
+                                     }
+                                     }
+                                     }
+                                     ],
+                           "thumb": "thumbs/cowThumb.png",
+                           "name": "cow",
+                           "id": 1
+                           },
+                           {
+                           "cards": [],
+                           "thumb": "thumbs/horseThumb.png",
+                           "name": "horse",
+                           "id": 2
+                           },
+                           {
+                           "cards": [],
+                           "thumb": "thumbs/dogthumb.png",
+                           "name": "dog",
+                           "id": 1
+                           },
+                           {
+                           "cards": [],
+                           "thumb": "thumbs/donkeythumb.png",
+                           "name": "donkey",
+                           "id": 1
+                           },
+                           {
+                           "cards": [],
+                           "thumb": "thumbs/duckthumb.png",
+                           "name": "duck",
+                           "id": 2
+                           },
+                           {
+                           "cards": [],
+                           "thumb": "thumbs/goatthumb.png",
+                           "name": "goat",
+                           "id": 3
+                           },
+                           {
+                           "cards": [],
+                           "thumb": "thumbs/owlthumb.png",
+                           "name": "owl",
+                           "id": 4
+                           },
+                           {
+                           "cards": [],
+                           "thumb": "thumbs/pigthumb.png",
+                           "name": "pig",
+                           "id": 5
+                           },
+                           {
+                           "cards": [],
+                           "thumb": "thumbs/rabbitthumb.png",
+                           "name": "rabbit",
+                           "id": 6
+                           },
+                           {
+                           "cards": [],
+                           "thumb": "thumbs/sheepthumb.png",
+                           "name": "sheep",
+                           "id": 7
+                           }
+                           ]
+                 },
+                 {
+                 "icon": "seticons/lionIcon.png",
+                 "id": 1,
+                 "name": "safari",
+                 "decks": [
+                           {
+                           "cards": [],
+                           "thumb": "thumbs/donkeythumb.png",
+                           "name": "lion",
+                           "id": 8
+                           }
+                           ]
+                 }
+                 ]
+}

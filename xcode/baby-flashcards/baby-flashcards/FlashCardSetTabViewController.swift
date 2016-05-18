@@ -21,26 +21,28 @@ class FlashCardSetTabViewController : UITabBarController, IApplicationEventHandl
     var _collectionControllers:[UICollectionViewController] = []
     var _pictureController:UIViewController?
     var _clickCount = 0
-    var _appData = ""
+    var _appData:AppData
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    required init? (coder aDecoder: NSCoder, appData:String)
+    init (appData:AppData)
     {
-        super.init(coder: aDecoder)
         _appData = appData;
-    
-//    foreach (var cardSet in _appData.DeckSets) {
-//				var layout = GetFlowLayout ();
-//				var collectionController = new DeckCollectionViewController(layout, cardSet, this);
-//				collectionController.CollectionView.ContentInset = new UIEdgeInsets (0, 0, 0, 0);
-//				collectionController.TabBarItem = new UITabBarItem ();
-//				collectionController.TabBarItem.ImageInsets = new UIEdgeInsets(6, 0, -6, 0);
-//				collectionController.TabBarItem.Image = UIImage.FromBundle (cardSet.Icon);
-//				_collectionControllers.Add(collectionController);
-//    }
+        super.init(nibName: nil, bundle: nil)
+
+        
+        for cardSet in _appData.deckSets{
+            let layout = getFlowLayout()
+            let collectionController = DeckCollectionViewController(layout: layout, cardSet: cardSet, eventHandler: self as IApplicationEventHandler)
+            collectionController.collectionView?.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+            collectionController.tabBarItem = UITabBarItem();
+            let tbi = collectionController.tabBarItem;
+            tbi.imageInsets = UIEdgeInsets.init(top: 6, left: 0, bottom: -6, right: 0)
+            tbi.image = UIImage.init(imageLiteral: cardSet.icon)
+            _collectionControllers.append(collectionController)
+        }
     
     /*
     var secondTab = new UIViewController ();
@@ -72,11 +74,11 @@ class FlashCardSetTabViewController : UITabBarController, IApplicationEventHandl
     }
     
     func deckSelected(tile:DeckViewData, frame:CGRect){
-        _pictureController = FlashCardViewController(self.coder, tile.getNextFlashCard(), frame, self as IApplicationEventHandler)
+        _pictureController = FlashCardViewController(flashCard: tile.getNextFlashCard(), sourceFrame: frame, eventHandler: self as IApplicationEventHandler)
 //        var tr = new FlashCardViewTransitioningDelegate ();
 //        _pictureController.TransitioningDelegate = tr;
         
-        self.presentViewController(_pictureController, animated: true, completion: nil);
+        self.presentViewController(_pictureController!, animated: true, completion: nil);
         _clickCount+=1;
     }
     

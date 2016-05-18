@@ -76,7 +76,7 @@ class DeckCollectionViewController : UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         
         let item = _tiles[indexPath.row]
-        let cell = self.collectionViewLayout.layoutAttributesForItemAtIndexPath(<#T##indexPath: NSIndexPath##NSIndexPath#>)
+        let cell = self.collectionViewLayout.layoutAttributesForItemAtIndexPath(indexPath)
         _eventHandler.deckSelected(item, frame: (cell?.frame)!)
         
     }
@@ -96,7 +96,7 @@ class DeckCollectionViewController : UICollectionViewController {
     }
     
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        super.motionEnded(<#T##motion: UIEventSubtype##UIEventSubtype#>, withEvent: <#T##UIEvent?#>)
+        super.motionEnded(motion, withEvent: event)
     }
     
     func jumble(){
