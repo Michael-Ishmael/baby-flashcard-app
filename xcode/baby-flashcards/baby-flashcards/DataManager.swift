@@ -12,7 +12,7 @@ public class DataManager {
   
   public class func getTopAppsDataFromFileWithSuccess(success: ((data: NSData) -> Void)) {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-      let filePath = NSBundle.mainBundle().pathForResource("appData", ofType:"json")
+      let filePath = NSBundle.mainBundle().pathForResource("appdata", ofType:"json")
       let data = try! NSData(contentsOfFile:filePath!,
         options: NSDataReadingOptions.DataReadingUncached)
       success(data: data)

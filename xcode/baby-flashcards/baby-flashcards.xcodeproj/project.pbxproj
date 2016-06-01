@@ -20,7 +20,6 @@
 		8143D02F1CEA7FB500482437 /* DeckCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8143D02E1CEA7FB500482437 /* DeckCollectionViewController.swift */; };
 		8158C1E91CE65DF600555981 /* DeckViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8158C1E81CE65DF600555981 /* DeckViewData.swift */; };
 		8158C1EB1CE6754B00555981 /* FlashCardSetTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8158C1EA1CE6754B00555981 /* FlashCardSetTabViewController.swift */; };
-		8178D0B71CEB75320097F9F2 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8178D0B61CEB75320097F9F2 /* Main.swift */; };
 		980D17421CE636EE005DABD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D17411CE636EE005DABD2 /* AppDelegate.swift */; };
 		980D17441CE636EE005DABD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D17431CE636EE005DABD2 /* ViewController.swift */; };
 		980D17471CE636EE005DABD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 980D17451CE636EE005DABD2 /* Main.storyboard */; };
@@ -28,6 +27,8 @@
 		980D174C1CE636EE005DABD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 980D174B1CE636EE005DABD2 /* Assets.xcassets */; };
 		980D174F1CE636EE005DABD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 980D174D1CE636EE005DABD2 /* LaunchScreen.storyboard */; };
 		980D17581CE63803005DABD2 /* JumbleFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980D17571CE63803005DABD2 /* JumbleFlowLayout.swift */; };
+		983F38F01CEC7B6E007A0DBD /* appdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 983F38ED1CEC7A34007A0DBD /* appdata.json */; };
+		983F38F21CECA6ED007A0DBD /* seticons in Resources */ = {isa = PBXBuildFile; fileRef = 983F38F11CECA6ED007A0DBD /* seticons */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +46,6 @@
 		8143D02E1CEA7FB500482437 /* DeckCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewController.swift; sourceTree = "<group>"; };
 		8158C1E81CE65DF600555981 /* DeckViewData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckViewData.swift; sourceTree = "<group>"; };
 		8158C1EA1CE6754B00555981 /* FlashCardSetTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardSetTabViewController.swift; sourceTree = "<group>"; };
-		8178D0B61CEB75320097F9F2 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		980D173E1CE636EE005DABD2 /* baby-flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "baby-flashcards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		980D17411CE636EE005DABD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		980D17431CE636EE005DABD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +55,8 @@
 		980D174E1CE636EE005DABD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		980D17501CE636EE005DABD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		980D17571CE63803005DABD2 /* JumbleFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumbleFlowLayout.swift; sourceTree = "<group>"; };
+		983F38ED1CEC7A34007A0DBD /* appdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appdata.json; sourceTree = "<group>"; };
+		983F38F11CECA6ED007A0DBD /* seticons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = seticons; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		980D17401CE636EE005DABD2 /* baby-flashcards */ = {
 			isa = PBXGroup;
 			children = (
+				983F38EF1CEC7A9E007A0DBD /* Resources */,
 				8134F3991CEC6BFA00D4129C /* helpers */,
 				8134F3891CEC69FE00D4129C /* Gloss */,
 				8158C1E71CE65DD400555981 /* entities */,
@@ -129,7 +132,6 @@
 				980D174D1CE636EE005DABD2 /* LaunchScreen.storyboard */,
 				980D17501CE636EE005DABD2 /* Info.plist */,
 				980D17481CE636EE005DABD2 /* baby_flashcards.xcdatamodeld */,
-				8178D0B61CEB75320097F9F2 /* Main.swift */,
 			);
 			path = "baby-flashcards";
 			sourceTree = "<group>";
@@ -144,6 +146,15 @@
 				8143D02E1CEA7FB500482437 /* DeckCollectionViewController.swift */,
 			);
 			name = views;
+			sourceTree = "<group>";
+		};
+		983F38EF1CEC7A9E007A0DBD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				983F38F11CECA6ED007A0DBD /* seticons */,
+				983F38ED1CEC7A34007A0DBD /* appdata.json */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,7 +215,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				983F38F01CEC7B6E007A0DBD /* appdata.json in Resources */,
 				8134F3971CEC69FE00D4129C /* Info.plist in Resources */,
+				983F38F21CECA6ED007A0DBD /* seticons in Resources */,
 				980D174F1CE636EE005DABD2 /* LaunchScreen.storyboard in Resources */,
 				980D174C1CE636EE005DABD2 /* Assets.xcassets in Resources */,
 				980D17471CE636EE005DABD2 /* Main.storyboard in Resources */,
@@ -220,7 +233,6 @@
 			files = (
 				8134F3961CEC69FE00D4129C /* Gloss.swift in Sources */,
 				8134F3941CEC69FE00D4129C /* ExtensionArray.swift in Sources */,
-				8178D0B71CEB75320097F9F2 /* Main.swift in Sources */,
 				980D17441CE636EE005DABD2 /* ViewController.swift in Sources */,
 				8143D02F1CEA7FB500482437 /* DeckCollectionViewController.swift in Sources */,
 				8143D02B1CE7BBE100482437 /* FlashCardViewController.swift in Sources */,

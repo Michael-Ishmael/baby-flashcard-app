@@ -1,0 +1,36 @@
+{
+ "images": [
+  {
+   "idiom": "iphone",
+   "scale": "1x",
+   "filename": "chicken3_iphone4.jpg"
+  },
+  {
+   "idiom": "ipad",
+   "scale": "1x",
+   "filename": "chicken3_ipad.jpg"
+  },
+  {
+   "idiom": "ipad",
+   "scale": "2x",
+   "subtype": "retina4",
+   "filename": "chicken3_ipadretina.jpg"
+  },
+  {
+   "idiom": "iphone",
+   "scale": "2x",
+   "subtype": "retina4",
+   "filename": "chicken3_iphone5.jpg"
+  },
+  {
+   "idiom": "iphone",
+   "scale": "2x",
+   "subtype": "retina4",
+   "filename": "chicken3_iphone6.jpg"
+  }
+ ],
+ "info": {
+  "version": 1,
+  "author": "xcode"
+ }
+}

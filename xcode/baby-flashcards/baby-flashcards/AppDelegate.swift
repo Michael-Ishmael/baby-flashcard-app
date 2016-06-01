@@ -19,21 +19,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
-        application.statusBarHidden = true;
-        application.applicationSupportsShakeToEdit = true;
-        
-        //let path = NSBundle.mainBundle().pathForResource("appdata", ofType: "json")
-        getAppData{
-            (appData) -> Void in
-            
-            self.window?.backgroundColor = UIColor.whiteColor()
-            self._tabViewController = FlashCardSetTabViewController(appData: appData!)
-            //_tabViewController
-            self.window?.rootViewController = self._tabViewController;
-            
-        }
+//        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//        
+//        application.statusBarHidden = true;
+//        application.applicationSupportsShakeToEdit = true;
+//        
+//        //let path = NSBundle.mainBundle().pathForResource("appdata", ofType: "json")
+//        getAppData{
+//            (appData) -> Void in
+//            
+//            self.window?.backgroundColor = UIColor.whiteColor()
+//            self._tabViewController = FlashCardSetTabViewController(appData: appData!)
+//            //_tabViewController
+//            self.window?.rootViewController = self._tabViewController;
+//            
+//        }
 
         return true
     }
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             // 1
             do {
-                json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String: AnyObject]
+                json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? [String: [AnyObject]]
             } catch {
                 print(error)
                 return

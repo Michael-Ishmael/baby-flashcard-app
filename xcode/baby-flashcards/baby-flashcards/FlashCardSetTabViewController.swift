@@ -40,7 +40,7 @@ class FlashCardSetTabViewController : UITabBarController, IApplicationEventHandl
             collectionController.tabBarItem = UITabBarItem();
             let tbi = collectionController.tabBarItem;
             tbi.imageInsets = UIEdgeInsets.init(top: 6, left: 0, bottom: -6, right: 0)
-            tbi.image = UIImage.init(imageLiteral: cardSet.icon)
+            tbi.image = UIImage.init(named: cardSet.icon)
             _collectionControllers.append(collectionController)
         }
     

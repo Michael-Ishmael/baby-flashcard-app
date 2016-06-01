@@ -14,6 +14,7 @@ public enum AspectRatio : String
 {
     case Nine16 = "nine16"
     case Twelve16 = "twelve16"
+
 }
 
 public enum ImageOrientation : String
@@ -54,7 +55,9 @@ public struct FlashCardImageCrop : Decodable
             let x2:Double = "x2" <~~ json,
             let y1:Double = "y1" <~~ json,
             let y2:Double = "y2" <~~ json
-            else { return nil }
+            else {
+                return nil
+        }
         
         self.X1 = x1
         self.X2 = x2
@@ -73,7 +76,9 @@ public struct ImgSrc : Decodable
     public init?(json: JSON) {
         
         guard let xCasset:String = "xcasset" <~~ json
-            else { return nil }
+            else {
+                return nil
+        }
         
         self.xCasset = xCasset
         self.crop = "crop" <~~ json
@@ -91,7 +96,9 @@ public struct ImageFormatDef : Decodable
         guard let landscape:ImgSrc = "landscape" <~~ json,
             portrait:ImgSrc = "portrait" <~~ json,
             imageType:ImageType = "imagetype" <~~ json
-            else {return nil}
+            else {
+                return nil
+        }
         
         self.landscape = landscape
         self.portrait = portrait
@@ -110,16 +117,29 @@ public struct FlashCard : Decodable
         guard let id:Int = "id" <~~ json,
             index:Int = "index" <~~ json,
             sound:String = "sound" <~~ json,
-            imageDef:[AspectRatio: ImageFormatDef] = "imagedef" <~~ json
-            else {return nil}
+            imageDef:[String: ImageFormatDef] = "imagedef" <~~ json
+            else {
+                return nil
+        }
         
         self.id = id
         self.index = index
         self.sound = sound
-        self.imageDef = imageDef
-    }
+        self.imageDef = Dictionary(imageDef.map { (key, value) in (
+            AspectRatio(rawValue: key)!, value)
+            })    }
     
 }
+
+extension Dictionary {
+    init(_ pairs: [Element]) {
+        self.init()
+        for (k, v) in pairs {
+            self[k] = v
+        }
+    }
+}
+
 
 public struct FlashCardDeck : Decodable {
     
@@ -130,10 +150,12 @@ public struct FlashCardDeck : Decodable {
     
     public init?(json: JSON) {
         guard let id:Int = "id" <~~ json,
-            name:String = "index" <~~ json,
-            thumb:String = "sound" <~~ json,
+            name:String = "name" <~~ json,
+            thumb:String = "thumb" <~~ json,
             cards:[FlashCard] = "cards" <~~ json
-            else {return nil}
+            else {
+                return nil
+        }
         
         self.id = id
         self.name = name
@@ -151,10 +173,12 @@ public struct FlashCardSet : Decodable {
     
     public init?(json: JSON) {
         guard let id:Int = "id" <~~ json,
-            name:String = "index" <~~ json,
-            icon:String = "sound" <~~ json,
+            name:String = "name" <~~ json,
+            icon:String = "icon" <~~ json,
             decks:[FlashCardDeck] = "decks" <~~ json
-            else {return nil}
+            else {
+                return nil
+        }
         
         self.id = id
         self.name = name
@@ -167,8 +191,10 @@ public struct AppData : Decodable {
     public var deckSets:[FlashCardSet] = []
     
     public init?(json: JSON) {
-        guard let deckSets:[FlashCardSet] = "desksets" <~~ json
-            else {return nil}
+        guard let deckSets:[FlashCardSet] = "decksets" <~~ json
+            else {
+                return nil
+        }
         
         self.deckSets = deckSets
         

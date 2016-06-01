@@ -45,17 +45,17 @@ class FlashCardViewController: UIViewController {
         let crop:FlashCardImageCrop;
         let xCassetName:String;
         
-        if(orientation == UIDeviceOrientation.Portrait){
-            crop = (_flashCard?.imageDef[AspectRatio.Twelve16]!.portrait.crop)!
-            xCassetName = (_flashCard?.imageDef[AspectRatio.Twelve16]!.portrait.xCasset)!
-        } else {
-            crop = (_flashCard?.imageDef[AspectRatio.Twelve16]!.landscape.crop)!
-            xCassetName = (_flashCard?.imageDef[AspectRatio.Twelve16]!.landscape.xCasset)!
-        }
-        
-        _imageView!.layer.contentsRect = CGRect(x: crop.X1, y: crop.Y1, width: crop.Width, height: crop.Height)
-        _imageView!.image = UIImage.init(contentsOfFile: xCassetName)
-        
+//        if(orientation == UIDeviceOrientation.Portrait){
+//            crop = (_flashCard?.imageDef[AspectRatio.Twelve16]!.portrait.crop)!
+//            xCassetName = (_flashCard?.imageDef[AspectRatio.Twelve16]!.portrait.xCasset)!
+//        } else {
+//            crop = (_flashCard?.imageDef[AspectRatio.Twelve16]!.landscape.crop)!
+//            xCassetName = (_flashCard?.imageDef[AspectRatio.Twelve16]!.landscape.xCasset)!
+//        }
+//        
+//        _imageView!.layer.contentsRect = CGRect(x: crop.X1, y: crop.Y1, width: crop.Width, height: crop.Height)
+//        _imageView!.image = UIImage.init(contentsOfFile: xCassetName)
+//        
         _cancelButton = UIButton.init(type: UIButtonType.Custom);
         _cancelButton!.frame = self.view.bounds;
         _cancelButton!.addTarget(self, action: "cancelPressed", forControlEvents: .TouchUpInside)
