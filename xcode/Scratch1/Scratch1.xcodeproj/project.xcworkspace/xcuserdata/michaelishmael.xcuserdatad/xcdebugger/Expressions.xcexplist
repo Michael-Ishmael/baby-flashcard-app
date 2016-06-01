@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "JumbleFlowLayout.prepareLayout() -&gt; ():JumbleFlowLayout.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_lastPositions [item.thumbId]!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FlashCardSetTabViewController.init(coder : NSCoder) -&gt; FlashCardSetTabViewController?:FlashCardSetTabViewController.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
