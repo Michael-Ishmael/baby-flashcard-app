@@ -52,7 +52,7 @@ namespace babyflashcards
 			return 1;
 		}
 
-		public override nint GetItemsCount (UICollectionView collectionView, nint section)
+		override nint IUICollectionViewDataSource.GetItemsCount (UICollectionView collectionView, nint section)
 		{
 			return _tiles.Count;
 		}

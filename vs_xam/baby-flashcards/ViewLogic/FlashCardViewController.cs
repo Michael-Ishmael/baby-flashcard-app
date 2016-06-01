@@ -69,7 +69,7 @@ namespace babyflashcards
 			View.AddSubview (_cancelButton);
 
 
-			var songURL = new NSUrl ("sounds/" + _flashCard.Sound);
+			var songURL = new NSUrl. ("sounds/" + _flashCard.Sound);
 			NSError err;
 			_itemSound = new AVAudioPlayer(songURL, AVFileType.MpegLayer3, out err);
 			_itemSound.Volume = 7;
