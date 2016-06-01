@@ -8,7 +8,7 @@
     {
      "cards": [
       {
-       "sound": "chicken/Chicken5.mp3",
+       "sound": "Chicken5.mp3",
        "index": 0,
        "imagekey": "chicken1",
        "id": 1,
@@ -58,7 +58,7 @@
        }
       },
       {
-       "sound": "chicken/Chicken6.mp3",
+       "sound": "Chicken6.mp3",
        "index": 1,
        "imagekey": "chicken5",
        "id": 2,
@@ -108,7 +108,7 @@
        }
       },
       {
-       "sound": "chicken/Chicken3.mp3",
+       "sound": "Chicken3.mp3",
        "index": 2,
        "imagekey": "chicken3",
        "id": 3,
@@ -158,7 +158,7 @@
        }
       },
       {
-       "sound": "chicken/Chicken2.mp3",
+       "sound": "Chicken2.mp3",
        "index": 3,
        "imagekey": "chicken2",
        "id": 4,
@@ -198,7 +198,7 @@
        }
       },
       {
-       "sound": "chicken/Chicken1.mp3",
+       "sound": "Chicken1.mp3",
        "index": 4,
        "imagekey": "chicken4",
        "id": 5,
@@ -248,7 +248,7 @@
        }
       },
       {
-       "sound": "chicken/Chicken1.mp3",
+       "sound": "Chicken1.mp3",
        "index": 6,
        "imagekey": "chicken6",
        "id": 6,
@@ -285,7 +285,7 @@
     {
      "cards": [
       {
-       "sound": "cow/Cow3.mp3",
+       "sound": "Cow3.mp3",
        "index": 1,
        "imagekey": "cow1",
        "id": 7,
@@ -335,7 +335,7 @@
        }
       },
       {
-       "sound": "cow/Cow1.mp3",
+       "sound": "Cow1.mp3",
        "index": 2,
        "imagekey": "cow2",
        "id": 8,
@@ -385,7 +385,7 @@
        }
       },
       {
-       "sound": "cow/Cow2.mp3",
+       "sound": "Cow2.mp3",
        "index": 4,
        "imagekey": "cow4",
        "id": 9,
@@ -425,7 +425,7 @@
        }
       },
       {
-       "sound": "cow/Cow5.mp3",
+       "sound": "Cow5.mp3",
        "index": 5,
        "imagekey": "cow6",
        "id": 10,
@@ -475,7 +475,7 @@
        }
       },
       {
-       "sound": "cow/Cow4.mp3",
+       "sound": "Cow4.mp3",
        "index": 6,
        "imagekey": "cow5",
        "id": 11,
@@ -531,58 +531,64 @@
     },
     {
      "cards": [],
-     "thumb": "thumbs/horseThumb.png",
+     "thumb": "horsethumb",
      "name": "horse",
-     "id": 2
-    },
-    {
-     "cards": [],
-     "thumb": "thumbs/dogthumb.png",
-     "name": "dog",
-     "id": 1
-    },
-    {
-     "cards": [],
-     "thumb": "thumbs/donkeythumb.png",
-     "name": "donkey",
-     "id": 1
-    },
-    {
-     "cards": [],
-     "thumb": "thumbs/duckthumb.png",
-     "name": "duck",
-     "id": 2
-    },
-    {
-     "cards": [],
-     "thumb": "thumbs/goatthumb.png",
-     "name": "goat",
      "id": 3
     },
     {
      "cards": [],
-     "thumb": "thumbs/owlthumb.png",
-     "name": "owl",
+     "thumb": "dogthumb",
+     "name": "dog",
      "id": 4
     },
     {
      "cards": [],
-     "thumb": "thumbs/pigthumb.png",
-     "name": "pig",
+     "thumb": "donkeythumb",
+     "name": "donkey",
      "id": 5
     },
     {
      "cards": [],
-     "thumb": "thumbs/rabbitthumb.png",
-     "name": "rabbit",
+     "thumb": "duckthumb",
+     "name": "duck",
      "id": 6
     },
     {
      "cards": [],
-     "thumb": "thumbs/sheepthumb.png",
-     "name": "sheep",
+     "thumb": "goatthumb",
+     "name": "goat",
      "id": 7
-    }
+    },
+    {
+     "cards": [],
+     "thumb": "owlthumb",
+     "name": "owl",
+     "id": 8
+    },
+    {
+     "cards": [],
+     "thumb": "pigthumb",
+     "name": "pig",
+     "id": 9
+    },
+    {
+     "cards": [],
+     "thumb": "rabbitthumb",
+     "name": "rabbit",
+     "id": 10
+    },
+    {
+     "cards": [],
+     "thumb": "sheepthumb",
+     "name": "sheep",
+     "id": 11
+    },
+     {
+     "cards": [],
+     "thumb": "catthumb",
+     "name": "cat",
+     "id": 12
+     }
    ]
   },
   {
@@ -592,9 +598,9 @@
    "decks": [
     {
      "cards": [],
-     "thumb": "thumbs/donkeythumb.png",
+     "thumb": "donkeythumb",
      "name": "lion",
-     "id": 8
+     "id": 1
     }
    ]
   }

@@ -20,18 +20,21 @@ class DeckViewCell : UICollectionViewCell {
         self.contentView.opaque = false;
         
         
-        _imageView.contentMode = UIViewContentMode.ScaleAspectFit;
+        _imageView.contentMode = UIViewContentMode.ScaleToFill;
         _imageView.clipsToBounds = true;
         _imageView.layer.masksToBounds = true;
         _imageView.center = self.contentView.center;
         _imageView.opaque = false;
     
-        //imageView.transform = CGAffineTransform.MakeScale (0.7f, 0.7f);
+        //_imageView.transform = CGAffineTransformMakeScale(0.8, 0.8)
+        //CGAffineTransform.MakeScale (0.7f, 0.7,f);
         
         self.contentView.addSubview(_imageView);
         
     }
 
+    
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

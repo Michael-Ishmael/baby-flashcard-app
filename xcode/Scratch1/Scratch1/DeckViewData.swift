@@ -237,7 +237,7 @@ class DeckViewData
     }
     
     func incrementIndex() {
-        if (_index == _deck.cards.count - 1) {
+        if (_index == 1) { // _deck.cards.count - 1) {
             _index = 0
         } else {
             _index++

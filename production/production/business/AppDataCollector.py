@@ -3,6 +3,7 @@ import os
 import simplejson
 from FileCompilationSettings import FileCompilationSettings as FCS
 from CardFileManager import AppImageDef, AspectImageDef, RectDistribution
+from Entities import Deck
 
 
 class AppDataCollector:
@@ -19,6 +20,11 @@ class AppDataCollector:
         self.current_set_dict = set_dict
 
     def add_deck(self, deck):
+        """
+
+        :type deck: Deck
+        """
+        deck.icon = deck.icon.replace("../media/deckthumbs/domestic/", "").replace(".png", "").lower()
         deck_dict = deck.to_json_dict().copy()  # type:dict
         deck_dict["cards"] = []
         del deck_dict["sounds"]

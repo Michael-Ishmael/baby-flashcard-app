@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		818CA3E11CFF3FE500B587A0 /* Chicken1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3CF1CFF3FE500B587A0 /* Chicken1.mp3 */; };
+		818CA3E21CFF3FE500B587A0 /* Chicken2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3D01CFF3FE500B587A0 /* Chicken2.mp3 */; };
+		818CA3E31CFF3FE500B587A0 /* Chicken3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3D11CFF3FE500B587A0 /* Chicken3.mp3 */; };
+		818CA3E41CFF3FE500B587A0 /* Chicken4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3D21CFF3FE500B587A0 /* Chicken4.mp3 */; };
+		818CA3E51CFF3FE500B587A0 /* Chicken5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3D31CFF3FE500B587A0 /* Chicken5.mp3 */; };
+		818CA3E61CFF3FE500B587A0 /* Chicken6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3D41CFF3FE500B587A0 /* Chicken6.mp3 */; };
+		818CA3E71CFF3FE500B587A0 /* Cow1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3D51CFF3FE500B587A0 /* Cow1.mp3 */; };
+		818CA3E81CFF3FE500B587A0 /* Cow2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3D61CFF3FE500B587A0 /* Cow2.mp3 */; };
+		818CA3E91CFF3FE500B587A0 /* Cow3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3D71CFF3FE500B587A0 /* Cow3.mp3 */; };
+		818CA3EA1CFF3FE500B587A0 /* Cow4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3D81CFF3FE500B587A0 /* Cow4.mp3 */; };
+		818CA3EB1CFF3FE500B587A0 /* Cow5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3D91CFF3FE500B587A0 /* Cow5.mp3 */; };
+		818CA3EC1CFF3FE500B587A0 /* Cow6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3DA1CFF3FE500B587A0 /* Cow6.mp3 */; };
+		818CA3ED1CFF3FE500B587A0 /* Horse1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3DB1CFF3FE500B587A0 /* Horse1.mp3 */; };
+		818CA3EE1CFF3FE500B587A0 /* Horse2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3DC1CFF3FE500B587A0 /* Horse2.mp3 */; };
+		818CA3EF1CFF3FE500B587A0 /* Horse3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3DD1CFF3FE500B587A0 /* Horse3.mp3 */; };
+		818CA3F01CFF3FE500B587A0 /* Horse4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3DE1CFF3FE500B587A0 /* Horse4.mp3 */; };
+		818CA3F11CFF3FE500B587A0 /* Horse5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3DF1CFF3FE500B587A0 /* Horse5.mp3 */; };
+		818CA3F21CFF3FE500B587A0 /* Horse6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818CA3E01CFF3FE500B587A0 /* Horse6.mp3 */; };
 		987B82541CEDA3B3000EADA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987B82531CEDA3B3000EADA3 /* AppDelegate.swift */; };
 		987B82591CEDA3B3000EADA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 987B82571CEDA3B3000EADA3 /* Main.storyboard */; };
 		987B825B1CEDA3B3000EADA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 987B825A1CEDA3B3000EADA3 /* Assets.xcassets */; };
@@ -30,6 +48,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		818CA3CF1CFF3FE500B587A0 /* Chicken1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Chicken1.mp3; sourceTree = "<group>"; };
+		818CA3D01CFF3FE500B587A0 /* Chicken2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Chicken2.mp3; sourceTree = "<group>"; };
+		818CA3D11CFF3FE500B587A0 /* Chicken3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Chicken3.mp3; sourceTree = "<group>"; };
+		818CA3D21CFF3FE500B587A0 /* Chicken4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Chicken4.mp3; sourceTree = "<group>"; };
+		818CA3D31CFF3FE500B587A0 /* Chicken5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Chicken5.mp3; sourceTree = "<group>"; };
+		818CA3D41CFF3FE500B587A0 /* Chicken6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Chicken6.mp3; sourceTree = "<group>"; };
+		818CA3D51CFF3FE500B587A0 /* Cow1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cow1.mp3; sourceTree = "<group>"; };
+		818CA3D61CFF3FE500B587A0 /* Cow2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cow2.mp3; sourceTree = "<group>"; };
+		818CA3D71CFF3FE500B587A0 /* Cow3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cow3.mp3; sourceTree = "<group>"; };
+		818CA3D81CFF3FE500B587A0 /* Cow4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cow4.mp3; sourceTree = "<group>"; };
+		818CA3D91CFF3FE500B587A0 /* Cow5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cow5.mp3; sourceTree = "<group>"; };
+		818CA3DA1CFF3FE500B587A0 /* Cow6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cow6.mp3; sourceTree = "<group>"; };
+		818CA3DB1CFF3FE500B587A0 /* Horse1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Horse1.mp3; sourceTree = "<group>"; };
+		818CA3DC1CFF3FE500B587A0 /* Horse2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Horse2.mp3; sourceTree = "<group>"; };
+		818CA3DD1CFF3FE500B587A0 /* Horse3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Horse3.mp3; sourceTree = "<group>"; };
+		818CA3DE1CFF3FE500B587A0 /* Horse4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Horse4.mp3; sourceTree = "<group>"; };
+		818CA3DF1CFF3FE500B587A0 /* Horse5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Horse5.mp3; sourceTree = "<group>"; };
+		818CA3E01CFF3FE500B587A0 /* Horse6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Horse6.mp3; sourceTree = "<group>"; };
 		987B82501CEDA3B3000EADA3 /* Scratch1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scratch1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		987B82531CEDA3B3000EADA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		987B82581CEDA3B3000EADA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,6 +158,24 @@
 		987B82881CEDA7DA000EADA3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				818CA3CF1CFF3FE500B587A0 /* Chicken1.mp3 */,
+				818CA3D01CFF3FE500B587A0 /* Chicken2.mp3 */,
+				818CA3D11CFF3FE500B587A0 /* Chicken3.mp3 */,
+				818CA3D21CFF3FE500B587A0 /* Chicken4.mp3 */,
+				818CA3D31CFF3FE500B587A0 /* Chicken5.mp3 */,
+				818CA3D41CFF3FE500B587A0 /* Chicken6.mp3 */,
+				818CA3D51CFF3FE500B587A0 /* Cow1.mp3 */,
+				818CA3D61CFF3FE500B587A0 /* Cow2.mp3 */,
+				818CA3D71CFF3FE500B587A0 /* Cow3.mp3 */,
+				818CA3D81CFF3FE500B587A0 /* Cow4.mp3 */,
+				818CA3D91CFF3FE500B587A0 /* Cow5.mp3 */,
+				818CA3DA1CFF3FE500B587A0 /* Cow6.mp3 */,
+				818CA3DB1CFF3FE500B587A0 /* Horse1.mp3 */,
+				818CA3DC1CFF3FE500B587A0 /* Horse2.mp3 */,
+				818CA3DD1CFF3FE500B587A0 /* Horse3.mp3 */,
+				818CA3DE1CFF3FE500B587A0 /* Horse4.mp3 */,
+				818CA3DF1CFF3FE500B587A0 /* Horse5.mp3 */,
+				818CA3E01CFF3FE500B587A0 /* Horse6.mp3 */,
 				987B82651CEDA5D9000EADA3 /* appdata.json */,
 			);
 			name = Resources;
@@ -185,11 +239,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				818CA3E71CFF3FE500B587A0 /* Cow1.mp3 in Resources */,
+				818CA3E21CFF3FE500B587A0 /* Chicken2.mp3 in Resources */,
+				818CA3F01CFF3FE500B587A0 /* Horse4.mp3 in Resources */,
+				818CA3ED1CFF3FE500B587A0 /* Horse1.mp3 in Resources */,
 				987B825E1CEDA3B3000EADA3 /* LaunchScreen.storyboard in Resources */,
+				818CA3E61CFF3FE500B587A0 /* Chicken6.mp3 in Resources */,
+				818CA3EB1CFF3FE500B587A0 /* Cow5.mp3 in Resources */,
+				818CA3E31CFF3FE500B587A0 /* Chicken3.mp3 in Resources */,
+				818CA3F11CFF3FE500B587A0 /* Horse5.mp3 in Resources */,
+				818CA3EC1CFF3FE500B587A0 /* Cow6.mp3 in Resources */,
 				987B825B1CEDA3B3000EADA3 /* Assets.xcassets in Resources */,
+				818CA3E51CFF3FE500B587A0 /* Chicken5.mp3 in Resources */,
+				818CA3E11CFF3FE500B587A0 /* Chicken1.mp3 in Resources */,
+				818CA3E91CFF3FE500B587A0 /* Cow3.mp3 in Resources */,
+				818CA3EE1CFF3FE500B587A0 /* Horse2.mp3 in Resources */,
 				987B82851CEDA662000EADA3 /* Info.plist in Resources */,
+				818CA3E81CFF3FE500B587A0 /* Cow2.mp3 in Resources */,
 				987B82591CEDA3B3000EADA3 /* Main.storyboard in Resources */,
+				818CA3EF1CFF3FE500B587A0 /* Horse3.mp3 in Resources */,
+				818CA3EA1CFF3FE500B587A0 /* Cow4.mp3 in Resources */,
 				987B826E1CEDA5D9000EADA3 /* appdata.json in Resources */,
+				818CA3E41CFF3FE500B587A0 /* Chicken4.mp3 in Resources */,
+				818CA3F21CFF3FE500B587A0 /* Horse6.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +330,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -277,7 +350,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -304,6 +377,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -317,7 +391,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

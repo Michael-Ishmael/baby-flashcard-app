@@ -105,7 +105,7 @@ class FlashCardSetTabViewController : UITabBarController, IApplicationEventHandl
     }
     
     func checkAndJumble(){
-        if _clickCount >= 5 {
+        if _clickCount >= 2 {
             _clickCount = 0;
             (selectedViewController as! DeckCollectionViewController).jumble();
         }

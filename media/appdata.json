@@ -1,5 +1,5 @@
 {
- "deck_sets": [
+ "decksets": [
   {
    "icon": "../media/seticons/chickenIcon.gif",
    "id": 2,
@@ -278,7 +278,7 @@
        }
       }
      ],
-     "thumb": "../media/deckthumbs/domestic/chickenThumb.png",
+     "thumb": "chickenthumb",
      "name": "chicken",
      "id": 1
     },
@@ -525,61 +525,61 @@
        }
       }
      ],
-     "thumb": "../media/deckthumbs/domestic/cowThumb.png",
+     "thumb": "cowthumb",
      "name": "cow",
      "id": 1
     },
     {
      "cards": [],
-     "thumb": "../media/deckthumbs/domestic/horseThumb.png",
+     "thumb": "horsethumb",
      "name": "horse",
      "id": 2
     },
     {
      "cards": [],
-     "thumb": "../media/deckthumbs/domestic/dogthumb.png",
+     "thumb": "dogthumb",
      "name": "dog",
      "id": 1
     },
     {
      "cards": [],
-     "thumb": "../media/deckthumbs/domestic/donkeythumb.png",
+     "thumb": "donkeythumb",
      "name": "donkey",
      "id": 1
     },
     {
      "cards": [],
-     "thumb": "../media/deckthumbs/domestic/duckthumb.png",
+     "thumb": "duckthumb",
      "name": "duck",
      "id": 2
     },
     {
      "cards": [],
-     "thumb": "../media/deckthumbs/domestic/goatthumb.png",
+     "thumb": "goatthumb",
      "name": "goat",
      "id": 3
     },
     {
      "cards": [],
-     "thumb": "../media/deckthumbs/domestic/owlthumb.png",
+     "thumb": "owlthumb",
      "name": "owl",
      "id": 4
     },
     {
      "cards": [],
-     "thumb": "../media/deckthumbs/domestic/pigthumb.png",
+     "thumb": "pigthumb",
      "name": "pig",
      "id": 5
     },
     {
      "cards": [],
-     "thumb": "../media/deckthumbs/domestic/rabbitthumb.png",
+     "thumb": "rabbitthumb",
      "name": "rabbit",
      "id": 6
     },
     {
      "cards": [],
-     "thumb": "../media/deckthumbs/domestic/sheepthumb.png",
+     "thumb": "sheepthumb",
      "name": "sheep",
      "id": 7
     }
@@ -592,7 +592,7 @@
    "decks": [
     {
      "cards": [],
-     "thumb": "../media/deckthumbs/domestic/donkeythumb.png",
+     "thumb": "donkeythumb",
      "name": "lion",
      "id": 8
     }

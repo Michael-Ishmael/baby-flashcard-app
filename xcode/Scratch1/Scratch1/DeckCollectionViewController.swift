@@ -74,13 +74,14 @@ class DeckCollectionViewController : UICollectionViewController {
         return cell;
     }
 
-    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let item = _tiles[indexPath.row]
         let cell = self.collectionViewLayout.layoutAttributesForItemAtIndexPath(indexPath)
         _eventHandler?.deckSelected(item, frame: (cell?.frame)!)
         
     }
+   
     
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true;
@@ -102,30 +103,84 @@ class DeckCollectionViewController : UICollectionViewController {
     
     func jumble(){
         self.collectionView?.performBatchUpdates({
-            self._tiles.shuffle()
+            self.shuffleTileArray()
             self.collectionView?.reloadSections(NSIndexSet(index: 0))
             }, completion: nil)
     }
- 
-    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
-        //
-        //			var lineLayout = CollectionView.CollectionViewLayout as LineLayout;
-        //			if (lineLayout != null)
-        //			{
-        //				if((toInterfaceOrientation == UIInterfaceOrientation.Portrait) || (toInterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown))
-        //					lineLayout.SectionInset = new UIEdgeInsets (400,0,400,0);
-        //				else
-        //					lineLayout.SectionInset  = new UIEdgeInsets (220, 0.0f, 200, 0.0f);
-        //			}
+    
+    //Fisher-Yates
+    func shuffleTileArray(){
+        let count = _tiles.count;
+        if count < 2 { return }
+        
+        for i in 0..<count - 1 {
+            let j = Int(arc4random_uniform(UInt32(count - i))) + i;
+            guard i != j else { continue }
+            //print("j=\(j), i=\(i) \(_tiles[i].imageThumb) -> \(_tiles[j].imageThumb)")
+            swap(&_tiles[i], &_tiles[j])
+        }
+
+        return
     }
+
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//        guard let flowLayout = collectionView?.collectionViewLayout as? JumbleFlowLayout else {
+//            return
+//        }
+//        
+//        if UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation) {
+//            flowLayout.itemSize = CGSize(width: 170, height: 170)
+//        } else {
+//            flowLayout.itemSize = CGSize(width: 192, height: 192)
+//        }
+//        
+//        flowLayout.invalidateLayout()
+//    }
+//    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+//        super.willRotateToInterfaceOrientation(toInterfaceOrientation, duration: duration)
+//        
+//        guard let flowLayout = collectionView?.collectionViewLayout as? JumbleFlowLayout else {
+//                    return
+//        }
+//
+//    }
+
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animateAlongsideTransition(nil, completion: {
+            _ in
+            
+            guard let flowLayout = self.collectionView?.collectionViewLayout as? JumbleFlowLayout else {
+                return
+            }
+            
+            let size = flowLayout.collectionViewContentSize()
+            
+            if UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation) {
+                print("Orientation: Landscape, Width: \(size.width), Height: \(size.height)")
+                
+                flowLayout.itemSize = CGSize(width: 50, height: 61)
+                
+            } else {
+                print("Orientation: Portrait, Width: \(size.width), Height: \(size.height)")
+                flowLayout.itemSize = CGSize(width: 114, height: 140)
+            }
+            
+            print("Current ItemSize: Width: \(flowLayout.itemSize.width), Height: \(flowLayout.itemSize.height)")
+            
+            flowLayout.doneRotation()
+            //self.jumble()
+        })
+    }
+
+    
 }
 
 extension Array{
    
     mutating func shuffle(){
         var n = self.count;
-        while(n > 1){
+        while(n > 2){
             n--;
             var k = Int(arc4random_uniform(UInt32(n)) + 1)
             while(k == n){
@@ -135,6 +190,7 @@ extension Array{
             self[k] = self[n];
             self[n] = value;
         }
+        return
     }
     
 }
