@@ -1,14 +1,17 @@
 {
  "decksets": [
   {
-   "icon": "../media/seticons/chickenIcon.gif",
+   "icon": {
+    "path": "../media/seticons/chickenIcon.gif",
+    "name": "chickenIcon.gif"
+   },
    "id": 2,
    "name": "domestic",
    "decks": [
     {
      "cards": [
       {
-       "sound": "chicken/Chicken5.mp3",
+       "sound": "Chicken5.mp3",
        "index": 0,
        "imagekey": "chicken1",
        "id": 1,
@@ -58,7 +61,7 @@
        }
       },
       {
-       "sound": "chicken/Chicken6.mp3",
+       "sound": "Chicken1.mp3",
        "index": 1,
        "imagekey": "chicken5",
        "id": 2,
@@ -108,7 +111,7 @@
        }
       },
       {
-       "sound": "chicken/Chicken3.mp3",
+       "sound": "Chicken2.mp3",
        "index": 2,
        "imagekey": "chicken3",
        "id": 3,
@@ -158,7 +161,7 @@
        }
       },
       {
-       "sound": "chicken/Chicken2.mp3",
+       "sound": "Chicken6.mp3",
        "index": 3,
        "imagekey": "chicken2",
        "id": 4,
@@ -198,7 +201,7 @@
        }
       },
       {
-       "sound": "chicken/Chicken1.mp3",
+       "sound": "Chicken3.mp3",
        "index": 4,
        "imagekey": "chicken4",
        "id": 5,
@@ -248,7 +251,7 @@
        }
       },
       {
-       "sound": "chicken/Chicken1.mp3",
+       "sound": "Chicken4.mp3",
        "index": 6,
        "imagekey": "chicken6",
        "id": 6,
@@ -582,17 +585,26 @@
      "thumb": "sheepthumb",
      "name": "sheep",
      "id": 7
+    },
+    {
+     "cards": [],
+     "thumb": "catthumb",
+     "name": "cat",
+     "id": 9
     }
    ]
   },
   {
-   "icon": "../media/seticons/lionIcon.gif",
+   "icon": {
+    "path": "../media/seticons/lionIcon.gif",
+    "name": "lionIcon.gif"
+   },
    "id": 1,
    "name": "safari",
    "decks": [
     {
      "cards": [],
-     "thumb": "donkeythumb",
+     "thumb": "catthumb",
      "name": "lion",
      "id": 8
     }

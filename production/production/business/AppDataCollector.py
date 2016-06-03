@@ -8,7 +8,7 @@ from Entities import Deck
 
 class AppDataCollector:
     def __init__(self):
-        self.data = {"deck_sets": []}
+        self.data = {"decksets": []}
         self.current_set_dict = None
         self.current_deck_dict = None
         self.current_card_dict = None
@@ -16,7 +16,7 @@ class AppDataCollector:
     def add_set(self, deck_set):
         set_dict = deck_set.to_json_dict().copy()  # type:dict
         set_dict["decks"] = []
-        self.data["deck_sets"].append(set_dict)
+        self.data["decksets"].append(set_dict)
         self.current_set_dict = set_dict
 
     def add_deck(self, deck):

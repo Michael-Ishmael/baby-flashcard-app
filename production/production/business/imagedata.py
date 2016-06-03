@@ -14,7 +14,7 @@ class ImageData:
             decks = dict_set.get("decks", [])
             for dict_deck in decks:
                 deck = Deck(dict_deck["id"], dict_deck["name"])
-                deck.icon = dict_deck.get("icon", "")
+                deck.icon = dict_deck.get("icon", { "name", "not found"})["name"]
                 cards = dict_deck.get("images", [])
                 for dict_card in cards:
                     completed = dict_card.get("completed", False)

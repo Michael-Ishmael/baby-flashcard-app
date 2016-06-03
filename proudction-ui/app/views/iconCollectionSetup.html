@@ -20,7 +20,7 @@
             <p>Choose {{ ::collectionParams.collectionType }} Icon</p>
             <div class="btn-group">
                 <label class="btn btn-default" ng-repeat="setIcon in collectionParams.iconList">
-                    <input type="radio" ng-model="currentItem.icon" ng-value="setIcon.path"/>
+                    <input type="radio" ng-model="currentItem.icon" ng-value="setIcon"/>
                     <img ng-src="{{ ::setIcon.path }}" width="30px">
                 </label>
             </div>
@@ -51,7 +51,7 @@
                 ng-class="{'active': set == currentItem}" ng-repeat="set in collectionParams.existingItems" id="{{ set.id }}">
 
 
-                <img class="list-thumbnail" ng-src="{{ set.icon }}"/>
+                <img class="list-thumbnail" ng-src="{{ set.icon.path }}"/>
                 {{ set.name }}
                 <div class="pull-right">
                     <span class="badge pull-right">{{ set.id }}</span>

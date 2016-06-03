@@ -51,8 +51,10 @@ class DeckCollectionViewController : UICollectionViewController {
         UIMenuController.sharedMenuController().menuItems = [
                     UIMenuItem.init(title: "Custom", action: Selector.init("custom"))
         ];
+        
     }
 
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1;
     }
@@ -94,18 +96,28 @@ class DeckCollectionViewController : UICollectionViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.resignFirstResponder()
+        self.becomeFirstResponder()
     }
     
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent!) {
         super.motionEnded(motion, withEvent: event)
+        if(event.subtype == UIEventSubtype.MotionShake) {
+            self.jumble()
+        }
     }
     
     func jumble(){
         self.collectionView?.performBatchUpdates({
             self.shuffleTileArray()
             self.collectionView?.reloadSections(NSIndexSet(index: 0))
-            }, completion: nil)
+            }, completion: {
+        _ in
+//                self.collectionView?.performBatchUpdates({
+//                    self.shuffleTileArray()
+//                    self.collectionView?.reloadSections(NSIndexSet(index: 0))
+//                    }, completion: nil)
+                
+        })
     }
     
     //Fisher-Yates
@@ -147,29 +159,41 @@ class DeckCollectionViewController : UICollectionViewController {
 //    }
 
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animateAlongsideTransition(nil, completion: {
-            _ in
+        coordinator.animateAlongsideTransition({
+                _ in
+            
+            let orientation = UIDevice.currentDevice().orientation;
+            //print("From orientation: \(interfaceOrientation.isLandscape ? "Landscape" : "Portrait")")
             
             guard let flowLayout = self.collectionView?.collectionViewLayout as? JumbleFlowLayout else {
                 return
             }
             
-            let size = flowLayout.collectionViewContentSize()
+            //let size = flowLayout.collectionViewContentSize()
             
-            if UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication().statusBarOrientation) {
-                print("Orientation: Landscape, Width: \(size.width), Height: \(size.height)")
+            if orientation.isLandscape {
+                //print("Orientation: Landscape, Width: \(size.width), Height: \(size.height)")
                 
-                flowLayout.itemSize = CGSize(width: 50, height: 61)
+                flowLayout.itemSize = CGSize(width: 100, height: 140)
                 
             } else {
-                print("Orientation: Portrait, Width: \(size.width), Height: \(size.height)")
+                //print("Orientation: Portrait, Width: \(size.width), Height: \(size.height)")
                 flowLayout.itemSize = CGSize(width: 114, height: 140)
             }
             
-            print("Current ItemSize: Width: \(flowLayout.itemSize.width), Height: \(flowLayout.itemSize.height)")
+            //print("Current ItemSize: Width: \(flowLayout.itemSize.width), Height: \(flowLayout.itemSize.height)")
             
+            
+            
+            }, completion: {
+            _ in
+            
+                guard let flowLayout = self.collectionView?.collectionViewLayout as? JumbleFlowLayout else {
+                    return
+                }
+                
             flowLayout.doneRotation()
-            //self.jumble()
+            self.jumble()
         })
     }
 

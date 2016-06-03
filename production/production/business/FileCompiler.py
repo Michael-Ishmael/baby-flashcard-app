@@ -17,7 +17,8 @@ class FileCompiler:
         self.x_collector = XCassetCollector()
 
     def load(self):
-        with open(os.path.join(FCS.media_path, FCS.data_file_name)) as json_file:
+        json_file_path = os.path.join(FCS.media_path, FCS.data_file_name)
+        with open(json_file_path) as json_file:
             self.image_data.load_from_json(json_file)
 
     def compile_files(self):
@@ -65,5 +66,3 @@ class FileCompiler:
 
     def dump_app_data_json(self):
         self.data_collector.dump_app_json()
-
-

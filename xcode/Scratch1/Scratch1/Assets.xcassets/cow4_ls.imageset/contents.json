@@ -1,0 +1,24 @@
+{
+ "images": [
+  {
+   "idiom": "iphone",
+   "scale": "1x",
+   "filename": "cow4_ls_iphone4.jpg"
+  },
+  {
+   "idiom": "ipad",
+   "scale": "1x",
+   "filename": "cow4_ls_ipad.jpg"
+  },
+  {
+   "idiom": "ipad",
+   "scale": "2x",
+   "subtype": "retina4",
+   "filename": "cow4_ls_ipadretina.jpg"
+  }
+ ],
+ "info": {
+  "version": 1,
+  "author": "xcode"
+ }
+}
