@@ -1,6 +1,6 @@
 import os
 
-from production.business.ImageData import ImageData
+from production.business.imagedata import ImageData
 
 
 class Workflow:

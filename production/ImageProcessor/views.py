@@ -13,7 +13,8 @@ import os
 from django.http import JsonResponse
 
 from production.business.Workflow import Workflow
-
+from shutil import copyfile
+from os import path
 
 def resources(request):
     workflow = Workflow(settings.MEDIA_ROOT)
@@ -37,6 +38,21 @@ def index(request):
     #     'testValue': 'bebe',
     # }
     # return render(request, 'imageprocessor/imageprocessing.html', context)
+
+@require_POST
+def move_file(request):
+    try:
+
+        src_path = path.join(settings.MEDIA_ROOT, 'cropping.csv')
+        tgt_path = path.join(settings.PROD_TARGET, 'cropping.csv')
+
+        copyfile(src_path, tgt_path)
+        result = {"success": True}
+
+    except Exception as ex:
+        result = {"success": False, "message": ex.message}
+
+    return JsonResponse(result)
 
 
 @require_POST
