@@ -1,3 +1,4 @@
+import os
 from aetypes import Enum
 
 import simplejson
@@ -12,6 +13,9 @@ class DeckSet:
 
     def add_deck(self, deck):
         self.decks.append(deck)
+
+    def contains_card_with_key(self, card_key):
+        return any(deck.contains_card_with_key(card_key) for deck in self.decks)
 
     def to_json_dict(self):
         return {
@@ -33,6 +37,9 @@ class Deck:
     def add_card(self, card):
         self.cards.append(card)
 
+    def contains_card_with_key(self, card_key):
+        return any(card.key == card_key for card in self.cards)
+
     def to_json_dict(self):
         return {
             "id": self.id,
@@ -48,6 +55,7 @@ class FlashCard:
         self.id = id
         self.index = 0
         self.image = image
+        self.key = os.path.splitext(image)[0]
         self.sound = ""
         self.sub_path = ""
         self.full_path = ""

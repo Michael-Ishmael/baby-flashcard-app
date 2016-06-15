@@ -8,7 +8,7 @@ class FileCompilationSettings:
     media_path = home + '/Dev/Projects/baby-flashcard-app/proudction-ui/media'
     data_file_name = 'data2.json'
     csv_file_name = "cropping.csv"
-    target_root = home + '/Dev/Projects/baby-flashcard-app/media'
+    target_root =  home + '/Dev/Projects/baby-flashcard-app/photoshop/testarea'  # media'
     original_root = 'originals'  # '/Users/scorpio/Dev/Projects/baby-flashcard-app/media/originals'
     ps_path = home + '/Dev/Projects/baby-flashcard-app/photoshop'
     target_formats = {

@@ -13,7 +13,6 @@
   {
    "idiom": "ipad",
    "scale": "2x",
-   "subtype": "retina4",
    "filename": "cow5_ipadretina.jpg"
   },
   {
@@ -25,8 +24,12 @@
   {
    "idiom": "iphone",
    "scale": "2x",
-   "subtype": "retina4",
    "filename": "cow5_iphone6.jpg"
+  },
+  {
+   "idiom": "iphone",
+   "scale": "3x",
+   "filename": "cow5_iphone6plus.jpg"
   }
  ],
  "info": {

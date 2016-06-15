@@ -41,18 +41,13 @@ def index(request):
     # return render(request, 'imageprocessor/imageprocessing.html', context)
 
 @require_POST
-def move_file(request):
+def update_card(request):
     try:
 
-        image_key = request.POST.get("title", "")
-
-        src_path = path.join(settings.MEDIA_ROOT, 'cropping.csv')
-        tgt_path = path.join(settings.PROD_TARGET, 'cropping.csv')
+        image_key = request.POST.get("imageKey", "")
 
         creator = FileCompiler()
-        creator.dump_image("123")
-
-        copyfile(src_path, tgt_path)
+        creator.dump_image(image_key)
         result = {"success": True}
 
     except Exception as ex:

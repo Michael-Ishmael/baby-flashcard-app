@@ -1,6 +1,7 @@
 import unittest
 from os.path import expanduser
 
+from production.business.AppDataCollector import AppDataCollector
 from production.business.FileCompiler import FileCompiler
 from production.business.ImageConversion import CsvCreator
 from production.business.Workflow import Workflow
@@ -156,17 +157,25 @@ class CsvCreatorTest(unittest.TestCase):
 
         self.assertEqual(result, expected)
 
-
     def can_create_app_json_test(self):
         creator = FileCompiler()
         creator.load()
         creator.compile_files()
         creator.dump_app_data_json()
+
         result = 1
-
         expected = 1
-
         self.assertEqual(result, expected)
+
+    def can_update_single_card_data_test(self):
+        creator = FileCompiler()
+        creator.dump_image("cow1")
+
+
+        result = 1
+        expected = 1
+        self.assertEqual(result, expected)
+
 
 
 

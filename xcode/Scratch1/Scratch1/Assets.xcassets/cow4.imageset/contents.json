@@ -1,20 +1,28 @@
 {
- "images": [
-  {
-   "idiom": "iphone",
-   "scale": "2x",
-   "subtype": "retina4",
-   "filename": "cow4_iphone5.jpg"
-  },
-  {
-   "idiom": "iphone",
-   "scale": "2x",
-   "subtype": "retina4",
-   "filename": "cow4_iphone6.jpg"
+  "images" : [
+    {
+      "idiom" : "iphone",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "filename" : "cow4_iphone6.jpg",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "filename" : "cow4_iphone5.jpg",
+      "subtype" : "retina4",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "filename" : "cow4_iphone6plus.jpg",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
   }
- ],
- "info": {
-  "version": 1,
-  "author": "xcode"
- }
 }

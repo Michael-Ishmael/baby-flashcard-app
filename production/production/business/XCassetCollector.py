@@ -25,7 +25,7 @@ class XCassetCollector:
             }
             for image in self.xcassets[key]:
                 dict_file["images"].append(image.to_json_dict())
-            path = os.path.join(FCS.target_root, "xcassets", key + ".imageset", "contents.json")
+            path = os.path.join(FCS.target_root, "Assets.xcassets", key + ".imageset", "Contents.json")
             if not os.path.exists(os.path.dirname(path)):
                 os.makedirs(os.path.dirname(path))
             if os.path.exists(path):

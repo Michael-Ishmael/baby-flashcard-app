@@ -65,6 +65,40 @@ class AppDataCollector:
 
         self.current_card_dict["imagedef"][image_def.aspect_ratio] = image_def_dict
 
+    def update_card(self, card_key):
+        file_path = os.path.join(FCS.target_root, "Resources", "appdata.json")
+        with open(file_path) as json_stream:
+            r_data = simplejson.load(json_stream)
+
+        for deck_set in self.data["decksets"]:
+            deck_set_found = False
+            for r_deck_set in r_data["decksets"]:
+                if r_deck_set["name"] == deck_set["name"]:
+                    deck_set_found = True
+                    for deck in deck_set["decks"]:
+                        deck_found = False
+                        for r_deck in r_deck_set["decks"]:
+                            if r_deck["name"] == deck["name"]:
+                                deck_found = True
+                                for card in deck["cards"]:
+                                    card_found = False
+                                    for i, r_card in enumerate(r_deck["cards"]):
+                                        if r_card["imagekey"] == card_key:
+                                            card_found = True
+                                            r_deck["cards"][i] = card
+                                            break
+                                    if not card_found:
+                                        r_deck["cards"].append(card)
+                                break
+                        if not deck_found:
+                            r_deck_set["decks"].append(deck_set)
+                    break
+            if not deck_set_found:
+                r_data["deck_sets"].append(deck_set)
+
+        with open(file_path, 'w') as json_file:
+            simplejson.dump(r_data, json_file, indent=True)
+
     def dump_app_json(self):
         path = os.path.join(FCS.target_root, "appdata.json")
         if not os.path.exists(os.path.dirname(path)):
@@ -73,3 +107,5 @@ class AppDataCollector:
             os.remove(path)
         with open(path, 'w') as json_file:
             simplejson.dump(self.data, json_file, indent=True)
+
+

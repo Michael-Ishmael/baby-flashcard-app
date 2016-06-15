@@ -41,7 +41,7 @@ class CardFileManager:
                     line.original_path = card_base_path
                     line.file_name = self.image_name.replace('.jpg', instruction.xcasset_suffix + '_'
                                                              + instruction.target_format_name + '.jpg')
-                    line.target_path = os.path.join(target_root, "xcassets", xcasset_name + ".imageset",
+                    line.target_path = os.path.join(target_root, "Assets.xcassets", xcasset_name + ".imageset",
                                                     line.file_name)
                     line.crop_start_x_pc = instruction.crop_start_x_pc
                     line.crop_start_y_pc = instruction.crop_start_y_pc
