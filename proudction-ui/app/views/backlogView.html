@@ -2,7 +2,11 @@
     <div class="jumbotron" ng-hide="ready">
         <h1 class="text-center">Loading...</h1>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-2">
+        <button ng-click="testSingleUpdate()" class="btn btn-default">
+            Test Single Update
+            </button>
+    </div>
     <div class="col-md-4" ng-cloak>
         <h2>Backlog</h2>
         <ul ui-sortable class="list-group" ng-model="backlog">

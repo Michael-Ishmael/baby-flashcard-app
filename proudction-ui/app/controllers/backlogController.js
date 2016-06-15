@@ -9,6 +9,9 @@ app.controller('backlogController', ['$scope', '$location', 'imageDataService', 
         $scope.ready = imageDataService.ready;
     }
 
+    $scope.testSingleUpdate = function(){
+        imageDataService.testSingleUpdate();
+    };
 
     $scope.$on('$viewContentLoaded', function () {
 

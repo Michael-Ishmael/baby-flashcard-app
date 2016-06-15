@@ -57,6 +57,9 @@ var ImageDataManager = (function () {
         };
         this.loader.syncData(data);
     };
+    ImageDataManager.prototype.uploadImage = function (item) {
+        this.loader.uploadImage(item.key);
+    };
     ImageDataManager.prototype.markComplete = function (item) {
         if (item.getStatus() == ItemStatus.cropped || item.getStatus() == ItemStatus.completed) {
             item.completed = true;

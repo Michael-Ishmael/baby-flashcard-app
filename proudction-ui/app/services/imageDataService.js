@@ -54,7 +54,25 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
             $timeout(function () {
                 $rootScope.$broadcast(message, data);
             }, 100);
+        },
+        uploadImage: function(key){
+
+            var transform = function(data){
+                return $.param(data);
+            }
+
+            $http.post('http://localhost:8000/imageprocessor/updatecard', {imageKey: key},
+
+                {
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                    transformRequest: transform
+                }
+            ).then(function (response) {
+            }, function (response) {
+
+            });
         }
+
     };
 
     return new ImageDataManager(loader);

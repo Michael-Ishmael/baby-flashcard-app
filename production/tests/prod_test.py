@@ -147,6 +147,16 @@ class CsvCreatorTest(unittest.TestCase):
 
         self.assertEqual(result, expected)
 
+    def can_run_as_script_test(self):
+        creator = FileCompiler()
+        creator.dump_image("123")
+        result = 1
+
+        expected = 1
+
+        self.assertEqual(result, expected)
+
+
     def can_create_app_json_test(self):
         creator = FileCompiler()
         creator.load()
@@ -157,4 +167,6 @@ class CsvCreatorTest(unittest.TestCase):
         expected = 1
 
         self.assertEqual(result, expected)
+
+
 

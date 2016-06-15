@@ -25,6 +25,7 @@ interface IDataLoader {
     syncData(data:any);
     ready(dataObj:IAsynDataObject):IPromise;
     broadcast(message:string, data:any):void;
+    uploadImage(imageKey:string);
 }
 
 class ImageDataManager implements IAsynDataObject {
@@ -71,6 +72,10 @@ class ImageDataManager implements IAsynDataObject {
             discarded: this.discardedItems.map(function(d){ return d.toJsonObj() })
         };
         this.loader.syncData(data);
+    }
+
+    public uploadImage(item:ImageDataItem):void{
+        this.loader.uploadImage(item.key);
     }
 
     public markComplete(item:ImageDataItem){

@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 from production.business.AppDataCollector import AppDataCollector
 from production.business.CardFileManager import CardFileManager
@@ -66,3 +67,41 @@ class FileCompiler:
 
     def dump_app_data_json(self):
         self.data_collector.dump_app_json()
+
+    def dump_image(self, image_key):
+        as_script = self.get_ascript(image_key)
+        res = self.as_run(as_script)
+        print res;
+
+
+    def get_ascript(self, image_key):
+
+        ascript = '''
+        on run argv
+            tell application "Adobe Photoshop CC 2015"
+              set js to "#include ~/Dev/Projects/baby-flashcard-app/photoshop/singleImage.jsx" & return
+              set js to js & "main(arguments);" & return
+              do javascript js with arguments argv
+
+            end tell
+        end run
+        '''
+        return ascript
+
+    def as_run(self, ascript):
+        "Run the given AppleScript and return the standard output and error."
+        line = "originals/domestic/cow/cow5.jpg,/Users/michaelishmael/Dev/Projects/baby-flashcard-app/photoshop/testarea/cow5_iphone6.jpg,1334,750,0.4,0.3,0.8,0.9"
+        osa = subprocess.call(['osascript', '/Users/michaelishmael/Dev/Projects/baby-flashcard-app/photoshop/resize_cmd.scpt', line])
+
+            # .Popen(['osascript', line],
+            #                    stdin=subprocess.PIPE,
+            #                    stdout=subprocess.PIPE)
+        #res = osa.communicate(ascript)[0]
+        #print res, type(osa)
+        return 1
+
+    def as_quote(self, astr):
+        "Return the AppleScript equivalent of the given string."
+
+        astr = astr.replace('"', '" & quote & "')
+        return '"{}"'.format(astr)

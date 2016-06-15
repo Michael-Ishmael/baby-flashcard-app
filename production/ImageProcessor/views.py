@@ -12,6 +12,7 @@ import os
 
 from django.http import JsonResponse
 
+from production.business.FileCompiler import FileCompiler
 from production.business.Workflow import Workflow
 from shutil import copyfile
 from os import path
@@ -43,8 +44,13 @@ def index(request):
 def move_file(request):
     try:
 
+        image_key = request.POST.get("title", "")
+
         src_path = path.join(settings.MEDIA_ROOT, 'cropping.csv')
         tgt_path = path.join(settings.PROD_TARGET, 'cropping.csv')
+
+        creator = FileCompiler()
+        creator.dump_image("123")
 
         copyfile(src_path, tgt_path)
         result = {"success": True}

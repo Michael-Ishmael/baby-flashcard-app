@@ -167,6 +167,12 @@ app.controller('cropController', ['$scope', '$routeParams', '$location', 'imageD
 
         };
 
+        $scope.upload = function () {
+            imageDataService.save();
+            imageDataService.uploadImage(imageDataService.currentItem);
+            $scope.dataChanged = false;
+        };
+
     }]
 );
 
