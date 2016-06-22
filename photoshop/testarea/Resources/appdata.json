@@ -1,11 +1,14 @@
 {
  "decksets": [
   {
+   "icon": "DomesticIcon",
+   "id": 2,
+   "name": "domestic",
    "decks": [
     {
      "cards": [
       {
-       "sound": "Chicken5.mp3",
+       "sound": "Chicken4.mp3",
        "index": 0,
        "imagekey": "chicken1",
        "id": 1,
@@ -15,21 +18,21 @@
           "xcasset": "chicken1",
           "crop": {
            "y1": 0,
-           "x2": 0.42624999999999996,
-           "x1": 0.09250000000000001,
+           "x2": 0.3733333333333333,
+           "x1": 0.03958333333333333,
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "chicken1",
           "crop": {
-           "y1": 0,
-           "x2": 0.9075,
-           "x1": 0.01749999999999998,
-           "y2": 1
+           "y1": 0.05805243445692885,
+           "x2": 0.9,
+           "x1": 0.08125,
+           "y2": 0.977996254681648
           }
-         }
+         },
+         "imagetype": "combined"
         },
         "nine16": {
          "portrait": {
@@ -41,7 +44,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "chicken1",
           "crop": {
@@ -50,7 +52,8 @@
            "x1": 0,
            "y2": 0.9288389513108614
           }
-         }
+         },
+         "imagetype": "combined"
         }
        }
       },
@@ -70,7 +73,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "chicken5",
           "crop": {
@@ -79,7 +81,8 @@
            "x1": 0,
            "y2": 1
           }
-         }
+         },
+         "imagetype": "combined"
         },
         "nine16": {
          "portrait": {
@@ -91,7 +94,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "chicken5",
           "crop": {
@@ -100,7 +102,8 @@
            "x1": 0,
            "y2": 0.9303201506591335
           }
-         }
+         },
+         "imagetype": "combined"
         }
        }
       },
@@ -120,7 +123,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "chicken3",
           "crop": {
@@ -129,7 +131,8 @@
            "x1": 0,
            "y2": 0.8333333333333333
           }
-         }
+         },
+         "imagetype": "combined"
         },
         "nine16": {
          "portrait": {
@@ -141,7 +144,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "chicken3",
           "crop": {
@@ -150,7 +152,8 @@
            "x1": 0,
            "y2": 0.6658333333333333
           }
-         }
+         },
+         "imagetype": "combined"
         }
        }
       },
@@ -170,7 +173,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "chicken2",
           "crop": {
@@ -179,18 +181,19 @@
            "x1": 0,
            "y2": 0.8087500000000001
           }
-         }
+         },
+         "imagetype": "combined"
         },
         "nine16": {
          "portrait": {
           "xcasset": "chicken2_pt",
           "crop": null
          },
-         "imagetype": "split",
          "landscape": {
           "xcasset": "chicken2_ls",
           "crop": null
-         }
+         },
+         "imagetype": "split"
         }
        }
       },
@@ -210,7 +213,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "chicken4",
           "crop": {
@@ -219,7 +221,8 @@
            "x1": 0,
            "y2": 1
           }
-         }
+         },
+         "imagetype": "combined"
         },
         "nine16": {
          "portrait": {
@@ -231,7 +234,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "chicken4",
           "crop": {
@@ -240,7 +242,8 @@
            "x1": 0,
            "y2": 0.9494382022471909
           }
-         }
+         },
+         "imagetype": "combined"
         }
        }
       },
@@ -255,29 +258,29 @@
           "xcasset": "chicken6_pt",
           "crop": null
          },
-         "imagetype": "split",
          "landscape": {
           "xcasset": "chicken6_ls",
           "crop": null
-         }
+         },
+         "imagetype": "split"
         },
         "nine16": {
          "portrait": {
           "xcasset": "chicken6_pt",
           "crop": null
          },
-         "imagetype": "split",
          "landscape": {
           "xcasset": "chicken6_ls",
           "crop": null
-         }
+         },
+         "imagetype": "split"
         }
        }
       }
      ],
-     "id": 1,
      "thumb": "chickenthumb",
-     "name": "chicken"
+     "name": "chicken",
+     "id": 1
     },
     {
      "cards": [
@@ -297,6 +300,7 @@
            "y2": 1
           }
          },
+         "imagetype": "combined",
          "landscape": {
           "xcasset": "cow1",
           "crop": {
@@ -305,8 +309,7 @@
            "x1": 0,
            "y2": 1
           }
-         },
-         "imagetype": "combined"
+         }
         },
         "nine16": {
          "portrait": {
@@ -318,6 +321,7 @@
            "y2": 1
           }
          },
+         "imagetype": "combined",
          "landscape": {
           "xcasset": "cow1",
           "crop": {
@@ -326,8 +330,7 @@
            "x1": 0,
            "y2": 0.8581687612208257
           }
-         },
-         "imagetype": "combined"
+         }
         }
        }
       },
@@ -347,7 +350,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "cow2",
           "crop": {
@@ -356,7 +358,8 @@
            "x1": 0.05166666666666666,
            "y2": 1
           }
-         }
+         },
+         "imagetype": "combined"
         },
         "nine16": {
          "portrait": {
@@ -368,7 +371,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "cow2",
           "crop": {
@@ -377,7 +379,8 @@
            "x1": 0,
            "y2": 0.8988764044943819
           }
-         }
+         },
+         "imagetype": "combined"
         }
        }
       },
@@ -392,11 +395,11 @@
           "xcasset": "cow4_pt",
           "crop": null
          },
-         "imagetype": "split",
          "landscape": {
           "xcasset": "cow4_ls",
           "crop": null
-         }
+         },
+         "imagetype": "split"
         },
         "nine16": {
          "portrait": {
@@ -408,7 +411,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "cow4",
           "crop": {
@@ -417,7 +419,8 @@
            "x1": 0,
            "y2": 0.943820224719101
           }
-         }
+         },
+         "imagetype": "combined"
         }
        }
       },
@@ -437,7 +440,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "cow6",
           "crop": {
@@ -446,7 +448,8 @@
            "x1": 0,
            "y2": 1
           }
-         }
+         },
+         "imagetype": "combined"
         },
         "nine16": {
          "portrait": {
@@ -458,7 +461,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "cow6",
           "crop": {
@@ -467,7 +469,8 @@
            "x1": 0,
            "y2": 1.0
           }
-         }
+         },
+         "imagetype": "combined"
         }
        }
       },
@@ -487,7 +490,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "cow5",
           "crop": {
@@ -496,7 +498,8 @@
            "x1": 0.03875,
            "y2": 1
           }
-         }
+         },
+         "imagetype": "combined"
         },
         "nine16": {
          "portrait": {
@@ -508,7 +511,6 @@
            "y2": 1
           }
          },
-         "imagetype": "combined",
          "landscape": {
           "xcasset": "cow5",
           "crop": {
@@ -517,92 +519,90 @@
            "x1": 0,
            "y2": 0.8614232209737827
           }
-         }
+         },
+         "imagetype": "combined"
         }
        }
       }
      ],
-     "id": 1,
      "thumb": "cowthumb",
-     "name": "cow"
+     "name": "cow",
+     "id": 1
     },
     {
      "cards": [],
-     "id": 3,
      "thumb": "horsethumb",
-     "name": "horse"
+     "name": "horse",
+     "id": 3
     },
     {
      "cards": [],
-     "id": 4,
      "thumb": "dogthumb",
-     "name": "dog"
+     "name": "dog",
+     "id": 4
     },
     {
      "cards": [],
-     "id": 5,
      "thumb": "donkeythumb",
-     "name": "donkey"
+     "name": "donkey",
+     "id": 5
     },
     {
      "cards": [],
-     "id": 6,
      "thumb": "duckthumb",
-     "name": "duck"
+     "name": "duck",
+     "id": 6
     },
     {
      "cards": [],
-     "id": 7,
      "thumb": "goatthumb",
-     "name": "goat"
+     "name": "goat",
+     "id": 7
     },
     {
      "cards": [],
-     "id": 8,
      "thumb": "owlthumb",
-     "name": "owl"
+     "name": "owl",
+     "id": 8
     },
     {
      "cards": [],
-     "id": 9,
      "thumb": "pigthumb",
-     "name": "pig"
+     "name": "pig",
+     "id": 9
     },
     {
      "cards": [],
-     "id": 10,
      "thumb": "rabbitthumb",
-     "name": "rabbit"
+     "name": "rabbit",
+     "id": 10
     },
     {
      "cards": [],
-     "id": 11,
      "thumb": "sheepthumb",
-     "name": "sheep"
+     "name": "sheep",
+     "id": 11
     },
     {
      "cards": [],
-     "id": 12,
      "thumb": "catthumb",
-     "name": "cat"
+     "name": "cat",
+     "id": 12
     }
-   ],
-   "id": 2,
-   "name": "domestic",
-   "icon": "DomesticIcon"
+   ]
   },
   {
+   "icon": "SafariIcon",
+   "id": 1,
+   "name": "safari",
    "decks": [
     {
      "cards": [],
-     "id": 1,
      "thumb": "donkeythumb",
-     "name": "lion"
+     "name": "lion",
+     "id": 1
     }
-   ],
-   "id": 1,
-   "name": "safari",
-   "icon": "SafariIcon"
+   ]
   }
  ]
 }

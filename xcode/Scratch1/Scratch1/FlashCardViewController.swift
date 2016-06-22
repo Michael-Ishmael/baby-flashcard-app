@@ -76,20 +76,28 @@ class FlashCardViewController: UIViewController {
     
     func setImageFromOrientation(){
         let orientation = UIDevice.currentDevice().orientation
-        let crop:FlashCardImageCrop;
+        let crop:FlashCardImageCrop?;
         let xCassetName:String;
         
+        //  if(_flashCard?.imageDef[].)
+        
         if(orientation == UIDeviceOrientation.Portrait){
-            crop = (_flashCard?.imageDef[AspectRatio.Nine16]!.portrait.crop)!
+            crop = (_flashCard?.imageDef[AspectRatio.Nine16]!.portrait.crop)
             xCassetName = (_flashCard?.imageDef[AspectRatio.Nine16]!.portrait.xCasset)!
         } else {
-            crop = (_flashCard?.imageDef[AspectRatio.Nine16]!.landscape.crop)!
+            crop = (_flashCard?.imageDef[AspectRatio.Nine16]!.landscape.crop)
             xCassetName = (_flashCard?.imageDef[AspectRatio.Nine16]!.landscape.xCasset)!
         }
 
         _imageView!.frame = self.view.bounds;
-        _imageView!.layer.contentsRect = //CGRect(x: 0.1, y: 0.1, width: 0.6, height: 0.7)
-            CGRect(x: crop.X1, y: crop.Y1, width: crop.X1 + crop.Width, height: crop.Y1 + crop.Height)
+        if(crop != nil){
+            let c = crop!
+            _imageView!.layer.contentsRect = //CGRect(x: 0.1, y: 0.1, width: 0.6, height: 0.7)
+                CGRect(x: c.X1, y: c.Y1, width: c.X1 + c.Width, height: c.Y1 + c.Height)
+        } else {
+            _imageView!.layer.contentsRect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        }
+
         _imageView!.image = UIImage.init(named: xCassetName)
     }
     

@@ -6,7 +6,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scratch1/FlashCardViewController.swift"
@@ -16,6 +16,70 @@
             startingLineNumber = "53"
             endingLineNumber = "53"
             landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Scratch1/FlashCardViewController.swift"
+            timestampString = "487784710.934917"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "setImageFromOrientation()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Scratch1.FlashCardViewController.setImageFromOrientation () -&gt; ()"
+                  moduleName = "Scratch1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelishmael/Dev/Projects/baby-flashcard-app/xcode/Scratch1/Scratch1/FlashCardViewController.swift"
+                  timestampString = "487754714.092616"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Scratch1.FlashCardViewController.setImageFromOrientation () -&gt; ()"
+                  moduleName = "Scratch1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaelishmael/Dev/Projects/baby-flashcard-app/xcode/Scratch1/Scratch1/FlashCardViewController.swift"
+                  timestampString = "487754714.092944"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "6999">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Scratch1/FlashCardViewController.swift"
+            timestampString = "487784694.416983"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "setImageFromOrientation()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

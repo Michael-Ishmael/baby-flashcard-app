@@ -117,7 +117,17 @@ app.controller('cropController', ['$scope', '$routeParams', '$location', 'imageD
                 cropFormatter.setCrop(cropManager.activeCropDef, cropManager.activeCropSet);
                 $scope.activeCropSet = cropManager.activeCropSet;
                 $scope.orientation = $scope.activeCropSet.activeDef.orientation;
+                var pcs = cropManager.activeCropDef.cropPercentages;
+                $scope.currentPercentages = "Percentages - x1: " + roundPc(pcs[0]) + ", x2: " + roundPc(pcs[2])
+                    + ", y1:" + roundPc(pcs[1]) + ", y2:" + roundPc(pcs[3]);
+                var bx = cropManager.activeCropDef.percentages;
+                $scope.percentageBox = "Percentage Box - x:" + roundPc(bx.x) + " y:" + roundPc(bx.y) + ", w:"
+                    + roundPc(bx.w) + ", h:" + roundPc(bx.h);
             }
+        }
+
+        function roundPc(pc){
+            return Math.round(pc * 10000) / 10000;
         }
 
         $scope.isCompleteable = function () {
@@ -168,8 +178,15 @@ app.controller('cropController', ['$scope', '$routeParams', '$location', 'imageD
         };
 
         $scope.upload = function () {
+            $scope.uploadStatus = null;
             imageDataService.save();
-            imageDataService.uploadImage(imageDataService.currentItem);
+            $scope.uploading = true;
+            imageDataService.uploadImage(imageDataService.currentItem, function(success){
+                if(success){
+                    $scope.uploadStatus = 'Uploaded successfully';
+                }
+                $scope.uploading = false;
+            });
             $scope.dataChanged = false;
         };
 

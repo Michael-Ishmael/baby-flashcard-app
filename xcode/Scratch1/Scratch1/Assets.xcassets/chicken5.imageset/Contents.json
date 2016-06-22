@@ -1,33 +1,39 @@
 {
-  "images" : [
-    {
-      "idiom" : "iphone",
-      "filename" : "chicken5_iphone4.jpg",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "iphone",
-      "filename" : "chicken5_iphone6.jpg",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "iphone",
-      "filename" : "chicken5_iphone6-1.jpg",
-      "scale" : "3x"
-    },
-    {
-      "idiom" : "ipad",
-      "filename" : "chicken5_ipad.jpg",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "ipad",
-      "filename" : "chicken5_ipadretina.jpg",
-      "scale" : "2x"
-    }
-  ],
-  "info" : {
-    "version" : 1,
-    "author" : "xcode"
+ "images": [
+  {
+   "idiom": "iphone",
+   "scale": "1x",
+   "filename": "chicken5_iphone4.jpg"
+  },
+  {
+   "idiom": "ipad",
+   "scale": "1x",
+   "filename": "chicken5_ipad.jpg"
+  },
+  {
+   "idiom": "ipad",
+   "scale": "2x",
+   "filename": "chicken5_ipadretina.jpg"
+  },
+  {
+   "idiom": "iphone",
+   "scale": "2x",
+   "subtype": "retina4",
+   "filename": "chicken5_iphone5.jpg"
+  },
+  {
+   "idiom": "iphone",
+   "scale": "2x",
+   "filename": "chicken5_iphone6.jpg"
+  },
+  {
+   "idiom": "iphone",
+   "scale": "3x",
+   "filename": "chicken5_iphone6plus.jpg"
   }
+ ],
+ "info": {
+  "version": 1,
+  "author": "xcode"
+ }
 }

@@ -162,3 +162,8 @@ select.tall-list-box {
     border-radius: 7px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, .5);
 }
+.info-caption{
+    color: white;
+    font-size: 20px;
+    margin: -20px 0  0 -12px;
+}

@@ -55,11 +55,11 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
                 $rootScope.$broadcast(message, data);
             }, 100);
         },
-        uploadImage: function(key){
+        uploadImage: function(key, callback){
 
             var transform = function(data){
                 return $.param(data);
-            }
+            };
 
             $http.post('http://localhost:8000/imageprocessor/updatecard', {imageKey: key},
 
@@ -68,8 +68,9 @@ app.factory('imageDataService', ['$rootScope', '$http', '$q', '$timeout', functi
                     transformRequest: transform
                 }
             ).then(function (response) {
+                if(callback) callback(true)
             }, function (response) {
-
+                if(callback) callback(false)
             });
         }
 

@@ -8,7 +8,7 @@
     {
      "cards": [
       {
-       "sound": "Chicken5.mp3",
+       "sound": "Chicken4.mp3",
        "index": 0,
        "imagekey": "chicken1",
        "id": 1,
@@ -18,18 +18,18 @@
           "xcasset": "chicken1",
           "crop": {
            "y1": 0,
-           "x2": 0.42624999999999996,
-           "x1": 0.09250000000000001,
+           "x2": 0.3733333333333333,
+           "x1": 0.03958333333333333,
            "y2": 1
           }
          },
          "landscape": {
           "xcasset": "chicken1",
           "crop": {
-           "y1": 0,
-           "x2": 0.9075,
-           "x1": 0.01749999999999998,
-           "y2": 1
+           "y1": 0.05805243445692885,
+           "x2": 0.9,
+           "x1": 0.08125,
+           "y2": 0.977996254681648
           }
          },
          "imagetype": "combined"
@@ -39,8 +39,8 @@
           "xcasset": "chicken1",
           "crop": {
            "y1": 0,
-           "x2": 0.3665202108963093,
-           "x1": 0.1553602811950791,
+           "x2": 0.3755,
+           "x1": 0.305,
            "y2": 1
           }
          },
@@ -58,7 +58,7 @@
        }
       },
       {
-       "sound": "Chicken6.mp3",
+       "sound": "Chicken1.mp3",
        "index": 1,
        "imagekey": "chicken5",
        "id": 2,
@@ -68,8 +68,8 @@
           "xcasset": "chicken5",
           "crop": {
            "y1": 0,
-           "x2": 0.3502083333333334,
-           "x1": 0.018333333333333333,
+           "x2": 0.5253125000000001,
+           "x1": 0.027500000000000004,
            "y2": 1
           }
          },
@@ -89,8 +89,8 @@
           "xcasset": "chicken5",
           "crop": {
            "y1": 0,
-           "x2": 0.29433216168717047,
-           "x1": 0.0843585237258348,
+           "x2": 0.899609375,
+           "x1": 0.52625,
            "y2": 1
           }
          },
@@ -285,7 +285,7 @@
     {
      "cards": [
       {
-       "sound": "Cow3.mp3",
+       "sound": "cow/Cow3.mp3",
        "index": 1,
        "imagekey": "cow1",
        "id": 7,
@@ -300,6 +300,7 @@
            "y2": 1
           }
          },
+         "imagetype": "combined",
          "landscape": {
           "xcasset": "cow1",
           "crop": {
@@ -308,8 +309,7 @@
            "x1": 0,
            "y2": 1
           }
-         },
-         "imagetype": "combined"
+         }
         },
         "nine16": {
          "portrait": {
@@ -321,6 +321,7 @@
            "y2": 1
           }
          },
+         "imagetype": "combined",
          "landscape": {
           "xcasset": "cow1",
           "crop": {
@@ -329,8 +330,7 @@
            "x1": 0,
            "y2": 0.8581687612208257
           }
-         },
-         "imagetype": "combined"
+         }
         }
        }
       },
@@ -583,12 +583,12 @@
      "name": "sheep",
      "id": 11
     },
-     {
+    {
      "cards": [],
      "thumb": "catthumb",
      "name": "cat",
      "id": 12
-     }
+    }
    ]
   },
   {

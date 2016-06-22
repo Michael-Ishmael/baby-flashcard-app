@@ -11,6 +11,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^updatecard', csrf_exempt(views.update_card), name='update_card'),
+    url(r'^getcropcalc', csrf_exempt(views.get_crop_calc), name='get_crop_calc'),
     url(r'^update', csrf_exempt(views.update_image_data), name='update'),
     url(r'^resources', csrf_exempt(views.resources), name='resources'),
 

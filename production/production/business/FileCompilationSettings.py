@@ -8,7 +8,7 @@ class FileCompilationSettings:
     media_path = home + '/Dev/Projects/baby-flashcard-app/proudction-ui/media'
     data_file_name = 'data2.json'
     csv_file_name = "cropping.csv"
-    target_root =  home + '/Dev/Projects/baby-flashcard-app/photoshop/testarea'  # media'
+    target_root =  home + '/Dev/Projects/baby-flashcard-app/xcode/Scratch1/Scratch1'  # media'
     original_root = 'originals'  # '/Users/scorpio/Dev/Projects/baby-flashcard-app/media/originals'
     ps_path = home + '/Dev/Projects/baby-flashcard-app/photoshop'
     target_formats = {
@@ -22,7 +22,5 @@ class FileCompilationSettings:
             TargetFormat("iphone5", AspectRatio.nine16, Bounds(0, 0, 1138, 640), "iphone", "2x", "retina4"),
             TargetFormat("iphone6", AspectRatio.nine16, Bounds(0, 0, 1334, 750), "iphone", "2x", None),
             TargetFormat("iphone6plus", AspectRatio.nine16, Bounds(0, 0, 2208, 1242), "iphone", "3x", None),
-
-            #TargetFormat("iphone6plus", CropFormat.nine16, Bounds(0, 0, 2208, 1242)),
         ]
     }

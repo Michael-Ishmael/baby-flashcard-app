@@ -40,6 +40,18 @@ def index(request):
     # }
     # return render(request, 'imageprocessor/imageprocessing.html', context)
 
+
+def get_crop_calc(request):
+    image_key = request.GET.get("imageKey", "")
+    target_device = request.GET.get("targetDevice", "iPhone6")
+
+    creator = FileCompiler()
+    res = creator.get_crop_calc(image_key, target_device)
+    result = {"success": True, "result": res}
+
+    return HttpResponse(simplejson.dumps(res, indent=2, sort_keys=True), content_type="application/json")
+
+
 @require_POST
 def update_card(request):
     try:

@@ -219,7 +219,7 @@ class CropSet:
         else:
             landscape_crop.y = landscape_crop.y - portrait_crop.y
 
-        return [landscape_crop.to_bounds_pcs(long_side, short_side), portrait_crop.to_bounds_pcs(long_side, short_side)]
+        return [landscape_crop.to_bounds_pcs(long_side, short_side), portrait_crop.to_bounds_pcs(short_side, long_side)]
 
     def to_json_dict(self):
         return {

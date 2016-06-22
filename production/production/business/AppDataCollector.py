@@ -3,7 +3,7 @@ import os
 import simplejson
 from FileCompilationSettings import FileCompilationSettings as FCS
 from CardFileManager import AppImageDef, AspectImageDef, RectDistribution
-from Entities import Deck
+from Entities import Deck, FlashCard, CropSet, CropDef
 
 
 class AppDataCollector:
@@ -98,6 +98,14 @@ class AppDataCollector:
 
         with open(file_path, 'w') as json_file:
             simplejson.dump(r_data, json_file, indent=True)
+
+    def get_data_for_card(self, card_key, target_device):
+
+        for deck_set in self.data["decksets"]:
+            for deck in deck_set["decks"]:
+                for card in deck["cards"]:
+                    if card["imagekey"] == card_key:
+                        return card["imagedef"]
 
     def dump_app_json(self):
         path = os.path.join(FCS.target_root, "appdata.json")
